@@ -15,28 +15,32 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/styles.css" />
+    <script src="assets/theme.js"></script>
+    <script src="assets/i18n.js"></script>
   </head>
   <body>
     <header>
       <div class="container topbar">
-        <a class="brand serif" href="./">Gabriel Services</a>
+        <a class="brand serif" href="./" data-i18n="brand">Gabriel Services</a>
         <nav class="main-nav">
-          <a href="about.html">About</a><a href="careers.html">Careers</a
-          ><a href="contact.html">Contact</a
-          ><a href="learning.html">Learning</a>
+          <a href="about.html" data-i18n="about">About</a><a href="careers.html" data-i18n="careers">Careers</a
+          ><a href="contact.html" data-i18n="contact">Contact</a
+          ><a href="learning.html" data-i18n="learning">Learning</a>
+          <button id="language-toggle" class="toggle-btn">EN</button>
+          <button id="theme-toggle" class="toggle-btn">Dark</button>
         </nav>
       </div>
     </header>
 
     <section class="hero">
       <div class="container">
-        <p class="eyebrow">Outsource, Delivered</p>
-        <h1>
+        <p class="eyebrow" data-i18n="homeTagline">Outsource, Delivered</p>
+        <h1 data-i18n-html="homeH1">
           Reliable day-to-day execution,<br />
           Outstanding operational support<br />
           for modern businesses.
         </h1>
-        <p>
+        <p data-i18n-html="homeDescription">
           Gabriel Services brings deep experience in coordination, operations
           management, customer satisfaction, and PC/desk support so your team
           can focus on growth while we execute the day-to-day.
@@ -45,16 +49,16 @@
           and IT Support.
         </p>
         <div class="cta-row">
-          <a class="btn primary" href="contact.html">Book a consultation</a>
-          <a class="btn ghost" href="learning.html">See service coverage</a>
+          <a class="btn primary" href="contact.html" data-i18n="bookConsultation">Book a consultation</a>
+          <a class="btn ghost" href="learning.html" data-i18n="seeServiceCoverage">See service coverage</a>
         </div>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <h2>Process-Driven Operations</h2>
-        <p class="muted">
+        <h2 data-i18n="processeDriven">Process-Driven Operations</h2>
+        <p class="muted" data-i18n="practicalTransparent">
           Practical, transparent, responsive, and aligned to your operating
           rhythm.
         </p>
@@ -62,35 +66,35 @@
     </section>
     <section class="section">
       <div class="container">
-        <h2>Service areas built for daily execution</h2>
+        <h2 data-i18n="serviceAreasBuilt">Service areas built for daily execution</h2>
         <div class="grid four services-preview-grid">
           <article class="card service-card">
             <span class="service-icon" aria-hidden="true">🚚</span>
-            <h3 data-scramble="Logistics Operations">Logistics Operations</h3>
-            <p>Dispatch and tracking continuity.</p>
-            <a href="learning.html">Explore service</a>
+            <h3 data-i18n="logisticsOps">Logistics Operations</h3>
+            <p data-i18n="logisticsDesc">Dispatch and tracking continuity.</p>
+            <a href="learning.html" data-i18n="exploreService">Explore service</a>
           </article>
           <article class="card service-card">
             <span class="service-icon" aria-hidden="true">🗂️</span>
-            <h3 data-scramble="Administrative Back Office">
+            <h3 data-i18n="adminBackOffice">
               Administrative Back Office
             </h3>
-            <p>Records, scheduling, and process upkeep.</p>
-            <a href="learning.html">Explore service</a>
+            <p data-i18n="adminDesc">Records, scheduling, and process upkeep.</p>
+            <a href="learning.html" data-i18n="exploreService">Explore service</a>
           </article>
           <article class="card service-card">
             <span class="service-icon" aria-hidden="true">🤝</span>
-            <h3 data-scramble="Customer Relations Operations">
+            <h3 data-i18n="customerRelations">
               Customer Relations Operations
             </h3>
-            <p>Communication, follow-up, and service rhythm.</p>
-            <a href="learning.html">Explore service</a>
+            <p data-i18n="customerRelDesc">Communication, follow-up, and service rhythm.</p>
+            <a href="learning.html" data-i18n="exploreService">Explore service</a>
           </article>
           <article class="card service-card">
             <span class="service-icon" aria-hidden="true">💻</span>
-            <h3 data-scramble="IT Support">IT Support</h3>
-            <p>Ticket triage and day-to-day request handling.</p>
-            <a href="learning.html">Explore service</a>
+            <h3 data-i18n="itSupport">IT Support</h3>
+            <p data-i18n="itSupportDesc">Ticket triage and day-to-day request handling.</p>
+            <a href="learning.html" data-i18n="exploreService">Explore service</a>
           </article>
         </div>
       </div>
@@ -98,8 +102,8 @@
 
     <section class="section">
       <div class="container">
-        <h2>Why businesses work with Gabriel Services</h2>
-        <p class="muted">
+        <h2 data-i18n="whyBusinessesTitle">Why businesses work with Gabriel Services</h2>
+        <p class="muted" data-i18n="whyBusinessesText">
           Consistency, practical execution, and experienced,
           professional-friendly teams that feel like a fresh start for your
           operations.
@@ -108,36 +112,15 @@
     </section>
     <section class="section">
       <div class="container">
-        <h2>Start with the support you need</h2>
+        <h2 data-i18n="startSupportTitle">Start with the support you need</h2>
         <div class="cta-row">
-          <a class="btn primary" href="contact.html">Request consultation</a
-          ><a class="btn ghost" href="learning.html">View engagement options</a>
+          <a class="btn primary" href="contact.html" data-i18n="requestConsultation">Request consultation</a
+          ><a class="btn ghost" href="learning.html" data-i18n="viewEngagementOptions">View engagement options</a>
         </div>
       </div>
     </section>
 
-    <footer>
-      <div class="container footer-grid">
-        <div>
-          <h4>Company</h4>
-          <a href="./">Home</a><a href="about.html">About</a
-          ><a href="learning.html">Services</a
-          ><a href="careers.html">Careers</a>
-        </div>
-        <div>
-          <h4>Support</h4>
-          <a href="contact.html">Contact</a><a href="learning.html">Learning</a
-          ><a href="sitemap.xml">Sitemap</a>
-        </div>
-        <div>
-          <h4>Legal</h4>
-          <a href="terms.html">T&C</a
-          ><a href="privacy-gdpr.html">Cookies Consent</a
-          ><a href="privacy-gdpr.html">Privacy and GDPR</a>
-        </div>
-      </div>
-      <div class="container"><small>© 2026 Gabriel Services</small></div>
-    </footer>
+    <footer></footer>
 
     <nav class="mobile-nav" aria-label="Mobile Navigation">
       <div id="services-dropup" class="services-dropup">

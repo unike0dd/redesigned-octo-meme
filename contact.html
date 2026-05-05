@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,15 +13,19 @@
     />
     <title>Contact</title>
     <link rel="stylesheet" href="./assets/styles.css" />
+    <script src="./assets/theme.js"></script>
+    <script src="./assets/i18n.js"></script>
   </head>
   <body>
     <header>
       <div class="container topbar">
-        <a class="brand serif" href="./">Gabriel Services</a>
+        <a class="brand serif" href="./" data-i18n="brand">Gabriel Services</a>
         <nav class="main-nav">
-          <a href="about.html">About</a><a href="careers.html">Careers</a
-          ><a href="contact.html">Contact</a
-          ><a href="learning.html">Learning</a>
+          <a href="about.html" data-i18n="about">About</a><a href="careers.html" data-i18n="careers">Careers</a
+          ><a href="contact.html" data-i18n="contact">Contact</a
+          ><a href="learning.html" data-i18n="learning">Learning</a>
+          <button id="language-toggle" class="toggle-btn">EN</button>
+          <button id="theme-toggle" class="toggle-btn">Dark</button>
         </nav>
       </div>
     </header>
