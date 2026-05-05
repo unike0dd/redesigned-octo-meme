@@ -1,34 +1,154 @@
-name: Repo Audit
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gabriel Services delivers reliable day-to-day operational support for modern businesses." />
+    <title>Gabriel Services | Outsource, Delivered</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    </head>
+  <body>
+    <header>
+      <div class="container topbar">
+        <a class="brand serif" href="./">Gabriel Services</a>
+        <nav class="main-nav">
+          <a href="about.html">About</a><a href="careers.html">Careers</a
+          ><a href="contact.html">Contact</a><a href="learning.html">Learning</a>
+        </nav>
+      </div>
+    </header>
 
-on:
-  push:
-  pull_request:
-  workflow_dispatch:
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Outsource, Delivered</p>
+        <h1>
+          Reliable day-to-day execution,<br />
+          Outstanding operational support<br />
+          for modern businesses.
+        </h1>
+        <p>
+          Gabriel Services brings deep experience in coordination, operations
+          management, customer satisfaction, and PC/desk support so your team
+          can focus on growth while we execute the day-to-day.
+          <br /><br />
+          We provide Logistics, Customer Relations, Administrative Back Office,
+          and IT Support.
+        </p>
+        <div class="cta-row">
+          <a class="btn primary" href="contact.html">Book a consultation</a>
+          <a class="btn ghost" href="learning.html">See service coverage</a>
+        </div>
+      </div>
+    </section>
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    <section class="section">
+      <div class="container">
+        <h2>Process-Driven Operations</h2>
+        <p class="muted">
+          Practical, transparent, responsive, and aligned to your operating rhythm.
+        </p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2>Service areas built for daily execution</h2>
+        <div class="grid four services-preview-grid">
+          <article class="card service-card">
+            <span class="service-icon" aria-hidden="true">🚚</span>
+            <h3 data-scramble="Logistics Operations">Logistics Operations</h3>
+            <p>Dispatch and tracking continuity.</p>
+            <a href="learning.html">Explore service</a>
+          </article>
+          <article class="card service-card">
+            <span class="service-icon" aria-hidden="true">🗂️</span>
+            <h3 data-scramble="Administrative Back Office">
+              Administrative Back Office
+            </h3>
+            <p>Records, scheduling, and process upkeep.</p>
+            <a href="learning.html">Explore service</a>
+          </article>
+          <article class="card service-card">
+            <span class="service-icon" aria-hidden="true">🤝</span>
+            <h3 data-scramble="Customer Relations Operations">
+              Customer Relations Operations
+            </h3>
+            <p>Communication, follow-up, and service rhythm.</p>
+            <a href="learning.html">Explore service</a>
+          </article>
+          <article class="card service-card">
+            <span class="service-icon" aria-hidden="true">💻</span>
+            <h3 data-scramble="IT Support">IT Support</h3>
+            <p>Ticket triage and day-to-day request handling.</p>
+            <a href="learning.html">Explore service</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-jobs:
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    <section class="section">
+      <div class="container">
+        <h2>Why businesses work with Gabriel Services</h2>
+        <p class="muted">
+          Consistency, practical execution, and experienced,
+          professional-friendly teams that feel like a fresh start for your
+          operations.
+        </p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2>Start with the support you need</h2>
+        <div class="cta-row">
+          <a class="btn primary" href="contact.html">Request consultation</a
+          ><a class="btn ghost" href="learning.html">View engagement options</a>
+        </div>
+      </div>
+    </section>
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "24"
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <h4>Company</h4>
+          <a href="./">Home</a><a href="about.html">About</a
+          ><a href="learning.html">Services</a><a href="careers.html">Careers</a>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <a href="contact.html">Contact</a><a href="learning.html">Learning</a
+          ><a href="sitemap.xml">Sitemap</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="terms.html">T&C</a
+          ><a href="privacy-gdpr.html">Cookies Consent</a
+          ><a href="privacy-gdpr.html">Privacy and GDPR</a>
+        </div>
+      </div>
+      <div class="container"><small>© 2026 Gabriel Services</small></div>
+    </footer>
 
-      - name: Install audit tools
-        run: |
-          npm install -g htmlhint stylelint stylelint-config-standard prettier@3.7.4
-
-      - name: Lint HTML
-        run: htmlhint "**/*.html"
-
-      - name: Validate CSS
-        run: stylelint "assets/**/*.css"
-
-      - name: Formatting check
-        run: prettier --check "**/*.{html,css,js,yml,yaml}"
+    <nav class="mobile-nav" aria-label="Mobile Navigation">
+      <div id="services-dropup" class="services-dropup">
+        <a href="learning.html">Logistics</a>
+        <a href="learning.html">Admin Back Office</a>
+        <a href="learning.html">Customer Relations</a>
+        <a href="learning.html">IT Support</a>
+      </div>
+      <div class="menu">
+        <a href="./">Home</a>
+        <button id="mobile-services-toggle" type="button">Services</button>
+        <a href="careers.html">Careers</a>
+        
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+      <script src="./assets/footer.js"></script>
+    <script src="./assets/main.js"></script>
+  </body>
+</html>

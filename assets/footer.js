@@ -4,29 +4,29 @@
       <div class="container footer-grid" data-footer-sitemap>
         <div>
           <h4>Company</h4>
-          <a href="/myservices/" data-footer-link="home">Home</a>
-          <a href="/myservices/about/" data-footer-link="about">About</a>
-          <a href="/myservices/services/" data-footer-link="services">Services Overview</a>
-          <a href="/myservices/careers/" data-footer-link="careers">Careers</a>
+          <a href="./" data-footer-link="home">Home</a>
+          <a href="./about/" data-footer-link="about">About</a>
+          <a href="learning.html" data-footer-link="services">Services Overview</a>
+          <a href="./careers/" data-footer-link="careers">Careers</a>
         </div>
         <div>
           <h4>Service Pages</h4>
-          <a href="/myservices/services/logistics-operations/" data-footer-link="logistics-operations">Logistics Operations</a>
-          <a href="/myservices/services/administrative-backoffice/" data-footer-link="administrative-backoffice">Administrative Back Office</a>
-          <a href="/myservices/services/customer-relations/" data-footer-link="customer-relations">Customer Relations</a>
-          <a href="/myservices/services/it-support/" data-footer-link="it-support">IT Support</a>
+          <a href="learning.html" data-footer-link="logistics-operations">Logistics Operations</a>
+          <a href="learning.html" data-footer-link="administrative-backoffice">Administrative Back Office</a>
+          <a href="learning.html" data-footer-link="customer-relations">Customer Relations</a>
+          <a href="learning.html" data-footer-link="it-support">IT Support</a>
         </div>
         <div>
           <h4>Support & Learning</h4>
-          <a href="/myservices/contact/" data-footer-link="contact">Contact</a>
-          <a href="/myservices/learning/" data-footer-link="learning">Learning</a>
-          <a href="/myservices/sitemap.xml" data-footer-link="sitemap">Sitemap</a>
+          <a href="./contact/" data-footer-link="contact">Contact</a>
+          <a href="./learning/" data-footer-link="learning">Learning</a>
+          <a href="./sitemap.xml" data-footer-link="sitemap">Sitemap</a>
         </div>
         <div>
           <h4>Legal</h4>
-          <a href="/myservices/legal/terms.html" data-footer-link="terms">Terms & Conditions</a>
-          <a href="/myservices/legal/cookies.html" data-footer-link="cookies">Cookies Consent</a>
-          <a href="/myservices/legal/privacy-gdpr.html" data-footer-link="privacy">Privacy & GDPR</a>
+          <a href="./legal/terms.html" data-footer-link="terms">Terms & Conditions</a>
+          <a href="./legal/cookies.html" data-footer-link="cookies">Cookies Consent</a>
+          <a href="./legal/privacy-gdpr.html" data-footer-link="privacy">Privacy & GDPR</a>
         </div>
       </div>
       <div class="container footer-meta">
