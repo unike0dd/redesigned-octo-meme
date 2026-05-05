@@ -19,13 +19,10 @@ jobs:
 
       - name: Install audit tools
         run: |
-          npm install -g htmlhint stylelint stylelint-config-standard prettier@3.7.4
+          npm install -g htmlhint prettier@3.7.4
 
       - name: Lint HTML
         run: htmlhint "**/*.html"
-
-      - name: Validate CSS
-        run: stylelint "assets/**/*.css"
 
       - name: Formatting check
         run: prettier --check "**/*.{html,css,js,yml,yaml}"

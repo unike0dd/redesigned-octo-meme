@@ -7,7 +7,7 @@ This repository contains a clean, deployable static website for Gabriel Services
 - Moved site assets into `assets/`
 - Added page metadata and cleaned broken chatbot/service links
 - Created a working GitHub Actions audit and deploy workflow
-- Added a stylelint configuration file for CSS quality
+- Added CSS formatting and HTML quality checks using Prettier and HTMLHint
 - Added `robots.txt` and `sitemap.xml` for SEO indexing
 
 ## Deploy
