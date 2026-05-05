@@ -169,10 +169,10 @@
     const nav = document.createElement("nav");
     nav.className = "main-nav";
     nav.innerHTML = `
-      <a href="/myservices/about/">About</a>
-      <a href="/myservices/careers/">Careers</a>
-      <a href="/myservices/contact/">Contact</a>
-      <a href="/myservices/learning/">Learning</a>
+      <a href="./about/">About</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+      <a href="./learning/">Learning</a>
     `;
     topbar.appendChild(nav);
   }
@@ -186,17 +186,16 @@
     mobileNav.setAttribute("aria-label", "Mobile Navigation");
     mobileNav.innerHTML = `
       <div id="services-dropup" class="services-dropup">
-        <a href="/myservices/services/logistics-operations/">Logistics</a>
-        <a href="/myservices/services/administrative-backoffice/">Admin Back Office</a>
-        <a href="/myservices/services/customer-relations/">Customer Relations</a>
-        <a href="/myservices/services/it-support/">IT Support</a>
+        <a href="learning.html">Logistics</a>
+        <a href="learning.html">Admin Back Office</a>
+        <a href="learning.html">Customer Relations</a>
+        <a href="learning.html">IT Support</a>
       </div>
       <div class="menu">
-        <a href="/myservices/">Home</a>
+        <a href="./">Home</a>
         <button id="mobile-services-toggle" type="button">Services</button>
-        <a href="/myservices/careers/">Careers</a>
-        <a href="#chatbot-container" id="open-chatbot-link">Chatbot</a>
-        <a href="/myservices/contact/">Contact</a>
+        <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact</a>
       </div>
     `;
 
@@ -401,126 +400,5 @@
 
 
 
-  function ensureChatbotShell() {
-    if (!document.getElementById("chatbot-container")) {
-      const container = document.createElement("div");
-      container.id = "chatbot-container";
-      container.className = "minimized";
-      container.setAttribute("role", "dialog");
-      container.setAttribute("aria-label", "Gabo chatbot");
-      container.innerHTML = `
-        <div id="chatbot-header">
-          <span>Gabo</span>
-          <div id="chatbot-header-controls">
-            <button id="chatbot-minimize" type="button" aria-label="Minimize">&minus;</button>
-            <button id="chatbot-close" type="button" aria-label="Close">&#10005;</button>
-          </div>
-        </div>
-        <div id="chat-log" aria-live="polite"></div>
-        <div id="chatbot-form-container">
-          <form id="chatbot-input-row" autocomplete="off">
-            <input
-              id="chatbot-input"
-              type="text"
-              placeholder="Type your message here"
-              required
-              maxlength="1000"
-            />
-            <button id="chatbot-send" type="submit" aria-label="Send">Send</button>
-          </form>
-          <button id="chatbot-close-footer" type="button">Close</button>
-        </div>
-      `;
-      document.body.appendChild(container);
-    }
-
-    if (!document.getElementById("chatbot-backdrop")) {
-      const backdrop = document.createElement("div");
-      backdrop.id = "chatbot-backdrop";
-      backdrop.className = "hidden";
-      backdrop.setAttribute("aria-hidden", "true");
-      document.body.appendChild(backdrop);
-    }
-
-    if (!document.getElementById("chatbot-launcher")) {
-      const launcher = document.createElement("button");
-      launcher.id = "chatbot-launcher";
-      launcher.className = "visible";
-      launcher.type = "button";
-      launcher.setAttribute("aria-label", "Open chatbot");
-      launcher.setAttribute("aria-expanded", "false");
-      launcher.innerHTML = '<span aria-hidden="true">💬</span>';
-      document.body.appendChild(launcher);
-    }
-
-    const openLink = document.querySelector('a[href="#chatbot-container"]');
-    if (openLink && !openLink.id) openLink.id = "open-chatbot-link";
-  }
-  function initLazyChatbotLoad() {
-    let chatbotLoaded = false;
-
-    const loadOnce = () => {
-      if (chatbotLoaded) return;
-      chatbotLoaded = true;
-      loadChatbotAssets();
-      window.removeEventListener('scroll', handleScrollLoad);
-    };
-
-    const handleScrollLoad = () => {
-      if (window.scrollY > 180) loadOnce();
-    };
-
-    window.addEventListener('scroll', handleScrollLoad, { passive: true });
-
-    const launcher = document.getElementById('chatbot-launcher');
-    const opener = document.getElementById('open-chatbot-link');
-    [launcher, opener].forEach((node) => {
-      if (!node) return;
-      node.addEventListener('pointerenter', loadOnce, { once: true });
-      node.addEventListener('focus', loadOnce, { once: true });
-      node.addEventListener('click', loadOnce, { once: true });
-    });
-  }
-
-  function loadChatbotAssets() {
-    if (!document.querySelector('link[data-fontawesome-chatbot="true"]')) {
-      const iconCss = document.createElement("link");
-      iconCss.rel = "stylesheet";
-      iconCss.href =
-        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css";
-      iconCss.crossOrigin = "anonymous";
-      iconCss.referrerPolicy = "no-referrer";
-      iconCss.setAttribute("data-fontawesome-chatbot", "true");
-      document.head.appendChild(iconCss);
-    }
-
-    if (!document.querySelector('link[data-chatbot-css="true"]')) {
-      const chatbotCss = document.createElement("link");
-      chatbotCss.rel = "stylesheet";
-      chatbotCss.href = "/myservices/chatbot/chatbot.css";
-      chatbotCss.setAttribute("data-chatbot-css", "true");
-      document.head.appendChild(chatbotCss);
-    }
-
-    if (!document.querySelector('script[data-chatbot-js="true"]')) {
-      const chatbotScript = document.createElement("script");
-      chatbotScript.src = "/myservices/chatbot/chatbot.js";
-      chatbotScript.defer = true;
-      chatbotScript.setAttribute("data-chatbot-js", "true");
-      document.body.appendChild(chatbotScript);
-    }
-  }
-
-  ensurePrimaryNav();
-  ensureMobileNav();
-  ensureSkipLink();
-  initSecurityRuntime();
-  activateServiceLetterScramble();
-  initRepeatableEntryGroups();
-  initNumericOnlyInputs();
-  initSecureForms();
-  initMobileServiceMenu();
-  initScrollLazyLoad();
-  ensureChatbotShell();
-  initLazyChatbotLoad();
+  
 })();
