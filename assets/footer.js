@@ -43,7 +43,7 @@
     }
     footer.innerHTML = footerMarkup();
     // Re-apply language to footer elements after they're added
-    if (window.I18N && typeof I18N.applyLanguage === 'function') {
+    if (window.I18N && typeof I18N.applyLanguage === "function") {
       I18N.applyLanguage();
     }
   }
@@ -79,9 +79,9 @@
     ensureGlobalFooter();
     initFooterEvents();
   }
-  
+
   // Re-create footer when language changes
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     window.addEventListener("language:changed", () => {
       ensureGlobalFooter();
       initFooterEvents();

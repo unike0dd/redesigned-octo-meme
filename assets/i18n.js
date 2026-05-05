@@ -9,50 +9,53 @@
       contact: "Contact",
       learning: "Learning",
       services: "Services",
-      
+
       // Header/Nav
       brand: "Gabriel Services",
       tagline: "Outsource, Delivered",
-      
+
       // Footer sections
       company: "Company",
       servicePagesLabel: "Service Pages",
       supportLearning: "Support & Learning",
       legal: "Legal",
-      
+
       // Legal links
       termsConditions: "Terms & Conditions",
       cookiesConsent: "Cookies Consent",
       privacyGdpr: "Privacy & GDPR",
-      
+
       // Services
       logisticsOps: "Logistics Operations",
       adminBackOffice: "Administrative Back Office",
       customerRelations: "Customer Relations Operations",
       itSupport: "IT Support",
-      
+
       // Legal page titles
       termsTitle: "Terms & Conditions",
       cookiesTitle: "Cookies Consent",
       privacyTitle: "Privacy & GDPR",
-      
+
       // Theme & Language toggles
       lightTheme: "Light",
       darkTheme: "Dark",
       languageLabel: "Language",
       themeLabelText: "Theme",
-      
+
       // Footer meta
       copyright: "© 2026 Gabriel Services",
-      
+
       // Home page
       homeTagline: "Outsource, Delivered",
-      homeH1: "Reliable day-to-day execution,<br/>Outstanding operational support<br/>for modern businesses.",
-      homeDescription: "Gabriel Services brings deep experience in coordination, operations management, customer satisfaction, and PC/desk support so your team can focus on growth while we execute the day-to-day.<br/><br/>We provide Logistics, Customer Relations, Administrative Back Office, and IT Support.",
+      homeH1:
+        "Reliable day-to-day execution,<br/>Outstanding operational support<br/>for modern businesses.",
+      homeDescription:
+        "Gabriel Services brings deep experience in coordination, operations management, customer satisfaction, and PC/desk support so your team can focus on growth while we execute the day-to-day.<br/><br/>We provide Logistics, Customer Relations, Administrative Back Office, and IT Support.",
       bookConsultation: "Book a consultation",
       seeServiceCoverage: "See service coverage",
       processeDriven: "Process-Driven Operations",
-      practicalTransparent: "Practical, transparent, responsive, and aligned to your operating rhythm.",
+      practicalTransparent:
+        "Practical, transparent, responsive, and aligned to your operating rhythm.",
       serviceAreasBuilt: "Service areas built for daily execution",
       logisticsDesc: "Dispatch and tracking continuity.",
       adminDesc: "Records, scheduling, and process upkeep.",
@@ -62,32 +65,43 @@
       sitemap: "Sitemap",
       servicesOverview: "Services Overview",
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
-      whyBusinessesText: "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations.",
+      whyBusinessesText:
+        "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations.",
       startSupportTitle: "Start with the support you need",
       requestConsultation: "Request consultation",
       viewEngagementOptions: "View engagement options",
 
       aboutTitle: "About",
-      aboutIntro1: "Gabriel Services is an operational support partner focused on daily execution for modern businesses.",
-      aboutIntro2: "We provide cross-functional support across logistics operations, administrative back office, customer operations, and IT support.",
-      aboutIntro3: "Our approach is built on consistency, transparent communication, and practical execution.",
+      aboutIntro1:
+        "Gabriel Services is an operational support partner focused on daily execution for modern businesses.",
+      aboutIntro2:
+        "We provide cross-functional support across logistics operations, administrative back office, customer operations, and IT support.",
+      aboutIntro3:
+        "Our approach is built on consistency, transparent communication, and practical execution.",
       aboutWhenIssuesTitle: "When opportunities are left unresolved",
-      aboutWhenIssuesText: "Small operational issues, when ignored, can quietly damage customer trust. Overlooked details slow growth, create missed opportunities, and eventually affect business stability.",
+      aboutWhenIssuesText:
+        "Small operational issues, when ignored, can quietly damage customer trust. Overlooked details slow growth, create missed opportunities, and eventually affect business stability.",
       aboutThatIsWhereText: "That is where we step in.",
-      aboutDetailsHandledText: "We make sure no opportunity slips through the cracks. Every detail is handled so your business stays organized, responsive, and running smoothly.",
+      aboutDetailsHandledText:
+        "We make sure no opportunity slips through the cracks. Every detail is handled so your business stays organized, responsive, and running smoothly.",
       aboutWhatWeHandleTitle: "What we handle",
-      aboutWhatWeHandleText: "We step in by handling the details and bringing structure to fragmented operations. We integrate into your workflows, align with your processes, and focus on execution so your team can stay focused on growth.",
+      aboutWhatWeHandleText:
+        "We step in by handling the details and bringing structure to fragmented operations. We integrate into your workflows, align with your processes, and focus on execution so your team can stay focused on growth.",
       aboutApproachSimpleTitle: "Our approach is simple:",
       aboutApproachItem1: "We improve productivity.",
       aboutApproachItem2: "We increase operational consistency.",
       aboutApproachItem3: "We deliver high-quality execution.",
-      aboutApproachItem4: "We operate with practical and cost-conscious service delivery.",
-      aboutApproachItem5: "We act as a reliable operational partner — plugging into your team and handling execution so you don't have to.",
+      aboutApproachItem4:
+        "We operate with practical and cost-conscious service delivery.",
+      aboutApproachItem5:
+        "We act as a reliable operational partner — plugging into your team and handling execution so you don't have to.",
       aboutResultTitle: "The result",
       aboutResult1: "You get more done with less friction.",
       aboutResult2: "More clarity.",
-      aboutResult3: "More time to focus on growth instead of putting out fires.",
-      aboutResult4: "All at a cost that makes sense for growing businesses — no enterprise overhead and no contracts.",
+      aboutResult3:
+        "More time to focus on growth instead of putting out fires.",
+      aboutResult4:
+        "All at a cost that makes sense for growing businesses — no enterprise overhead and no contracts.",
       aboutSupportTitle: "What we support",
       aboutSupportText: "We focus on four operational areas:",
       aboutSupportArea1: "Logistics",
@@ -96,21 +110,25 @@
       aboutSupportArea4: "IT Support (Level I and Level II)",
       aboutOurServicesTitle: "Our Services",
       aboutLogisticsOperationsTitle: "Logistics Operations",
-      aboutLogisticsOperationsText: "We help keep your logistics organized, visible, and moving:",
+      aboutLogisticsOperationsText:
+        "We help keep your logistics organized, visible, and moving:",
       aboutLogisticsList1: "Dispatch coordination",
       aboutLogisticsList2: "Shipment tracking (ocean, air, and ground)",
       aboutLogisticsList3: "Customer communication and follow-ups",
       aboutLogisticsList4: "Invoicing and billing support",
       aboutLogisticsList5: "Documentation coordination",
       aboutCustomerRelationsTitle: "Customer Relations",
-      aboutCustomerRelationsText: "We help maintain customer satisfaction and resolution flow:",
+      aboutCustomerRelationsText:
+        "We help maintain customer satisfaction and resolution flow:",
       aboutCustomerRelationsList1: "Ticket follow-up and resolution tracking",
-      aboutCustomerRelationsList2: "Customer satisfaction follow-ups (CSAT support)",
+      aboutCustomerRelationsList2:
+        "Customer satisfaction follow-ups (CSAT support)",
       aboutCustomerRelationsList3: "Billing clarification support",
       aboutCustomerRelationsList4: "First contact resolution support",
       aboutCustomerRelationsList5: "Customer communication management",
       aboutAdminBackOfficeTitle: "Administrative Back Office",
-      aboutAdminBackOfficeText: "We support leadership and daily business operations:",
+      aboutAdminBackOfficeText:
+        "We support leadership and daily business operations:",
       aboutAdminBackOfficeList1: "Executive administrative support",
       aboutAdminBackOfficeList2: "Calendar and scheduling coordination",
       aboutAdminBackOfficeList3: "Email and communication management",
@@ -134,7 +152,8 @@
       aboutLevel2List5: "Resolution ownership after escalation",
 
       contactTitle: "Contact",
-      contactIntro: "Get in touch for support, onboarding, projects, and partnership opportunities.",
+      contactIntro:
+        "Get in touch for support, onboarding, projects, and partnership opportunities.",
       fullName: "Full Name",
       emailAddress: "Email Address",
       countryCode: "Country Code",
@@ -162,9 +181,11 @@
       clearForm: "Clear Form",
 
       careersTitle: "Careers",
-      careersIntro: "Apply to support operations, communication, and service delivery workflows across all service domains.",
+      careersIntro:
+        "Apply to support operations, communication, and service delivery workflows across all service domains.",
       availabilityLabel: "Availability",
-      areaInterestLabel: "Area of Interest (Logistics / Admin / Customer Relations / IT Support)",
+      areaInterestLabel:
+        "Area of Interest (Logistics / Admin / Customer Relations / IT Support)",
       resumeLinkLabel: "Resume/Profile link",
       educationLevelLabel: "Education Level",
       educationOptionHighSchool: "High School",
@@ -176,7 +197,8 @@
       bestContactTime: "Best Time to Contact You",
       messageLabel: "Message",
       availabilityLabel: "Availability",
-      areaInterestLabel: "Area of Interest (Logistics / Admin / Customer Relations / IT Support)",
+      areaInterestLabel:
+        "Area of Interest (Logistics / Admin / Customer Relations / IT Support)",
       resumeLinkLabel: "Resume/Profile link",
       educationLevelLabel: "Education Level",
       educationOptionHighSchool: "High School",
@@ -188,178 +210,267 @@
       bestContactTime: "Best Time to Contact You",
       messageLabel: "Message",
       careersTitle: "Careers",
-      careersIntro: "Apply to support operations, communication, and service delivery workflows across all service domains.",
+      careersIntro:
+        "Apply to support operations, communication, and service delivery workflows across all service domains.",
 
       learningTitle: "Learning",
-      learningIntro: "Guidance and practical service knowledge for English-first, workflow-oriented operations support.",
+      learningIntro:
+        "Guidance and practical service knowledge for English-first, workflow-oriented operations support.",
       trackLogisticsTitle: "Logistics Operations",
-      trackLogisticsText: "Learn coordination, tracking, and continuity essentials.",
+      trackLogisticsText:
+        "Learn coordination, tracking, and continuity essentials.",
       trackAdminTitle: "Administrative Back Office",
-      trackAdminText: "Learn documentation, reporting rhythm, and process upkeep.",
+      trackAdminText:
+        "Learn documentation, reporting rhythm, and process upkeep.",
       trackCustomerTitle: "Customer Operations",
-      trackCustomerText: "Learn follow-up flow, escalation continuity, and response rhythm.",
+      trackCustomerText:
+        "Learn follow-up flow, escalation continuity, and response rhythm.",
       trackITTitle: "IT Support",
-      trackITText: "Learn triage basics, ticket communication, and request handling.",
+      trackITText:
+        "Learn triage basics, ticket communication, and request handling.",
       exploreTrack: "Explore track",
 
       termsSection1Title: "1. Agreement to Terms",
-      termsSection1Text: "By accessing and using this website and the services provided by Gabriel Services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.",
+      termsSection1Text:
+        "By accessing and using this website and the services provided by Gabriel Services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.",
       termsSection2Title: "2. Use License",
-      termsSection2Text: "Gabriel Services grants you a limited license to access and use the website and services for lawful purposes only. You agree not to:",
-      termsSection2List1: "Reproduce, duplicate, copy, or sell any portion of the website or services",
-      termsSection2List2: "Access the website for any unlawful or unauthorized purpose",
-      termsSection2List3: "Disrupt the normal flow of dialogue or otherwise disrupt the services",
-      termsSection2List4: "Attempt to gain unauthorized access to our systems or networks",
-      termsSection2List5: "Use automated systems or scripts to collect data without permission",
-      termsSection2List6: "Engage in any form of harassment or abusive behavior",
+      termsSection2Text:
+        "Gabriel Services grants you a limited license to access and use the website and services for lawful purposes only. You agree not to:",
+      termsSection2List1:
+        "Reproduce, duplicate, copy, or sell any portion of the website or services",
+      termsSection2List2:
+        "Access the website for any unlawful or unauthorized purpose",
+      termsSection2List3:
+        "Disrupt the normal flow of dialogue or otherwise disrupt the services",
+      termsSection2List4:
+        "Attempt to gain unauthorized access to our systems or networks",
+      termsSection2List5:
+        "Use automated systems or scripts to collect data without permission",
+      termsSection2List6:
+        "Engage in any form of harassment or abusive behavior",
       termsSection3Title: "3. Disclaimer of Warranties",
-      termsSection3Text: "The materials on Gabriel Services' website are provided on an 'as is' basis. Gabriel Services makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
+      termsSection3Text:
+        "The materials on Gabriel Services' website are provided on an 'as is' basis. Gabriel Services makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
       termsSection4Title: "4. Limitations of Liability",
-      termsSection4Text: "In no event shall Gabriel Services or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Gabriel Services' website, even if Gabriel Services or an authorized representative has been notified orally or in writing of the possibility of such damage.",
+      termsSection4Text:
+        "In no event shall Gabriel Services or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Gabriel Services' website, even if Gabriel Services or an authorized representative has been notified orally or in writing of the possibility of such damage.",
       termsSection5Title: "5. Accuracy of Materials",
-      termsSection5Text: "The materials appearing on Gabriel Services' website could include technical, typographical, or photographic errors. Gabriel Services does not warrant that any of the materials on its website are accurate, complete, or current. Gabriel Services may make changes to the materials contained on its website at any time without notice.",
+      termsSection5Text:
+        "The materials appearing on Gabriel Services' website could include technical, typographical, or photographic errors. Gabriel Services does not warrant that any of the materials on its website are accurate, complete, or current. Gabriel Services may make changes to the materials contained on its website at any time without notice.",
       termsSection6Title: "6. Links",
-      termsSection6Text: "Gabriel Services has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Gabriel Services of the site. Use of any such linked website is at the user's own risk.",
+      termsSection6Text:
+        "Gabriel Services has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Gabriel Services of the site. Use of any such linked website is at the user's own risk.",
       termsSection7Title: "7. Modifications",
-      termsSection7Text: "Gabriel Services may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.",
+      termsSection7Text:
+        "Gabriel Services may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.",
       termsSection8Title: "8. Governing Law",
-      termsSection8Text: "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Gabriel Services operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.",
+      termsSection8Text:
+        "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Gabriel Services operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.",
       termsSection9Title: "9. Service Description",
-      termsSection9Text: "Gabriel Services provides operational support services including Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support. The specific services requested and agreed upon between Gabriel Services and the client are detailed in the service agreement.",
+      termsSection9Text:
+        "Gabriel Services provides operational support services including Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support. The specific services requested and agreed upon between Gabriel Services and the client are detailed in the service agreement.",
       termsSection10Title: "10. Payment Terms",
-      termsSection10Text: "Payment terms are as specified in the individual service agreement. Invoices are due upon receipt unless otherwise agreed in writing. Late payments may result in service suspension.",
+      termsSection10Text:
+        "Payment terms are as specified in the individual service agreement. Invoices are due upon receipt unless otherwise agreed in writing. Late payments may result in service suspension.",
       termsSection11Title: "11. Intellectual Property Rights",
-      termsSection11Text: "All content included on this website, such as text, graphics, logos, images, and software, is the property of Gabriel Services or its content suppliers and is protected by international copyright laws.",
+      termsSection11Text:
+        "All content included on this website, such as text, graphics, logos, images, and software, is the property of Gabriel Services or its content suppliers and is protected by international copyright laws.",
       termsSection12Title: "12. Limitation of Service",
-      termsSection12Text: "Gabriel Services reserves the right to refuse service to anyone at its sole discretion. Gabriel Services also reserves the right to limit or terminate services, close accounts, and remove or edit content in our sole discretion.",
+      termsSection12Text:
+        "Gabriel Services reserves the right to refuse service to anyone at its sole discretion. Gabriel Services also reserves the right to limit or terminate services, close accounts, and remove or edit content in our sole discretion.",
       termsSection13Title: "13. Contact for Legal Inquiries",
-      termsSection13Text: "If you have any questions about these Terms & Conditions, please contact us at the email or address provided on our Contact page.",
+      termsSection13Text:
+        "If you have any questions about these Terms & Conditions, please contact us at the email or address provided on our Contact page.",
       termsLastUpdated: "Last Updated: May 5, 2026",
 
       cookiesTitle: "Cookies Consent Policy",
       cookiesSection1Title: "1. What Are Cookies?",
-      cookiesSection1Text: "Cookies are small data files containing a string of characters that are placed on your computer or mobile device when you visit our website. They allow us to recognize your browser or device, remember information about your preferences, and help personalize your experience on the Gabriel Services website.",
+      cookiesSection1Text:
+        "Cookies are small data files containing a string of characters that are placed on your computer or mobile device when you visit our website. They allow us to recognize your browser or device, remember information about your preferences, and help personalize your experience on the Gabriel Services website.",
       cookiesSection2Title: "2. Types of Cookies We Use",
       cookiesSection2EssentialTitle: "Essential Cookies",
-      cookiesSection2EssentialText: "These cookies are necessary for the website to function properly and cannot be disabled through our systems. They are used to:",
+      cookiesSection2EssentialText:
+        "These cookies are necessary for the website to function properly and cannot be disabled through our systems. They are used to:",
       cookiesSection2EssentialList1: "Enable basic website functionality",
       cookiesSection2EssentialList2: "Maintain security and prevent fraud",
-      cookiesSection2EssentialList3: "Preserve user preferences (language and theme selections)",
+      cookiesSection2EssentialList3:
+        "Preserve user preferences (language and theme selections)",
       cookiesSection2PerformanceTitle: "Performance Cookies",
-      cookiesSection2PerformanceText: "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They help us:",
-      cookiesSection2PerformanceList1: "Identify pages that are accessed most frequently",
-      cookiesSection2PerformanceList2: "Measure the effectiveness of advertising campaigns",
+      cookiesSection2PerformanceText:
+        "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They help us:",
+      cookiesSection2PerformanceList1:
+        "Identify pages that are accessed most frequently",
+      cookiesSection2PerformanceList2:
+        "Measure the effectiveness of advertising campaigns",
       cookiesSection2PerformanceList3: "Understand user navigation patterns",
       cookiesSection2FunctionalTitle: "Functional Cookies",
-      cookiesSection2FunctionalText: "These cookies enable enhanced functionality and personalization, including:",
+      cookiesSection2FunctionalText:
+        "These cookies enable enhanced functionality and personalization, including:",
       cookiesSection2FunctionalList1: "Remembering your language preference",
       cookiesSection2FunctionalList2: "Storing your theme preference",
       cookiesSection2FunctionalList3: "Recording form data for convenience",
       cookiesSection2AnalyticalTitle: "Analytical Cookies",
-      cookiesSection2AnalyticalText: "We use analytical cookies to understand how our website is used, including the duration of visits and the paths users take through the website. This helps us improve the design and functionality of our website.",
+      cookiesSection2AnalyticalText:
+        "We use analytical cookies to understand how our website is used, including the duration of visits and the paths users take through the website. This helps us improve the design and functionality of our website.",
       cookiesSection3Title: "3. Local Storage",
-      cookiesSection3Text: "To enhance user experience, we use localStorage to store your preferences, including:",
+      cookiesSection3Text:
+        "To enhance user experience, we use localStorage to store your preferences, including:",
       cookiesSection3List1: "Language preference (English or Spanish)",
       cookiesSection3List2: "Theme preference (Light or Dark mode)",
-      cookiesSection3Text2: "This information is stored locally on your device and is not transmitted to our servers.",
+      cookiesSection3Text2:
+        "This information is stored locally on your device and is not transmitted to our servers.",
       cookiesSection4Title: "4. Third-Party Cookies",
-      cookiesSection4Text: "Third-party cookies may be placed on your device by external service providers including:",
+      cookiesSection4Text:
+        "Third-party cookies may be placed on your device by external service providers including:",
       cookiesSection4List1: "Analytics providers",
       cookiesSection4List2: "Advertising networks",
       cookiesSection4List3: "Social media platforms",
-      cookiesSection4Text2: "We do not have control over third-party cookies. You can set your browser to refuse cookies or to alert you when cookies are being sent.",
+      cookiesSection4Text2:
+        "We do not have control over third-party cookies. You can set your browser to refuse cookies or to alert you when cookies are being sent.",
       cookiesSection5Title: "5. How to Control Cookies",
-      cookiesSection5Text: "You have the right to choose whether to accept or reject cookies. Most web browsers allow you to:",
+      cookiesSection5Text:
+        "You have the right to choose whether to accept or reject cookies. Most web browsers allow you to:",
       cookiesSection5List1: "View cookies that have been set on your device",
       cookiesSection5List2: "Delete cookies from your device",
-      cookiesSection5List3: "Block future cookies from being set on your device",
-      cookiesSection5List4: "Set your browser to notify you when a cookie is about to be set",
-      cookiesSection5Text2: "If you choose to block or delete cookies, some features of our website may not work as intended.",
+      cookiesSection5List3:
+        "Block future cookies from being set on your device",
+      cookiesSection5List4:
+        "Set your browser to notify you when a cookie is about to be set",
+      cookiesSection5Text2:
+        "If you choose to block or delete cookies, some features of our website may not work as intended.",
       cookiesSection6Title: "6. Google Analytics",
-      cookiesSection6Text: "We may use Google Analytics to collect information about your use of our website. Google Analytics collects information such as:",
+      cookiesSection6Text:
+        "We may use Google Analytics to collect information about your use of our website. Google Analytics collects information such as:",
       cookiesSection6List1: "IP address",
       cookiesSection6List2: "Device type",
       cookiesSection6List3: "Browser type",
       cookiesSection6List4: "Pages visited and time spent on each page",
-      cookiesSection6Text2: "The information is used to compile reports on website activity, which help us understand how our website is being used and to improve its design and functionality. Google Analytics does not identify individual users.",
+      cookiesSection6Text2:
+        "The information is used to compile reports on website activity, which help us understand how our website is being used and to improve its design and functionality. Google Analytics does not identify individual users.",
       cookiesSection7Title: "7. Your Consent",
-      cookiesSection7Text: "By continuing to use our website after receiving this cookie notice, you consent to the use of cookies as described in this policy. If you do not consent to the use of cookies, you should disable cookies in your browser settings before continuing to use our website.",
+      cookiesSection7Text:
+        "By continuing to use our website after receiving this cookie notice, you consent to the use of cookies as described in this policy. If you do not consent to the use of cookies, you should disable cookies in your browser settings before continuing to use our website.",
       cookiesSection8Title: "8. Updates to This Policy",
-      cookiesSection8Text: "We may update this Cookies Consent Policy from time to time to reflect changes in technology, legislation, or other changes. We encourage you to review this policy periodically to stay informed about how we protect your privacy.",
+      cookiesSection8Text:
+        "We may update this Cookies Consent Policy from time to time to reflect changes in technology, legislation, or other changes. We encourage you to review this policy periodically to stay informed about how we protect your privacy.",
       cookiesSection9Title: "9. Contact Us",
-      cookiesSection9Text: "If you have any questions about our Cookies Consent Policy or our use of cookies, please contact us through the Contact page on our website or via the contact information provided on our main website.",
+      cookiesSection9Text:
+        "If you have any questions about our Cookies Consent Policy or our use of cookies, please contact us through the Contact page on our website or via the contact information provided on our main website.",
 
       privacySection1Title: "1. Introduction",
-      privacySection1Text: "Gabriel Services (\"we,\" \"us,\" or \"Company\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. Please read this policy carefully to understand our practices regarding your personal data.",
+      privacySection1Text:
+        'Gabriel Services ("we," "us," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. Please read this policy carefully to understand our practices regarding your personal data.',
       privacySection2Title: "2. Information We Collect",
       privacySection2DirectTitle: "Information You Provide Directly",
-      privacySection2DirectList1: "Contact Information: Name, email address, telephone number, and company name",
-      privacySection2DirectList2: "Service Information: Details about your business operations and service requirements",
-      privacySection2DirectList3: "Communication Records: Content of messages, emails, and support tickets",
-      privacySection2DirectList4: "Payment Information: Billing address and payment method details (processed securely)",
+      privacySection2DirectList1:
+        "Contact Information: Name, email address, telephone number, and company name",
+      privacySection2DirectList2:
+        "Service Information: Details about your business operations and service requirements",
+      privacySection2DirectList3:
+        "Communication Records: Content of messages, emails, and support tickets",
+      privacySection2DirectList4:
+        "Payment Information: Billing address and payment method details (processed securely)",
       privacySection2AutoTitle: "Information Collected Automatically",
-      privacySection2AutoList1: "Device Information: IP address, browser type, operating system, and device identifiers",
-      privacySection2AutoList2: "Usage Data: Pages visited, time spent on pages, links clicked, and navigation patterns",
-      privacySection2AutoList3: "Cookies and Similar Technologies: Browser and local storage data for preferences",
-      privacySection2AutoList4: "Referral Information: How you accessed our website",
+      privacySection2AutoList1:
+        "Device Information: IP address, browser type, operating system, and device identifiers",
+      privacySection2AutoList2:
+        "Usage Data: Pages visited, time spent on pages, links clicked, and navigation patterns",
+      privacySection2AutoList3:
+        "Cookies and Similar Technologies: Browser and local storage data for preferences",
+      privacySection2AutoList4:
+        "Referral Information: How you accessed our website",
       privacySection3Title: "3. How We Use Your Information",
-      privacySection3Text: "We use collected information for the following purposes:",
+      privacySection3Text:
+        "We use collected information for the following purposes:",
       privacySection3List1: "Providing and managing services requested",
-      privacySection3List2: "Processing transactions and sending related information",
+      privacySection3List2:
+        "Processing transactions and sending related information",
       privacySection3List3: "Sending transactional and promotional emails",
-      privacySection3List4: "Responding to inquiries and providing customer support",
+      privacySection3List4:
+        "Responding to inquiries and providing customer support",
       privacySection3List5: "Improving our website and services",
       privacySection3List6: "Analyzing website usage patterns",
       privacySection3List7: "Preventing fraud and ensuring security",
       privacySection3List8: "Complying with legal obligations",
-      privacySection3List9: "Creating aggregate, de-identified data for analytics",
+      privacySection3List9:
+        "Creating aggregate, de-identified data for analytics",
       privacySection4Title: "4. Legal Basis for Processing (GDPR)",
-      privacySection4Text: "Under GDPR, we process personal data based on these lawful grounds:",
-      privacySection4List1: "Contractual Necessity: Processing necessary to perform our services with you",
-      privacySection4List2: "Legal Obligation: Processing required by law or regulation",
-      privacySection4List3: "Legitimate Interests: Processing necessary for our legitimate business interests",
-      privacySection4List4: "Consent: Processing based on your explicit consent",
+      privacySection4Text:
+        "Under GDPR, we process personal data based on these lawful grounds:",
+      privacySection4List1:
+        "Contractual Necessity: Processing necessary to perform our services with you",
+      privacySection4List2:
+        "Legal Obligation: Processing required by law or regulation",
+      privacySection4List3:
+        "Legitimate Interests: Processing necessary for our legitimate business interests",
+      privacySection4List4:
+        "Consent: Processing based on your explicit consent",
       privacySection5Title: "5. Data Retention",
-      privacySection5Text: "We retain personal data only as long as necessary for the purposes stated in this policy or as required by law. Retention periods vary depending on the type of data:",
-      privacySection5List1: "Contact information: Retained for the duration of the service relationship plus 7 years for accounting purposes",
-      privacySection5List2: "Website analytics data: Retained for up to 26 months",
-      privacySection5List3: "User preferences (language/theme): Stored locally on your device indefinitely until deleted",
+      privacySection5Text:
+        "We retain personal data only as long as necessary for the purposes stated in this policy or as required by law. Retention periods vary depending on the type of data:",
+      privacySection5List1:
+        "Contact information: Retained for the duration of the service relationship plus 7 years for accounting purposes",
+      privacySection5List2:
+        "Website analytics data: Retained for up to 26 months",
+      privacySection5List3:
+        "User preferences (language/theme): Stored locally on your device indefinitely until deleted",
       privacySection6Title: "6. Data Sharing and Disclosure",
-      privacySection6Text: "We do not sell your personal data. We may share information with:",
-      privacySection6List1: "Service Providers: Third parties who assist in providing services (under data processing agreements)",
-      privacySection6List2: "Legal Authorities: When required by law or to protect rights and safety",
-      privacySection6List3: "Business Transfers: In the event of merger, acquisition, or sale of assets",
+      privacySection6Text:
+        "We do not sell your personal data. We may share information with:",
+      privacySection6List1:
+        "Service Providers: Third parties who assist in providing services (under data processing agreements)",
+      privacySection6List2:
+        "Legal Authorities: When required by law or to protect rights and safety",
+      privacySection6List3:
+        "Business Transfers: In the event of merger, acquisition, or sale of assets",
       privacySection7Title: "7. Your Rights Under GDPR",
-      privacySection7Text: "If you are in the EU/EEA, you have the following rights:",
-      privacySection7List1: "Right to Access: Obtain a copy of the personal data we hold about you",
-      privacySection7List2: "Right to Rectification: Correct inaccurate or incomplete personal data",
-      privacySection7List3: "Right to Erasure (\"Right to be Forgotten\"): Request deletion of your personal data",
-      privacySection7List4: "Right to Restrict Processing: Limit how we process your data",
-      privacySection7List5: "Right to Data Portability: Receive your data in a portable format",
-      privacySection7List6: "Right to Object: Object to processing of your data",
-      privacySection7List7: "Right to Lodge a Complaint: File a complaint with your local data protection authority",
+      privacySection7Text:
+        "If you are in the EU/EEA, you have the following rights:",
+      privacySection7List1:
+        "Right to Access: Obtain a copy of the personal data we hold about you",
+      privacySection7List2:
+        "Right to Rectification: Correct inaccurate or incomplete personal data",
+      privacySection7List3:
+        'Right to Erasure ("Right to be Forgotten"): Request deletion of your personal data',
+      privacySection7List4:
+        "Right to Restrict Processing: Limit how we process your data",
+      privacySection7List5:
+        "Right to Data Portability: Receive your data in a portable format",
+      privacySection7List6:
+        "Right to Object: Object to processing of your data",
+      privacySection7List7:
+        "Right to Lodge a Complaint: File a complaint with your local data protection authority",
       privacySection8Title: "8. Data Security",
-      privacySection8Text: "We implement appropriate technical and organizational security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. These measures include:",
+      privacySection8Text:
+        "We implement appropriate technical and organizational security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. These measures include:",
       privacySection8List1: "SSL/TLS encryption for data in transit",
       privacySection8List2: "Secure authentication protocols",
       privacySection8List3: "Regular security audits and testing",
       privacySection8List4: "Restricted access to personal data",
       privacySection8List5: "Data protection training for staff",
-      privacySection8Text2: "While we strive to protect your information, no security system is impenetrable, and we cannot guarantee absolute security.",
+      privacySection8Text2:
+        "While we strive to protect your information, no security system is impenetrable, and we cannot guarantee absolute security.",
       privacySection9Title: "9. International Data Transfers",
-      privacySection9Text: "If you access our website from outside the United States, your information may be transferred to, stored in, and processed in the United States or other countries. By providing information to us, you consent to such transfer. We ensure that international transfers are protected by appropriate safeguards, including Standard Contractual Clauses.",
+      privacySection9Text:
+        "If you access our website from outside the United States, your information may be transferred to, stored in, and processed in the United States or other countries. By providing information to us, you consent to such transfer. We ensure that international transfers are protected by appropriate safeguards, including Standard Contractual Clauses.",
       privacySection10Title: "10. Children's Privacy",
-      privacySection10Text: "Our services are not intended for individuals under 18 years of age. We do not knowingly collect personal data from children. If we become aware that we have collected personal data from a child without parental consent, we will delete such data immediately.",
+      privacySection10Text:
+        "Our services are not intended for individuals under 18 years of age. We do not knowingly collect personal data from children. If we become aware that we have collected personal data from a child without parental consent, we will delete such data immediately.",
       privacySection11Title: "11. Third-Party Links",
-      privacySection11Text: "Our website may contain links to third-party websites. We are not responsible for the privacy practices of third-party sites. We encourage you to review the privacy policies of any third-party site before providing your personal information.",
+      privacySection11Text:
+        "Our website may contain links to third-party websites. We are not responsible for the privacy practices of third-party sites. We encourage you to review the privacy policies of any third-party site before providing your personal information.",
       privacySection12Title: "12. Exercising Your Rights",
-      privacySection12Text: "To exercise any of your privacy rights, please contact us using the information provided at the end of this policy. We will respond to your request within 30 days (or as required by applicable law). You may need to provide identification to verify your request.",
+      privacySection12Text:
+        "To exercise any of your privacy rights, please contact us using the information provided at the end of this policy. We will respond to your request within 30 days (or as required by applicable law). You may need to provide identification to verify your request.",
       privacySection13Title: "13. Data Protection Officer",
-      privacySection13Text: "If you have questions about our privacy practices or wish to exercise your rights under GDPR, you may contact our Data Protection Officer through the contact information provided on our Contact page.",
+      privacySection13Text:
+        "If you have questions about our privacy practices or wish to exercise your rights under GDPR, you may contact our Data Protection Officer through the contact information provided on our Contact page.",
       privacySection14Title: "14. Updates to This Privacy Policy",
-      privacySection14Text: "We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. The \"Last Updated\" date at the bottom of this policy indicates when it was last revised. Continued use of our website following changes means you accept the updated policy.",
+      privacySection14Text:
+        'We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. The "Last Updated" date at the bottom of this policy indicates when it was last revised. Continued use of our website following changes means you accept the updated policy.',
       privacySection15Title: "15. Contact Us",
-      privacySection15Text: "For privacy inquiries, GDPR requests, or to exercise your data rights, please contact us through our Contact page or using the contact information provided on the main website. We commit to addressing your concerns promptly.",
+      privacySection15Text:
+        "For privacy inquiries, GDPR requests, or to exercise your data rights, please contact us through our Contact page or using the contact information provided on the main website. We commit to addressing your concerns promptly.",
     },
     es: {
       // Common
@@ -369,50 +480,53 @@
       contact: "Contacto",
       learning: "Aprendizaje",
       services: "Servicios",
-      
+
       // Header/Nav
       brand: "Gabriel Services",
       tagline: "Tercerización, Entregada",
-      
+
       // Footer sections
       company: "Empresa",
       servicePagesLabel: "Páginas de Servicios",
       supportLearning: "Soporte y Aprendizaje",
       legal: "Legal",
-      
+
       // Legal links
       termsConditions: "Términos y Condiciones",
       cookiesConsent: "Consentimiento de Cookies",
       privacyGdpr: "Privacidad y RGPD",
-      
+
       // Services
       logisticsOps: "Operaciones Logísticas",
       adminBackOffice: "Back Office Administrativo",
       customerRelations: "Operaciones de Relaciones con Clientes",
       itSupport: "Soporte de TI",
-      
+
       // Legal page titles
       termsTitle: "Términos y Condiciones",
       cookiesTitle: "Consentimiento de Cookies",
       privacyTitle: "Privacidad y RGPD",
-      
+
       // Theme & Language toggles
       lightTheme: "Claro",
       darkTheme: "Oscuro",
       languageLabel: "Idioma",
       themeLabelText: "Tema",
-      
+
       // Footer meta
       copyright: "© 2026 Gabriel Services",
-      
+
       // Home page
       homeTagline: "Tercerización, Entregada",
-      homeH1: "Ejecución confiable día a día,<br/>Soporte operativo excepcional<br/>para negocios modernos.",
-      homeDescription: "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
+      homeH1:
+        "Ejecución confiable día a día,<br/>Soporte operativo excepcional<br/>para negocios modernos.",
+      homeDescription:
+        "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
       bookConsultation: "Reservar una consulta",
       seeServiceCoverage: "Ver cobertura de servicios",
       processeDriven: "Operaciones Impulsadas por Procesos",
-      practicalTransparent: "Práctico, transparente, responsivo y alineado con su ritmo operativo.",
+      practicalTransparent:
+        "Práctico, transparente, responsivo y alineado con su ritmo operativo.",
       serviceAreasBuilt: "Áreas de servicio construidas para ejecución diaria",
       logisticsDesc: "Continuidad de despacho y seguimiento.",
       adminDesc: "Registros, programación y mantenimiento de procesos.",
@@ -422,32 +536,43 @@
       sitemap: "Mapa del sitio",
       servicesOverview: "Descripción General de Servicios",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
-      whyBusinessesText: "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
+      whyBusinessesText:
+        "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
       startSupportTitle: "Comience con el apoyo que necesita",
       requestConsultation: "Solicitar consulta",
       viewEngagementOptions: "Ver opciones de compromiso",
 
       aboutTitle: "Acerca de",
-      aboutIntro1: "Gabriel Services es un socio de soporte operativo enfocado en la ejecución diaria para negocios modernos.",
-      aboutIntro2: "Ofrecemos soporte multifuncional en operaciones logísticas, back office administrativo, operaciones de atención al cliente y soporte de TI.",
-      aboutIntro3: "Nuestro enfoque se basa en la consistencia, la comunicación transparente y la ejecución práctica.",
+      aboutIntro1:
+        "Gabriel Services es un socio de soporte operativo enfocado en la ejecución diaria para negocios modernos.",
+      aboutIntro2:
+        "Ofrecemos soporte multifuncional en operaciones logísticas, back office administrativo, operaciones de atención al cliente y soporte de TI.",
+      aboutIntro3:
+        "Nuestro enfoque se basa en la consistencia, la comunicación transparente y la ejecución práctica.",
       aboutWhenIssuesTitle: "Cuando las oportunidades quedan sin resolver",
-      aboutWhenIssuesText: "Los pequeños problemas operativos, cuando se ignoran, pueden dañar silenciosamente la confianza del cliente. Los detalles pasados por alto ralentizan el crecimiento, crean oportunidades perdidas y eventualmente afectan la estabilidad del negocio.",
+      aboutWhenIssuesText:
+        "Los pequeños problemas operativos, cuando se ignoran, pueden dañar silenciosamente la confianza del cliente. Los detalles pasados por alto ralentizan el crecimiento, crean oportunidades perdidas y eventualmente afectan la estabilidad del negocio.",
       aboutThatIsWhereText: "Ahí es donde intervenimos.",
-      aboutDetailsHandledText: "Nos aseguramos de que ninguna oportunidad se escape. Cada detalle se maneja para que su negocio se mantenga organizado, receptivo y funcione sin contratiempos.",
+      aboutDetailsHandledText:
+        "Nos aseguramos de que ninguna oportunidad se escape. Cada detalle se maneja para que su negocio se mantenga organizado, receptivo y funcione sin contratiempos.",
       aboutWhatWeHandleTitle: "Lo que manejamos",
-      aboutWhatWeHandleText: "Intervenimos manejando los detalles y aportando estructura a operaciones fragmentadas. Nos integramos en sus flujos de trabajo, alineamos con sus procesos y nos enfocamos en la ejecución para que su equipo pueda centrarse en el crecimiento.",
+      aboutWhatWeHandleText:
+        "Intervenimos manejando los detalles y aportando estructura a operaciones fragmentadas. Nos integramos en sus flujos de trabajo, alineamos con sus procesos y nos enfocamos en la ejecución para que su equipo pueda centrarse en el crecimiento.",
       aboutApproachSimpleTitle: "Nuestro enfoque es simple:",
       aboutApproachItem1: "Mejoramos la productividad.",
       aboutApproachItem2: "Aumentamos la consistencia operativa.",
       aboutApproachItem3: "Entregamos ejecución de alta calidad.",
-      aboutApproachItem4: "Operamos con una entrega de servicio práctica y consciente de los costos.",
-      aboutApproachItem5: "Actuamos como un socio operativo confiable: integrándonos a su equipo y manejando la ejecución para que usted no tenga que hacerlo.",
+      aboutApproachItem4:
+        "Operamos con una entrega de servicio práctica y consciente de los costos.",
+      aboutApproachItem5:
+        "Actuamos como un socio operativo confiable: integrándonos a su equipo y manejando la ejecución para que usted no tenga que hacerlo.",
       aboutResultTitle: "El resultado",
       aboutResult1: "Obtiene más con menos fricción.",
       aboutResult2: "Más claridad.",
-      aboutResult3: "Más tiempo para centrarse en el crecimiento en lugar de apagar incendios.",
-      aboutResult4: "Todo a un costo que tiene sentido para empresas en crecimiento: sin gastos generales empresariales y sin contratos.",
+      aboutResult3:
+        "Más tiempo para centrarse en el crecimiento en lugar de apagar incendios.",
+      aboutResult4:
+        "Todo a un costo que tiene sentido para empresas en crecimiento: sin gastos generales empresariales y sin contratos.",
       aboutSupportTitle: "Lo que apoyamos",
       aboutSupportText: "Nos enfocamos en cuatro áreas operativas:",
       aboutSupportArea1: "Logística",
@@ -456,21 +581,27 @@
       aboutSupportArea4: "Soporte de TI (Nivel I y Nivel II)",
       aboutOurServicesTitle: "Nuestros Servicios",
       aboutLogisticsOperationsTitle: "Operaciones Logísticas",
-      aboutLogisticsOperationsText: "Ayudamos a mantener su logística organizada, visible y en movimiento:",
+      aboutLogisticsOperationsText:
+        "Ayudamos a mantener su logística organizada, visible y en movimiento:",
       aboutLogisticsList1: "Coordinación de despacho",
-      aboutLogisticsList2: "Seguimiento de envíos (marítimo, aéreo y terrestre)",
+      aboutLogisticsList2:
+        "Seguimiento de envíos (marítimo, aéreo y terrestre)",
       aboutLogisticsList3: "Comunicación con clientes y seguimientos",
       aboutLogisticsList4: "Soporte de facturación y cobro",
       aboutLogisticsList5: "Coordinación de documentación",
       aboutCustomerRelationsTitle: "Relaciones con Clientes",
-      aboutCustomerRelationsText: "Ayudamos a mantener la satisfacción del cliente y el flujo de resolución:",
+      aboutCustomerRelationsText:
+        "Ayudamos a mantener la satisfacción del cliente y el flujo de resolución:",
       aboutCustomerRelationsList1: "Seguimiento de tickets y resolución",
-      aboutCustomerRelationsList2: "Seguimientos de satisfacción del cliente (soporte CSAT)",
+      aboutCustomerRelationsList2:
+        "Seguimientos de satisfacción del cliente (soporte CSAT)",
       aboutCustomerRelationsList3: "Soporte de aclaración de facturación",
-      aboutCustomerRelationsList4: "Soporte de resolución en el primer contacto",
+      aboutCustomerRelationsList4:
+        "Soporte de resolución en el primer contacto",
       aboutCustomerRelationsList5: "Gestión de la comunicación con el cliente",
       aboutAdminBackOfficeTitle: "Back Office Administrativo",
-      aboutAdminBackOfficeText: "Apoyamos el liderazgo y las operaciones diarias del negocio:",
+      aboutAdminBackOfficeText:
+        "Apoyamos el liderazgo y las operaciones diarias del negocio:",
       aboutAdminBackOfficeList1: "Soporte administrativo ejecutivo",
       aboutAdminBackOfficeList2: "Coordinación de calendario y programación",
       aboutAdminBackOfficeList3: "Gestión de correo y comunicación",
@@ -494,7 +625,8 @@
       aboutLevel2List5: "Responsabilidad de resolución después de la escalada",
 
       contactTitle: "Contacto",
-      contactIntro: "Póngase en contacto para soporte, incorporación, proyectos y oportunidades de asociación.",
+      contactIntro:
+        "Póngase en contacto para soporte, incorporación, proyectos y oportunidades de asociación.",
       fullName: "Nombre completo",
       emailAddress: "Dirección de correo electrónico",
       countryCode: "Código de país",
@@ -522,9 +654,11 @@
       clearForm: "Limpiar formulario",
 
       careersTitle: "Carreras",
-      careersIntro: "Postule para apoyar operaciones, comunicación y flujos de trabajo de entrega de servicios en todos los dominios de servicio.",
+      careersIntro:
+        "Postule para apoyar operaciones, comunicación y flujos de trabajo de entrega de servicios en todos los dominios de servicio.",
       availabilityLabel: "Disponibilidad",
-      areaInterestLabel: "Área de interés (Logística / Admin / Relaciones con Clientes / Soporte de TI)",
+      areaInterestLabel:
+        "Área de interés (Logística / Admin / Relaciones con Clientes / Soporte de TI)",
       resumeLinkLabel: "Enlace al currículum/perfil",
       educationLevelLabel: "Nivel educativo",
       educationOptionHighSchool: "Escuela secundaria",
@@ -535,192 +669,290 @@
       educationOptionCertified: "Certificado",
 
       learningTitle: "Aprendizaje",
-      learningIntro: "Guía y conocimiento práctico de servicio para soporte operativo orientado a flujos de trabajo con preferencia por el inglés.",
+      learningIntro:
+        "Guía y conocimiento práctico de servicio para soporte operativo orientado a flujos de trabajo con preferencia por el inglés.",
       trackLogisticsTitle: "Operaciones Logísticas",
-      trackLogisticsText: "Aprenda coordinación, seguimiento y elementos esenciales de continuidad.",
+      trackLogisticsText:
+        "Aprenda coordinación, seguimiento y elementos esenciales de continuidad.",
       trackAdminTitle: "Back Office Administrativo",
-      trackAdminText: "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
+      trackAdminText:
+        "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
       trackCustomerTitle: "Operaciones de Clientes",
-      trackCustomerText: "Aprenda flujo de seguimiento, continuidad de escalamiento y ritmo de respuesta.",
+      trackCustomerText:
+        "Aprenda flujo de seguimiento, continuidad de escalamiento y ritmo de respuesta.",
       trackITTitle: "Soporte de TI",
-      trackITText: "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
+      trackITText:
+        "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
       exploreTrack: "Explorar módulo",
 
       termsSection1Title: "1. Acuerdo de términos",
-      termsSection1Text: "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, acepta y se compromete a cumplir los términos y disposiciones de este acuerdo. Si no está de acuerdo con lo anterior, por favor no utilice este servicio.",
+      termsSection1Text:
+        "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, acepta y se compromete a cumplir los términos y disposiciones de este acuerdo. Si no está de acuerdo con lo anterior, por favor no utilice este servicio.",
       termsSection2Title: "2. Licencia de uso",
-      termsSection2Text: "Gabriel Services le otorga una licencia limitada para acceder y utilizar el sitio web y los servicios solo con fines legales. Usted acepta no:",
-      termsSection2List1: "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o servicios",
-      termsSection2List2: "Acceder al sitio web con fines ilícitos o no autorizados",
-      termsSection2List3: "Interrumpir el flujo normal de diálogo o interrumpir los servicios",
-      termsSection2List4: "Intentar obtener acceso no autorizado a nuestros sistemas o redes",
-      termsSection2List5: "Usar sistemas o scripts automatizados para recopilar datos sin permiso",
-      termsSection2List6: "Participar en cualquier forma de acoso o comportamiento abusivo",
+      termsSection2Text:
+        "Gabriel Services le otorga una licencia limitada para acceder y utilizar el sitio web y los servicios solo con fines legales. Usted acepta no:",
+      termsSection2List1:
+        "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o servicios",
+      termsSection2List2:
+        "Acceder al sitio web con fines ilícitos o no autorizados",
+      termsSection2List3:
+        "Interrumpir el flujo normal de diálogo o interrumpir los servicios",
+      termsSection2List4:
+        "Intentar obtener acceso no autorizado a nuestros sistemas o redes",
+      termsSection2List5:
+        "Usar sistemas o scripts automatizados para recopilar datos sin permiso",
+      termsSection2List6:
+        "Participar en cualquier forma de acoso o comportamiento abusivo",
       termsSection3Title: "3. Renuncia de garantías",
-      termsSection3Text: "Los materiales en el sitio web de Gabriel Services se proporcionan 'tal cual'. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, sin limitación, las implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
+      termsSection3Text:
+        "Los materiales en el sitio web de Gabriel Services se proporcionan 'tal cual'. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, sin limitación, las implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
       termsSection4Title: "4. Limitaciones de responsabilidad",
-      termsSection4Text: "En ningún caso Gabriel Services o sus proveedores serán responsables de ningún daño (incluidos, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales en el sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito de la posibilidad de dicho daño.",
+      termsSection4Text:
+        "En ningún caso Gabriel Services o sus proveedores serán responsables de ningún daño (incluidos, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales en el sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito de la posibilidad de dicho daño.",
       termsSection5Title: "5. Exactitud de los materiales",
-      termsSection5Text: "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales en su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento sin previo aviso.",
+      termsSection5Text:
+        "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales en su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento sin previo aviso.",
       termsSection6Title: "6. Enlaces",
-      termsSection6Text: "Gabriel Services no ha revisado todos los sitios vinculados a su sitio web y no es responsable del contenido de dichos sitios vinculados. La inclusión de cualquier enlace no implica la aprobación por parte de Gabriel Services del sitio. El uso de cualquier sitio web vinculado es bajo el riesgo del usuario.",
+      termsSection6Text:
+        "Gabriel Services no ha revisado todos los sitios vinculados a su sitio web y no es responsable del contenido de dichos sitios vinculados. La inclusión de cualquier enlace no implica la aprobación por parte de Gabriel Services del sitio. El uso de cualquier sitio web vinculado es bajo el riesgo del usuario.",
       termsSection7Title: "7. Modificaciones",
-      termsSection7Text: "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento sin previo aviso. Al usar este sitio web, usted acepta estar sujeto a la versión actual de estos términos de servicio.",
+      termsSection7Text:
+        "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento sin previo aviso. Al usar este sitio web, usted acepta estar sujeto a la versión actual de estos términos de servicio.",
       termsSection8Title: "8. Ley aplicable",
-      termsSection8Text: "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y usted se somete irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
+      termsSection8Text:
+        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y usted se somete irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
       termsSection9Title: "9. Descripción del servicio",
-      termsSection9Text: "Gabriel Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabriel Services y el cliente se detallan en el acuerdo de servicio.",
+      termsSection9Text:
+        "Gabriel Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabriel Services y el cliente se detallan en el acuerdo de servicio.",
       termsSection10Title: "10. Términos de pago",
-      termsSection10Text: "Los términos de pago se especifican en el acuerdo de servicio individual. Las facturas vencen al recibo, a menos que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
+      termsSection10Text:
+        "Los términos de pago se especifican en el acuerdo de servicio individual. Las facturas vencen al recibo, a menos que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
       termsSection11Title: "11. Derechos de propiedad intelectual",
-      termsSection11Text: "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
+      termsSection11Text:
+        "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
       termsSection12Title: "12. Limitación de servicio",
-      termsSection12Text: "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su sola discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a su sola discreción.",
+      termsSection12Text:
+        "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su sola discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a su sola discreción.",
       termsSection13Title: "13. Contacto para consultas legales",
-      termsSection13Text: "Si tiene alguna pregunta sobre estos Términos y Condiciones, contáctenos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
+      termsSection13Text:
+        "Si tiene alguna pregunta sobre estos Términos y Condiciones, contáctenos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
       termsLastUpdated: "Última actualización: 5 de mayo de 2026",
 
       cookiesTitle: "Política de consentimiento de cookies",
       cookiesSection1Title: "1. ¿Qué son las cookies?",
-      cookiesSection1Text: "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres que se colocan en su computadora o dispositivo móvil cuando visita nuestro sitio web. Nos permiten reconocer su navegador o dispositivo, recordar información sobre sus preferencias y ayudar a personalizar su experiencia en el sitio web de Gabriel Services.",
+      cookiesSection1Text:
+        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres que se colocan en su computadora o dispositivo móvil cuando visita nuestro sitio web. Nos permiten reconocer su navegador o dispositivo, recordar información sobre sus preferencias y ayudar a personalizar su experiencia en el sitio web de Gabriel Services.",
       cookiesSection2Title: "2. Tipos de cookies que usamos",
       cookiesSection2EssentialTitle: "Cookies esenciales",
-      cookiesSection2EssentialText: "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden ser deshabilitadas a través de nuestros sistemas. Se utilizan para:",
-      cookiesSection2EssentialList1: "Habilitar la funcionalidad básica del sitio web",
-      cookiesSection2EssentialList2: "Mantener la seguridad y prevenir el fraude",
-      cookiesSection2EssentialList3: "Preservar las preferencias del usuario (selecciones de idioma y tema)",
+      cookiesSection2EssentialText:
+        "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden ser deshabilitadas a través de nuestros sistemas. Se utilizan para:",
+      cookiesSection2EssentialList1:
+        "Habilitar la funcionalidad básica del sitio web",
+      cookiesSection2EssentialList2:
+        "Mantener la seguridad y prevenir el fraude",
+      cookiesSection2EssentialList3:
+        "Preservar las preferencias del usuario (selecciones de idioma y tema)",
       cookiesSection2PerformanceTitle: "Cookies de rendimiento",
-      cookiesSection2PerformanceText: "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación e informe de información de forma anónima. Nos ayudan a:",
-      cookiesSection2PerformanceList1: "Identificar las páginas a las que se accede con más frecuencia",
-      cookiesSection2PerformanceList2: "Medir la efectividad de las campañas publicitarias",
-      cookiesSection2PerformanceList3: "Comprender los patrones de navegación del usuario",
+      cookiesSection2PerformanceText:
+        "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación e informe de información de forma anónima. Nos ayudan a:",
+      cookiesSection2PerformanceList1:
+        "Identificar las páginas a las que se accede con más frecuencia",
+      cookiesSection2PerformanceList2:
+        "Medir la efectividad de las campañas publicitarias",
+      cookiesSection2PerformanceList3:
+        "Comprender los patrones de navegación del usuario",
       cookiesSection2FunctionalTitle: "Cookies funcionales",
-      cookiesSection2FunctionalText: "Estas cookies permiten una funcionalidad mejorada y personalización, incluidas:",
+      cookiesSection2FunctionalText:
+        "Estas cookies permiten una funcionalidad mejorada y personalización, incluidas:",
       cookiesSection2FunctionalList1: "Recordar su preferencia de idioma",
       cookiesSection2FunctionalList2: "Guardar su preferencia de tema",
-      cookiesSection2FunctionalList3: "Registrar datos de formularios para mayor comodidad",
+      cookiesSection2FunctionalList3:
+        "Registrar datos de formularios para mayor comodidad",
       cookiesSection2AnalyticalTitle: "Cookies analíticas",
-      cookiesSection2AnalyticalText: "Utilizamos cookies analíticas para comprender cómo se usa nuestro sitio web, incluida la duración de las visitas y las rutas que toman los usuarios a través del sitio. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
+      cookiesSection2AnalyticalText:
+        "Utilizamos cookies analíticas para comprender cómo se usa nuestro sitio web, incluida la duración de las visitas y las rutas que toman los usuarios a través del sitio. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
       cookiesSection3Title: "3. Almacenamiento local",
-      cookiesSection3Text: "Para mejorar la experiencia del usuario, utilizamos localStorage para almacenar sus preferencias, incluyendo:",
+      cookiesSection3Text:
+        "Para mejorar la experiencia del usuario, utilizamos localStorage para almacenar sus preferencias, incluyendo:",
       cookiesSection3List1: "Preferencia de idioma (inglés o español)",
       cookiesSection3List2: "Preferencia de tema (modo Claro u Oscuro)",
-      cookiesSection3Text2: "Esta información se almacena localmente en su dispositivo y no se transmite a nuestros servidores.",
+      cookiesSection3Text2:
+        "Esta información se almacena localmente en su dispositivo y no se transmite a nuestros servidores.",
       cookiesSection4Title: "4. Cookies de terceros",
-      cookiesSection4Text: "Las cookies de terceros pueden colocarse en su dispositivo por proveedores de servicios externos, incluidos:",
+      cookiesSection4Text:
+        "Las cookies de terceros pueden colocarse en su dispositivo por proveedores de servicios externos, incluidos:",
       cookiesSection4List1: "Proveedores de análisis",
       cookiesSection4List2: "Redes publicitarias",
       cookiesSection4List3: "Plataformas de redes sociales",
-      cookiesSection4Text2: "No tenemos control sobre las cookies de terceros. Puede configurar su navegador para rechazar cookies o para alertarle cuando se envían cookies.",
+      cookiesSection4Text2:
+        "No tenemos control sobre las cookies de terceros. Puede configurar su navegador para rechazar cookies o para alertarle cuando se envían cookies.",
       cookiesSection5Title: "5. Cómo controlar las cookies",
-      cookiesSection5Text: "Tiene derecho a elegir si acepta o rechaza las cookies. La mayoría de los navegadores web le permiten:",
-      cookiesSection5List1: "Ver las cookies que se han establecido en su dispositivo",
+      cookiesSection5Text:
+        "Tiene derecho a elegir si acepta o rechaza las cookies. La mayoría de los navegadores web le permiten:",
+      cookiesSection5List1:
+        "Ver las cookies que se han establecido en su dispositivo",
       cookiesSection5List2: "Eliminar cookies de su dispositivo",
-      cookiesSection5List3: "Bloquear futuras cookies para que no se establezcan en su dispositivo",
-      cookiesSection5List4: "Configurar su navegador para notificarle cuando se esté a punto de establecer una cookie",
-      cookiesSection5Text2: "Si elige bloquear o eliminar cookies, algunas funciones de nuestro sitio web pueden no funcionar como se espera.",
+      cookiesSection5List3:
+        "Bloquear futuras cookies para que no se establezcan en su dispositivo",
+      cookiesSection5List4:
+        "Configurar su navegador para notificarle cuando se esté a punto de establecer una cookie",
+      cookiesSection5Text2:
+        "Si elige bloquear o eliminar cookies, algunas funciones de nuestro sitio web pueden no funcionar como se espera.",
       cookiesSection6Title: "6. Google Analytics",
-      cookiesSection6Text: "Podemos utilizar Google Analytics para recopilar información sobre su uso de nuestro sitio web. Google Analytics recopila información como:",
+      cookiesSection6Text:
+        "Podemos utilizar Google Analytics para recopilar información sobre su uso de nuestro sitio web. Google Analytics recopila información como:",
       cookiesSection6List1: "Dirección IP",
       cookiesSection6List2: "Tipo de dispositivo",
       cookiesSection6List3: "Tipo de navegador",
       cookiesSection6List4: "Páginas visitadas y tiempo dedicado a cada página",
-      cookiesSection6Text2: "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se utiliza nuestro sitio y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales.",
+      cookiesSection6Text2:
+        "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se utiliza nuestro sitio y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales.",
       cookiesSection7Title: "7. Su consentimiento",
-      cookiesSection7Text: "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, usted acepta el uso de cookies según lo descrito en esta política. Si no consiente el uso de cookies, debe deshabilitarlas en la configuración de su navegador antes de continuar usando nuestro sitio web.",
+      cookiesSection7Text:
+        "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, usted acepta el uso de cookies según lo descrito en esta política. Si no consiente el uso de cookies, debe deshabilitarlas en la configuración de su navegador antes de continuar usando nuestro sitio web.",
       cookiesSection8Title: "8. Actualizaciones de esta política",
-      cookiesSection8Text: "Podemos actualizar esta Política de consentimiento de cookies de vez en cuando para reflejar cambios en la tecnología, la legislación u otros cambios. Le recomendamos que revise esta política periódicamente para mantenerse informado sobre cómo protegemos su privacidad.",
+      cookiesSection8Text:
+        "Podemos actualizar esta Política de consentimiento de cookies de vez en cuando para reflejar cambios en la tecnología, la legislación u otros cambios. Le recomendamos que revise esta política periódicamente para mantenerse informado sobre cómo protegemos su privacidad.",
       cookiesSection9Title: "9. Contáctenos",
-      cookiesSection9Text: "Si tiene alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctenos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio principal.",
+      cookiesSection9Text:
+        "Si tiene alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctenos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio principal.",
 
       privacySection1Title: "1. Introducción",
-      privacySection1Text: "Gabriel Services (\"nosotros,\" \"nos,\" o \"la Compañía\") se compromete a proteger su privacidad. Esta Política de privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando visita nuestro sitio web y utiliza nuestros servicios. Lea esta política atentamente para comprender nuestras prácticas con respecto a sus datos personales.",
+      privacySection1Text:
+        'Gabriel Services ("nosotros," "nos," o "la Compañía") se compromete a proteger su privacidad. Esta Política de privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando visita nuestro sitio web y utiliza nuestros servicios. Lea esta política atentamente para comprender nuestras prácticas con respecto a sus datos personales.',
       privacySection2Title: "2. Información que recopilamos",
-      privacySection2DirectTitle: "Información que usted proporciona directamente",
-      privacySection2DirectList1: "Información de contacto: nombre, dirección de correo electrónico, número de teléfono y nombre de la empresa",
-      privacySection2DirectList2: "Información del servicio: detalles sobre sus operaciones comerciales y requisitos de servicio",
-      privacySection2DirectList3: "Registros de comunicación: contenido de mensajes, correos electrónicos y tickets de soporte",
-      privacySection2DirectList4: "Información de pago: dirección de facturación y detalles del método de pago (procesados de forma segura)",
+      privacySection2DirectTitle:
+        "Información que usted proporciona directamente",
+      privacySection2DirectList1:
+        "Información de contacto: nombre, dirección de correo electrónico, número de teléfono y nombre de la empresa",
+      privacySection2DirectList2:
+        "Información del servicio: detalles sobre sus operaciones comerciales y requisitos de servicio",
+      privacySection2DirectList3:
+        "Registros de comunicación: contenido de mensajes, correos electrónicos y tickets de soporte",
+      privacySection2DirectList4:
+        "Información de pago: dirección de facturación y detalles del método de pago (procesados de forma segura)",
       privacySection2AutoTitle: "Información recopilada automáticamente",
-      privacySection2AutoList1: "Información del dispositivo: dirección IP, tipo de navegador, sistema operativo e identificadores del dispositivo",
-      privacySection2AutoList2: "Datos de uso: páginas visitadas, tiempo dedicado a las páginas, enlaces clicados y patrones de navegación",
-      privacySection2AutoList3: "Cookies y tecnologías similares: datos del navegador y almacenamiento local para preferencias",
-      privacySection2AutoList4: "Información de referencia: cómo accedió a nuestro sitio web",
+      privacySection2AutoList1:
+        "Información del dispositivo: dirección IP, tipo de navegador, sistema operativo e identificadores del dispositivo",
+      privacySection2AutoList2:
+        "Datos de uso: páginas visitadas, tiempo dedicado a las páginas, enlaces clicados y patrones de navegación",
+      privacySection2AutoList3:
+        "Cookies y tecnologías similares: datos del navegador y almacenamiento local para preferencias",
+      privacySection2AutoList4:
+        "Información de referencia: cómo accedió a nuestro sitio web",
       privacySection3Title: "3. Cómo usamos su información",
-      privacySection3Text: "Usamos la información recopilada para los siguientes fines:",
-      privacySection3List1: "Proporcionar y administrar los servicios solicitados",
-      privacySection3List2: "Procesar transacciones y enviar información relacionada",
-      privacySection3List3: "Enviar correos electrónicos transaccionales y promocionales",
-      privacySection3List4: "Responder a consultas y brindar soporte al cliente",
+      privacySection3Text:
+        "Usamos la información recopilada para los siguientes fines:",
+      privacySection3List1:
+        "Proporcionar y administrar los servicios solicitados",
+      privacySection3List2:
+        "Procesar transacciones y enviar información relacionada",
+      privacySection3List3:
+        "Enviar correos electrónicos transaccionales y promocionales",
+      privacySection3List4:
+        "Responder a consultas y brindar soporte al cliente",
       privacySection3List5: "Mejorar nuestro sitio web y servicios",
       privacySection3List6: "Analizar los patrones de uso del sitio web",
       privacySection3List7: "Prevenir el fraude y garantizar la seguridad",
       privacySection3List8: "Cumplir con obligaciones legales",
-      privacySection3List9: "Crear datos agregados y desidentificados para análisis",
+      privacySection3List9:
+        "Crear datos agregados y desidentificados para análisis",
       privacySection4Title: "4. Base legal para el procesamiento (GDPR)",
-      privacySection4Text: "Bajo GDPR, procesamos datos personales en base a las siguientes bases legales:",
-      privacySection4List1: "Necesidad contractual: procesamiento necesario para prestar nuestros servicios con usted",
-      privacySection4List2: "Obligación legal: procesamiento requerido por ley o regulación",
-      privacySection4List3: "Intereses legítimos: procesamiento necesario para nuestros intereses comerciales legítimos",
-      privacySection4List4: "Consentimiento: procesamiento basado en su consentimiento explícito",
+      privacySection4Text:
+        "Bajo GDPR, procesamos datos personales en base a las siguientes bases legales:",
+      privacySection4List1:
+        "Necesidad contractual: procesamiento necesario para prestar nuestros servicios con usted",
+      privacySection4List2:
+        "Obligación legal: procesamiento requerido por ley o regulación",
+      privacySection4List3:
+        "Intereses legítimos: procesamiento necesario para nuestros intereses comerciales legítimos",
+      privacySection4List4:
+        "Consentimiento: procesamiento basado en su consentimiento explícito",
       privacySection5Title: "5. Retención de datos",
-      privacySection5Text: "Retenemos datos personales solo mientras sean necesarios para los fines establecidos en esta política o según lo exija la ley. Los períodos de retención varían según el tipo de datos:",
-      privacySection5List1: "Información de contacto: conservada durante la duración de la relación de servicio más 7 años para fines contables",
-      privacySection5List2: "Datos de análisis del sitio web: conservados por hasta 26 meses",
-      privacySection5List3: "Preferencias del usuario (idioma/tema): almacenadas localmente en su dispositivo indefinidamente hasta que se eliminen",
+      privacySection5Text:
+        "Retenemos datos personales solo mientras sean necesarios para los fines establecidos en esta política o según lo exija la ley. Los períodos de retención varían según el tipo de datos:",
+      privacySection5List1:
+        "Información de contacto: conservada durante la duración de la relación de servicio más 7 años para fines contables",
+      privacySection5List2:
+        "Datos de análisis del sitio web: conservados por hasta 26 meses",
+      privacySection5List3:
+        "Preferencias del usuario (idioma/tema): almacenadas localmente en su dispositivo indefinidamente hasta que se eliminen",
       privacySection6Title: "6. Compartir y divulgar datos",
-      privacySection6Text: "No vendemos sus datos personales. Podemos compartir información con:",
-      privacySection6List1: "Proveedores de servicios: terceros que ayudan a proporcionar servicios (bajo acuerdos de procesamiento de datos)",
-      privacySection6List2: "Autoridades legales: cuando lo exija la ley o para proteger derechos y seguridad",
-      privacySection6List3: "Transferencias comerciales: en caso de fusión, adquisición o venta de activos",
+      privacySection6Text:
+        "No vendemos sus datos personales. Podemos compartir información con:",
+      privacySection6List1:
+        "Proveedores de servicios: terceros que ayudan a proporcionar servicios (bajo acuerdos de procesamiento de datos)",
+      privacySection6List2:
+        "Autoridades legales: cuando lo exija la ley o para proteger derechos y seguridad",
+      privacySection6List3:
+        "Transferencias comerciales: en caso de fusión, adquisición o venta de activos",
       privacySection7Title: "7. Sus derechos bajo GDPR",
-      privacySection7Text: "Si está en la UE/EEE, tiene los siguientes derechos:",
-      privacySection7List1: "Derecho de acceso: obtener una copia de los datos personales que mantenemos sobre usted",
-      privacySection7List2: "Derecho de rectificación: corregir datos personales inexactos o incompletos",
-      privacySection7List3: "Derecho de eliminación (\"Derecho al olvido\"): solicitar la eliminación de sus datos personales",
-      privacySection7List4: "Derecho a restringir el procesamiento: limitar cómo procesamos sus datos",
-      privacySection7List5: "Derecho a la portabilidad de datos: recibir sus datos en un formato portátil",
-      privacySection7List6: "Derecho a oponerse: oponerse al procesamiento de sus datos",
-      privacySection7List7: "Derecho a presentar una queja: presentar una queja ante su autoridad de protección de datos local",
+      privacySection7Text:
+        "Si está en la UE/EEE, tiene los siguientes derechos:",
+      privacySection7List1:
+        "Derecho de acceso: obtener una copia de los datos personales que mantenemos sobre usted",
+      privacySection7List2:
+        "Derecho de rectificación: corregir datos personales inexactos o incompletos",
+      privacySection7List3:
+        'Derecho de eliminación ("Derecho al olvido"): solicitar la eliminación de sus datos personales',
+      privacySection7List4:
+        "Derecho a restringir el procesamiento: limitar cómo procesamos sus datos",
+      privacySection7List5:
+        "Derecho a la portabilidad de datos: recibir sus datos en un formato portátil",
+      privacySection7List6:
+        "Derecho a oponerse: oponerse al procesamiento de sus datos",
+      privacySection7List7:
+        "Derecho a presentar una queja: presentar una queja ante su autoridad de protección de datos local",
       privacySection8Title: "8. Seguridad de los datos",
-      privacySection8Text: "Implementamos medidas técnicas y organizativas adecuadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Estas medidas incluyen:",
+      privacySection8Text:
+        "Implementamos medidas técnicas y organizativas adecuadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Estas medidas incluyen:",
       privacySection8List1: "Cifrado SSL/TLS para datos en tránsito",
       privacySection8List2: "Protocolos de autenticación seguros",
       privacySection8List3: "Auditorías y pruebas de seguridad regulares",
       privacySection8List4: "Acceso restringido a datos personales",
-      privacySection8List5: "Capacitación en protección de datos para el personal",
-      privacySection8Text2: "Si bien nos esforzamos por proteger su información, ningún sistema de seguridad es impenetrable y no podemos garantizar una seguridad absoluta.",
+      privacySection8List5:
+        "Capacitación en protección de datos para el personal",
+      privacySection8Text2:
+        "Si bien nos esforzamos por proteger su información, ningún sistema de seguridad es impenetrable y no podemos garantizar una seguridad absoluta.",
       privacySection9Title: "9. Transferencias internacionales de datos",
-      privacySection9Text: "Si accede a nuestro sitio web desde fuera de los Estados Unidos, su información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, usted acepta dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas por salvaguardias apropiadas, incluidas las Cláusulas Contractuales Tipo.",
+      privacySection9Text:
+        "Si accede a nuestro sitio web desde fuera de los Estados Unidos, su información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, usted acepta dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas por salvaguardias apropiadas, incluidas las Cláusulas Contractuales Tipo.",
       privacySection10Title: "10. Privacidad de los niños",
-      privacySection10Text: "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos intencionadamente datos personales de niños. Si nos damos cuenta de que hemos recopilado datos personales de un niño sin el consentimiento de los padres, eliminaremos dichos datos de inmediato.",
+      privacySection10Text:
+        "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos intencionadamente datos personales de niños. Si nos damos cuenta de que hemos recopilado datos personales de un niño sin el consentimiento de los padres, eliminaremos dichos datos de inmediato.",
       privacySection11Title: "11. Enlaces de terceros",
-      privacySection11Text: "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de los sitios de terceros. Le recomendamos que revise las políticas de privacidad de cualquier sitio tercero antes de proporcionar su información personal.",
+      privacySection11Text:
+        "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de los sitios de terceros. Le recomendamos que revise las políticas de privacidad de cualquier sitio tercero antes de proporcionar su información personal.",
       privacySection12Title: "12. Ejercicio de sus derechos",
-      privacySection12Text: "Para ejercer cualquiera de sus derechos de privacidad, contáctenos utilizando la información proporcionada al final de esta política. Responderemos a su solicitud dentro de los 30 días (o según lo exija la ley aplicable). Es posible que necesite proporcionar identificación para verificar su solicitud.",
+      privacySection12Text:
+        "Para ejercer cualquiera de sus derechos de privacidad, contáctenos utilizando la información proporcionada al final de esta política. Responderemos a su solicitud dentro de los 30 días (o según lo exija la ley aplicable). Es posible que necesite proporcionar identificación para verificar su solicitud.",
       privacySection13Title: "13. Oficial de protección de datos",
-      privacySection13Text: "Si tiene preguntas sobre nuestras prácticas de privacidad o desea ejercer sus derechos bajo GDPR, puede ponerse en contacto con nuestro Oficial de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto.",
-      privacySection14Title: "14. Actualizaciones de esta Política de Privacidad",
-      privacySection14Text: "Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de \"Última actualización\" al final de esta política indica cuándo se revisó por última vez. El uso continuo de nuestro sitio web tras los cambios significa que acepta la política actualizada.",
+      privacySection13Text:
+        "Si tiene preguntas sobre nuestras prácticas de privacidad o desea ejercer sus derechos bajo GDPR, puede ponerse en contacto con nuestro Oficial de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto.",
+      privacySection14Title:
+        "14. Actualizaciones de esta Política de Privacidad",
+      privacySection14Text:
+        'Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de "Última actualización" al final de esta política indica cuándo se revisó por última vez. El uso continuo de nuestro sitio web tras los cambios significa que acepta la política actualizada.',
       privacySection15Title: "15. Contáctenos",
-      privacySection15Text: "Para consultas de privacidad, solicitudes GDPR o para ejercer sus derechos sobre datos, contáctenos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio principal. Nos comprometemos a atender sus inquietudes con prontitud.",
-    }
+      privacySection15Text:
+        "Para consultas de privacidad, solicitudes GDPR o para ejercer sus derechos sobre datos, contáctenos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio principal. Nos comprometemos a atender sus inquietudes con prontitud.",
+    },
   };
 
   const I18N = {
     currentLanguage: localStorage.getItem("language") || "en",
-    
+
     init() {
       this.currentLanguage = localStorage.getItem("language") || "en";
       this.applyLanguage();
       this.setupLanguageToggle();
     },
-    
+
     t(key) {
       const translation = translations[this.currentLanguage]?.[key];
       return translation || translations.en[key] || key;
     },
-    
+
     setLanguage(lang) {
       if (!translations[lang]) return;
       this.currentLanguage = lang;
@@ -728,60 +960,62 @@
       this.applyLanguage();
       document.documentElement.lang = lang;
     },
-    
+
     toggleLanguage() {
       const newLang = this.currentLanguage === "en" ? "es" : "en";
       this.setLanguage(newLang);
-      window.dispatchEvent(new CustomEvent("language:changed", { detail: { language: newLang } }));
+      window.dispatchEvent(
+        new CustomEvent("language:changed", { detail: { language: newLang } }),
+      );
     },
-    
+
     applyLanguage() {
       // Apply to data-i18n attributes
       document.querySelectorAll("[data-i18n]").forEach((el) => {
         const key = el.getAttribute("data-i18n");
         el.textContent = this.t(key);
       });
-      
+
       // Apply to data-i18n-placeholder
       document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
         const key = el.getAttribute("data-i18n-placeholder");
         el.placeholder = this.t(key);
       });
-      
+
       // Apply to data-i18n-title
       document.querySelectorAll("[data-i18n-title]").forEach((el) => {
         const key = el.getAttribute("data-i18n-title");
         el.title = this.t(key);
       });
-      
+
       // Apply to data-i18n-html (for content with HTML tags)
       document.querySelectorAll("[data-i18n-html]").forEach((el) => {
         const key = el.getAttribute("data-i18n-html");
         el.innerHTML = this.t(key);
       });
     },
-    
+
     setupLanguageToggle() {
       const toggle = document.getElementById("language-toggle");
       if (!toggle) return;
-      
+
       const updateToggleText = () => {
         toggle.textContent = this.currentLanguage === "en" ? "ES" : "EN";
       };
-      
+
       updateToggleText();
       toggle.addEventListener("click", () => {
         this.toggleLanguage();
         updateToggleText();
       });
-      
+
       window.addEventListener("language:changed", updateToggleText);
-    }
+    },
   };
 
   // Global access
   window.I18N = I18N;
-  
+
   // Auto-initialize when DOM is ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => I18N.init());

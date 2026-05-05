@@ -21,7 +21,8 @@
       <div class="container topbar">
         <a class="brand serif" href="./" data-i18n="brand">Gabriel Services</a>
         <nav class="main-nav">
-          <a href="about.html" data-i18n="about">About</a><a href="careers.html" data-i18n="careers">Careers</a
+          <a href="about.html" data-i18n="about">About</a
+          ><a href="careers.html" data-i18n="careers">Careers</a
           ><a href="contact.html" data-i18n="contact">Contact</a
           ><a href="learning.html" data-i18n="learning">Learning</a>
           <button id="language-toggle" class="toggle-btn">EN</button>
@@ -40,7 +41,10 @@
         <form>
           <div class="form-grid">
             <div><label data-i18n="fullName">Full Name</label><input /></div>
-            <div><label data-i18n="emailAddress">Email Address</label><input type="email" /></div>
+            <div>
+              <label data-i18n="emailAddress">Email Address</label
+              ><input type="email" />
+            </div>
             <div>
               <label data-i18n="countryCode">Country Code</label>
               <input
@@ -62,7 +66,9 @@
               />
             </div>
             <div><label data-i18n="city">City</label><input /></div>
-            <div><label data-i18n="stateProvince">State/Province</label><input /></div>
+            <div>
+              <label data-i18n="stateProvince">State/Province</label><input />
+            </div>
             <div>
               <label data-i18n="countryZipCode">Country Zip Code</label>
               <input
@@ -73,21 +79,33 @@
                 autocomplete="postal-code"
               />
             </div>
-            <div><label data-i18n="availabilityLabel">Availability</label><input /></div>
             <div>
-              <label data-i18n="areaInterestLabel">Area of Interest (Logistics / Admin / Customer Relations / IT Support)</label>
+              <label data-i18n="availabilityLabel">Availability</label><input />
+            </div>
+            <div>
+              <label data-i18n="areaInterestLabel"
+                >Area of Interest (Logistics / Admin / Customer Relations / IT
+                Support)</label
+              >
               <select>
                 <option data-i18n="logisticsOps">Logistics</option>
                 <option data-i18n="adminBackOffice">Admin</option>
-                <option data-i18n="customerRelations">Customer Relations</option>
+                <option data-i18n="customerRelations">
+                  Customer Relations
+                </option>
                 <option data-i18n="itSupport">IT Support</option>
               </select>
             </div>
-            <div><label data-i18n="resumeLinkLabel">Resume/Profile link</label><input /></div>
+            <div>
+              <label data-i18n="resumeLinkLabel">Resume/Profile link</label
+              ><input />
+            </div>
             <div>
               <label data-i18n="educationLevelLabel">Education Level</label>
               <select>
-                <option data-i18n="educationOptionHighSchool">High School</option>
+                <option data-i18n="educationOptionHighSchool">
+                  High School
+                </option>
                 <option data-i18n="educationOptionAssociate">Associate</option>
                 <option data-i18n="educationOptionBachelor">Bachelor</option>
                 <option data-i18n="educationOptionMaster">Master</option>
@@ -95,98 +113,175 @@
                 <option data-i18n="educationOptionCertified">Certified</option>
               </select>
             </div>
-            <div class="entry-group full-row" data-repeatable-group data-field-name="Experience Level">
+            <div
+              class="entry-group full-row"
+              data-repeatable-group
+              data-field-name="Experience Level"
+            >
               <div class="entry-group-header">
                 <label data-i18n="aboutLevel1Title">Experience Level</label>
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row">
-                  <input data-i18n-placeholder="placeholderAddExperienceEntry" placeholder="Add experience level entry" />
+                  <input
+                    data-i18n-placeholder="placeholderAddExperienceEntry"
+                    placeholder="Add experience level entry"
+                  />
                 </div>
               </div>
               <div class="entry-group-actions">
-                <button class="btn ghost entry-btn" type="button" data-repeat-add>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-add
+                >
                   <span data-i18n="addSkill">Add +</span>
                 </button>
-                <button class="btn ghost entry-btn" type="button" data-repeat-remove>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-remove
+                >
                   <span data-i18n="removeSkill">Remove -</span>
                 </button>
               </div>
             </div>
-            <div class="entry-group full-row" data-repeatable-group data-field-name="Languages">
+            <div
+              class="entry-group full-row"
+              data-repeatable-group
+              data-field-name="Languages"
+            >
               <div class="entry-group-header">
                 <label data-i18n="languagesLabel">Languages</label>
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row">
-                  <input data-i18n-placeholder="placeholderAddLanguageEntry" placeholder="Add language entry" />
+                  <input
+                    data-i18n-placeholder="placeholderAddLanguageEntry"
+                    placeholder="Add language entry"
+                  />
                 </div>
               </div>
               <div class="entry-group-actions">
-                <button class="btn ghost entry-btn" type="button" data-repeat-add>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-add
+                >
                   <span data-i18n="addSkill">Add +</span>
                 </button>
-                <button class="btn ghost entry-btn" type="button" data-repeat-remove>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-remove
+                >
                   <span data-i18n="removeSkill">Remove -</span>
                 </button>
               </div>
             </div>
-            <div class="entry-group full-row" data-repeatable-group data-field-name="Skills">
+            <div
+              class="entry-group full-row"
+              data-repeatable-group
+              data-field-name="Skills"
+            >
               <div class="entry-group-header">
                 <label data-i18n="skillsLabel">Skills</label>
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row">
-                  <input data-i18n-placeholder="placeholderAddSkillEntry" placeholder="Add skill entry" />
+                  <input
+                    data-i18n-placeholder="placeholderAddSkillEntry"
+                    placeholder="Add skill entry"
+                  />
                 </div>
               </div>
               <div class="entry-group-actions">
-                <button class="btn ghost entry-btn" type="button" data-repeat-add>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-add
+                >
                   <span data-i18n="addSkill">Add +</span>
                 </button>
-                <button class="btn ghost entry-btn" type="button" data-repeat-remove>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-remove
+                >
                   <span data-i18n="removeSkill">Remove -</span>
                 </button>
               </div>
             </div>
-            <div class="entry-group full-row" data-repeatable-group data-field-name="Projects">
+            <div
+              class="entry-group full-row"
+              data-repeatable-group
+              data-field-name="Projects"
+            >
               <div class="entry-group-header">
                 <label data-i18n="projectsLabel">Projects</label>
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row">
-                  <input data-i18n-placeholder="placeholderAddProjectEntry" placeholder="Add project entry" />
+                  <input
+                    data-i18n-placeholder="placeholderAddProjectEntry"
+                    placeholder="Add project entry"
+                  />
                 </div>
               </div>
               <div class="entry-group-actions">
-                <button class="btn ghost entry-btn" type="button" data-repeat-add>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-add
+                >
                   <span data-i18n="addSkill">Add +</span>
                 </button>
-                <button class="btn ghost entry-btn" type="button" data-repeat-remove>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-remove
+                >
                   <span data-i18n="removeSkill">Remove -</span>
                 </button>
               </div>
             </div>
-            <div class="entry-group full-row" data-repeatable-group data-field-name="Education">
+            <div
+              class="entry-group full-row"
+              data-repeatable-group
+              data-field-name="Education"
+            >
               <div class="entry-group-header">
                 <label data-i18n="educationLabel">Education</label>
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row">
-                  <input data-i18n-placeholder="placeholderAddEducationEntry" placeholder="Add education entry" />
+                  <input
+                    data-i18n-placeholder="placeholderAddEducationEntry"
+                    placeholder="Add education entry"
+                  />
                 </div>
               </div>
               <div class="entry-group-actions">
-                <button class="btn ghost entry-btn" type="button" data-repeat-add>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-add
+                >
                   <span data-i18n="addSkill">Add +</span>
                 </button>
-                <button class="btn ghost entry-btn" type="button" data-repeat-remove>
+                <button
+                  class="btn ghost entry-btn"
+                  type="button"
+                  data-repeat-remove
+                >
                   <span data-i18n="removeSkill">Remove -</span>
                 </button>
               </div>
             </div>
             <div class="entry-group best-contact-time full-row">
-              <label data-i18n="bestContactTime">Best Time to Contact You</label>
+              <label data-i18n="bestContactTime"
+                >Best Time to Contact You</label
+              >
               <div class="best-contact-row">
                 <input type="date" aria-label="Best contact date" />
                 <input type="time" aria-label="Best contact time" />
@@ -194,10 +289,20 @@
             </div>
           </div>
           <label data-i18n="messageLabel">Message</label>
-          <textarea data-i18n-placeholder="messageLabel" placeholder="Tell us about YOU"></textarea>
+          <textarea
+            data-i18n-placeholder="messageLabel"
+            placeholder="Tell us about YOU"
+          ></textarea>
           <div class="form-actions">
-            <button class="btn primary" type="submit" data-i18n="submitApplication">Submit Application</button
-            ><button class="btn ghost" type="reset" data-i18n="clearForm">Clear Form</button>
+            <button
+              class="btn primary"
+              type="submit"
+              data-i18n="submitApplication"
+            >
+              Submit Application</button
+            ><button class="btn ghost" type="reset" data-i18n="clearForm">
+              Clear Form
+            </button>
           </div>
         </form>
       </div>
