@@ -26,7 +26,7 @@ body {
   left: -999px;
   top: 0.5rem;
   z-index: 200;
-  background: #ffffff;
+  background: #fff;
   color: var(--brand-navy);
   border: 2px solid var(--brand-blue);
   border-radius: 8px;
