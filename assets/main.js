@@ -9,9 +9,7 @@
     "Permissions-Policy":
       "geolocation=(), camera=(), microphone=(), payment=(), usb=()",
   };
-  const CORS_ALLOWLIST = [
-    window.location.origin,
-  ];
+  const CORS_ALLOWLIST = [window.location.origin];
 
   function enforceClientSecurityPolicy() {
     Object.entries(SECURITY_HEADERS).forEach(([name, content]) => {
@@ -177,7 +175,6 @@
     topbar.appendChild(nav);
   }
 
-
   function ensureMobileNav() {
     if (document.querySelector(".mobile-nav")) return;
 
@@ -228,13 +225,19 @@
     }
 
     function scrambleToText(node) {
-      const finalText = (node.dataset.scramble || node.textContent || "").trim();
+      const finalText = (
+        node.dataset.scramble ||
+        node.textContent ||
+        ""
+      ).trim();
       if (!finalText) return;
 
       let frame = 0;
       const totalFrames = Math.max(20, finalText.replace(/\s/g, "").length * 3);
       const interval = setInterval(() => {
-        const revealCount = Math.floor((frame / totalFrames) * finalText.length);
+        const revealCount = Math.floor(
+          (frame / totalFrames) * finalText.length,
+        );
         let output = "";
         for (let i = 0; i < finalText.length; i += 1) {
           const char = finalText[i];
@@ -258,7 +261,11 @@
 
     targets.forEach((node, idx) => {
       const delay = idx * 220;
-      const finalText = (node.dataset.scramble || node.textContent || "").trim();
+      const finalText = (
+        node.dataset.scramble ||
+        node.textContent ||
+        ""
+      ).trim();
 
       node.textContent = finalText;
       const finalHeight = Math.ceil(node.getBoundingClientRect().height);
@@ -358,47 +365,44 @@
     });
   }
 
-
   function initScrollLazyLoad() {
     const lazyTargets = Array.from(
-      document.querySelectorAll('.section, .card, .footer-grid > div')
+      document.querySelectorAll(".section, .card, .footer-grid > div"),
     );
     if (!lazyTargets.length) return;
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || !('IntersectionObserver' in window)) {
-      lazyTargets.forEach((target) => target.classList.add('is-visible'));
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      lazyTargets.forEach((target) => target.classList.add("is-visible"));
       return;
     }
 
     lazyTargets.forEach((target, index) => {
       if (index < 2) {
-        target.classList.add('is-visible');
+        target.classList.add("is-visible");
         return;
       }
-      target.classList.add('lazy-on-scroll');
+      target.classList.add("lazy-on-scroll");
     });
 
     const observer = new IntersectionObserver(
       (entries, intersectionObserver) => {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
+          entry.target.classList.add("is-visible");
           intersectionObserver.unobserve(entry.target);
         });
       },
       {
-        rootMargin: '0px 0px 120px 0px',
+        rootMargin: "0px 0px 120px 0px",
         threshold: 0.12,
-      }
+      },
     );
 
     lazyTargets
-      .filter((target) => target.classList.contains('lazy-on-scroll'))
+      .filter((target) => target.classList.contains("lazy-on-scroll"))
       .forEach((target) => observer.observe(target));
   }
-
-
-
-  
 })();

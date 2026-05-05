@@ -196,7 +196,9 @@ header {
 .lazy-on-scroll {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 320ms ease, transform 320ms ease;
+  transition:
+    opacity 320ms ease,
+    transform 320ms ease;
   will-change: opacity, transform;
 }
 
