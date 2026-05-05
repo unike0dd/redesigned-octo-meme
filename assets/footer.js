@@ -3,34 +3,34 @@
     return `
       <div class="container footer-grid" data-footer-sitemap>
         <div>
-          <h4>Company</h4>
-          <a href="./" data-footer-link="home">Home</a>
-          <a href="./about/" data-footer-link="about">About</a>
-          <a href="learning.html" data-footer-link="services">Services Overview</a>
-          <a href="./careers/" data-footer-link="careers">Careers</a>
+          <h4 data-i18n="company">Company</h4>
+          <a href="./" data-footer-link="home" data-i18n="home">Home</a>
+          <a href="./about.html" data-footer-link="about" data-i18n="about">About</a>
+          <a href="learning.html" data-footer-link="services" data-i18n="servicesOverview">Services Overview</a>
+          <a href="./careers.html" data-footer-link="careers" data-i18n="careers">Careers</a>
         </div>
         <div>
-          <h4>Service Pages</h4>
-          <a href="learning.html" data-footer-link="logistics-operations">Logistics Operations</a>
-          <a href="learning.html" data-footer-link="administrative-backoffice">Administrative Back Office</a>
-          <a href="learning.html" data-footer-link="customer-relations">Customer Relations</a>
-          <a href="learning.html" data-footer-link="it-support">IT Support</a>
+          <h4 data-i18n="servicePagesLabel">Service Pages</h4>
+          <a href="learning.html" data-footer-link="logistics-operations" data-i18n="logisticsOps">Logistics Operations</a>
+          <a href="learning.html" data-footer-link="administrative-backoffice" data-i18n="adminBackOffice">Administrative Back Office</a>
+          <a href="learning.html" data-footer-link="customer-relations" data-i18n="customerRelations">Customer Relations</a>
+          <a href="learning.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
         </div>
         <div>
-          <h4>Support & Learning</h4>
-          <a href="./contact/" data-footer-link="contact">Contact</a>
-          <a href="./learning/" data-footer-link="learning">Learning</a>
-          <a href="./sitemap.xml" data-footer-link="sitemap">Sitemap</a>
+          <h4 data-i18n="supportLearning">Support & Learning</h4>
+          <a href="./contact.html" data-footer-link="contact" data-i18n="contact">Contact</a>
+          <a href="./learning.html" data-footer-link="learning" data-i18n="learning">Learning</a>
+          <a href="./sitemap.xml" data-footer-link="sitemap" data-i18n="sitemap">Sitemap</a>
         </div>
         <div>
-          <h4>Legal</h4>
-          <a href="./legal/terms.html" data-footer-link="terms">Terms & Conditions</a>
-          <a href="./legal/cookies.html" data-footer-link="cookies">Cookies Consent</a>
-          <a href="./legal/privacy-gdpr.html" data-footer-link="privacy">Privacy & GDPR</a>
+          <h4 data-i18n="legal">Legal</h4>
+          <a href="./legal/terms.html" data-footer-link="terms" data-i18n="termsConditions">Terms & Conditions</a>
+          <a href="./legal/cookies.html" data-footer-link="cookies" data-i18n="cookiesConsent">Cookies Consent</a>
+          <a href="./legal/privacy-gdpr.html" data-footer-link="privacy" data-i18n="privacyGdpr">Privacy & GDPR</a>
         </div>
       </div>
       <div class="container footer-meta">
-        <small>© 2026 Gabriel Services</small>
+        <small data-i18n="copyright">© 2026 Gabriel Services</small>
       </div>
     `;
   }
@@ -42,6 +42,10 @@
       document.body.appendChild(footer);
     }
     footer.innerHTML = footerMarkup();
+    // Re-apply language to footer elements after they're added
+    if (window.I18N && typeof I18N.applyLanguage === 'function') {
+      I18N.applyLanguage();
+    }
   }
 
   function trackFooterAction(event) {
@@ -65,6 +69,22 @@
     footer.addEventListener("click", trackFooterAction);
   }
 
-  ensureGlobalFooter();
-  initFooterEvents();
+  // Ensure footer is created when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      ensureGlobalFooter();
+      initFooterEvents();
+    });
+  } else {
+    ensureGlobalFooter();
+    initFooterEvents();
+  }
+  
+  // Re-create footer when language changes
+  if (typeof window !== 'undefined') {
+    window.addEventListener("language:changed", () => {
+      ensureGlobalFooter();
+      initFooterEvents();
+    });
+  }
 })();

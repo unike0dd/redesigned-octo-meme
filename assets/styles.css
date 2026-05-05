@@ -10,6 +10,14 @@
   --cta: #1f4e8c;
   --cta-hover: #163860;
 }
+
+:root.dark-theme {
+  --text: #e5e7eb;
+  --muted: #a0a9b8;
+  --surface: #1a1a1a;
+  --border: #333333;
+  --brand-sky: #1a2a4a;
+}
 * {
   box-sizing: border-box;
 }
@@ -20,6 +28,31 @@ body {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+:root.dark-theme body {
+  background: #0f0f0f;
+}
+.toggle-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f8fbff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.toggle-btn:active {
+  background: rgba(255, 255, 255, 0.35);
 }
 .skip-link {
   position: absolute;
@@ -87,6 +120,11 @@ header {
   padding: clamp(2.5rem, 6vh, 5rem) 0 clamp(2rem, 5vh, 4rem);
   background: #fff;
   border-bottom: 1px solid var(--border);
+  transition: background-color 0.3s ease;
+}
+
+:root.dark-theme .hero {
+  background: #1a1a1a;
 }
 .eyebrow {
   text-transform: uppercase;
@@ -151,6 +189,11 @@ header {
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 3px 14px rgba(16, 35, 63, 0.07);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:root.dark-theme .card {
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.3);
 }
 .card h3 {
   margin-top: 0.2rem;
@@ -220,6 +263,11 @@ footer {
   color: #e5efff;
   padding: 2rem 0 2.4rem;
   margin-top: 3rem;
+  transition: background-color 0.3s ease;
+}
+
+:root.dark-theme footer {
+  background: #0a0f1a;
 }
 .footer-grid {
   display: grid;
@@ -248,11 +296,43 @@ footer a {
   padding: 0.7rem 0.8rem;
   border-radius: 8px;
 }
+
+.legal-section {
+  margin-bottom: 2rem;
+}
+
+.legal-section h2 {
+  color: var(--brand-navy);
+  margin-top: 1.5rem;
+}
+
+.legal-section h3 {
+  color: var(--text);
+  margin-top: 1rem;
+}
+
+.legal-section ul {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+:root.dark-theme .legal-section h2 {
+  color: #e0e7ff;
+}
+
+:root.dark-theme .legal-section h3 {
+  color: var(--text);
+}
 form {
   background: #fff;
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:root.dark-theme form {
+  background: #1a1a1a;
 }
 label {
   display: block;
@@ -267,6 +347,15 @@ textarea {
   border-radius: 8px;
   border: 1px solid #c5cfdb;
   font: inherit;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+:root.dark-theme input,
+:root.dark-theme select,
+:root.dark-theme textarea {
+  background: #2a2a2a;
+  border-color: #444;
+  color: #e5e7eb;
 }
 textarea {
   min-height: 130px;
@@ -363,6 +452,11 @@ textarea {
   border-radius: 10px;
   display: none;
   padding: 0.4rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:root.dark-theme .services-dropup {
+  background: #1a1a1a;
 }
 .services-dropup.open {
   display: block;
