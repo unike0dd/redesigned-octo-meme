@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Careers</title>
+    <link rel="stylesheet" href="/myservices/assets/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container topbar">
+        <a class="brand serif" href="/myservices/">Gabriel Services</a>
+        <nav class="main-nav">
+          <a href="/myservices/about/">About</a><a href="/myservices/careers/">Careers</a
+          ><a href="/myservices/contact/">Contact</a><a href="/myservices/learning/">Learning</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="section">
+      <div class="container">
+        <h1>Careers</h1>
+        <p>
+          Apply to support operations, communication, and service delivery
+          workflows across all service domains.
+        </p>
+        <form>
+          <div class="form-grid">
+            <div><label>Full Name</label><input /></div>
+            <div><label>Email Address</label><input type="email" /></div>
+            <div>
+              <label>Country Code</label>
+              <input
+                type="tel"
+                inputmode="numeric"
+                pattern="[0-9]+"
+                data-numeric-only
+                autocomplete="tel-country-code"
+              />
+            </div>
+            <div>
+              <label>Contact Number</label>
+              <input
+                type="tel"
+                inputmode="numeric"
+                pattern="[0-9]+"
+                data-numeric-only
+                autocomplete="tel-national"
+              />
+            </div>
+            <div><label>City</label><input /></div>
+            <div><label>State/Province</label><input /></div>
+            <div>
+              <label>Country Zip Code</label>
+              <input
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]+"
+                data-numeric-only
+                autocomplete="postal-code"
+              />
+            </div>
+            <div><label>Availability</label><input /></div>
+            <div>
+              <label
+                >Area of Interest (Logistics / Admin / Customer Relations / IT
+                Support)</label
+              ><select>
+                <option>Logistics</option>
+                <option>Admin</option>
+                <option>Customer Relations</option>
+                <option>IT Support</option>
+              </select>
+            </div>
+            <div><label>Resume/Profile link</label><input /></div>
+            <div>
+              <label>Education Level</label>
+              <select>
+                <option>High School</option>
+                <option>Associate</option>
+                <option>Bachelor</option>
+                <option>Master</option>
+                <option>Doctorate</option>
+                <option>Certified</option>
+              </select>
+            </div>
+            <div class="entry-group full-row" data-repeatable-group data-field-name="Experience Level">
+              <div class="entry-group-header">
+                <label>Experience Level</label>
+              </div>
+              <div class="entry-list" data-repeat-list>
+                <div class="entry-row"><input placeholder="Add experience level entry" /></div>
+              </div>
+              <div class="entry-group-actions">
+                <button class="btn ghost entry-btn" type="button" data-repeat-add>Add +</button>
+                <button class="btn ghost entry-btn" type="button" data-repeat-remove>Remove -</button>
+              </div>
+            </div>
+            <div class="entry-group full-row" data-repeatable-group data-field-name="Languages">
+              <div class="entry-group-header">
+                <label>Languages</label>
+              </div>
+              <div class="entry-list" data-repeat-list>
+                <div class="entry-row"><input placeholder="Add language entry" /></div>
+              </div>
+              <div class="entry-group-actions">
+                <button class="btn ghost entry-btn" type="button" data-repeat-add>Add +</button>
+                <button class="btn ghost entry-btn" type="button" data-repeat-remove>Remove -</button>
+              </div>
+            </div>
+            <div class="entry-group full-row" data-repeatable-group data-field-name="Skills">
+              <div class="entry-group-header">
+                <label>Skills</label>
+              </div>
+              <div class="entry-list" data-repeat-list>
+                <div class="entry-row"><input placeholder="Add skill entry" /></div>
+              </div>
+              <div class="entry-group-actions">
+                <button class="btn ghost entry-btn" type="button" data-repeat-add>Add +</button>
+                <button class="btn ghost entry-btn" type="button" data-repeat-remove>Remove -</button>
+              </div>
+            </div>
+            <div class="entry-group full-row" data-repeatable-group data-field-name="Projects">
+              <div class="entry-group-header">
+                <label>Projects</label>
+              </div>
+              <div class="entry-list" data-repeat-list>
+                <div class="entry-row"><input placeholder="Add project entry" /></div>
+              </div>
+              <div class="entry-group-actions">
+                <button class="btn ghost entry-btn" type="button" data-repeat-add>Add +</button>
+                <button class="btn ghost entry-btn" type="button" data-repeat-remove>Remove -</button>
+              </div>
+            </div>
+            <div class="entry-group full-row" data-repeatable-group data-field-name="Education">
+              <div class="entry-group-header">
+                <label>Education</label>
+              </div>
+              <div class="entry-list" data-repeat-list>
+                <div class="entry-row"><input placeholder="Add education entry" /></div>
+              </div>
+              <div class="entry-group-actions">
+                <button class="btn ghost entry-btn" type="button" data-repeat-add>Add +</button>
+                <button class="btn ghost entry-btn" type="button" data-repeat-remove>Remove -</button>
+              </div>
+            </div>
+            <div class="entry-group best-contact-time full-row">
+              <label>Best Time to Contact You</label>
+              <div class="best-contact-row">
+                <input type="date" aria-label="Best contact date" />
+                <input type="time" aria-label="Best contact time" />
+              </div>
+            </div>
+          </div>
+          <label>Message</label>
+          <textarea placeholder="Tell us about YOU"></textarea>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Submit Application</button
+            ><button class="btn ghost" type="reset">Clear Form</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <script src="/myservices/assets/footer.js"></script>
+    <script src="/myservices/assets/main.js"></script>
+  </body>
+</html>
