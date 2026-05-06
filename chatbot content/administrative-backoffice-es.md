@@ -32,8 +32,8 @@ Un sólido soporte de back office ayuda a las empresas a escalar al eliminar fri
 When a visitor asks for help, pricing, availability, or implementation support, ask for:
 
 - Contact name and preferred contact method.
-- Business area needing administrative back office support.
-- Current administrative bottlenecks or recurring tasks.
-- Main support needs: executive administration, calendar management, document preparation, email coordination, vendor follow-up, invoice tracking, or reporting support.
+- Administrative processes needing support.
+- Calendar, document, vendor, invoice, reporting, or internal communication priorities.
+- Current friction points and desired operating rhythm.
 
 Suggested CTA: **Volver a Servicios** or visit the Contact page to request Administrative Back Office support.
