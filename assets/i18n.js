@@ -64,6 +64,41 @@
       exploreService: "Explore service",
       sitemap: "Sitemap",
       servicesOverview: "Services Overview",
+      serviceOverviewTitle: "Service Overview",
+      serviceOverviewIntro:
+        "Gabriel Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most.",
+      serviceOverviewLogisticsDesc:
+        "Structured coordination, shipment tracking, and operational continuity for supply chain activity.",
+      serviceOverviewAdminDesc:
+        "Documentation, calendar management, reporting, and process discipline to keep your business running smoothly.",
+      serviceOverviewCustomerDesc:
+        "Customer communications, issue resolution, and follow-up workflows designed to improve satisfaction and retention.",
+      serviceOverviewItDesc:
+        "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity.",
+      logisticsPageIntro:
+        "Gabriel Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving.",
+      whatWeOfferTitle: "What We Offer",
+      logisticsOfferDispatch:
+        "Dispatch coordination and carrier communication.",
+      logisticsOfferTracking:
+        "Shipment tracking for air, ocean, and ground transport.",
+      logisticsOfferInventory:
+        "Inventory status monitoring and exception management.",
+      logisticsOfferFollowup:
+        "Supplier and carrier follow-up to protect delivery timelines.",
+      howWeWorkTitle: "How We Work",
+      logisticsHowWeWorkText:
+        "We integrate into your existing logistics ecosystem, align with operational milestones, and provide consistent execution every day.",
+      logisticsHowHandoff:
+        "Clear handoff practices and communication templates.",
+      logisticsHowUpdates:
+        "Regular status updates and early issue escalation.",
+      logisticsHowTracking:
+        "Data-driven tracking with actionable next steps.",
+      whyChooseServiceTitle: "Why Choose This Service",
+      logisticsWhyChooseText:
+        "This service is ideal for businesses that need dependable logistics support without adding internal overhead. We help reduce delays, improve visibility, and keep your operations responsive.",
+      backToServices: "Back to Services",
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
       whyBusinessesText:
         "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations.",
@@ -170,7 +205,7 @@
       projectsLabel: "Projects",
       educationLabel: "Education",
       addSkill: "Add +",
-      removeSkill: "Remove",
+      removeSkill: "Remove -",
       removeAll: "Remove All",
       placeholderAddExperienceEntry: "Add experience level entry",
       placeholderAddLanguageEntry: "Add language entry",
@@ -184,8 +219,11 @@
       careersIntro:
         "Apply to support operations, communication, and service delivery workflows across all service domains.",
       availabilityLabel: "Availability",
-      areaInterestLabel:
-        "Area of Interest (Logistics / Admin / Customer Relations / IT Support)",
+      areaInterestLabel: "Area of Interest",
+      careersOptionLogistics: "Logistics",
+      careersOptionAdministration: "Administration",
+      careersOptionCustomerRelations: "Customer Relations",
+      experienceLevelLabel: "Experience Level",
       resumeLinkLabel: "Resume/Profile link",
       educationLevelLabel: "Education Level",
       educationOptionHighSchool: "High School",
@@ -196,23 +234,6 @@
       educationOptionCertified: "Certified",
       bestContactTime: "Best Time to Contact You",
       messageLabel: "Message",
-      availabilityLabel: "Availability",
-      areaInterestLabel:
-        "Area of Interest (Logistics / Admin / Customer Relations / IT Support)",
-      resumeLinkLabel: "Resume/Profile link",
-      educationLevelLabel: "Education Level",
-      educationOptionHighSchool: "High School",
-      educationOptionAssociate: "Associate",
-      educationOptionBachelor: "Bachelor",
-      educationOptionMaster: "Master",
-      educationOptionDoctorate: "Doctorate",
-      educationOptionCertified: "Certified",
-      bestContactTime: "Best Time to Contact You",
-      messageLabel: "Message",
-      careersTitle: "Careers",
-      careersIntro:
-        "Apply to support operations, communication, and service delivery workflows across all service domains.",
-
       learningTitle: "Learning",
       learningIntro:
         "Guidance and practical service knowledge for English-first, workflow-oriented operations support.",
@@ -535,6 +556,41 @@
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
       servicesOverview: "Descripción General de Servicios",
+      serviceOverviewTitle: "Descripción General de Servicios",
+      serviceOverviewIntro:
+        "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante.",
+      serviceOverviewLogisticsDesc:
+        "Coordinación estructurada, seguimiento de envíos y continuidad operativa para actividades de la cadena de suministro.",
+      serviceOverviewAdminDesc:
+        "Documentación, gestión de calendarios, reportes y disciplina de procesos para mantener tu negocio funcionando sin problemas.",
+      serviceOverviewCustomerDesc:
+        "Comunicaciones con clientes, resolución de problemas y flujos de seguimiento diseñados para mejorar la satisfacción y la retención.",
+      serviceOverviewItDesc:
+        "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI.",
+      logisticsPageIntro:
+        "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento.",
+      whatWeOfferTitle: "Lo que ofrecemos",
+      logisticsOfferDispatch:
+        "Coordinación de despachos y comunicación con transportistas.",
+      logisticsOfferTracking:
+        "Seguimiento de envíos por transporte aéreo, marítimo y terrestre.",
+      logisticsOfferInventory:
+        "Monitoreo del estado del inventario y gestión de excepciones.",
+      logisticsOfferFollowup:
+        "Seguimiento con proveedores y transportistas para proteger los tiempos de entrega.",
+      howWeWorkTitle: "Cómo trabajamos",
+      logisticsHowWeWorkText:
+        "Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos una ejecución constante todos los días.",
+      logisticsHowHandoff:
+        "Prácticas claras de traspaso y plantillas de comunicación.",
+      logisticsHowUpdates:
+        "Actualizaciones periódicas de estado y escalación temprana de problemas.",
+      logisticsHowTracking:
+        "Seguimiento basado en datos con próximos pasos accionables.",
+      whyChooseServiceTitle: "Por qué elegir este servicio",
+      logisticsWhyChooseText:
+        "Este servicio es ideal para negocios que necesitan soporte logístico confiable sin aumentar la carga interna. Ayudamos a reducir retrasos, mejorar la visibilidad y mantener tus operaciones receptivas.",
+      backToServices: "Volver a Servicios",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
       whyBusinessesText:
         "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
@@ -634,8 +690,8 @@
       city: "Ciudad",
       stateProvince: "Estado/Provincia",
       spaceSuiteApt: "Espacio/Suite/Apto",
-      countryZipCode: "Código postal",
-      bestContactTime: "Mejor hora para contactarlo",
+      countryZipCode: "Código postal del país",
+      bestContactTime: "Mejor hora para contactarte",
       messageLabel: "Mensaje",
       inquiryAboutTitle: "Consulta sobre asistente remoto",
       skillsLabel: "Habilidades",
@@ -643,7 +699,7 @@
       projectsLabel: "Proyectos",
       educationLabel: "Educación",
       addSkill: "Agregar +",
-      removeSkill: "Eliminar",
+      removeSkill: "Eliminar -",
       removeAll: "Eliminar todo",
       placeholderAddExperienceEntry: "Agregar entrada de nivel de experiencia",
       placeholderAddLanguageEntry: "Agregar entrada de idioma",
@@ -655,18 +711,21 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postule para apoyar operaciones, comunicación y flujos de trabajo de entrega de servicios en todos los dominios de servicio.",
+        "Postúlate para apoyar operaciones, comunicación y flujos de prestación de servicios en todas las áreas de servicio.",
       availabilityLabel: "Disponibilidad",
-      areaInterestLabel:
-        "Área de interés (Logística / Admin / Relaciones con Clientes / Soporte de TI)",
-      resumeLinkLabel: "Enlace al currículum/perfil",
+      areaInterestLabel: "Área de interés",
+      careersOptionLogistics: "Logística",
+      careersOptionAdministration: "Administración",
+      careersOptionCustomerRelations: "Relaciones con Clientes",
+      experienceLevelLabel: "Nivel de experiencia",
+      resumeLinkLabel: "Enlace de currículum/perfil",
       educationLevelLabel: "Nivel educativo",
-      educationOptionHighSchool: "Escuela secundaria",
-      educationOptionAssociate: "Asociado",
+      educationOptionHighSchool: "Secundaria",
+      educationOptionAssociate: "Técnico/Superior",
       educationOptionBachelor: "Licenciatura",
       educationOptionMaster: "Maestría",
       educationOptionDoctorate: "Doctorado",
-      educationOptionCertified: "Certificado",
+      educationOptionCertified: "Certificación",
 
       learningTitle: "Aprendizaje",
       learningIntro:
