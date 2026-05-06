@@ -685,57 +685,57 @@
         "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
       exploreTrack: "Explorar módulo",
 
-      termsSection1Title: "1. Acuerdo de términos",
+      termsSection1Title: "1. Aceptación de los términos",
       termsSection1Text:
-        "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, acepta y se compromete a cumplir los términos y disposiciones de este acuerdo. Si no está de acuerdo con lo anterior, por favor no utilice este servicio.",
+        "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, aceptas y acuerdas quedar sujeto a los términos y disposiciones de este acuerdo. Si no aceptas cumplir con lo anterior, por favor no utilices este servicio.",
       termsSection2Title: "2. Licencia de uso",
       termsSection2Text:
-        "Gabriel Services le otorga una licencia limitada para acceder y utilizar el sitio web y los servicios solo con fines legales. Usted acepta no:",
+        "Gabriel Services te otorga una licencia limitada para acceder y usar el sitio web y los servicios únicamente con fines legales. Aceptas no:",
       termsSection2List1:
-        "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o servicios",
+        "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o de los servicios",
       termsSection2List2:
-        "Acceder al sitio web con fines ilícitos o no autorizados",
+        "Acceder al sitio web con cualquier fin ilícito o no autorizado",
       termsSection2List3:
-        "Interrumpir el flujo normal de diálogo o interrumpir los servicios",
+        "Interrumpir el flujo normal del diálogo o interrumpir de cualquier otra forma los servicios",
       termsSection2List4:
         "Intentar obtener acceso no autorizado a nuestros sistemas o redes",
       termsSection2List5:
         "Usar sistemas o scripts automatizados para recopilar datos sin permiso",
       termsSection2List6:
         "Participar en cualquier forma de acoso o comportamiento abusivo",
-      termsSection3Title: "3. Renuncia de garantías",
+      termsSection3Title: "3. Descargo de garantías",
       termsSection3Text:
-        "Los materiales en el sitio web de Gabriel Services se proporcionan 'tal cual'. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, sin limitación, las implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
+        "Los materiales del sitio web de Gabriel Services se proporcionan ‘tal cual’. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, entre otras, las garantías o condiciones implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
       termsSection4Title: "4. Limitaciones de responsabilidad",
       termsSection4Text:
-        "En ningún caso Gabriel Services o sus proveedores serán responsables de ningún daño (incluidos, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales en el sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito de la posibilidad de dicho daño.",
+        "En ningún caso Gabriel Services o sus proveedores serán responsables por daños (incluidos, entre otros, daños por pérdida de datos o ganancias, o por interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales del sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito sobre la posibilidad de dicho daño.",
       termsSection5Title: "5. Exactitud de los materiales",
       termsSection5Text:
-        "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales en su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento sin previo aviso.",
+        "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales de su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento y sin previo aviso.",
       termsSection6Title: "6. Enlaces",
       termsSection6Text:
-        "Gabriel Services no ha revisado todos los sitios vinculados a su sitio web y no es responsable del contenido de dichos sitios vinculados. La inclusión de cualquier enlace no implica la aprobación por parte de Gabriel Services del sitio. El uso de cualquier sitio web vinculado es bajo el riesgo del usuario.",
+        "Gabriel Services no ha revisado todos los sitios enlazados a su sitio web y no es responsable del contenido de dichos sitios enlazados. La inclusión de cualquier enlace no implica respaldo por parte de Gabriel Services del sitio. El uso de cualquier sitio web enlazado es bajo el propio riesgo del usuario.",
       termsSection7Title: "7. Modificaciones",
       termsSection7Text:
-        "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento sin previo aviso. Al usar este sitio web, usted acepta estar sujeto a la versión actual de estos términos de servicio.",
+        "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento y sin previo aviso. Al usar este sitio web, aceptas quedar sujeto a la versión vigente de estos términos de servicio.",
       termsSection8Title: "8. Ley aplicable",
       termsSection8Text:
-        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y usted se somete irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
+        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
       termsSection9Title: "9. Descripción del servicio",
       termsSection9Text:
         "Gabriel Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabriel Services y el cliente se detallan en el acuerdo de servicio.",
       termsSection10Title: "10. Términos de pago",
       termsSection10Text:
-        "Los términos de pago se especifican en el acuerdo de servicio individual. Las facturas vencen al recibo, a menos que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
+        "Los términos de pago son los especificados en el acuerdo de servicio individual. Las facturas vencen al recibo, salvo que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
       termsSection11Title: "11. Derechos de propiedad intelectual",
       termsSection11Text:
         "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
-      termsSection12Title: "12. Limitación de servicio",
+      termsSection12Title: "12. Limitación del servicio",
       termsSection12Text:
         "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su sola discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a su sola discreción.",
       termsSection13Title: "13. Contacto para consultas legales",
       termsSection13Text:
-        "Si tiene alguna pregunta sobre estos Términos y Condiciones, contáctenos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
+        "Si tienes alguna pregunta sobre estos Términos y Condiciones, contáctanos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
       termsLastUpdated: "Última actualización: 5 de mayo de 2026",
 
       cookiesTitle: "Política de consentimiento de cookies",
