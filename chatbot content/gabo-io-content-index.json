@@ -72,6 +72,63 @@
       "answer": "Los Términos y Condiciones de Gabriel Services explican que, al acceder y usar el sitio web y los servicios, aceptas quedar sujeto a este acuerdo. La licencia de uso permite acceder al sitio y a los servicios solo con fines legales y prohíbe copiar o vender partes del sitio, usarlo con fines ilícitos, interrumpir servicios, intentar accesos no autorizados, recopilar datos con scripts sin permiso o participar en acoso o conducta abusiva. Los materiales se ofrecen ‘tal cual’, con limitaciones de garantías y responsabilidad. Los términos también cubren exactitud de materiales, enlaces externos, modificaciones, ley aplicable, descripción de servicios, pagos, propiedad intelectual, limitación del servicio y contacto para consultas legales.",
       "leadGenerationPrompt": "Si quieres revisar cómo los términos, pagos, propiedad intelectual o alcance del servicio se conectan con tus operaciones y experiencia de clientes, puedo recopilar tus datos de contacto y el área que deseas mejorar para que Gabriel Services te contacte.",
       "recommendedCta": "Visita la página de Contacto para consultas sobre Términos y Condiciones o para solicitar orientación sobre servicios operativos."
+    },
+    {
+      "id": "service-overview-es",
+      "language": "es",
+      "title": "Descripción General de Servicios",
+      "sourceUrl": "/services.html",
+      "intents": [
+        "servicios",
+        "descripción general de servicios",
+        "descripcion general de servicios",
+        "service overview",
+        "operaciones logísticas",
+        "operaciones logisticas",
+        "logística",
+        "logistica",
+        "back office administrativo",
+        "administrativo",
+        "relaciones con clientes",
+        "atención al cliente",
+        "atencion al cliente",
+        "soporte de ti",
+        "soporte it",
+        "it support",
+        "generación de leads",
+        "generacion de leads"
+      ],
+      "answer": "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales para reducir fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante. Las áreas son: Operaciones Logísticas, con coordinación estructurada, seguimiento de envíos y continuidad operativa para la cadena de suministro; Back Office Administrativo, con documentación, gestión de calendarios, reportes y disciplina de procesos; Operaciones de Relaciones con Clientes, con comunicaciones, resolución de problemas y flujos de seguimiento para mejorar satisfacción y retención; y Soporte de TI, con soporte técnico diario, triaje de tickets y asistencia al usuario para continuidad confiable.",
+      "leadGenerationPrompt": "Si deseas mejorar logística, administración, relaciones con clientes o soporte de TI, puedo recopilar tus datos de contacto, el área prioritaria y el principal reto operativo para que Gabriel Services te contacte con una recomendación alineada.",
+      "recommendedCta": "Visita la página de Contacto o explora el servicio específico que mejor coincida con tu necesidad operativa."
+    },
+    {
+      "id": "careers-es",
+      "language": "es",
+      "title": "Carreras",
+      "sourceUrl": "/careers.html",
+      "intents": [
+        "carreras",
+        "empleo",
+        "trabajo",
+        "postular",
+        "postúlate",
+        "solicitud",
+        "vacantes",
+        "currículum",
+        "curriculum",
+        "perfil",
+        "experiencia",
+        "educación",
+        "educacion",
+        "habilidades",
+        "idiomas",
+        "proyectos",
+        "mejor hora para contactarte"
+      ],
+      "answer": "Carreras: Postúlate para apoyar operaciones, comunicación y flujos de prestación de servicios en todas las áreas de servicio. El formulario solicita nombre completo, dirección de correo electrónico, código de país, número de contacto, ciudad, estado/provincia, código postal del país, disponibilidad, área de interés, enlace de currículum/perfil, nivel educativo, nivel de experiencia, idiomas, habilidades, proyectos, educación, mejor hora para contactarte y mensaje. Las áreas de interés son Logística, Administración, Relaciones con Clientes y Soporte de TI. Las opciones de nivel educativo son Secundaria, Técnico/Superior, Licenciatura, Maestría, Doctorado y Certificación.",
+      "leadGenerationPrompt": "Si quieres postularte, prepara tu información de contacto, disponibilidad, área de interés, currículum o perfil, experiencia, idiomas, habilidades, proyectos, educación y la mejor hora para contactarte para que Gabriel Services pueda evaluar tu solicitud.",
+      "recommendedCta": "Visita la página de Carreras, completa los campos requeridos y selecciona Enviar solicitud. Usa Limpiar formulario si necesitas empezar de nuevo."
     }
   ]
 }
