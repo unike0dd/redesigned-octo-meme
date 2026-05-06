@@ -242,22 +242,21 @@
       logisticsServiceIntro:
         "Gabriel Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving.",
       logisticsServiceOfferTitle: "What We Offer",
-      logisticsServiceOffer1:
-        "Dispatch coordination and carrier communication.",
+      logisticsServiceOffer1: "Dispatch coordination and carrier communication.",
       logisticsServiceOffer2:
         "Shipment tracking for air, ocean, and ground transport.",
       logisticsServiceOffer3:
         "Inventory status monitoring and exception management.",
       logisticsServiceOffer4:
         "Supplier and carrier follow-up to protect delivery timelines.",
-      logisticsServiceHowTitle: "How We Work",
-      logisticsServiceHowText:
+      logisticsServiceWorkTitle: "How We Work",
+      logisticsServiceWorkIntro:
         "We integrate into your existing logistics ecosystem, align with operational milestones, and provide consistent execution every day.",
-      logisticsServiceHow1:
+      logisticsServiceWork1:
         "Clear handoff practices and communication templates.",
-      logisticsServiceHow2:
+      logisticsServiceWork2:
         "Regular status updates and early issue escalation.",
-      logisticsServiceHow3:
+      logisticsServiceWork3:
         "Data-driven tracking with actionable next steps.",
       logisticsServiceWhyTitle: "Why Choose This Service",
       logisticsServiceWhyText:
@@ -768,14 +767,14 @@
         "Monitoreo del estado del inventario y gestión de excepciones.",
       logisticsServiceOffer4:
         "Seguimiento con proveedores y transportistas para proteger los tiempos de entrega.",
-      logisticsServiceHowTitle: "Cómo trabajamos",
-      logisticsServiceHowText:
+      logisticsServiceWorkTitle: "Cómo trabajamos",
+      logisticsServiceWorkIntro:
         "Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos una ejecución constante todos los días.",
-      logisticsServiceHow1:
+      logisticsServiceWork1:
         "Prácticas claras de traspaso y plantillas de comunicación.",
-      logisticsServiceHow2:
+      logisticsServiceWork2:
         "Actualizaciones periódicas de estado y escalación temprana de problemas.",
-      logisticsServiceHow3:
+      logisticsServiceWork3:
         "Seguimiento basado en datos con próximos pasos accionables.",
       logisticsServiceWhyTitle: "Por qué elegir este servicio",
       logisticsServiceWhyText:
