@@ -72,6 +72,53 @@
       "answer": "Los Términos y Condiciones de Gabriel Services explican que, al acceder y usar el sitio web y los servicios, aceptas quedar sujeto a este acuerdo. La licencia de uso permite acceder al sitio y a los servicios solo con fines legales y prohíbe copiar o vender partes del sitio, usarlo con fines ilícitos, interrumpir servicios, intentar accesos no autorizados, recopilar datos con scripts sin permiso o participar en acoso o conducta abusiva. Los materiales se ofrecen ‘tal cual’, con limitaciones de garantías y responsabilidad. Los términos también cubren exactitud de materiales, enlaces externos, modificaciones, ley aplicable, descripción de servicios, pagos, propiedad intelectual, limitación del servicio y contacto para consultas legales.",
       "leadGenerationPrompt": "Si quieres revisar cómo los términos, pagos, propiedad intelectual o alcance del servicio se conectan con tus operaciones y experiencia de clientes, puedo recopilar tus datos de contacto y el área que deseas mejorar para que Gabriel Services te contacte.",
       "recommendedCta": "Visita la página de Contacto para consultas sobre Términos y Condiciones o para solicitar orientación sobre servicios operativos."
+    },
+    {
+      "id": "it-support-es",
+      "language": "es",
+      "title": "Soporte de TI",
+      "sourceUrl": "/services/it-support.html",
+      "intents": [
+        "soporte de ti",
+        "soporte it",
+        "mesa de ayuda",
+        "help desk",
+        "tickets",
+        "clasificación de tickets",
+        "asistencia a usuarios finales",
+        "soporte de sistemas operativos",
+        "diagnóstico de incidencias",
+        "acceso a cuentas",
+        "escalaciones de soporte",
+        "soporte técnico"
+      ],
+      "answer": "Gabriel Services proporciona soporte de TI confiable para necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos. El servicio cubre recepción de solicitudes de mesa de ayuda y creación de tickets, solución básica de problemas, diagnóstico de incidencias, coordinación de acceso a cuentas, soporte de sistemas y gestión de escalaciones a equipos especializados cuando sea necesario. El enfoque mantiene un ritmo estructurado desde el primer contacto hasta la resolución, con visibilidad, responsabilidad, actualizaciones claras de estado y comunicación práctica enfocada en el usuario.",
+      "leadGenerationPrompt": "Si necesitas soporte de TI para mantener a tu equipo productivo, reducir interrupciones o mejorar la gestión de tickets y escalaciones, puedo recopilar tus datos de contacto, volumen aproximado de solicitudes y principales necesidades técnicas para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita la página de Contacto para solicitar soporte de TI o conversar sobre mesa de ayuda, asistencia a usuarios finales y continuidad operativa."
+    },
+    {
+      "id": "administrative-backoffice-es",
+      "language": "es",
+      "title": "Back Office Administrativo",
+      "sourceUrl": "/services/administrative-backoffice.html",
+      "intents": [
+        "back office administrativo",
+        "soporte administrativo",
+        "administración ejecutiva",
+        "gestión de calendario",
+        "preparación de documentos",
+        "archivo",
+        "control de versiones",
+        "coordinación de correos electrónicos",
+        "comunicaciones internas",
+        "seguimiento con proveedores",
+        "control de facturas",
+        "soporte de reportes",
+        "operaciones internas"
+      ],
+      "answer": "Nuestros servicios de back office aportan estructura y confiabilidad a tus operaciones internas, ayudando a reducir riesgos y mantener un ritmo empresarial constante. Gabriel Services gestiona soporte administrativo ejecutivo y calendario, preparación de documentos, archivo, control de versiones, coordinación de correos electrónicos y comunicaciones internas, seguimiento con proveedores, control de facturas y soporte de reportes. Trabajamos de cerca con tu equipo para comprender procesos, capturar acciones prioritarias y mantener cada tarea alineada con el calendario de tu negocio mediante responsabilidad clara, flujos documentados, seguimiento del progreso y actualizaciones periódicas de estado.",
+      "leadGenerationPrompt": "Si necesitas reducir fricción administrativa, mejorar consistencia operativa o liberar a tu equipo para enfocarse en trabajo de mayor valor, puedo recopilar tus datos de contacto, procesos administrativos prioritarios y necesidades de calendario, documentos, proveedores o reportes para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita la página de Contacto para solicitar soporte de Back Office Administrativo o vuelve a Servicios para explorar otras áreas operativas."
     }
   ]
 }

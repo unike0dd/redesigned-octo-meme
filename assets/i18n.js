@@ -222,12 +222,52 @@
       trackAdminTitle: "Administrative Back Office",
       trackAdminText:
         "Learn documentation, reporting rhythm, and process upkeep.",
+      adminBackOfficeServiceIntro:
+        "Our back office services bring structure and reliability to your internal operations, helping reduce risk and maintain a consistent business rhythm.",
+      adminBackOfficeHandleTitle: "What We Handle",
+      adminBackOfficeHandle1:
+        "Executive administrative support and calendar management",
+      adminBackOfficeHandle2:
+        "Document preparation, filing, and version control",
+      adminBackOfficeHandle3:
+        "Email and communication coordination for internal teams",
+      adminBackOfficeHandle4:
+        "Vendor follow-up, invoice tracking, and reporting support",
+      adminBackOfficeWorksTitle: "How This Service Works",
+      adminBackOfficeWorksText:
+        "We partner closely with your team to understand processes, capture priority actions, and keep every task aligned with your business schedule.",
+      adminBackOfficeWorksPoint1:
+        "Clear ownership for recurring tasks and follow-up items",
+      adminBackOfficeWorksPoint2: "Documented task flows and progress tracking",
+      adminBackOfficeWorksPoint3:
+        "Regular status updates to stakeholders and team leads",
+      whyItMattersTitle: "Why It Matters",
+      adminBackOfficeWhyText:
+        "Strong back office support helps businesses scale by removing administrative friction, improving consistency, and freeing your team to focus on higher-value work.",
       trackCustomerTitle: "Customer Operations",
       trackCustomerText:
         "Learn follow-up flow, escalation continuity, and response rhythm.",
       trackITTitle: "IT Support",
       trackITText:
         "Learn triage basics, ticket communication, and request handling.",
+      itSupportServiceIntro:
+        "Gabriel Services provides dependable IT support for everyday technical needs, including ticket triage, end-user assistance, and operational system support.",
+      serviceHighlightsTitle: "Service Highlights",
+      itSupportHighlight1: "Help desk intake and ticket creation",
+      itSupportHighlight2: "Basic troubleshooting and issue diagnosis",
+      itSupportHighlight3: "Account access and system support coordination",
+      itSupportHighlight4:
+        "Escalation management to specialized teams when needed",
+      itSupportDeliveryTitle: "How We Deliver Support",
+      itSupportDeliveryText:
+        "We maintain a structured support rhythm that follows incoming requests from first contact through resolution, with visibility and accountability at every step.",
+      itSupportDeliveryPoint1: "Fast ticket intake and triage",
+      itSupportDeliveryPoint2: "Clear status updates and escalation pathways",
+      itSupportDeliveryPoint3: "Practical, user-focused communication",
+      whyItWorksTitle: "Why It Works",
+      itSupportWhyText:
+        "The right IT support keeps your team productive, prevents small issues from becoming larger problems, and helps maintain reliable daily operations.",
+      backToServices: "Back to Services",
       exploreTrack: "Explore track",
 
       termsSection1Title: "1. Agreement to Terms",
@@ -677,12 +717,58 @@
       trackAdminTitle: "Back Office Administrativo",
       trackAdminText:
         "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
+      adminBackOfficeServiceIntro:
+        "Nuestros servicios de back office aportan estructura y confiabilidad a tus operaciones internas, ayudando a reducir riesgos y mantener un ritmo empresarial constante.",
+      adminBackOfficeHandleTitle: "Lo que gestionamos",
+      adminBackOfficeHandle1:
+        "Soporte administrativo ejecutivo y gestión de calendario.",
+      adminBackOfficeHandle2:
+        "Preparación de documentos, archivo y control de versiones.",
+      adminBackOfficeHandle3:
+        "Coordinación de correos electrónicos y comunicaciones para equipos internos.",
+      adminBackOfficeHandle4:
+        "Seguimiento con proveedores, control de facturas y soporte de reportes.",
+      adminBackOfficeWorksTitle: "Cómo funciona este servicio",
+      adminBackOfficeWorksText:
+        "Trabajamos de cerca con tu equipo para comprender los procesos, capturar acciones prioritarias y mantener cada tarea alineada con el calendario de tu negocio.",
+      adminBackOfficeWorksPoint1:
+        "Responsabilidad clara para tareas recurrentes y elementos de seguimiento.",
+      adminBackOfficeWorksPoint2:
+        "Flujos de tareas documentados y seguimiento del progreso.",
+      adminBackOfficeWorksPoint3:
+        "Actualizaciones periódicas de estado para partes interesadas y líderes de equipo.",
+      whyItMattersTitle: "Por qué importa",
+      adminBackOfficeWhyText:
+        "Un sólido soporte de back office ayuda a las empresas a escalar al eliminar fricción administrativa, mejorar la consistencia y liberar a tu equipo para enfocarse en trabajos de mayor valor.",
       trackCustomerTitle: "Operaciones de Clientes",
       trackCustomerText:
         "Aprenda flujo de seguimiento, continuidad de escalamiento y ritmo de respuesta.",
       trackITTitle: "Soporte de TI",
       trackITText:
         "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
+      itSupportServiceIntro:
+        "Gabriel Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos.",
+      serviceHighlightsTitle: "Aspectos destacados del servicio",
+      itSupportHighlight1:
+        "Recepción de solicitudes de mesa de ayuda y creación de tickets.",
+      itSupportHighlight2:
+        "Solución básica de problemas y diagnóstico de incidencias.",
+      itSupportHighlight3:
+        "Coordinación de acceso a cuentas y soporte de sistemas.",
+      itSupportHighlight4:
+        "Gestión de escalaciones a equipos especializados cuando sea necesario.",
+      itSupportDeliveryTitle: "Cómo brindamos soporte",
+      itSupportDeliveryText:
+        "Mantenemos un ritmo de soporte estructurado que da seguimiento a las solicitudes entrantes desde el primer contacto hasta la resolución, con visibilidad y responsabilidad en cada paso.",
+      itSupportDeliveryPoint1: "Recepción y clasificación rápida de tickets.",
+      itSupportDeliveryPoint2:
+        "Actualizaciones claras de estado y rutas de escalación.",
+      itSupportDeliveryPoint3:
+        "Comunicación práctica y enfocada en el usuario.",
+      whyItWorksTitle: "Por qué funciona",
+      itSupportWhyText:
+        "El soporte de TI adecuado mantiene a tu equipo productivo, evita que los problemas pequeños se conviertan en situaciones mayores y ayuda a mantener operaciones diarias confiables.",
+      backToServices: "Volver a Servicios",
       exploreTrack: "Explorar módulo",
 
       termsSection1Title: "1. Aceptación de los términos",
