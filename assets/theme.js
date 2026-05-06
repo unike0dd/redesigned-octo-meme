@@ -47,7 +47,11 @@
       if (!toggle) return;
 
       const updateToggleText = () => {
-        toggle.textContent = this.current === THEME_LIGHT ? "Dark" : "Light";
+        const nextTheme =
+          this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
+        toggle.textContent =
+          window.I18N?.t?.(nextTheme) ||
+          (this.current === THEME_LIGHT ? "Dark" : "Light");
       };
 
       updateToggleText();
@@ -57,6 +61,7 @@
       });
 
       window.addEventListener("theme:changed", updateToggleText);
+      window.addEventListener("language:changed", updateToggleText);
     },
   };
 

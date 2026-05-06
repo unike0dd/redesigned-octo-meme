@@ -229,6 +229,72 @@
       trackITText:
         "Learn triage basics, ticket communication, and request handling.",
       exploreTrack: "Explore track",
+      learningObjectivesTitle: "Learning Objectives",
+      keyTopicsTitle: "Key Topics",
+      practicalApplicationTitle: "Practical Application",
+      backToLearning: "Back to Learning",
+      logisticsLearningTitle: "Logistics Operations Learning",
+      logisticsLearningIntro:
+        "Practical guidance for logistics teams and operations professionals, focused on continuity, tracking discipline, and process coordination.",
+      logisticsLearningObjective1:
+        "Understand core logistics workflows and handoff points",
+      logisticsLearningObjective2:
+        "Learn shipment tracking and exception management best practices",
+      logisticsLearningObjective3:
+        "Build repeatable communication processes for carriers and vendors",
+      logisticsLearningTopic1: "Dispatch coordination and operational planning",
+      logisticsLearningTopic2:
+        "Visibility standards for air, ocean, and ground shipments",
+      logisticsLearningTopic3: "Follow-up management and escalation control",
+      logisticsLearningPractical:
+        "This track is designed for people who need to turn logistics planning into predictable daily execution without adding overhead.",
+      adminLearningTitle: "Administrative Back Office Learning",
+      adminLearningIntro:
+        "Training designed for operational support teams that manage internal systems, scheduling, documentation, and task workflows.",
+      adminLearningObjective1:
+        "Develop reliable documentation and reporting habits",
+      adminLearningObjective2:
+        "Improve task coordination across teams and stakeholders",
+      adminLearningObjective3:
+        "Learn how to maintain consistent administrative workflows",
+      adminLearningTopic1: "Calendar and communication management",
+      adminLearningTopic2: "Document organization and version control",
+      adminLearningTopic3: "Vendor follow-up and service coordination",
+      adminLearningPractical:
+        "These skills help back office teams reduce operational friction and support faster decision-making across the business.",
+      customerLearningTitle: "Customer Relations Learning",
+      customerLearningIntro:
+        "Learn how to manage customer communications, handle escalations, and maintain a reliable service rhythm for every customer interaction.",
+      customerLearningObjective1:
+        "Master communication best practices for customer-facing teams",
+      customerLearningObjective2:
+        "Understand escalation workflows and rapid issue resolution",
+      customerLearningObjective3:
+        "Develop a consistent follow-up and satisfaction process",
+      customerLearningTopic1: "Ticket follow-up and resolution tracking",
+      customerLearningTopic2: "Satisfaction measurement and customer feedback",
+      customerLearningTopic3: "Clear, timely customer communication",
+      customerLearningPractical:
+        "These practices help teams turn customer interactions into reliable outcomes and cleaner handoffs across operations.",
+      itLearningTitle: "IT Support Learning",
+      itLearningIntro:
+        "A practical learning track for IT support workflows, ticket handling, and user-facing technical operations.",
+      itLearningObjective1:
+        "Understand ticket lifecycle and user support workflows",
+      itLearningObjective2:
+        "Learn effective technical communication and escalation practices",
+      itLearningObjective3:
+        "Build measurable support habits for daily operations",
+      itLearningTopic1:
+        "Help desk intake, categorization, and response planning",
+      itLearningTopic2: "Incident tracking and progress communication",
+      itLearningTopic3: "Support documentation and follow-up handoffs",
+      itLearningPractical:
+        "This track is built for teams that need consistent technical support without losing focus on reliable user service delivery.",
+      areaInterestOnly: "Area of Interest",
+      experienceLevelLabel: "Experience Level",
+      placeholderAddAreaInterestEntry: "Add area of interest entry",
+      submitLabel: "Submit",
 
       termsSection1Title: "1. Agreement to Terms",
       termsSection1Text:
@@ -483,11 +549,11 @@
 
       // Header/Nav
       brand: "Gabriel Services",
-      tagline: "Tercerización, Entregada",
+      tagline: "Servicios externalizados, entregados",
 
       // Footer sections
-      company: "Empresa",
-      servicePagesLabel: "Páginas de Servicios",
+      company: "Compañía",
+      servicePagesLabel: "Servicios",
       supportLearning: "Soporte y Aprendizaje",
       legal: "Legal",
 
@@ -498,7 +564,7 @@
 
       // Services
       logisticsOps: "Operaciones Logísticas",
-      adminBackOffice: "Back Office Administrativo",
+      adminBackOffice: "Administración Back Office",
       customerRelations: "Operaciones de Relaciones con Clientes",
       itSupport: "Soporte de TI",
 
@@ -517,133 +583,139 @@
       copyright: "© 2026 Gabriel Services",
 
       // Home page
-      homeTagline: "Tercerización, Entregada",
+      homeTagline: "Servicios externalizados, entregados",
       homeH1:
-        "Ejecución confiable día a día,<br/>Soporte operativo excepcional<br/>para negocios modernos.",
+        "Ejecución diaria confiable,<br/>soporte operativo excepcional<br/>para negocios modernos.",
       homeDescription:
-        "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
+        "Gabriel Services aporta amplia experiencia en coordinación, gestión de operaciones, satisfacción del cliente y soporte técnico de escritorio/PC, para que tu equipo pueda enfocarse en el crecimiento mientras nosotros ejecutamos las tareas del día a día.<br/><br/>Ofrecemos Logística, Relaciones con Clientes, Administración Back Office y Soporte de TI.",
       bookConsultation: "Reservar una consulta",
       seeServiceCoverage: "Ver cobertura de servicios",
-      processeDriven: "Operaciones Impulsadas por Procesos",
+      processeDriven: "Operaciones impulsadas por procesos",
       practicalTransparent:
-        "Práctico, transparente, responsivo y alineado con su ritmo operativo.",
-      serviceAreasBuilt: "Áreas de servicio construidas para ejecución diaria",
-      logisticsDesc: "Continuidad de despacho y seguimiento.",
+        "Prácticas, transparentes, receptivas y alineadas con el ritmo operativo de tu negocio.",
+      serviceAreasBuilt: "Áreas de servicio creadas para la ejecución diaria",
+      logisticsDesc: "Continuidad en despacho y seguimiento.",
       adminDesc: "Registros, programación y mantenimiento de procesos.",
       customerRelDesc: "Comunicación, seguimiento y ritmo de servicio.",
-      itSupportDesc: "Triaje de tickets y manejo de solicitudes diarias.",
+      itSupportDesc:
+        "Clasificación de tickets y gestión diaria de solicitudes.",
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
-      servicesOverview: "Descripción General de Servicios",
+      servicesOverview: "Servicios",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
       whyBusinessesText:
-        "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
-      startSupportTitle: "Comience con el apoyo que necesita",
+        "Consistencia, ejecución práctica y equipos experimentados, profesionales y amigables que se sienten como un nuevo comienzo para tus operaciones.",
+      startSupportTitle: "Comienza con el soporte que necesitas",
       requestConsultation: "Solicitar consulta",
-      viewEngagementOptions: "Ver opciones de compromiso",
+      viewEngagementOptions: "Ver opciones de contratación",
 
       aboutTitle: "Acerca de",
       aboutIntro1:
         "Gabriel Services es un socio de soporte operativo enfocado en la ejecución diaria para negocios modernos.",
       aboutIntro2:
-        "Ofrecemos soporte multifuncional en operaciones logísticas, back office administrativo, operaciones de atención al cliente y soporte de TI.",
+        "Brindamos soporte multifuncional en operaciones logísticas, administración back office, operaciones de clientes y soporte de TI.",
       aboutIntro3:
         "Nuestro enfoque se basa en la consistencia, la comunicación transparente y la ejecución práctica.",
       aboutWhenIssuesTitle: "Cuando las oportunidades quedan sin resolver",
       aboutWhenIssuesText:
-        "Los pequeños problemas operativos, cuando se ignoran, pueden dañar silenciosamente la confianza del cliente. Los detalles pasados por alto ralentizan el crecimiento, crean oportunidades perdidas y eventualmente afectan la estabilidad del negocio.",
-      aboutThatIsWhereText: "Ahí es donde intervenimos.",
+        "Los pequeños problemas operativos, cuando se ignoran, pueden afectar silenciosamente la confianza del cliente. Los detalles pasados por alto frenan el crecimiento, generan oportunidades perdidas y eventualmente afectan la estabilidad del negocio.",
+      aboutThatIsWhereText: "Ahí es donde entramos nosotros.",
       aboutDetailsHandledText:
-        "Nos aseguramos de que ninguna oportunidad se escape. Cada detalle se maneja para que su negocio se mantenga organizado, receptivo y funcione sin contratiempos.",
-      aboutWhatWeHandleTitle: "Lo que manejamos",
+        "Nos aseguramos de que ninguna oportunidad se pierda. Cada detalle se maneja para que tu negocio permanezca organizado, receptivo y funcionando sin problemas.",
+      aboutWhatWeHandleTitle: "Lo que gestionamos",
       aboutWhatWeHandleText:
-        "Intervenimos manejando los detalles y aportando estructura a operaciones fragmentadas. Nos integramos en sus flujos de trabajo, alineamos con sus procesos y nos enfocamos en la ejecución para que su equipo pueda centrarse en el crecimiento.",
+        "Intervenimos manejando los detalles y aportando estructura a operaciones fragmentadas. Nos integramos a tus flujos de trabajo, nos alineamos con tus procesos y nos enfocamos en la ejecución para que tu equipo pueda mantenerse enfocado en el crecimiento.",
       aboutApproachSimpleTitle: "Nuestro enfoque es simple:",
       aboutApproachItem1: "Mejoramos la productividad.",
       aboutApproachItem2: "Aumentamos la consistencia operativa.",
       aboutApproachItem3: "Entregamos ejecución de alta calidad.",
       aboutApproachItem4:
-        "Operamos con una entrega de servicio práctica y consciente de los costos.",
+        "Operamos con una prestación de servicio práctica y consciente de los costos.",
       aboutApproachItem5:
-        "Actuamos como un socio operativo confiable: integrándonos a su equipo y manejando la ejecución para que usted no tenga que hacerlo.",
+        "Actuamos como un socio operativo confiable, integrándonos a tu equipo y gestionando la ejecución para que tú no tengas que hacerlo.",
       aboutResultTitle: "El resultado",
-      aboutResult1: "Obtiene más con menos fricción.",
+      aboutResult1: "Logras más con menos fricción.",
       aboutResult2: "Más claridad.",
       aboutResult3:
-        "Más tiempo para centrarse en el crecimiento en lugar de apagar incendios.",
+        "Más tiempo para enfocarte en el crecimiento en lugar de apagar incendios.",
       aboutResult4:
-        "Todo a un costo que tiene sentido para empresas en crecimiento: sin gastos generales empresariales y sin contratos.",
+        "Todo con un costo que tiene sentido para negocios en crecimiento: sin gastos empresariales excesivos y sin contratos.",
       aboutSupportTitle: "Lo que apoyamos",
       aboutSupportText: "Nos enfocamos en cuatro áreas operativas:",
       aboutSupportArea1: "Logística",
       aboutSupportArea2: "Relaciones con Clientes",
-      aboutSupportArea3: "Back Office Administrativo",
-      aboutSupportArea4: "Soporte de TI (Nivel I y Nivel II)",
+      aboutSupportArea3: "Administración Back Office",
+      aboutSupportArea4: "Soporte de TI Nivel I y Nivel II",
       aboutOurServicesTitle: "Nuestros Servicios",
       aboutLogisticsOperationsTitle: "Operaciones Logísticas",
       aboutLogisticsOperationsText:
-        "Ayudamos a mantener su logística organizada, visible y en movimiento:",
-      aboutLogisticsList1: "Coordinación de despacho",
+        "Ayudamos a mantener tu logística organizada, visible y en movimiento:",
+      aboutLogisticsList1: "Coordinación de despachos",
       aboutLogisticsList2:
-        "Seguimiento de envíos (marítimo, aéreo y terrestre)",
+        "Seguimiento de envíos marítimos, aéreos y terrestres",
       aboutLogisticsList3: "Comunicación con clientes y seguimientos",
-      aboutLogisticsList4: "Soporte de facturación y cobro",
+      aboutLogisticsList4: "Soporte de facturación y cobros",
       aboutLogisticsList5: "Coordinación de documentación",
       aboutCustomerRelationsTitle: "Relaciones con Clientes",
       aboutCustomerRelationsText:
         "Ayudamos a mantener la satisfacción del cliente y el flujo de resolución:",
-      aboutCustomerRelationsList1: "Seguimiento de tickets y resolución",
+      aboutCustomerRelationsList1:
+        "Seguimiento de tickets y control de resolución",
       aboutCustomerRelationsList2:
-        "Seguimientos de satisfacción del cliente (soporte CSAT)",
-      aboutCustomerRelationsList3: "Soporte de aclaración de facturación",
+        "Seguimientos de satisfacción del cliente, soporte CSAT",
+      aboutCustomerRelationsList3: "Soporte para aclaraciones de facturación",
       aboutCustomerRelationsList4:
         "Soporte de resolución en el primer contacto",
-      aboutCustomerRelationsList5: "Gestión de la comunicación con el cliente",
-      aboutAdminBackOfficeTitle: "Back Office Administrativo",
+      aboutCustomerRelationsList5: "Gestión de comunicación con clientes",
+      aboutAdminBackOfficeTitle: "Administración Back Office",
       aboutAdminBackOfficeText:
         "Apoyamos el liderazgo y las operaciones diarias del negocio:",
       aboutAdminBackOfficeList1: "Soporte administrativo ejecutivo",
       aboutAdminBackOfficeList2: "Coordinación de calendario y programación",
-      aboutAdminBackOfficeList3: "Gestión de correo y comunicación",
+      aboutAdminBackOfficeList3:
+        "Gestión de correo electrónico y comunicaciones",
       aboutAdminBackOfficeList4: "Organización y preparación de documentos",
-      aboutAdminBackOfficeList5: "Coordinación de proveedores",
+      aboutAdminBackOfficeList5: "Coordinación con proveedores",
       aboutAdminBackOfficeList6: "Soporte operativo interno",
       aboutAdminBackOfficeList7: "Planificación y coordinación de viajes",
-      aboutITSupportTitle: "Soporte de TI (Nivel I y Nivel II)",
-      aboutITSupportText: "Ofrecemos cobertura técnica estructurada:",
-      aboutLevel1Title: "Soporte de Nivel I",
-      aboutLevel1List1: "Entrada de mesa de ayuda y creación de tickets",
+      aboutITSupportTitle: "Soporte de TI Nivel I y Nivel II",
+      aboutITSupportText:
+        "Brindamos cobertura estructurada de soporte técnico:",
+      aboutLevel1Title: "Soporte Nivel I",
+      aboutLevel1List1:
+        "Recepción de solicitudes de mesa de ayuda y creación de tickets",
       aboutLevel1List2: "Solución básica de problemas",
-      aboutLevel1List3: "Soporte al usuario final",
+      aboutLevel1List3: "Soporte a usuarios finales",
       aboutLevel1List4: "Asistencia con acceso a cuentas",
-      aboutLevel1List5: "Coordinación de escalamiento",
-      aboutLevel2Title: "Soporte de Nivel II",
+      aboutLevel1List5: "Coordinación de escalaciones",
+      aboutLevel2Title: "Soporte Nivel II",
       aboutLevel2List1: "Solución avanzada de problemas",
       aboutLevel2List2: "Investigación de incidentes",
       aboutLevel2List3: "Soporte de sistemas y flujos de trabajo",
       aboutLevel2List4: "Análisis de causa raíz",
-      aboutLevel2List5: "Responsabilidad de resolución después de la escalada",
+      aboutLevel2List5:
+        "Responsabilidad de resolución después de la escalación",
 
       contactTitle: "Contacto",
       contactIntro:
-        "Póngase en contacto para soporte, incorporación, proyectos y oportunidades de asociación.",
+        "Ponte en contacto para soporte, incorporación, proyectos y oportunidades de colaboración.",
       fullName: "Nombre completo",
       emailAddress: "Dirección de correo electrónico",
       countryCode: "Código de país",
       contactNumber: "Número de contacto",
       city: "Ciudad",
       stateProvince: "Estado/Provincia",
-      spaceSuiteApt: "Espacio/Suite/Apto",
+      spaceSuiteApt: "Espacio/Suite/Apartamento",
       countryZipCode: "Código postal",
-      bestContactTime: "Mejor hora para contactarlo",
+      bestContactTime: "Mejor hora para contactarte",
       messageLabel: "Mensaje",
-      inquiryAboutTitle: "Consulta sobre asistente remoto",
+      inquiryAboutTitle: "Consulta sobre Asistente Remoto",
       skillsLabel: "Habilidades",
       languagesLabel: "Idiomas",
       projectsLabel: "Proyectos",
       educationLabel: "Educación",
       addSkill: "Agregar +",
-      removeSkill: "Eliminar",
+      removeSkill: "Eliminar -",
       removeAll: "Eliminar todo",
       placeholderAddExperienceEntry: "Agregar entrada de nivel de experiencia",
       placeholderAddLanguageEntry: "Agregar entrada de idioma",
@@ -655,35 +727,104 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postule para apoyar operaciones, comunicación y flujos de trabajo de entrega de servicios en todos los dominios de servicio.",
+        "Postúlate para apoyar operaciones, comunicación y flujos de prestación de servicios en todas las áreas de servicio.",
       availabilityLabel: "Disponibilidad",
-      areaInterestLabel:
-        "Área de interés (Logística / Admin / Relaciones con Clientes / Soporte de TI)",
+      areaInterestLabel: "Área de interés",
       resumeLinkLabel: "Enlace al currículum/perfil",
       educationLevelLabel: "Nivel educativo",
-      educationOptionHighSchool: "Escuela secundaria",
-      educationOptionAssociate: "Asociado",
+      educationOptionHighSchool: "Secundaria",
+      educationOptionAssociate: "Técnico/Superior",
       educationOptionBachelor: "Licenciatura",
       educationOptionMaster: "Maestría",
       educationOptionDoctorate: "Doctorado",
-      educationOptionCertified: "Certificado",
+      educationOptionCertified: "Certificación",
 
       learningTitle: "Aprendizaje",
       learningIntro:
-        "Guía y conocimiento práctico de servicio para soporte operativo orientado a flujos de trabajo con preferencia por el inglés.",
+        "Guía y conocimiento práctico de servicios para soporte operativo orientado a flujos de trabajo, con enfoque principal en inglés.",
       trackLogisticsTitle: "Operaciones Logísticas",
       trackLogisticsText:
-        "Aprenda coordinación, seguimiento y elementos esenciales de continuidad.",
-      trackAdminTitle: "Back Office Administrativo",
+        "Aprende los fundamentos de coordinación, seguimiento y continuidad.",
+      trackAdminTitle: "Administración Back Office",
       trackAdminText:
-        "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
-      trackCustomerTitle: "Operaciones de Clientes",
+        "Aprende documentación, ritmo de reportes y mantenimiento de procesos.",
+      trackCustomerTitle: "Operaciones con Clientes",
       trackCustomerText:
-        "Aprenda flujo de seguimiento, continuidad de escalamiento y ritmo de respuesta.",
+        "Aprende el flujo de seguimiento, continuidad de escalaciones y ritmo de respuesta.",
       trackITTitle: "Soporte de TI",
       trackITText:
-        "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
-      exploreTrack: "Explorar módulo",
+        "Aprende los fundamentos de clasificación, comunicación de tickets y gestión de solicitudes.",
+      exploreTrack: "Explorar ruta",
+      learningObjectivesTitle: "Objetivos de Aprendizaje",
+      keyTopicsTitle: "Temas Clave",
+      practicalApplicationTitle: "Aplicación Práctica",
+      backToLearning: "Volver a Aprendizaje",
+      logisticsLearningTitle: "Aprendizaje de Operaciones Logísticas",
+      logisticsLearningIntro:
+        "Guía práctica para equipos de logística y profesionales de operaciones, enfocada en continuidad, disciplina de seguimiento y coordinación de procesos.",
+      logisticsLearningObjective1:
+        "Comprender los flujos de trabajo logísticos principales y los puntos de traspaso",
+      logisticsLearningObjective2:
+        "Aprender mejores prácticas de seguimiento de envíos y gestión de excepciones",
+      logisticsLearningObjective3:
+        "Crear procesos repetibles de comunicación con transportistas y proveedores",
+      logisticsLearningTopic1:
+        "Coordinación de despachos y planificación operativa",
+      logisticsLearningTopic2:
+        "Estándares de visibilidad para envíos aéreos, marítimos y terrestres",
+      logisticsLearningTopic3:
+        "Gestión de seguimientos y control de escalaciones",
+      logisticsLearningPractical:
+        "Esta ruta está diseñada para personas que necesitan convertir la planificación logística en ejecución diaria predecible sin agregar sobrecarga operativa.",
+      adminLearningTitle: "Aprendizaje de Administración Back Office",
+      adminLearningIntro:
+        "Capacitación diseñada para equipos de soporte operativo que gestionan sistemas internos, programación, documentación y flujos de trabajo de tareas.",
+      adminLearningObjective1:
+        "Desarrollar hábitos confiables de documentación y reportes",
+      adminLearningObjective2:
+        "Mejorar la coordinación de tareas entre equipos y partes interesadas",
+      adminLearningObjective3:
+        "Aprender a mantener flujos administrativos consistentes",
+      adminLearningTopic1: "Gestión de calendario y comunicación",
+      adminLearningTopic2: "Organización de documentos y control de versiones",
+      adminLearningTopic3:
+        "Seguimiento con proveedores y coordinación de servicios",
+      adminLearningPractical:
+        "Estas habilidades ayudan a los equipos de back office a reducir la fricción operativa y apoyar una toma de decisiones más rápida en todo el negocio.",
+      customerLearningTitle: "Aprendizaje de Relaciones con Clientes",
+      customerLearningIntro:
+        "Aprende a gestionar comunicaciones con clientes, manejar escalaciones y mantener un ritmo de servicio confiable para cada interacción con el cliente.",
+      customerLearningObjective1:
+        "Dominar mejores prácticas de comunicación para equipos de atención al cliente",
+      customerLearningObjective2:
+        "Comprender flujos de escalación y resolución rápida de problemas",
+      customerLearningObjective3:
+        "Desarrollar un proceso consistente de seguimiento y satisfacción",
+      customerLearningTopic1: "Seguimiento de tickets y control de resolución",
+      customerLearningTopic2:
+        "Medición de satisfacción y retroalimentación del cliente",
+      customerLearningTopic3: "Comunicación clara y oportuna con clientes",
+      customerLearningPractical:
+        "Estas prácticas ayudan a los equipos a convertir las interacciones con clientes en resultados confiables y traspasos más ordenados entre operaciones.",
+      itLearningTitle: "Aprendizaje de Soporte de TI",
+      itLearningIntro:
+        "Una ruta práctica de aprendizaje para flujos de soporte de TI, gestión de tickets y operaciones técnicas orientadas al usuario.",
+      itLearningObjective1:
+        "Comprender el ciclo de vida del ticket y los flujos de soporte al usuario",
+      itLearningObjective2:
+        "Aprender comunicación técnica efectiva y prácticas de escalación",
+      itLearningObjective3:
+        "Crear hábitos de soporte medibles para operaciones diarias",
+      itLearningTopic1:
+        "Recepción de solicitudes de mesa de ayuda, categorización y planificación de respuesta",
+      itLearningTopic2: "Seguimiento de incidentes y comunicación de progreso",
+      itLearningTopic3: "Documentación de soporte y traspasos de seguimiento",
+      itLearningPractical:
+        "Esta ruta está creada para equipos que necesitan soporte técnico consistente sin perder el enfoque en una prestación confiable de servicio al usuario.",
+      areaInterestOnly: "Área de interés",
+      experienceLevelLabel: "Nivel de experiencia",
+      placeholderAddAreaInterestEntry: "Agregar entrada de área de interés",
+      submitLabel: "Enviar",
 
       termsSection1Title: "1. Acuerdo de términos",
       termsSection1Text:
@@ -946,6 +1087,11 @@
       this.currentLanguage = localStorage.getItem("language") || "en";
       this.applyLanguage();
       this.setupLanguageToggle();
+      window.dispatchEvent(
+        new CustomEvent("language:changed", {
+          detail: { language: this.currentLanguage },
+        }),
+      );
     },
 
     t(key) {
