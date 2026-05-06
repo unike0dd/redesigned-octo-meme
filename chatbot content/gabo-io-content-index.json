@@ -60,17 +60,18 @@
         "condiciones",
         "términos y condiciones",
         "terms",
+        "agreement",
         "licencia de uso",
         "responsabilidad",
         "garantías",
         "garantias",
-        "pagos",
         "propiedad intelectual",
+        "pagos",
         "consultas legales"
       ],
-      "answer": "Los Términos y Condiciones de Gabriel Services explican que, al acceder y utilizar el sitio web y los servicios, aceptas cumplir el acuerdo. Gabriel Services otorga una licencia limitada para usar el sitio y los servicios solo con fines legales, y prohíbe copiar o vender partes del sitio, acceder con fines no autorizados, interrumpir servicios, intentar acceso no autorizado, recopilar datos con scripts sin permiso o participar en acoso o comportamiento abusivo. Los materiales se proporcionan 'tal cual', con limitaciones de garantías y responsabilidad. También se describen exactitud de materiales, enlaces de terceros, modificaciones, ley aplicable, descripción de servicios, pagos, propiedad intelectual, limitación del servicio y contacto para consultas legales.",
-      "leadGenerationPrompt": "Si necesitas soporte operativo claro, acuerdos de servicio o procesos de atención al cliente alineados con términos comerciales, puedo recopilar tus datos de contacto y el área de servicio que deseas mejorar para que Gabriel Services te contacte.",
-      "recommendedCta": "Visita la página de Contacto para preguntas sobre Términos y Condiciones, consultas legales o próximos pasos de servicio."
+      "answer": "Los Términos y Condiciones de Gabriel Services explican que, al acceder y usar el sitio web y los servicios, aceptas quedar sujeto a este acuerdo. La licencia de uso permite acceder al sitio y a los servicios solo con fines legales y prohíbe copiar o vender partes del sitio, usarlo con fines ilícitos, interrumpir servicios, intentar accesos no autorizados, recopilar datos con scripts sin permiso o participar en acoso o conducta abusiva. Los materiales se ofrecen ‘tal cual’, con limitaciones de garantías y responsabilidad. Los términos también cubren exactitud de materiales, enlaces externos, modificaciones, ley aplicable, descripción de servicios, pagos, propiedad intelectual, limitación del servicio y contacto para consultas legales.",
+      "leadGenerationPrompt": "Si quieres revisar cómo los términos, pagos, propiedad intelectual o alcance del servicio se conectan con tus operaciones y experiencia de clientes, puedo recopilar tus datos de contacto y el área que deseas mejorar para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita la página de Contacto para consultas sobre Términos y Condiciones o para solicitar orientación sobre servicios operativos."
     }
   ]
 }
