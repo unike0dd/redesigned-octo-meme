@@ -75,30 +75,6 @@
         "Customer communications, issue resolution, and follow-up workflows designed to improve satisfaction and retention.",
       serviceOverviewItDesc:
         "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity.",
-      logisticsPageIntro:
-        "Gabriel Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving.",
-      whatWeOfferTitle: "What We Offer",
-      logisticsOfferDispatch:
-        "Dispatch coordination and carrier communication.",
-      logisticsOfferTracking:
-        "Shipment tracking for air, ocean, and ground transport.",
-      logisticsOfferInventory:
-        "Inventory status monitoring and exception management.",
-      logisticsOfferFollowup:
-        "Supplier and carrier follow-up to protect delivery timelines.",
-      howWeWorkTitle: "How We Work",
-      logisticsHowWeWorkText:
-        "We integrate into your existing logistics ecosystem, align with operational milestones, and provide consistent execution every day.",
-      logisticsHowHandoff:
-        "Clear handoff practices and communication templates.",
-      logisticsHowUpdates:
-        "Regular status updates and early issue escalation.",
-      logisticsHowTracking:
-        "Data-driven tracking with actionable next steps.",
-      whyChooseServiceTitle: "Why Choose This Service",
-      logisticsWhyChooseText:
-        "This service is ideal for businesses that need dependable logistics support without adding internal overhead. We help reduce delays, improve visibility, and keep your operations responsive.",
-      backToServices: "Back to Services",
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
       whyBusinessesText:
         "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations.",
@@ -219,7 +195,8 @@
       careersIntro:
         "Apply to support operations, communication, and service delivery workflows across all service domains.",
       availabilityLabel: "Availability",
-      areaInterestLabel: "Area of Interest",
+      areaInterestLabel:
+        "Area of Interest",
       careersOptionLogistics: "Logistics",
       careersOptionAdministration: "Administration",
       careersOptionCustomerRelations: "Customer Relations",
@@ -234,12 +211,57 @@
       educationOptionCertified: "Certified",
       bestContactTime: "Best Time to Contact You",
       messageLabel: "Message",
+      availabilityLabel: "Availability",
+      areaInterestLabel:
+        "Area of Interest",
+      careersOptionLogistics: "Logistics",
+      careersOptionAdministration: "Administration",
+      careersOptionCustomerRelations: "Customer Relations",
+      experienceLevelLabel: "Experience Level",
+      resumeLinkLabel: "Resume/Profile link",
+      educationLevelLabel: "Education Level",
+      educationOptionHighSchool: "High School",
+      educationOptionAssociate: "Associate",
+      educationOptionBachelor: "Bachelor",
+      educationOptionMaster: "Master",
+      educationOptionDoctorate: "Doctorate",
+      educationOptionCertified: "Certified",
+      bestContactTime: "Best Time to Contact You",
+      messageLabel: "Message",
+      careersTitle: "Careers",
+      careersIntro:
+        "Apply to support operations, communication, and service delivery workflows across all service domains.",
+
       learningTitle: "Learning",
       learningIntro:
         "Guidance and practical service knowledge for English-first, workflow-oriented operations support.",
       trackLogisticsTitle: "Logistics Operations",
       trackLogisticsText:
         "Learn coordination, tracking, and continuity essentials.",
+      logisticsServiceTitle: "Logistics Operations",
+      logisticsServiceIntro:
+        "Gabriel Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving.",
+      logisticsServiceOfferTitle: "What We Offer",
+      logisticsServiceOffer1: "Dispatch coordination and carrier communication.",
+      logisticsServiceOffer2:
+        "Shipment tracking for air, ocean, and ground transport.",
+      logisticsServiceOffer3:
+        "Inventory status monitoring and exception management.",
+      logisticsServiceOffer4:
+        "Supplier and carrier follow-up to protect delivery timelines.",
+      logisticsServiceWorkTitle: "How We Work",
+      logisticsServiceWorkIntro:
+        "We integrate into your existing logistics ecosystem, align with operational milestones, and provide consistent execution every day.",
+      logisticsServiceWork1:
+        "Clear handoff practices and communication templates.",
+      logisticsServiceWork2:
+        "Regular status updates and early issue escalation.",
+      logisticsServiceWork3:
+        "Data-driven tracking with actionable next steps.",
+      logisticsServiceWhyTitle: "Why Choose This Service",
+      logisticsServiceWhyText:
+        "This service is ideal for businesses that need dependable logistics support without adding internal overhead. We help reduce delays, improve visibility, and keep your operations responsive.",
+      backToServices: "Back to Services",
       trackAdminTitle: "Administrative Back Office",
       trackAdminText:
         "Learn documentation, reporting rhythm, and process upkeep.",
@@ -567,30 +589,6 @@
         "Comunicaciones con clientes, resolución de problemas y flujos de seguimiento diseñados para mejorar la satisfacción y la retención.",
       serviceOverviewItDesc:
         "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI.",
-      logisticsPageIntro:
-        "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento.",
-      whatWeOfferTitle: "Lo que ofrecemos",
-      logisticsOfferDispatch:
-        "Coordinación de despachos y comunicación con transportistas.",
-      logisticsOfferTracking:
-        "Seguimiento de envíos por transporte aéreo, marítimo y terrestre.",
-      logisticsOfferInventory:
-        "Monitoreo del estado del inventario y gestión de excepciones.",
-      logisticsOfferFollowup:
-        "Seguimiento con proveedores y transportistas para proteger los tiempos de entrega.",
-      howWeWorkTitle: "Cómo trabajamos",
-      logisticsHowWeWorkText:
-        "Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos una ejecución constante todos los días.",
-      logisticsHowHandoff:
-        "Prácticas claras de traspaso y plantillas de comunicación.",
-      logisticsHowUpdates:
-        "Actualizaciones periódicas de estado y escalación temprana de problemas.",
-      logisticsHowTracking:
-        "Seguimiento basado en datos con próximos pasos accionables.",
-      whyChooseServiceTitle: "Por qué elegir este servicio",
-      logisticsWhyChooseText:
-        "Este servicio es ideal para negocios que necesitan soporte logístico confiable sin aumentar la carga interna. Ayudamos a reducir retrasos, mejorar la visibilidad y mantener tus operaciones receptivas.",
-      backToServices: "Volver a Servicios",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
       whyBusinessesText:
         "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
@@ -733,6 +731,31 @@
       trackLogisticsTitle: "Operaciones Logísticas",
       trackLogisticsText:
         "Aprenda coordinación, seguimiento y elementos esenciales de continuidad.",
+      logisticsServiceTitle: "Operaciones Logísticas",
+      logisticsServiceIntro:
+        "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento.",
+      logisticsServiceOfferTitle: "Lo que ofrecemos",
+      logisticsServiceOffer1:
+        "Coordinación de despachos y comunicación con transportistas.",
+      logisticsServiceOffer2:
+        "Seguimiento de envíos por transporte aéreo, marítimo y terrestre.",
+      logisticsServiceOffer3:
+        "Monitoreo del estado del inventario y gestión de excepciones.",
+      logisticsServiceOffer4:
+        "Seguimiento con proveedores y transportistas para proteger los tiempos de entrega.",
+      logisticsServiceWorkTitle: "Cómo trabajamos",
+      logisticsServiceWorkIntro:
+        "Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos una ejecución constante todos los días.",
+      logisticsServiceWork1:
+        "Prácticas claras de traspaso y plantillas de comunicación.",
+      logisticsServiceWork2:
+        "Actualizaciones periódicas de estado y escalación temprana de problemas.",
+      logisticsServiceWork3:
+        "Seguimiento basado en datos con próximos pasos accionables.",
+      logisticsServiceWhyTitle: "Por qué elegir este servicio",
+      logisticsServiceWhyText:
+        "Este servicio es ideal para negocios que necesitan soporte logístico confiable sin aumentar la carga interna. Ayudamos a reducir retrasos, mejorar la visibilidad y mantener tus operaciones receptivas.",
+      backToServices: "Volver a Servicios",
       trackAdminTitle: "Back Office Administrativo",
       trackAdminText:
         "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
