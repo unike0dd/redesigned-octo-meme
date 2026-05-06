@@ -134,6 +134,38 @@
       "recommendedCta": "Explora Operaciones Logísticas o vuelve a Servicios para comparar las áreas de soporte disponibles."
     },
     {
+      "id": "customer-relations-es",
+      "language": "es",
+      "title": "Operaciones de Relaciones con Clientes",
+      "sourceUrl": "/services/customer-relations.html",
+      "intents": [
+        "relaciones con clientes",
+        "operaciones de relaciones con clientes",
+        "atención al cliente",
+        "atencion al cliente",
+        "experiencia del cliente",
+        "comunicación con clientes",
+        "comunicacion con clientes",
+        "gestión de escalaciones",
+        "gestion de escalaciones",
+        "seguimiento de tickets",
+        "resolución de tickets",
+        "resolucion de tickets",
+        "satisfacción del cliente",
+        "satisfaccion del cliente",
+        "retroalimentación",
+        "retroalimentacion",
+        "facturación",
+        "facturacion",
+        "primer contacto",
+        "pérdida de clientes",
+        "perdida de clientes"
+      ],
+      "answer": "Gabriel Services apoya la experiencia del cliente con comunicación constante, gestión de escalaciones y flujos de seguimiento que mantienen cada situación avanzando hacia su resolución. Las áreas principales incluyen seguimiento de tickets y control de resolución; revisiones de satisfacción del cliente y soporte de retroalimentación; aclaración de facturación y asistencia en escalaciones; y soporte de resolución en el primer contacto con comunicación de estado. Nuestro equipo mantiene un ritmo constante de comunicación, usa respuestas estandarizadas y protocolos de escalación, da seguimiento al cliente y facilita traspasos claros entre equipos y socios de entrega.",
+      "leadGenerationPrompt": "Si necesitas fortalecer tus relaciones con clientes, puedo recopilar tu principal reto de atención, volumen de tickets o consultas, necesidades de escalación, objetivos de satisfacción y datos de contacto para que Gabriel Services te contacte.",
+      "recommendedCta": "Explora Operaciones de Relaciones con Clientes para conocer cómo Gabriel Services puede reducir pérdida de clientes, mejorar la percepción de marca y mantener a tus clientes apoyados."
+    },
+    {
       "id": "careers-es",
       "language": "es",
       "title": "Carreras",
