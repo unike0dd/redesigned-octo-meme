@@ -148,6 +148,108 @@
     });
   }
 
+  function initChatbot() {
+    if (document.getElementById("gabo-chatbot-fab")) return;
+
+    const fab = document.createElement("button");
+    fab.id = "gabo-chatbot-fab";
+    fab.type = "button";
+    fab.setAttribute("aria-label", "Open gabo io chatbot");
+    fab.setAttribute("aria-expanded", "false");
+    fab.textContent = "gabo io";
+    document.body.appendChild(fab);
+
+    const container = document.createElement("div");
+    container.id = "gabo-chatbot-container";
+    container.innerHTML = `
+      <div id="gabo-chatbot-panel" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
+        <div id="gabo-chatbot-header">
+          <span>gabo io</span>
+          <button id="gabo-chatbot-close" type="button" aria-label="Close chatbot">×</button>
+        </div>
+        <div id="gabo-chat-log" aria-live="polite"></div>
+        <div id="gabo-chatbot-form-container">
+          <form id="gabo-chatbot-form" autocomplete="off">
+            <input id="gabo-chatbot-input" type="text" placeholder="Type your message..." maxlength="256" required />
+            <button id="gabo-chatbot-send" type="submit" aria-label="Send message">Send</button>
+          </form>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(container);
+
+    const chatPanel = document.getElementById("gabo-chatbot-panel");
+    const closeButton = document.getElementById("gabo-chatbot-close");
+    const chatLog = document.getElementById("gabo-chat-log");
+    const chatForm = document.getElementById("gabo-chatbot-form");
+    const chatInput = document.getElementById("gabo-chatbot-input");
+    const chatSend = document.getElementById("gabo-chatbot-send");
+    const API_URL = "/api/ops-online-chat";
+
+    const setChatOpen = (open) => {
+      container.classList.toggle("open", open);
+      chatPanel.classList.toggle("open", open);
+      fab.setAttribute("aria-expanded", String(open));
+      if (open) {
+        chatInput.focus();
+      }
+    };
+
+    const addChatMessage = (text, type) => {
+      const message = document.createElement("div");
+      message.className = `gabo-chat-msg ${type}`;
+      message.textContent = text;
+      chatLog.appendChild(message);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return message;
+    };
+
+    const sendChatMessage = async (message) => {
+      const trimmed = String(message || "").trim();
+      if (!trimmed) return;
+
+      addChatMessage(trimmed, "gabo-user");
+      chatInput.value = "";
+      const botMessage = addChatMessage("…", "gabo-bot");
+      chatSend.disabled = true;
+      chatInput.disabled = true;
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: trimmed, lang: "en" }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Request failed");
+        }
+
+        const data = await response.json();
+        botMessage.textContent = data && data.reply ? data.reply : "No reply.";
+      } catch (error) {
+        botMessage.textContent = "Error: can’t reach gabo io.";
+      } finally {
+        chatSend.disabled = false;
+        chatInput.disabled = false;
+        chatInput.focus();
+      }
+    };
+
+    fab.addEventListener("click", () => setChatOpen(true));
+    closeButton.addEventListener("click", () => setChatOpen(false));
+    container.addEventListener("click", (event) => {
+      if (event.target === container) {
+        setChatOpen(false);
+      }
+    });
+
+    chatForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await sendChatMessage(chatInput.value);
+    });
+  }
+
   function initSecurityRuntime() {
     enforceClientSecurityPolicy();
     window.GaboSecurity = {
@@ -413,6 +515,7 @@
     initMobileServiceMenu();
     initScrollLazyLoad();
     initSecureForms();
+    initChatbot();
   }
 
   if (document.readyState === "loading") {
