@@ -504,7 +504,7 @@
 
       // Legal page titles
       termsTitle: "Términos y Condiciones",
-      cookiesTitle: "Consentimiento de Cookies",
+      cookiesTitle: "Política de consentimiento de cookies",
       privacyTitle: "Privacidad y RGPD",
 
       // Theme & Language toggles
@@ -685,257 +685,254 @@
         "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
       exploreTrack: "Explorar módulo",
 
-      termsSection1Title: "1. Acuerdo de términos",
+      termsSection1Title: "1. Aceptación de los términos",
       termsSection1Text:
-        "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, acepta y se compromete a cumplir los términos y disposiciones de este acuerdo. Si no está de acuerdo con lo anterior, por favor no utilice este servicio.",
+        "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, aceptas y acuerdas quedar sujeto a los términos y disposiciones de este acuerdo. Si no aceptas cumplir con lo anterior, por favor no utilices este servicio.",
       termsSection2Title: "2. Licencia de uso",
       termsSection2Text:
-        "Gabriel Services le otorga una licencia limitada para acceder y utilizar el sitio web y los servicios solo con fines legales. Usted acepta no:",
+        "Gabriel Services te otorga una licencia limitada para acceder y usar el sitio web y los servicios únicamente con fines legales. Aceptas no:",
       termsSection2List1:
-        "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o servicios",
+        "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o de los servicios",
       termsSection2List2:
-        "Acceder al sitio web con fines ilícitos o no autorizados",
+        "Acceder al sitio web con cualquier fin ilícito o no autorizado",
       termsSection2List3:
-        "Interrumpir el flujo normal de diálogo o interrumpir los servicios",
+        "Interrumpir el flujo normal del diálogo o interrumpir de cualquier otra forma los servicios",
       termsSection2List4:
         "Intentar obtener acceso no autorizado a nuestros sistemas o redes",
       termsSection2List5:
         "Usar sistemas o scripts automatizados para recopilar datos sin permiso",
       termsSection2List6:
         "Participar en cualquier forma de acoso o comportamiento abusivo",
-      termsSection3Title: "3. Renuncia de garantías",
+      termsSection3Title: "3. Descargo de garantías",
       termsSection3Text:
-        "Los materiales en el sitio web de Gabriel Services se proporcionan 'tal cual'. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, sin limitación, las implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
+        "Los materiales del sitio web de Gabriel Services se proporcionan ‘tal cual’. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, entre otras, las garantías o condiciones implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
       termsSection4Title: "4. Limitaciones de responsabilidad",
       termsSection4Text:
-        "En ningún caso Gabriel Services o sus proveedores serán responsables de ningún daño (incluidos, sin limitación, daños por pérdida de datos o ganancias, o debido a interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales en el sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito de la posibilidad de dicho daño.",
+        "En ningún caso Gabriel Services o sus proveedores serán responsables por daños (incluidos, entre otros, daños por pérdida de datos o ganancias, o por interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales del sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito sobre la posibilidad de dicho daño.",
       termsSection5Title: "5. Exactitud de los materiales",
       termsSection5Text:
-        "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales en su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento sin previo aviso.",
+        "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales de su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento y sin previo aviso.",
       termsSection6Title: "6. Enlaces",
       termsSection6Text:
-        "Gabriel Services no ha revisado todos los sitios vinculados a su sitio web y no es responsable del contenido de dichos sitios vinculados. La inclusión de cualquier enlace no implica la aprobación por parte de Gabriel Services del sitio. El uso de cualquier sitio web vinculado es bajo el riesgo del usuario.",
+        "Gabriel Services no ha revisado todos los sitios enlazados a su sitio web y no es responsable del contenido de dichos sitios enlazados. La inclusión de cualquier enlace no implica respaldo por parte de Gabriel Services del sitio. El uso de cualquier sitio web enlazado es bajo el propio riesgo del usuario.",
       termsSection7Title: "7. Modificaciones",
       termsSection7Text:
-        "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento sin previo aviso. Al usar este sitio web, usted acepta estar sujeto a la versión actual de estos términos de servicio.",
+        "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento y sin previo aviso. Al usar este sitio web, aceptas quedar sujeto a la versión vigente de estos términos de servicio.",
       termsSection8Title: "8. Ley aplicable",
       termsSection8Text:
-        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y usted se somete irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
+        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
       termsSection9Title: "9. Descripción del servicio",
       termsSection9Text:
         "Gabriel Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabriel Services y el cliente se detallan en el acuerdo de servicio.",
       termsSection10Title: "10. Términos de pago",
       termsSection10Text:
-        "Los términos de pago se especifican en el acuerdo de servicio individual. Las facturas vencen al recibo, a menos que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
+        "Los términos de pago son los especificados en el acuerdo de servicio individual. Las facturas vencen al recibo, salvo que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
       termsSection11Title: "11. Derechos de propiedad intelectual",
       termsSection11Text:
         "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
-      termsSection12Title: "12. Limitación de servicio",
+      termsSection12Title: "12. Limitación del servicio",
       termsSection12Text:
         "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su sola discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a su sola discreción.",
       termsSection13Title: "13. Contacto para consultas legales",
       termsSection13Text:
-        "Si tiene alguna pregunta sobre estos Términos y Condiciones, contáctenos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
+        "Si tienes alguna pregunta sobre estos Términos y Condiciones, contáctanos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
       termsLastUpdated: "Última actualización: 5 de mayo de 2026",
 
       cookiesTitle: "Política de consentimiento de cookies",
       cookiesSection1Title: "1. ¿Qué son las cookies?",
       cookiesSection1Text:
-        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres que se colocan en su computadora o dispositivo móvil cuando visita nuestro sitio web. Nos permiten reconocer su navegador o dispositivo, recordar información sobre sus preferencias y ayudar a personalizar su experiencia en el sitio web de Gabriel Services.",
+        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres y se colocan en tu computadora o dispositivo móvil cuando visitas nuestro sitio web. Nos permiten reconocer tu navegador o dispositivo, recordar información sobre tus preferencias y ayudar a personalizar tu experiencia en el sitio web de Gabriel Services.",
       cookiesSection2Title: "2. Tipos de cookies que usamos",
       cookiesSection2EssentialTitle: "Cookies esenciales",
       cookiesSection2EssentialText:
-        "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden ser deshabilitadas a través de nuestros sistemas. Se utilizan para:",
+        "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden deshabilitarse a través de nuestros sistemas. Se utilizan para:",
       cookiesSection2EssentialList1:
         "Habilitar la funcionalidad básica del sitio web",
-      cookiesSection2EssentialList2:
-        "Mantener la seguridad y prevenir el fraude",
+      cookiesSection2EssentialList2: "Mantener la seguridad y prevenir fraudes",
       cookiesSection2EssentialList3:
-        "Preservar las preferencias del usuario (selecciones de idioma y tema)",
+        "Conservar las preferencias del usuario, como selección de idioma y tema visual",
       cookiesSection2PerformanceTitle: "Cookies de rendimiento",
       cookiesSection2PerformanceText:
-        "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación e informe de información de forma anónima. Nos ayudan a:",
+        "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación y el reporte de información de forma anónima. Nos ayudan a:",
       cookiesSection2PerformanceList1:
-        "Identificar las páginas a las que se accede con más frecuencia",
+        "Identificar las páginas a las que se accede con mayor frecuencia",
       cookiesSection2PerformanceList2:
         "Medir la efectividad de las campañas publicitarias",
       cookiesSection2PerformanceList3:
-        "Comprender los patrones de navegación del usuario",
+        "Comprender los patrones de navegación de los usuarios",
       cookiesSection2FunctionalTitle: "Cookies funcionales",
       cookiesSection2FunctionalText:
-        "Estas cookies permiten una funcionalidad mejorada y personalización, incluidas:",
-      cookiesSection2FunctionalList1: "Recordar su preferencia de idioma",
-      cookiesSection2FunctionalList2: "Guardar su preferencia de tema",
+        "Estas cookies permiten una funcionalidad mejorada y personalización, incluyendo:",
+      cookiesSection2FunctionalList1: "Recordar tu preferencia de idioma",
+      cookiesSection2FunctionalList2: "Almacenar tu preferencia de tema visual",
       cookiesSection2FunctionalList3:
         "Registrar datos de formularios para mayor comodidad",
       cookiesSection2AnalyticalTitle: "Cookies analíticas",
       cookiesSection2AnalyticalText:
-        "Utilizamos cookies analíticas para comprender cómo se usa nuestro sitio web, incluida la duración de las visitas y las rutas que toman los usuarios a través del sitio. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
+        "Usamos cookies analíticas para comprender cómo se utiliza nuestro sitio web, incluida la duración de las visitas y las rutas que los usuarios siguen dentro del sitio web. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
       cookiesSection3Title: "3. Almacenamiento local",
       cookiesSection3Text:
-        "Para mejorar la experiencia del usuario, utilizamos localStorage para almacenar sus preferencias, incluyendo:",
+        "Para mejorar la experiencia del usuario, usamos localStorage para almacenar tus preferencias, incluyendo:",
       cookiesSection3List1: "Preferencia de idioma (inglés o español)",
-      cookiesSection3List2: "Preferencia de tema (modo Claro u Oscuro)",
+      cookiesSection3List2: "Preferencia de tema visual (modo claro u oscuro)",
       cookiesSection3Text2:
-        "Esta información se almacena localmente en su dispositivo y no se transmite a nuestros servidores.",
+        "Esta información se almacena localmente en tu dispositivo y no se transmite a nuestros servidores.",
       cookiesSection4Title: "4. Cookies de terceros",
       cookiesSection4Text:
-        "Las cookies de terceros pueden colocarse en su dispositivo por proveedores de servicios externos, incluidos:",
+        "Las cookies de terceros pueden ser colocadas en tu dispositivo por proveedores de servicios externos, incluyendo:",
       cookiesSection4List1: "Proveedores de análisis",
       cookiesSection4List2: "Redes publicitarias",
       cookiesSection4List3: "Plataformas de redes sociales",
       cookiesSection4Text2:
-        "No tenemos control sobre las cookies de terceros. Puede configurar su navegador para rechazar cookies o para alertarle cuando se envían cookies.",
+        "No tenemos control sobre las cookies de terceros. Puedes configurar tu navegador para rechazar cookies o para avisarte cuando se estén enviando cookies.",
       cookiesSection5Title: "5. Cómo controlar las cookies",
       cookiesSection5Text:
-        "Tiene derecho a elegir si acepta o rechaza las cookies. La mayoría de los navegadores web le permiten:",
+        "Tienes derecho a elegir si aceptas o rechazas las cookies. La mayoría de los navegadores web te permiten:",
       cookiesSection5List1:
-        "Ver las cookies que se han establecido en su dispositivo",
-      cookiesSection5List2: "Eliminar cookies de su dispositivo",
+        "Ver las cookies que se han establecido en tu dispositivo",
+      cookiesSection5List2: "Eliminar cookies de tu dispositivo",
       cookiesSection5List3:
-        "Bloquear futuras cookies para que no se establezcan en su dispositivo",
+        "Bloquear futuras cookies para que no se establezcan en tu dispositivo",
       cookiesSection5List4:
-        "Configurar su navegador para notificarle cuando se esté a punto de establecer una cookie",
+        "Configurar tu navegador para que te notifique cuando una cookie esté a punto de establecerse",
       cookiesSection5Text2:
-        "Si elige bloquear o eliminar cookies, algunas funciones de nuestro sitio web pueden no funcionar como se espera.",
+        "Si eliges bloquear o eliminar cookies, es posible que algunas funciones de nuestro sitio web no funcionen como se esperaba.",
       cookiesSection6Title: "6. Google Analytics",
       cookiesSection6Text:
-        "Podemos utilizar Google Analytics para recopilar información sobre su uso de nuestro sitio web. Google Analytics recopila información como:",
+        "Podemos usar Google Analytics para recopilar información sobre tu uso de nuestro sitio web. Google Analytics recopila información como:",
       cookiesSection6List1: "Dirección IP",
       cookiesSection6List2: "Tipo de dispositivo",
       cookiesSection6List3: "Tipo de navegador",
-      cookiesSection6List4: "Páginas visitadas y tiempo dedicado a cada página",
+      cookiesSection6List4:
+        "Páginas visitadas y tiempo invertido en cada página",
       cookiesSection6Text2:
-        "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se utiliza nuestro sitio y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales.",
-      cookiesSection7Title: "7. Su consentimiento",
+        "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se está utilizando nuestro sitio web y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales.",
+      cookiesSection7Title: "7. Tu consentimiento",
       cookiesSection7Text:
-        "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, usted acepta el uso de cookies según lo descrito en esta política. Si no consiente el uso de cookies, debe deshabilitarlas en la configuración de su navegador antes de continuar usando nuestro sitio web.",
+        "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, aceptas el uso de cookies según lo descrito en esta política. Si no aceptas el uso de cookies, debes deshabilitarlas en la configuración de tu navegador antes de continuar usando nuestro sitio web.",
       cookiesSection8Title: "8. Actualizaciones de esta política",
       cookiesSection8Text:
-        "Podemos actualizar esta Política de consentimiento de cookies de vez en cuando para reflejar cambios en la tecnología, la legislación u otros cambios. Le recomendamos que revise esta política periódicamente para mantenerse informado sobre cómo protegemos su privacidad.",
-      cookiesSection9Title: "9. Contáctenos",
+        "Podemos actualizar esta Política de consentimiento de cookies ocasionalmente para reflejar cambios en la tecnología, la legislación u otros cambios. Te recomendamos revisar esta política periódicamente para mantenerte informado sobre cómo protegemos tu privacidad.",
+      cookiesSection9Title: "9. Contáctanos",
       cookiesSection9Text:
-        "Si tiene alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctenos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio principal.",
+        "Si tienes alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctanos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio web principal.",
 
       privacySection1Title: "1. Introducción",
       privacySection1Text:
-        'Gabriel Services ("nosotros," "nos," o "la Compañía") se compromete a proteger su privacidad. Esta Política de privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando visita nuestro sitio web y utiliza nuestros servicios. Lea esta política atentamente para comprender nuestras prácticas con respecto a sus datos personales.',
+        "Gabriel Services (“nosotros”, “nos” o la “Compañía”) está comprometida con la protección de tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando visitas nuestro sitio web y utilizas nuestros servicios. Por favor, lee esta política cuidadosamente para comprender nuestras prácticas respecto a tus datos personales.",
       privacySection2Title: "2. Información que recopilamos",
-      privacySection2DirectTitle:
-        "Información que usted proporciona directamente",
+      privacySection2DirectTitle: "Información que proporcionas directamente",
       privacySection2DirectList1:
         "Información de contacto: nombre, dirección de correo electrónico, número de teléfono y nombre de la empresa",
       privacySection2DirectList2:
-        "Información del servicio: detalles sobre sus operaciones comerciales y requisitos de servicio",
+        "Información del servicio: detalles sobre las operaciones de tu negocio y los requisitos del servicio",
       privacySection2DirectList3:
         "Registros de comunicación: contenido de mensajes, correos electrónicos y tickets de soporte",
       privacySection2DirectList4:
-        "Información de pago: dirección de facturación y detalles del método de pago (procesados de forma segura)",
+        "Información de pago: dirección de facturación y detalles del método de pago, procesados de forma segura",
       privacySection2AutoTitle: "Información recopilada automáticamente",
       privacySection2AutoList1:
         "Información del dispositivo: dirección IP, tipo de navegador, sistema operativo e identificadores del dispositivo",
       privacySection2AutoList2:
-        "Datos de uso: páginas visitadas, tiempo dedicado a las páginas, enlaces clicados y patrones de navegación",
+        "Datos de uso: páginas visitadas, tiempo invertido en las páginas, enlaces seleccionados y patrones de navegación",
       privacySection2AutoList3:
         "Cookies y tecnologías similares: datos del navegador y almacenamiento local para preferencias",
       privacySection2AutoList4:
-        "Información de referencia: cómo accedió a nuestro sitio web",
-      privacySection3Title: "3. Cómo usamos su información",
+        "Información de referencia: cómo accediste a nuestro sitio web",
+      privacySection3Title: "3. Cómo usamos tu información",
       privacySection3Text:
         "Usamos la información recopilada para los siguientes fines:",
       privacySection3List1:
-        "Proporcionar y administrar los servicios solicitados",
+        "Proporcionar y gestionar los servicios solicitados",
       privacySection3List2:
         "Procesar transacciones y enviar información relacionada",
       privacySection3List3:
         "Enviar correos electrónicos transaccionales y promocionales",
-      privacySection3List4:
-        "Responder a consultas y brindar soporte al cliente",
-      privacySection3List5: "Mejorar nuestro sitio web y servicios",
-      privacySection3List6: "Analizar los patrones de uso del sitio web",
-      privacySection3List7: "Prevenir el fraude y garantizar la seguridad",
+      privacySection3List4: "Responder consultas y brindar soporte al cliente",
+      privacySection3List5: "Mejorar nuestro sitio web y nuestros servicios",
+      privacySection3List6: "Analizar patrones de uso del sitio web",
+      privacySection3List7: "Prevenir fraudes y garantizar la seguridad",
       privacySection3List8: "Cumplir con obligaciones legales",
       privacySection3List9:
-        "Crear datos agregados y desidentificados para análisis",
-      privacySection4Title: "4. Base legal para el procesamiento (GDPR)",
+        "Crear datos agregados y anonimizados para análisis",
+      privacySection4Title: "4. Base legal para el tratamiento de datos — RGPD",
       privacySection4Text:
-        "Bajo GDPR, procesamos datos personales en base a las siguientes bases legales:",
+        "Según el RGPD, tratamos los datos personales con base en los siguientes fundamentos legales:",
       privacySection4List1:
-        "Necesidad contractual: procesamiento necesario para prestar nuestros servicios con usted",
+        "Necesidad contractual: tratamiento necesario para prestar nuestros servicios contigo",
       privacySection4List2:
-        "Obligación legal: procesamiento requerido por ley o regulación",
+        "Obligación legal: tratamiento requerido por ley o regulación",
       privacySection4List3:
-        "Intereses legítimos: procesamiento necesario para nuestros intereses comerciales legítimos",
+        "Intereses legítimos: tratamiento necesario para nuestros intereses comerciales legítimos",
       privacySection4List4:
-        "Consentimiento: procesamiento basado en su consentimiento explícito",
-      privacySection5Title: "5. Retención de datos",
+        "Consentimiento: tratamiento basado en tu consentimiento explícito",
+      privacySection5Title: "5. Conservación de datos",
       privacySection5Text:
-        "Retenemos datos personales solo mientras sean necesarios para los fines establecidos en esta política o según lo exija la ley. Los períodos de retención varían según el tipo de datos:",
+        "Conservamos los datos personales únicamente durante el tiempo necesario para los fines indicados en esta política o según lo exija la ley. Los períodos de conservación varían según el tipo de dato:",
       privacySection5List1:
-        "Información de contacto: conservada durante la duración de la relación de servicio más 7 años para fines contables",
+        "Información de contacto: conservada durante la duración de la relación de servicio, más 7 años para fines contables",
       privacySection5List2:
-        "Datos de análisis del sitio web: conservados por hasta 26 meses",
+        "Datos de análisis del sitio web: conservados hasta por 26 meses",
       privacySection5List3:
-        "Preferencias del usuario (idioma/tema): almacenadas localmente en su dispositivo indefinidamente hasta que se eliminen",
-      privacySection6Title: "6. Compartir y divulgar datos",
+        "Preferencias del usuario, como idioma o tema visual: almacenadas localmente en tu dispositivo de forma indefinida hasta que sean eliminadas",
+      privacySection6Title: "6. Compartición y divulgación de datos",
       privacySection6Text:
-        "No vendemos sus datos personales. Podemos compartir información con:",
+        "No vendemos tus datos personales. Podemos compartir información con:",
       privacySection6List1:
-        "Proveedores de servicios: terceros que ayudan a proporcionar servicios (bajo acuerdos de procesamiento de datos)",
+        "Proveedores de servicios: terceros que ayudan a proporcionar servicios, bajo acuerdos de tratamiento de datos",
       privacySection6List2:
-        "Autoridades legales: cuando lo exija la ley o para proteger derechos y seguridad",
+        "Autoridades legales: cuando sea requerido por ley o para proteger derechos y seguridad",
       privacySection6List3:
         "Transferencias comerciales: en caso de fusión, adquisición o venta de activos",
-      privacySection7Title: "7. Sus derechos bajo GDPR",
+      privacySection7Title: "7. Tus derechos bajo el RGPD",
       privacySection7Text:
-        "Si está en la UE/EEE, tiene los siguientes derechos:",
+        "Si te encuentras en la Unión Europea o el Espacio Económico Europeo, tienes los siguientes derechos:",
       privacySection7List1:
-        "Derecho de acceso: obtener una copia de los datos personales que mantenemos sobre usted",
+        "Derecho de acceso: obtener una copia de los datos personales que conservamos sobre ti",
       privacySection7List2:
         "Derecho de rectificación: corregir datos personales inexactos o incompletos",
       privacySection7List3:
-        'Derecho de eliminación ("Derecho al olvido"): solicitar la eliminación de sus datos personales',
+        "Derecho de supresión, también conocido como “derecho al olvido”: solicitar la eliminación de tus datos personales",
       privacySection7List4:
-        "Derecho a restringir el procesamiento: limitar cómo procesamos sus datos",
+        "Derecho a restringir el tratamiento: limitar cómo tratamos tus datos",
       privacySection7List5:
-        "Derecho a la portabilidad de datos: recibir sus datos en un formato portátil",
+        "Derecho a la portabilidad de los datos: recibir tus datos en un formato portable",
       privacySection7List6:
-        "Derecho a oponerse: oponerse al procesamiento de sus datos",
+        "Derecho de oposición: oponerte al tratamiento de tus datos",
       privacySection7List7:
-        "Derecho a presentar una queja: presentar una queja ante su autoridad de protección de datos local",
+        "Derecho a presentar una reclamación: presentar una queja ante tu autoridad local de protección de datos",
       privacySection8Title: "8. Seguridad de los datos",
       privacySection8Text:
-        "Implementamos medidas técnicas y organizativas adecuadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Estas medidas incluyen:",
+        "Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger tus datos personales contra acceso no autorizado, alteración, divulgación o destrucción. Estas medidas incluyen:",
       privacySection8List1: "Cifrado SSL/TLS para datos en tránsito",
       privacySection8List2: "Protocolos de autenticación seguros",
-      privacySection8List3: "Auditorías y pruebas de seguridad regulares",
+      privacySection8List3: "Auditorías y pruebas de seguridad periódicas",
       privacySection8List4: "Acceso restringido a datos personales",
-      privacySection8List5:
-        "Capacitación en protección de datos para el personal",
+      privacySection8List5: "Capacitación del personal en protección de datos",
       privacySection8Text2:
-        "Si bien nos esforzamos por proteger su información, ningún sistema de seguridad es impenetrable y no podemos garantizar una seguridad absoluta.",
+        "Aunque nos esforzamos por proteger tu información, ningún sistema de seguridad es impenetrable y no podemos garantizar seguridad absoluta.",
       privacySection9Title: "9. Transferencias internacionales de datos",
       privacySection9Text:
-        "Si accede a nuestro sitio web desde fuera de los Estados Unidos, su información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, usted acepta dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas por salvaguardias apropiadas, incluidas las Cláusulas Contractuales Tipo.",
-      privacySection10Title: "10. Privacidad de los niños",
+        "Si accedes a nuestro sitio web desde fuera de los Estados Unidos, tu información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, aceptas dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas mediante garantías adecuadas, incluidas las Cláusulas Contractuales Tipo.",
+      privacySection10Title: "10. Privacidad de menores",
       privacySection10Text:
-        "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos intencionadamente datos personales de niños. Si nos damos cuenta de que hemos recopilado datos personales de un niño sin el consentimiento de los padres, eliminaremos dichos datos de inmediato.",
+        "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos conscientemente datos personales de menores. Si llegamos a saber que hemos recopilado datos personales de un menor sin el consentimiento de sus padres o tutores, eliminaremos dichos datos de inmediato.",
       privacySection11Title: "11. Enlaces de terceros",
       privacySection11Text:
-        "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de los sitios de terceros. Le recomendamos que revise las políticas de privacidad de cualquier sitio tercero antes de proporcionar su información personal.",
-      privacySection12Title: "12. Ejercicio de sus derechos",
+        "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de sitios de terceros. Te recomendamos revisar las políticas de privacidad de cualquier sitio de terceros antes de proporcionar tu información personal.",
+      privacySection12Title: "12. Ejercicio de tus derechos",
       privacySection12Text:
-        "Para ejercer cualquiera de sus derechos de privacidad, contáctenos utilizando la información proporcionada al final de esta política. Responderemos a su solicitud dentro de los 30 días (o según lo exija la ley aplicable). Es posible que necesite proporcionar identificación para verificar su solicitud.",
-      privacySection13Title: "13. Oficial de protección de datos",
+        "Para ejercer cualquiera de tus derechos de privacidad, contáctanos utilizando la información proporcionada al final de esta política. Responderemos a tu solicitud dentro de un plazo de 30 días, o según lo exija la ley aplicable. Es posible que debas proporcionar identificación para verificar tu solicitud.",
+      privacySection13Title: "13. Responsable de Protección de Datos",
       privacySection13Text:
-        "Si tiene preguntas sobre nuestras prácticas de privacidad o desea ejercer sus derechos bajo GDPR, puede ponerse en contacto con nuestro Oficial de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto.",
+        "Si tienes preguntas sobre nuestras prácticas de privacidad o deseas ejercer tus derechos bajo el RGPD, puedes comunicarte con nuestro Responsable de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto.",
       privacySection14Title:
         "14. Actualizaciones de esta Política de Privacidad",
       privacySection14Text:
-        'Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de "Última actualización" al final de esta política indica cuándo se revisó por última vez. El uso continuo de nuestro sitio web tras los cambios significa que acepta la política actualizada.',
-      privacySection15Title: "15. Contáctenos",
+        "Podemos actualizar esta Política de Privacidad ocasionalmente para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de “Última actualización” al final de esta política indica cuándo fue revisada por última vez. El uso continuo de nuestro sitio web después de los cambios significa que aceptas la política actualizada.",
+      privacySection15Title: "15. Contáctanos",
       privacySection15Text:
-        "Para consultas de privacidad, solicitudes GDPR o para ejercer sus derechos sobre datos, contáctenos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio principal. Nos comprometemos a atender sus inquietudes con prontitud.",
+        "Para consultas de privacidad, solicitudes relacionadas con el RGPD o para ejercer tus derechos sobre tus datos, contáctanos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio web principal. Nos comprometemos a atender tus inquietudes con prontitud.",
     },
   };
 
