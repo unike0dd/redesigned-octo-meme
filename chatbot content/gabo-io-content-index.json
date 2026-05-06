@@ -103,6 +103,37 @@
       "recommendedCta": "Visita la página de Contacto o explora el servicio específico que mejor coincida con tu necesidad operativa."
     },
     {
+      "id": "logistics-operations-es",
+      "language": "es",
+      "title": "Operaciones Logísticas",
+      "sourceUrl": "/services/logistics-operations.html",
+      "intents": [
+        "operaciones logísticas",
+        "operaciones logisticas",
+        "logística",
+        "logistica",
+        "despachos",
+        "coordinación de despachos",
+        "coordinacion de despachos",
+        "transportistas",
+        "seguimiento de envíos",
+        "seguimiento de envios",
+        "transporte aéreo",
+        "transporte aereo",
+        "transporte marítimo",
+        "transporte maritimo",
+        "transporte terrestre",
+        "inventario",
+        "gestión de excepciones",
+        "gestion de excepciones",
+        "proveedores",
+        "cadena de suministro"
+      ],
+      "answer": "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos para mantener tu cadena de suministro en movimiento. Ofrecemos coordinación de despachos y comunicación con transportistas; seguimiento de envíos por transporte aéreo, marítimo y terrestre; monitoreo del estado del inventario y gestión de excepciones; y seguimiento con proveedores y transportistas para proteger los tiempos de entrega. Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos ejecución constante con traspasos claros, actualizaciones periódicas, escalación temprana y próximos pasos accionables.",
+      "leadGenerationPrompt": "Si necesitas soporte logístico confiable, puedo recopilar tu área prioritaria, volumen o tipo de envíos, principales retrasos o excepciones, y datos de contacto para que Gabriel Services te contacte.",
+      "recommendedCta": "Explora Operaciones Logísticas o vuelve a Servicios para comparar las áreas de soporte disponibles."
+    },
+    {
       "id": "careers-es",
       "language": "es",
       "title": "Carreras",
