@@ -268,6 +268,30 @@
       trackCustomerTitle: "Customer Operations",
       trackCustomerText:
         "Learn follow-up flow, escalation continuity, and response rhythm.",
+      customerRelationsServiceTitle: "Customer Relations Operations",
+      customerRelationsServiceIntro:
+        "We support customer experience with consistent communication, escalation management, and follow-up workflows that keep every issue moving toward resolution.",
+      customerRelationsServiceAreasTitle: "Core Service Areas",
+      customerRelationsServiceArea1:
+        "Ticket follow-up and resolution tracking.",
+      customerRelationsServiceArea2:
+        "Customer satisfaction check-ins and feedback support.",
+      customerRelationsServiceArea3:
+        "Billing clarification and escalation assistance.",
+      customerRelationsServiceArea4:
+        "First-contact resolution support and status communication.",
+      customerRelationsServiceHowTitle: "How We Support Customers",
+      customerRelationsServiceHowText:
+        "Our team helps maintain trust by managing a consistent customer communication rhythm and resolving inquiries in a timely, accurate manner.",
+      customerRelationsServiceHow1:
+        "Standardized responses and escalation protocols.",
+      customerRelationsServiceHow2:
+        "Customer follow-up and satisfaction checks.",
+      customerRelationsServiceHow3:
+        "Clear handoffs between teams and delivery partners.",
+      customerRelationsServiceWhyTitle: "Why This Matters",
+      customerRelationsServiceWhyText:
+        "Strong customer relations operations reduce churn, improve brand perception, and ensure your customers always feel supported.",
       trackITTitle: "IT Support",
       trackITText:
         "Learn triage basics, ticket communication, and request handling.",
@@ -762,6 +786,31 @@
       trackCustomerTitle: "Operaciones de Clientes",
       trackCustomerText:
         "Aprenda flujo de seguimiento, continuidad de escalamiento y ritmo de respuesta.",
+      customerRelationsServiceTitle:
+        "Operaciones de Relaciones con Clientes",
+      customerRelationsServiceIntro:
+        "Apoyamos la experiencia del cliente con comunicación constante, gestión de escalaciones y flujos de seguimiento que mantienen cada situación avanzando hacia su resolución.",
+      customerRelationsServiceAreasTitle: "Áreas principales del servicio",
+      customerRelationsServiceArea1:
+        "Seguimiento de tickets y control de resolución.",
+      customerRelationsServiceArea2:
+        "Revisiones de satisfacción del cliente y soporte de retroalimentación.",
+      customerRelationsServiceArea3:
+        "Aclaración de facturación y asistencia en escalaciones.",
+      customerRelationsServiceArea4:
+        "Soporte de resolución en el primer contacto y comunicación de estado.",
+      customerRelationsServiceHowTitle: "Cómo apoyamos a los clientes",
+      customerRelationsServiceHowText:
+        "Nuestro equipo ayuda a mantener la confianza gestionando un ritmo constante de comunicación con el cliente y resolviendo consultas de manera oportuna y precisa.",
+      customerRelationsServiceHow1:
+        "Respuestas estandarizadas y protocolos de escalación.",
+      customerRelationsServiceHow2:
+        "Seguimiento al cliente y revisiones de satisfacción.",
+      customerRelationsServiceHow3:
+        "Traspasos claros entre equipos y socios de entrega.",
+      customerRelationsServiceWhyTitle: "Por qué esto importa",
+      customerRelationsServiceWhyText:
+        "Las operaciones sólidas de relaciones con clientes reducen la pérdida de clientes, mejoran la percepción de la marca y garantizan que tus clientes siempre se sientan apoyados.",
       trackITTitle: "Soporte de TI",
       trackITText:
         "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
