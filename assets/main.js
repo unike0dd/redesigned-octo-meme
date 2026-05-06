@@ -133,8 +133,6 @@
       const message = document.createElement("small");
       message.className = "security-form-note";
       message.setAttribute("aria-live", "polite");
-      message.textContent =
-        "Security scan active: OWASP, CISA, NIST, PCI DSS aligned sanitization is enabled.";
       form.appendChild(message);
 
       form.addEventListener("submit", async (event) => {
