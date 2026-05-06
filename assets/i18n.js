@@ -700,7 +700,7 @@
       termsSection2List4:
         "Intentar obtener acceso no autorizado a nuestros sistemas o redes",
       termsSection2List5:
-        "Usar sistemas o scripts automatizados para recopilar datos sin permiso",
+        "Usar sistemas automatizados o scripts para recopilar datos sin permiso",
       termsSection2List6:
         "Participar en cualquier forma de acoso o comportamiento abusivo",
       termsSection3Title: "3. Descargo de garantías",
@@ -732,7 +732,7 @@
         "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
       termsSection12Title: "12. Limitación del servicio",
       termsSection12Text:
-        "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su sola discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a su sola discreción.",
+        "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su exclusiva discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a nuestra exclusiva discreción.",
       termsSection13Title: "13. Contacto para consultas legales",
       termsSection13Text:
         "Si tienes alguna pregunta sobre estos Términos y Condiciones, contáctanos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
