@@ -64,6 +64,17 @@
       exploreService: "Explore service",
       sitemap: "Sitemap",
       servicesOverview: "Services Overview",
+      serviceOverviewTitle: "Service Overview",
+      serviceOverviewIntro:
+        "Gabriel Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most.",
+      serviceOverviewLogisticsDesc:
+        "Structured coordination, shipment tracking, and operational continuity for supply chain activity.",
+      serviceOverviewAdminDesc:
+        "Documentation, calendar management, reporting, and process discipline to keep your business running smoothly.",
+      serviceOverviewCustomerDesc:
+        "Customer communications, issue resolution, and follow-up workflows designed to improve satisfaction and retention.",
+      serviceOverviewItDesc:
+        "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity.",
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
       whyBusinessesText:
         "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations.",
@@ -535,6 +546,17 @@
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
       servicesOverview: "Descripción General de Servicios",
+      serviceOverviewTitle: "Descripción General de Servicios",
+      serviceOverviewIntro:
+        "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante.",
+      serviceOverviewLogisticsDesc:
+        "Coordinación estructurada, seguimiento de envíos y continuidad operativa para actividades de la cadena de suministro.",
+      serviceOverviewAdminDesc:
+        "Documentación, gestión de calendarios, reportes y disciplina de procesos para mantener tu negocio funcionando sin problemas.",
+      serviceOverviewCustomerDesc:
+        "Comunicaciones con clientes, resolución de problemas y flujos de seguimiento diseñados para mejorar la satisfacción y la retención.",
+      serviceOverviewItDesc:
+        "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI.",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
       whyBusinessesText:
         "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
