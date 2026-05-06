@@ -11,4 +11,5 @@ This directory is dedicated to **gabo io ONLY** for grounded chatbot retrieval. 
 
 ## Current content
 
-- `gabo-io-content-index.json`: Spanish Privacy & GDPR, Cookies Consent, and Terms & Conditions retrieval entries for CX and lead generation.
+- `gabo-io-content-index.json`: Spanish Privacy & GDPR, Cookies Consent, Terms & Conditions, and IT Support retrieval entries for CX and lead generation.
+- `it-support-es.md`: Spanish IT Support source content dedicated to gabo io grounded retrieval.

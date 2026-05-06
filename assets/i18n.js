@@ -228,6 +228,24 @@
       trackITTitle: "IT Support",
       trackITText:
         "Learn triage basics, ticket communication, and request handling.",
+      itSupportServiceIntro:
+        "Gabriel Services provides dependable IT support for everyday technical needs, including ticket triage, end-user assistance, and operational system support.",
+      serviceHighlightsTitle: "Service Highlights",
+      itSupportHighlight1: "Help desk intake and ticket creation",
+      itSupportHighlight2: "Basic troubleshooting and issue diagnosis",
+      itSupportHighlight3: "Account access and system support coordination",
+      itSupportHighlight4:
+        "Escalation management to specialized teams when needed",
+      itSupportDeliveryTitle: "How We Deliver Support",
+      itSupportDeliveryText:
+        "We maintain a structured support rhythm that follows incoming requests from first contact through resolution, with visibility and accountability at every step.",
+      itSupportDeliveryPoint1: "Fast ticket intake and triage",
+      itSupportDeliveryPoint2: "Clear status updates and escalation pathways",
+      itSupportDeliveryPoint3: "Practical, user-focused communication",
+      whyItWorksTitle: "Why It Works",
+      itSupportWhyText:
+        "The right IT support keeps your team productive, prevents small issues from becoming larger problems, and helps maintain reliable daily operations.",
+      backToServices: "Back to Services",
       exploreTrack: "Explore track",
 
       termsSection1Title: "1. Agreement to Terms",
@@ -683,6 +701,29 @@
       trackITTitle: "Soporte de TI",
       trackITText:
         "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
+      itSupportServiceIntro:
+        "Gabriel Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos.",
+      serviceHighlightsTitle: "Aspectos destacados del servicio",
+      itSupportHighlight1:
+        "Recepción de solicitudes de mesa de ayuda y creación de tickets.",
+      itSupportHighlight2:
+        "Solución básica de problemas y diagnóstico de incidencias.",
+      itSupportHighlight3:
+        "Coordinación de acceso a cuentas y soporte de sistemas.",
+      itSupportHighlight4:
+        "Gestión de escalaciones a equipos especializados cuando sea necesario.",
+      itSupportDeliveryTitle: "Cómo brindamos soporte",
+      itSupportDeliveryText:
+        "Mantenemos un ritmo de soporte estructurado que da seguimiento a las solicitudes entrantes desde el primer contacto hasta la resolución, con visibilidad y responsabilidad en cada paso.",
+      itSupportDeliveryPoint1: "Recepción y clasificación rápida de tickets.",
+      itSupportDeliveryPoint2:
+        "Actualizaciones claras de estado y rutas de escalación.",
+      itSupportDeliveryPoint3:
+        "Comunicación práctica y enfocada en el usuario.",
+      whyItWorksTitle: "Por qué funciona",
+      itSupportWhyText:
+        "El soporte de TI adecuado mantiene a tu equipo productivo, evita que los problemas pequeños se conviertan en situaciones mayores y ayuda a mantener operaciones diarias confiables.",
+      backToServices: "Volver a Servicios",
       exploreTrack: "Explorar módulo",
 
       termsSection1Title: "1. Aceptación de los términos",
