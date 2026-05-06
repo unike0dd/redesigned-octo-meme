@@ -156,6 +156,7 @@
     fab.type = "button";
     fab.setAttribute("aria-label", "Open gabo io chatbot");
     fab.setAttribute("aria-expanded", "false");
+    fab.setAttribute("aria-controls", "gabo-chatbot-panel");
     fab.textContent = "gabo io";
     document.body.appendChild(fab);
 
@@ -185,15 +186,9 @@
     const chatInput = document.getElementById("gabo-chatbot-input");
     const chatSend = document.getElementById("gabo-chatbot-send");
     const API_URL = "/api/ops-online-chat";
+    let hasWelcomed = false;
 
-    const setChatOpen = (open) => {
-      container.classList.toggle("open", open);
-      chatPanel.classList.toggle("open", open);
-      fab.setAttribute("aria-expanded", String(open));
-      if (open) {
-        chatInput.focus();
-      }
-    };
+    chatPanel.hidden = true;
 
     const addChatMessage = (text, type) => {
       const message = document.createElement("div");
@@ -202,6 +197,25 @@
       chatLog.appendChild(message);
       chatLog.scrollTop = chatLog.scrollHeight;
       return message;
+    };
+
+    const setChatOpen = (open) => {
+      container.classList.toggle("open", open);
+      chatPanel.classList.toggle("open", open);
+      chatPanel.hidden = !open;
+      fab.setAttribute("aria-expanded", String(open));
+      fab.setAttribute(
+        "aria-label",
+        open ? "Close gabo io chatbot" : "Open gabo io chatbot",
+      );
+
+      if (open) {
+        if (!hasWelcomed) {
+          addChatMessage("gabo io is online. How can we help?", "gabo-bot");
+          hasWelcomed = true;
+        }
+        chatInput.focus();
+      }
     };
 
     const sendChatMessage = async (message) => {
@@ -236,7 +250,10 @@
       }
     };
 
-    fab.addEventListener("click", () => setChatOpen(true));
+    fab.addEventListener("click", () => {
+      const isOpen = fab.getAttribute("aria-expanded") === "true";
+      setChatOpen(!isOpen);
+    });
     closeButton.addEventListener("click", () => setChatOpen(false));
     container.addEventListener("click", (event) => {
       if (event.target === container) {
