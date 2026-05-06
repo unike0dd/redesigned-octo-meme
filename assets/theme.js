@@ -26,7 +26,9 @@
     toggleTheme() {
       const newTheme = this.current === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
       this.setTheme(newTheme);
-      window.dispatchEvent(new CustomEvent("theme:changed", { detail: { theme: newTheme } }));
+      window.dispatchEvent(
+        new CustomEvent("theme:changed", { detail: { theme: newTheme } }),
+      );
     },
 
     applyTheme() {
@@ -55,7 +57,7 @@
       });
 
       window.addEventListener("theme:changed", updateToggleText);
-    }
+    },
   };
 
   // Global access

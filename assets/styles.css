@@ -15,7 +15,7 @@
   --text: #e5e7eb;
   --muted: #a0a9b8;
   --surface: #1a1a1a;
-  --border: #333333;
+  --border: #333;
   --brand-sky: #1a2a4a;
 }
 * {
@@ -28,7 +28,9 @@ body {
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 :root.dark-theme body {
@@ -189,7 +191,9 @@ header {
   border-radius: 14px;
   padding: 1rem;
   box-shadow: 0 3px 14px rgba(16, 35, 63, 0.07);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 :root.dark-theme .card {
@@ -328,7 +332,9 @@ form {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 1rem;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 :root.dark-theme form {
@@ -347,7 +353,10 @@ textarea {
   border-radius: 8px;
   border: 1px solid #c5cfdb;
   font: inherit;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
 :root.dark-theme input,
@@ -452,7 +461,9 @@ textarea {
   border-radius: 10px;
   display: none;
   padding: 0.4rem;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 :root.dark-theme .services-dropup {
