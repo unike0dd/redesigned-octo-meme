@@ -819,123 +819,120 @@
 
       privacySection1Title: "1. Introducción",
       privacySection1Text:
-        'Gabriel Services ("nosotros," "nos," o "la Compañía") se compromete a proteger su privacidad. Esta Política de privacidad explica cómo recopilamos, usamos, divulgamos y protegemos su información cuando visita nuestro sitio web y utiliza nuestros servicios. Lea esta política atentamente para comprender nuestras prácticas con respecto a sus datos personales.',
+        "Gabriel Services (“nosotros”, “nos” o la “Compañía”) está comprometida con la protección de tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando visitas nuestro sitio web y utilizas nuestros servicios. Por favor, lee esta política cuidadosamente para comprender nuestras prácticas respecto a tus datos personales.",
       privacySection2Title: "2. Información que recopilamos",
-      privacySection2DirectTitle:
-        "Información que usted proporciona directamente",
+      privacySection2DirectTitle: "Información que proporcionas directamente",
       privacySection2DirectList1:
         "Información de contacto: nombre, dirección de correo electrónico, número de teléfono y nombre de la empresa",
       privacySection2DirectList2:
-        "Información del servicio: detalles sobre sus operaciones comerciales y requisitos de servicio",
+        "Información del servicio: detalles sobre las operaciones de tu negocio y los requisitos del servicio",
       privacySection2DirectList3:
         "Registros de comunicación: contenido de mensajes, correos electrónicos y tickets de soporte",
       privacySection2DirectList4:
-        "Información de pago: dirección de facturación y detalles del método de pago (procesados de forma segura)",
+        "Información de pago: dirección de facturación y detalles del método de pago, procesados de forma segura",
       privacySection2AutoTitle: "Información recopilada automáticamente",
       privacySection2AutoList1:
         "Información del dispositivo: dirección IP, tipo de navegador, sistema operativo e identificadores del dispositivo",
       privacySection2AutoList2:
-        "Datos de uso: páginas visitadas, tiempo dedicado a las páginas, enlaces clicados y patrones de navegación",
+        "Datos de uso: páginas visitadas, tiempo invertido en las páginas, enlaces seleccionados y patrones de navegación",
       privacySection2AutoList3:
         "Cookies y tecnologías similares: datos del navegador y almacenamiento local para preferencias",
       privacySection2AutoList4:
-        "Información de referencia: cómo accedió a nuestro sitio web",
-      privacySection3Title: "3. Cómo usamos su información",
+        "Información de referencia: cómo accediste a nuestro sitio web",
+      privacySection3Title: "3. Cómo usamos tu información",
       privacySection3Text:
         "Usamos la información recopilada para los siguientes fines:",
       privacySection3List1:
-        "Proporcionar y administrar los servicios solicitados",
+        "Proporcionar y gestionar los servicios solicitados",
       privacySection3List2:
         "Procesar transacciones y enviar información relacionada",
       privacySection3List3:
         "Enviar correos electrónicos transaccionales y promocionales",
-      privacySection3List4:
-        "Responder a consultas y brindar soporte al cliente",
-      privacySection3List5: "Mejorar nuestro sitio web y servicios",
-      privacySection3List6: "Analizar los patrones de uso del sitio web",
-      privacySection3List7: "Prevenir el fraude y garantizar la seguridad",
+      privacySection3List4: "Responder consultas y brindar soporte al cliente",
+      privacySection3List5: "Mejorar nuestro sitio web y nuestros servicios",
+      privacySection3List6: "Analizar patrones de uso del sitio web",
+      privacySection3List7: "Prevenir fraudes y garantizar la seguridad",
       privacySection3List8: "Cumplir con obligaciones legales",
       privacySection3List9:
-        "Crear datos agregados y desidentificados para análisis",
-      privacySection4Title: "4. Base legal para el procesamiento (GDPR)",
+        "Crear datos agregados y anonimizados para análisis",
+      privacySection4Title: "4. Base legal para el tratamiento de datos — RGPD",
       privacySection4Text:
-        "Bajo GDPR, procesamos datos personales en base a las siguientes bases legales:",
+        "Según el RGPD, tratamos los datos personales con base en los siguientes fundamentos legales:",
       privacySection4List1:
-        "Necesidad contractual: procesamiento necesario para prestar nuestros servicios con usted",
+        "Necesidad contractual: tratamiento necesario para prestar nuestros servicios contigo",
       privacySection4List2:
-        "Obligación legal: procesamiento requerido por ley o regulación",
+        "Obligación legal: tratamiento requerido por ley o regulación",
       privacySection4List3:
-        "Intereses legítimos: procesamiento necesario para nuestros intereses comerciales legítimos",
+        "Intereses legítimos: tratamiento necesario para nuestros intereses comerciales legítimos",
       privacySection4List4:
-        "Consentimiento: procesamiento basado en su consentimiento explícito",
-      privacySection5Title: "5. Retención de datos",
+        "Consentimiento: tratamiento basado en tu consentimiento explícito",
+      privacySection5Title: "5. Conservación de datos",
       privacySection5Text:
-        "Retenemos datos personales solo mientras sean necesarios para los fines establecidos en esta política o según lo exija la ley. Los períodos de retención varían según el tipo de datos:",
+        "Conservamos los datos personales únicamente durante el tiempo necesario para los fines indicados en esta política o según lo exija la ley. Los períodos de conservación varían según el tipo de dato:",
       privacySection5List1:
-        "Información de contacto: conservada durante la duración de la relación de servicio más 7 años para fines contables",
+        "Información de contacto: conservada durante la duración de la relación de servicio, más 7 años para fines contables",
       privacySection5List2:
-        "Datos de análisis del sitio web: conservados por hasta 26 meses",
+        "Datos de análisis del sitio web: conservados hasta por 26 meses",
       privacySection5List3:
-        "Preferencias del usuario (idioma/tema): almacenadas localmente en su dispositivo indefinidamente hasta que se eliminen",
-      privacySection6Title: "6. Compartir y divulgar datos",
+        "Preferencias del usuario, como idioma o tema visual: almacenadas localmente en tu dispositivo de forma indefinida hasta que sean eliminadas",
+      privacySection6Title: "6. Compartición y divulgación de datos",
       privacySection6Text:
-        "No vendemos sus datos personales. Podemos compartir información con:",
+        "No vendemos tus datos personales. Podemos compartir información con:",
       privacySection6List1:
-        "Proveedores de servicios: terceros que ayudan a proporcionar servicios (bajo acuerdos de procesamiento de datos)",
+        "Proveedores de servicios: terceros que ayudan a proporcionar servicios, bajo acuerdos de tratamiento de datos",
       privacySection6List2:
-        "Autoridades legales: cuando lo exija la ley o para proteger derechos y seguridad",
+        "Autoridades legales: cuando sea requerido por ley o para proteger derechos y seguridad",
       privacySection6List3:
         "Transferencias comerciales: en caso de fusión, adquisición o venta de activos",
-      privacySection7Title: "7. Sus derechos bajo GDPR",
+      privacySection7Title: "7. Tus derechos bajo el RGPD",
       privacySection7Text:
-        "Si está en la UE/EEE, tiene los siguientes derechos:",
+        "Si te encuentras en la Unión Europea o el Espacio Económico Europeo, tienes los siguientes derechos:",
       privacySection7List1:
-        "Derecho de acceso: obtener una copia de los datos personales que mantenemos sobre usted",
+        "Derecho de acceso: obtener una copia de los datos personales que conservamos sobre ti",
       privacySection7List2:
         "Derecho de rectificación: corregir datos personales inexactos o incompletos",
       privacySection7List3:
-        'Derecho de eliminación ("Derecho al olvido"): solicitar la eliminación de sus datos personales',
+        "Derecho de supresión, también conocido como “derecho al olvido”: solicitar la eliminación de tus datos personales",
       privacySection7List4:
-        "Derecho a restringir el procesamiento: limitar cómo procesamos sus datos",
+        "Derecho a restringir el tratamiento: limitar cómo tratamos tus datos",
       privacySection7List5:
-        "Derecho a la portabilidad de datos: recibir sus datos en un formato portátil",
+        "Derecho a la portabilidad de los datos: recibir tus datos en un formato portable",
       privacySection7List6:
-        "Derecho a oponerse: oponerse al procesamiento de sus datos",
+        "Derecho de oposición: oponerte al tratamiento de tus datos",
       privacySection7List7:
-        "Derecho a presentar una queja: presentar una queja ante su autoridad de protección de datos local",
+        "Derecho a presentar una reclamación: presentar una queja ante tu autoridad local de protección de datos",
       privacySection8Title: "8. Seguridad de los datos",
       privacySection8Text:
-        "Implementamos medidas técnicas y organizativas adecuadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción. Estas medidas incluyen:",
+        "Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger tus datos personales contra acceso no autorizado, alteración, divulgación o destrucción. Estas medidas incluyen:",
       privacySection8List1: "Cifrado SSL/TLS para datos en tránsito",
       privacySection8List2: "Protocolos de autenticación seguros",
-      privacySection8List3: "Auditorías y pruebas de seguridad regulares",
+      privacySection8List3: "Auditorías y pruebas de seguridad periódicas",
       privacySection8List4: "Acceso restringido a datos personales",
-      privacySection8List5:
-        "Capacitación en protección de datos para el personal",
+      privacySection8List5: "Capacitación del personal en protección de datos",
       privacySection8Text2:
-        "Si bien nos esforzamos por proteger su información, ningún sistema de seguridad es impenetrable y no podemos garantizar una seguridad absoluta.",
+        "Aunque nos esforzamos por proteger tu información, ningún sistema de seguridad es impenetrable y no podemos garantizar seguridad absoluta.",
       privacySection9Title: "9. Transferencias internacionales de datos",
       privacySection9Text:
-        "Si accede a nuestro sitio web desde fuera de los Estados Unidos, su información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, usted acepta dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas por salvaguardias apropiadas, incluidas las Cláusulas Contractuales Tipo.",
-      privacySection10Title: "10. Privacidad de los niños",
+        "Si accedes a nuestro sitio web desde fuera de los Estados Unidos, tu información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, aceptas dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas mediante garantías adecuadas, incluidas las Cláusulas Contractuales Tipo.",
+      privacySection10Title: "10. Privacidad de menores",
       privacySection10Text:
-        "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos intencionadamente datos personales de niños. Si nos damos cuenta de que hemos recopilado datos personales de un niño sin el consentimiento de los padres, eliminaremos dichos datos de inmediato.",
+        "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos conscientemente datos personales de menores. Si llegamos a saber que hemos recopilado datos personales de un menor sin el consentimiento de sus padres o tutores, eliminaremos dichos datos de inmediato.",
       privacySection11Title: "11. Enlaces de terceros",
       privacySection11Text:
-        "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de los sitios de terceros. Le recomendamos que revise las políticas de privacidad de cualquier sitio tercero antes de proporcionar su información personal.",
-      privacySection12Title: "12. Ejercicio de sus derechos",
+        "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de sitios de terceros. Te recomendamos revisar las políticas de privacidad de cualquier sitio de terceros antes de proporcionar tu información personal.",
+      privacySection12Title: "12. Ejercicio de tus derechos",
       privacySection12Text:
-        "Para ejercer cualquiera de sus derechos de privacidad, contáctenos utilizando la información proporcionada al final de esta política. Responderemos a su solicitud dentro de los 30 días (o según lo exija la ley aplicable). Es posible que necesite proporcionar identificación para verificar su solicitud.",
-      privacySection13Title: "13. Oficial de protección de datos",
+        "Para ejercer cualquiera de tus derechos de privacidad, contáctanos utilizando la información proporcionada al final de esta política. Responderemos a tu solicitud dentro de un plazo de 30 días, o según lo exija la ley aplicable. Es posible que debas proporcionar identificación para verificar tu solicitud.",
+      privacySection13Title: "13. Responsable de Protección de Datos",
       privacySection13Text:
-        "Si tiene preguntas sobre nuestras prácticas de privacidad o desea ejercer sus derechos bajo GDPR, puede ponerse en contacto con nuestro Oficial de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto.",
+        "Si tienes preguntas sobre nuestras prácticas de privacidad o deseas ejercer tus derechos bajo el RGPD, puedes comunicarte con nuestro Responsable de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto.",
       privacySection14Title:
         "14. Actualizaciones de esta Política de Privacidad",
       privacySection14Text:
-        'Podemos actualizar esta Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de "Última actualización" al final de esta política indica cuándo se revisó por última vez. El uso continuo de nuestro sitio web tras los cambios significa que acepta la política actualizada.',
-      privacySection15Title: "15. Contáctenos",
+        "Podemos actualizar esta Política de Privacidad ocasionalmente para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de “Última actualización” al final de esta política indica cuándo fue revisada por última vez. El uso continuo de nuestro sitio web después de los cambios significa que aceptas la política actualizada.",
+      privacySection15Title: "15. Contáctanos",
       privacySection15Text:
-        "Para consultas de privacidad, solicitudes GDPR o para ejercer sus derechos sobre datos, contáctenos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio principal. Nos comprometemos a atender sus inquietudes con prontitud.",
+        "Para consultas de privacidad, solicitudes relacionadas con el RGPD o para ejercer tus derechos sobre tus datos, contáctanos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio web principal. Nos comprometemos a atender tus inquietudes con prontitud.",
     },
   };
 

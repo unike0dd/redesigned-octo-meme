@@ -1,0 +1,31 @@
+{
+  "repository": "gabo-io-only",
+  "audience": "gabo io chatbot retrieval only",
+  "purpose": "High-quality customer experience and lead-generation responses for Gabriel Services website visitors.",
+  "accessPolicy": "This directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot for grounded answers and should not be presented as a public navigation section.",
+  "updated": "2026-05-06",
+  "entries": [
+    {
+      "id": "privacy-gdpr-es",
+      "language": "es",
+      "title": "Privacidad y RGPD",
+      "sourceUrl": "/legal/privacy-gdpr.html",
+      "intents": [
+        "privacidad",
+        "rgpd",
+        "gdpr",
+        "datos",
+        "derechos",
+        "protección de datos",
+        "cookies",
+        "seguridad",
+        "transferencias internacionales",
+        "menores",
+        "contacto privacidad"
+      ],
+      "answer": "Gabriel Services está comprometida con proteger tu privacidad. Recopilamos información de contacto, detalles del servicio, registros de comunicación, información de pago procesada de forma segura y datos técnicos como dispositivo, uso, cookies e información de referencia. Usamos estos datos para prestar servicios, procesar transacciones, responder consultas, mejorar la experiencia, analizar uso, prevenir fraudes y cumplir obligaciones legales. Bajo el RGPD, tratamos datos por necesidad contractual, obligación legal, intereses legítimos o consentimiento. No vendemos tus datos personales. Si estás en la UE o el EEE, puedes solicitar acceso, rectificación, supresión, restricción, portabilidad, oposición o presentar una reclamación ante tu autoridad local de protección de datos.",
+      "leadGenerationPrompt": "Si quieres ayuda para revisar privacidad, RGPD o procesos de atención al cliente para tu negocio, puedo recopilar tus datos de contacto y el área operativa que deseas mejorar para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita la página de Contacto para consultas de privacidad, solicitudes relacionadas con el RGPD o soporte operativo."
+    }
+  ]
+}

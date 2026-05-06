@@ -148,6 +148,16 @@
     });
   }
 
+  function getSiteBasePath() {
+    const parts = window.location.pathname.split("/").filter(Boolean);
+    const repoName = "redesigned-octo-meme";
+    return parts[0] === repoName ? `/${repoName}` : "";
+  }
+
+  function escapeRegExp(value) {
+    return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  }
+
   function initChatbot() {
     if (document.getElementById("gabo-chatbot-fab")) return;
 
@@ -186,7 +196,46 @@
     const chatInput = document.getElementById("gabo-chatbot-input");
     const chatSend = document.getElementById("gabo-chatbot-send");
     const API_URL = "/api/ops-online-chat";
+    const CHATBOT_CONTENT_URL = `${getSiteBasePath()}/chatbot%20content/gabo-io-content-index.json`;
     let hasWelcomed = false;
+    let contentIndexPromise;
+
+    const getChatLanguage = () => window.I18N?.currentLanguage || "en";
+
+    const loadChatbotContent = () => {
+      if (!contentIndexPromise) {
+        contentIndexPromise = fetch(CHATBOT_CONTENT_URL).then((response) => {
+          if (!response.ok) throw new Error("Chatbot content unavailable");
+          return response.json();
+        });
+      }
+      return contentIndexPromise;
+    };
+
+    const findLocalChatbotAnswer = async (message) => {
+      const index = await loadChatbotContent();
+      const entries = Array.isArray(index.entries) ? index.entries : [];
+      const language = getChatLanguage();
+      const normalized = String(message || "").toLowerCase();
+      const localizedEntries = entries.filter(
+        (entry) => entry.language === language || entry.language === "es",
+      );
+
+      const match = localizedEntries.find((entry) => {
+        const intents = Array.isArray(entry.intents) ? entry.intents : [];
+        return intents.some((intent) =>
+          new RegExp(
+            `\\b${escapeRegExp(String(intent).toLowerCase())}\\b`,
+            "i",
+          ).test(normalized),
+        );
+      });
+
+      if (!match) return "";
+      return [match.answer, match.leadGenerationPrompt, match.recommendedCta]
+        .filter(Boolean)
+        .join(" ");
+    };
 
     chatPanel.hidden = true;
 
@@ -232,7 +281,7 @@
         const response = await fetch(API_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: trimmed, lang: "en" }),
+          body: JSON.stringify({ message: trimmed, lang: getChatLanguage() }),
         });
 
         if (!response.ok) {
@@ -242,7 +291,11 @@
         const data = await response.json();
         botMessage.textContent = data && data.reply ? data.reply : "No reply.";
       } catch (error) {
-        botMessage.textContent = "Error: can’t reach gabo io.";
+        const localAnswer = await findLocalChatbotAnswer(trimmed).catch(
+          () => "",
+        );
+        botMessage.textContent =
+          localAnswer || "Error: can’t reach gabo io. Please try again soon.";
       } finally {
         chatSend.disabled = false;
         chatInput.disabled = false;
