@@ -1,32 +1,39 @@
 (function () {
+  function getSiteBasePath() {
+    const parts = window.location.pathname.split("/").filter(Boolean);
+    const repoName = "redesigned-octo-meme";
+    return parts[0] === repoName ? `/${repoName}` : "";
+  }
+
   function footerMarkup() {
+    const basePath = getSiteBasePath();
     return `
       <div class="container footer-grid" data-footer-sitemap>
         <div>
           <h4 data-i18n="company">Company</h4>
-          <a href="./" data-footer-link="home" data-i18n="home">Home</a>
-          <a href="./about.html" data-footer-link="about" data-i18n="about">About</a>
-          <a href="learning.html" data-footer-link="services" data-i18n="servicesOverview">Services Overview</a>
-          <a href="./careers.html" data-footer-link="careers" data-i18n="careers">Careers</a>
+          <a href="${basePath}/" data-footer-link="home" data-i18n="home">Home</a>
+          <a href="${basePath}/about.html" data-footer-link="about" data-i18n="about">About</a>
+          <a href="${basePath}/learning.html" data-footer-link="services" data-i18n="servicesOverview">Services Overview</a>
+          <a href="${basePath}/careers.html" data-footer-link="careers" data-i18n="careers">Careers</a>
         </div>
         <div>
           <h4 data-i18n="servicePagesLabel">Service Pages</h4>
-          <a href="learning.html" data-footer-link="logistics-operations" data-i18n="logisticsOps">Logistics Operations</a>
-          <a href="learning.html" data-footer-link="administrative-backoffice" data-i18n="adminBackOffice">Administrative Back Office</a>
-          <a href="learning.html" data-footer-link="customer-relations" data-i18n="customerRelations">Customer Relations</a>
-          <a href="learning.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
+          <a href="${basePath}/learning.html" data-footer-link="logistics-operations" data-i18n="logisticsOps">Logistics Operations</a>
+          <a href="${basePath}/learning.html" data-footer-link="administrative-backoffice" data-i18n="adminBackOffice">Administrative Back Office</a>
+          <a href="${basePath}/learning.html" data-footer-link="customer-relations" data-i18n="customerRelations">Customer Relations</a>
+          <a href="${basePath}/learning.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
         </div>
         <div>
           <h4 data-i18n="supportLearning">Support & Learning</h4>
-          <a href="./contact.html" data-footer-link="contact" data-i18n="contact">Contact</a>
-          <a href="./learning.html" data-footer-link="learning" data-i18n="learning">Learning</a>
-          <a href="./sitemap.xml" data-footer-link="sitemap" data-i18n="sitemap">Sitemap</a>
+          <a href="${basePath}/contact.html" data-footer-link="contact" data-i18n="contact">Contact</a>
+          <a href="${basePath}/learning.html" data-footer-link="learning" data-i18n="learning">Learning</a>
+          <a href="${basePath}/sitemap.xml" data-footer-link="sitemap" data-i18n="sitemap">Sitemap</a>
         </div>
         <div>
           <h4 data-i18n="legal">Legal</h4>
-          <a href="./legal/terms.html" data-footer-link="terms" data-i18n="termsConditions">Terms & Conditions</a>
-          <a href="./legal/cookies.html" data-footer-link="cookies" data-i18n="cookiesConsent">Cookies Consent</a>
-          <a href="./legal/privacy-gdpr.html" data-footer-link="privacy" data-i18n="privacyGdpr">Privacy & GDPR</a>
+          <a href="${basePath}/legal/terms.html" data-footer-link="terms" data-i18n="termsConditions">Terms & Conditions</a>
+          <a href="${basePath}/legal/cookies.html" data-footer-link="cookies" data-i18n="cookiesConsent">Cookies Consent</a>
+          <a href="${basePath}/legal/privacy-gdpr.html" data-footer-link="privacy" data-i18n="privacyGdpr">Privacy & GDPR</a>
         </div>
       </div>
       <div class="container footer-meta">

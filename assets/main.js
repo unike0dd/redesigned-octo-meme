@@ -405,4 +405,21 @@
       .filter((target) => target.classList.contains("lazy-on-scroll"))
       .forEach((target) => observer.observe(target));
   }
+
+  function initPage() {
+    ensurePrimaryNav();
+    ensureMobileNav();
+    ensureSkipLink();
+    initRepeatableEntryGroups();
+    initNumericOnlyInputs();
+    initMobileServiceMenu();
+    initScrollLazyLoad();
+    initSecureForms();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPage);
+  } else {
+    initPage();
+  }
 })();
