@@ -13,15 +13,15 @@
           <h4 data-i18n="company">Company</h4>
           <a href="${basePath}/" data-footer-link="home" data-i18n="home">Home</a>
           <a href="${basePath}/about.html" data-footer-link="about" data-i18n="about">About</a>
-          <a href="${basePath}/learning.html" data-footer-link="services" data-i18n="servicesOverview">Services Overview</a>
+          <a href="${basePath}/services.html" data-footer-link="services" data-i18n="servicesOverview">Services Overview</a>
           <a href="${basePath}/careers.html" data-footer-link="careers" data-i18n="careers">Careers</a>
         </div>
         <div>
           <h4 data-i18n="servicePagesLabel">Service Pages</h4>
-          <a href="${basePath}/learning.html" data-footer-link="logistics-operations" data-i18n="logisticsOps">Logistics Operations</a>
-          <a href="${basePath}/learning.html" data-footer-link="administrative-backoffice" data-i18n="adminBackOffice">Administrative Back Office</a>
-          <a href="${basePath}/learning.html" data-footer-link="customer-relations" data-i18n="customerRelations">Customer Relations</a>
-          <a href="${basePath}/learning.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
+          <a href="${basePath}/services/logistics-operations.html" data-footer-link="logistics-operations" data-i18n="logisticsOps">Logistics Operations</a>
+          <a href="${basePath}/services/administrative-backoffice.html" data-footer-link="administrative-backoffice" data-i18n="adminBackOffice">Administrative Back Office</a>
+          <a href="${basePath}/services/customer-relations.html" data-footer-link="customer-relations" data-i18n="customerRelations">Customer Relations</a>
+          <a href="${basePath}/services/it-support.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
         </div>
         <div>
           <h4 data-i18n="supportLearning">Support & Learning</h4>
