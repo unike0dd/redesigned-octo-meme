@@ -504,7 +504,7 @@
 
       // Legal page titles
       termsTitle: "Términos y Condiciones",
-      cookiesTitle: "Consentimiento de Cookies",
+      cookiesTitle: "Política de consentimiento de cookies",
       privacyTitle: "Privacidad y RGPD",
 
       // Theme & Language toggles
@@ -741,81 +741,81 @@
       cookiesTitle: "Política de consentimiento de cookies",
       cookiesSection1Title: "1. ¿Qué son las cookies?",
       cookiesSection1Text:
-        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres que se colocan en su computadora o dispositivo móvil cuando visita nuestro sitio web. Nos permiten reconocer su navegador o dispositivo, recordar información sobre sus preferencias y ayudar a personalizar su experiencia en el sitio web de Gabriel Services.",
+        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres y se colocan en tu computadora o dispositivo móvil cuando visitas nuestro sitio web. Nos permiten reconocer tu navegador o dispositivo, recordar información sobre tus preferencias y ayudar a personalizar tu experiencia en el sitio web de Gabriel Services.",
       cookiesSection2Title: "2. Tipos de cookies que usamos",
       cookiesSection2EssentialTitle: "Cookies esenciales",
       cookiesSection2EssentialText:
-        "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden ser deshabilitadas a través de nuestros sistemas. Se utilizan para:",
+        "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden deshabilitarse a través de nuestros sistemas. Se utilizan para:",
       cookiesSection2EssentialList1:
         "Habilitar la funcionalidad básica del sitio web",
-      cookiesSection2EssentialList2:
-        "Mantener la seguridad y prevenir el fraude",
+      cookiesSection2EssentialList2: "Mantener la seguridad y prevenir fraudes",
       cookiesSection2EssentialList3:
-        "Preservar las preferencias del usuario (selecciones de idioma y tema)",
+        "Conservar las preferencias del usuario, como selección de idioma y tema visual",
       cookiesSection2PerformanceTitle: "Cookies de rendimiento",
       cookiesSection2PerformanceText:
-        "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación e informe de información de forma anónima. Nos ayudan a:",
+        "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación y el reporte de información de forma anónima. Nos ayudan a:",
       cookiesSection2PerformanceList1:
-        "Identificar las páginas a las que se accede con más frecuencia",
+        "Identificar las páginas a las que se accede con mayor frecuencia",
       cookiesSection2PerformanceList2:
         "Medir la efectividad de las campañas publicitarias",
       cookiesSection2PerformanceList3:
-        "Comprender los patrones de navegación del usuario",
+        "Comprender los patrones de navegación de los usuarios",
       cookiesSection2FunctionalTitle: "Cookies funcionales",
       cookiesSection2FunctionalText:
-        "Estas cookies permiten una funcionalidad mejorada y personalización, incluidas:",
-      cookiesSection2FunctionalList1: "Recordar su preferencia de idioma",
-      cookiesSection2FunctionalList2: "Guardar su preferencia de tema",
+        "Estas cookies permiten una funcionalidad mejorada y personalización, incluyendo:",
+      cookiesSection2FunctionalList1: "Recordar tu preferencia de idioma",
+      cookiesSection2FunctionalList2: "Almacenar tu preferencia de tema visual",
       cookiesSection2FunctionalList3:
         "Registrar datos de formularios para mayor comodidad",
       cookiesSection2AnalyticalTitle: "Cookies analíticas",
       cookiesSection2AnalyticalText:
-        "Utilizamos cookies analíticas para comprender cómo se usa nuestro sitio web, incluida la duración de las visitas y las rutas que toman los usuarios a través del sitio. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
+        "Usamos cookies analíticas para comprender cómo se utiliza nuestro sitio web, incluida la duración de las visitas y las rutas que los usuarios siguen dentro del sitio web. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
       cookiesSection3Title: "3. Almacenamiento local",
       cookiesSection3Text:
-        "Para mejorar la experiencia del usuario, utilizamos localStorage para almacenar sus preferencias, incluyendo:",
+        "Para mejorar la experiencia del usuario, usamos localStorage para almacenar tus preferencias, incluyendo:",
       cookiesSection3List1: "Preferencia de idioma (inglés o español)",
-      cookiesSection3List2: "Preferencia de tema (modo Claro u Oscuro)",
+      cookiesSection3List2: "Preferencia de tema visual (modo claro u oscuro)",
       cookiesSection3Text2:
-        "Esta información se almacena localmente en su dispositivo y no se transmite a nuestros servidores.",
+        "Esta información se almacena localmente en tu dispositivo y no se transmite a nuestros servidores.",
       cookiesSection4Title: "4. Cookies de terceros",
       cookiesSection4Text:
-        "Las cookies de terceros pueden colocarse en su dispositivo por proveedores de servicios externos, incluidos:",
+        "Las cookies de terceros pueden ser colocadas en tu dispositivo por proveedores de servicios externos, incluyendo:",
       cookiesSection4List1: "Proveedores de análisis",
       cookiesSection4List2: "Redes publicitarias",
       cookiesSection4List3: "Plataformas de redes sociales",
       cookiesSection4Text2:
-        "No tenemos control sobre las cookies de terceros. Puede configurar su navegador para rechazar cookies o para alertarle cuando se envían cookies.",
+        "No tenemos control sobre las cookies de terceros. Puedes configurar tu navegador para rechazar cookies o para avisarte cuando se estén enviando cookies.",
       cookiesSection5Title: "5. Cómo controlar las cookies",
       cookiesSection5Text:
-        "Tiene derecho a elegir si acepta o rechaza las cookies. La mayoría de los navegadores web le permiten:",
+        "Tienes derecho a elegir si aceptas o rechazas las cookies. La mayoría de los navegadores web te permiten:",
       cookiesSection5List1:
-        "Ver las cookies que se han establecido en su dispositivo",
-      cookiesSection5List2: "Eliminar cookies de su dispositivo",
+        "Ver las cookies que se han establecido en tu dispositivo",
+      cookiesSection5List2: "Eliminar cookies de tu dispositivo",
       cookiesSection5List3:
-        "Bloquear futuras cookies para que no se establezcan en su dispositivo",
+        "Bloquear futuras cookies para que no se establezcan en tu dispositivo",
       cookiesSection5List4:
-        "Configurar su navegador para notificarle cuando se esté a punto de establecer una cookie",
+        "Configurar tu navegador para que te notifique cuando una cookie esté a punto de establecerse",
       cookiesSection5Text2:
-        "Si elige bloquear o eliminar cookies, algunas funciones de nuestro sitio web pueden no funcionar como se espera.",
+        "Si eliges bloquear o eliminar cookies, es posible que algunas funciones de nuestro sitio web no funcionen como se esperaba.",
       cookiesSection6Title: "6. Google Analytics",
       cookiesSection6Text:
-        "Podemos utilizar Google Analytics para recopilar información sobre su uso de nuestro sitio web. Google Analytics recopila información como:",
+        "Podemos usar Google Analytics para recopilar información sobre tu uso de nuestro sitio web. Google Analytics recopila información como:",
       cookiesSection6List1: "Dirección IP",
       cookiesSection6List2: "Tipo de dispositivo",
       cookiesSection6List3: "Tipo de navegador",
-      cookiesSection6List4: "Páginas visitadas y tiempo dedicado a cada página",
+      cookiesSection6List4:
+        "Páginas visitadas y tiempo invertido en cada página",
       cookiesSection6Text2:
-        "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se utiliza nuestro sitio y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales.",
-      cookiesSection7Title: "7. Su consentimiento",
+        "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se está utilizando nuestro sitio web y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales.",
+      cookiesSection7Title: "7. Tu consentimiento",
       cookiesSection7Text:
-        "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, usted acepta el uso de cookies según lo descrito en esta política. Si no consiente el uso de cookies, debe deshabilitarlas en la configuración de su navegador antes de continuar usando nuestro sitio web.",
+        "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, aceptas el uso de cookies según lo descrito en esta política. Si no aceptas el uso de cookies, debes deshabilitarlas en la configuración de tu navegador antes de continuar usando nuestro sitio web.",
       cookiesSection8Title: "8. Actualizaciones de esta política",
       cookiesSection8Text:
-        "Podemos actualizar esta Política de consentimiento de cookies de vez en cuando para reflejar cambios en la tecnología, la legislación u otros cambios. Le recomendamos que revise esta política periódicamente para mantenerse informado sobre cómo protegemos su privacidad.",
-      cookiesSection9Title: "9. Contáctenos",
+        "Podemos actualizar esta Política de consentimiento de cookies ocasionalmente para reflejar cambios en la tecnología, la legislación u otros cambios. Te recomendamos revisar esta política periódicamente para mantenerte informado sobre cómo protegemos tu privacidad.",
+      cookiesSection9Title: "9. Contáctanos",
       cookiesSection9Text:
-        "Si tiene alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctenos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio principal.",
+        "Si tienes alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctanos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio web principal.",
 
       privacySection1Title: "1. Introducción",
       privacySection1Text:

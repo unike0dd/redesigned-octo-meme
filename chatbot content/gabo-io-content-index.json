@@ -26,6 +26,28 @@
       "answer": "Gabriel Services está comprometida con proteger tu privacidad. Recopilamos información de contacto, detalles del servicio, registros de comunicación, información de pago procesada de forma segura y datos técnicos como dispositivo, uso, cookies e información de referencia. Usamos estos datos para prestar servicios, procesar transacciones, responder consultas, mejorar la experiencia, analizar uso, prevenir fraudes y cumplir obligaciones legales. Bajo el RGPD, tratamos datos por necesidad contractual, obligación legal, intereses legítimos o consentimiento. No vendemos tus datos personales. Si estás en la UE o el EEE, puedes solicitar acceso, rectificación, supresión, restricción, portabilidad, oposición o presentar una reclamación ante tu autoridad local de protección de datos.",
       "leadGenerationPrompt": "Si quieres ayuda para revisar privacidad, RGPD o procesos de atención al cliente para tu negocio, puedo recopilar tus datos de contacto y el área operativa que deseas mejorar para que Gabriel Services te contacte.",
       "recommendedCta": "Visita la página de Contacto para consultas de privacidad, solicitudes relacionadas con el RGPD o soporte operativo."
+    },
+    {
+      "id": "cookies-consent-es",
+      "language": "es",
+      "title": "Política de consentimiento de cookies",
+      "sourceUrl": "/legal/cookies.html",
+      "intents": [
+        "cookies",
+        "cookie",
+        "consentimiento de cookies",
+        "política de cookies",
+        "almacenamiento local",
+        "localstorage",
+        "google analytics",
+        "analytics",
+        "preferencias",
+        "navegador",
+        "privacidad cookies"
+      ],
+      "answer": "Gabriel Services usa cookies y almacenamiento local para reconocer tu navegador o dispositivo, recordar preferencias como idioma y tema visual, mantener la seguridad, prevenir fraudes, comprender patrones de navegación y mejorar la experiencia del sitio web. Usamos cookies esenciales, de rendimiento, funcionales y analíticas. También podemos usar Google Analytics para recopilar información como dirección IP, tipo de dispositivo, tipo de navegador, páginas visitadas y tiempo invertido en cada página. Puedes aceptar o rechazar cookies desde la configuración de tu navegador, verlas, eliminarlas, bloquear futuras cookies o pedir que el navegador te avise antes de establecer una cookie.",
+      "leadGenerationPrompt": "Si quieres optimizar la experiencia de clientes, consentimiento de cookies o procesos de captación digital para tu negocio, puedo recopilar tus datos de contacto y el objetivo que deseas mejorar para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita la página de Contacto si tienes preguntas sobre la Política de consentimiento de cookies o necesitas ayuda con privacidad, CX o generación de leads."
     }
   ]
 }

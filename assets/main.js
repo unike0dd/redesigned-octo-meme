@@ -218,7 +218,7 @@
       const language = getChatLanguage();
       const normalized = String(message || "").toLowerCase();
       const localizedEntries = entries.filter(
-        (entry) => entry.language === language || entry.language === "es",
+        (entry) => entry.language === language,
       );
 
       const match = localizedEntries.find((entry) => {
