@@ -75,7 +75,7 @@
         getThemeToggles().forEach((toggle) => {
           const isMobilePaletteToggle = toggle.dataset.themeToggle === "mobile";
           if (isMobilePaletteToggle) {
-            toggle.textContent = nextTheme === THEME_LIGHT ? "SUN" : "Moon";
+            toggle.textContent = this.current === THEME_LIGHT ? "SUN" : "Moon";
           } else {
             const key = nextTheme === THEME_DARK ? "darkTheme" : "lightTheme";
             const fallbackText = nextTheme === THEME_DARK ? "Dark" : "Light";
@@ -96,13 +96,16 @@
         });
       };
 
-      const toggle = document.getElementById("theme-toggle");
-      if (toggle && toggle.dataset.themeToggleBound !== "true") {
-        toggle.dataset.themeToggleBound = "true";
-        toggle.addEventListener("click", () => {
-          this.toggleTheme();
+      const bindThemeControls = () => {
+        getThemeToggles().forEach((toggle) => {
+          if (toggle.dataset.themeToggleBound === "true") return;
+          toggle.dataset.themeToggleBound = "true";
+          toggle.addEventListener("click", () => {
+            this.toggleTheme();
+          });
         });
-      }
+        updateThemeControls();
+      };
 
       document.querySelectorAll("[data-theme-option]").forEach((option) => {
         if (option.dataset.themeOptionBound === "true") return;

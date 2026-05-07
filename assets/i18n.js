@@ -1469,7 +1469,10 @@
       const updateLanguageToggle = () => {
         const nextLanguage = getNextLanguage();
         getLanguageToggles().forEach((toggle) => {
-          toggle.textContent = nextLanguage.toUpperCase();
+          const isMobileLanguageToggle = toggle.dataset.languageToggle === "mobile";
+          toggle.textContent = isMobileLanguageToggle
+            ? this.currentLanguage.toUpperCase()
+            : nextLanguage.toUpperCase();
           toggle.setAttribute(
             "aria-label",
             nextLanguage === "es"

@@ -195,10 +195,10 @@
   }
 
   function ensureMobileNav() {
-    if (document.querySelector(".mobile-nav")) return;
-
-    const mobileNav = document.createElement("nav");
+    const existingMobileNav = document.querySelector(".mobile-nav");
+    const mobileNav = existingMobileNav || document.createElement("nav");
     const basePath = getSiteBasePath();
+
     mobileNav.className = "mobile-nav";
     mobileNav.setAttribute("aria-label", "Mobile Navigation");
     mobileNav.setAttribute("data-i18n-aria-label", "mobileNavigation");
@@ -217,24 +217,27 @@
             id="mobile-language-toggle"
             type="button"
             class="mobile-preference-toggle"
-            data-language-toggle="true"
+            data-language-toggle="mobile"
             aria-label="Switch to Spanish"
             data-i18n-aria-label="switchToSpanish"
-          >ES</button>
+          >EN</button>
           <button
             id="mobile-theme-toggle"
             type="button"
             class="mobile-preference-toggle"
             data-theme-toggle="mobile"
             aria-label="Switch to dark theme"
-          >Moon</button>
+          >SUN</button>
         </div>
         <a href="${basePath}/careers.html" data-i18n="careers">Careers</a>
         <a href="${basePath}/contact.html" data-i18n="contact">Contact</a>
       </div>
     `;
 
-    document.body.appendChild(mobileNav);
+    if (!existingMobileNav) {
+      document.body.appendChild(mobileNav);
+    }
+
     if (window.I18N && typeof I18N.applyLanguage === "function") {
       I18N.applyLanguage();
       window.dispatchEvent(
