@@ -65,13 +65,29 @@
     },
 
     setupThemeToggle() {
+      const getThemeToggles = () =>
+        document.querySelectorAll("#theme-toggle, [data-theme-toggle]");
+      const getNextTheme = () =>
+        this.current === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
+
       const updateThemeControls = () => {
-        const toggle = document.getElementById("theme-toggle");
-        if (toggle) {
-          const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
-          const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
-          toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
-        }
+        const nextTheme = getNextTheme();
+        getThemeToggles().forEach((toggle) => {
+          const isMobilePaletteToggle = toggle.dataset.themeToggle === "mobile";
+          if (isMobilePaletteToggle) {
+            toggle.textContent = nextTheme === THEME_LIGHT ? "SUN" : "Moon";
+          } else {
+            const key = nextTheme === THEME_DARK ? "darkTheme" : "lightTheme";
+            const fallbackText = nextTheme === THEME_DARK ? "Dark" : "Light";
+            toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
+          }
+          toggle.setAttribute(
+            "aria-label",
+            nextTheme === THEME_DARK
+              ? "Switch to dark theme"
+              : "Switch to light theme",
+          );
+        });
 
         document.querySelectorAll("[data-theme-option]").forEach((option) => {
           const isActive = option.dataset.themeOption === this.current;
@@ -100,9 +116,9 @@
         });
       });
 
-      updateThemeControls();
-      window.addEventListener("theme:changed", updateThemeControls);
-      window.addEventListener("language:changed", updateThemeControls);
+      bindThemeControls();
+      window.addEventListener("theme:changed", bindThemeControls);
+      window.addEventListener("language:changed", bindThemeControls);
     },
   };
 

@@ -213,14 +213,21 @@
         <a href="${basePath}/" data-i18n="home">Home</a>
         <button id="mobile-services-toggle" type="button" data-i18n="services">Services</button>
         <div class="mobile-preference-controls" aria-label="Quick preferences">
-          <div class="mobile-language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
-            <button type="button" data-language-option="en" aria-label="Switch to English" data-i18n-aria-label="switchToEnglish">EN</button>
-            <button type="button" data-language-option="es" aria-label="Switch to Spanish" data-i18n-aria-label="switchToSpanish">ES</button>
-          </div>
-          <div class="mobile-theme-switcher" aria-label="Theme selector">
-            <button type="button" data-theme-option="light" aria-label="Switch to light theme">☀</button>
-            <button type="button" data-theme-option="dark" aria-label="Switch to dark theme">☾</button>
-          </div>
+          <button
+            id="mobile-language-toggle"
+            type="button"
+            class="mobile-preference-toggle"
+            data-language-toggle="true"
+            aria-label="Switch to Spanish"
+            data-i18n-aria-label="switchToSpanish"
+          >ES</button>
+          <button
+            id="mobile-theme-toggle"
+            type="button"
+            class="mobile-preference-toggle"
+            data-theme-toggle="mobile"
+            aria-label="Switch to dark theme"
+          >Moon</button>
         </div>
         <a href="${basePath}/careers.html" data-i18n="careers">Careers</a>
         <a href="${basePath}/contact.html" data-i18n="contact">Contact</a>
