@@ -1,4 +1,9 @@
 (function () {
+  if (window.GaboChatbot?.init) {
+    window.GaboChatbot.init();
+    return;
+  }
+
   const CHATBOT_ID = "gabo-chatbot-fab";
   const CF_WORKER_ENDPOINT = "/api/ops-online-chat";
   const CONFIDENCE_THRESHOLD = 0.28;
@@ -157,6 +162,13 @@
     const chatForm = document.getElementById("gabo-chatbot-form");
     const chatInput = document.getElementById("gabo-chatbot-input");
     const chatSend = document.getElementById("gabo-chatbot-send");
+
+    if (!chatPanel || !closeButton || !chatLog || !chatForm || !chatInput || !chatSend) {
+      fab.remove();
+      container.remove();
+      return;
+    }
+
     let hasWelcomed = false;
 
     chatPanel.hidden = true;

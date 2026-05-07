@@ -1,4 +1,9 @@
 (function () {
+  if (window.GaboFooter?.init) {
+    window.GaboFooter.init();
+    return;
+  }
+
   function getSiteBasePath() {
     const parts = window.location.pathname.split("/").filter(Boolean);
     const repoName = "redesigned-octo-meme";
@@ -76,22 +81,22 @@
     footer.addEventListener("click", trackFooterAction);
   }
 
-  // Ensure footer is created when DOM is ready
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      ensureGlobalFooter();
-      initFooterEvents();
-    });
-  } else {
+  function init() {
     ensureGlobalFooter();
     initFooterEvents();
   }
 
+  window.GaboFooter = { init };
+
+  // Ensure footer is created when DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+
   // Re-create footer when language changes
   if (typeof window !== "undefined") {
-    window.addEventListener("language:changed", () => {
-      ensureGlobalFooter();
-      initFooterEvents();
-    });
+    window.addEventListener("language:changed", init);
   }
 })();
