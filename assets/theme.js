@@ -1,4 +1,9 @@
 (function () {
+  if (window.THEME?.init) {
+    window.THEME.init();
+    return;
+  }
+
   const THEME_DARK = "dark";
   const THEME_LIGHT = "light";
   const STORAGE_KEY = "theme";
@@ -70,6 +75,9 @@
       };
 
       updateToggleText();
+      if (toggle.dataset.themeToggleBound === "true") return;
+
+      toggle.dataset.themeToggleBound = "true";
       toggle.addEventListener("click", () => {
         this.toggleTheme();
         updateToggleText();
