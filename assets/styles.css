@@ -136,6 +136,19 @@ body {
   transition: all 0.2s ease;
 }
 
+.language-switcher {
+  display: inline-flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.language-switcher .toggle-btn[aria-pressed="true"],
+.toggle-btn.language-active {
+  background: #fff;
+  color: var(--brand-navy);
+  border-color: #fff;
+}
+
 .toggle-btn:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);

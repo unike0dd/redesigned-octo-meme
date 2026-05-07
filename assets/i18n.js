@@ -203,6 +203,7 @@
       careersOptionLogistics: "Logistics",
       careersOptionAdministration: "Administration",
       careersOptionCustomerRelations: "Customer Relations",
+      careersOptionItSupport: "IT Support",
       experienceLevelLabel: "Experience Level",
       resumeLinkLabel: "Resume/Profile link",
       educationLevelLabel: "Education Level",
@@ -411,6 +412,7 @@
         "If you have any questions about these Terms & Conditions, please contact us at the email or address provided on our Contact page.",
       termsLastUpdated: "Last Updated: May 5, 2026",
 
+      cookiesLastUpdated: "Last Updated: May 5, 2026",
       cookiesTitle: "Cookies Consent Policy",
       cookiesSection1Title: "1. What Are Cookies?",
       cookiesSection1Text:
@@ -599,6 +601,7 @@
       privacySection15Title: "15. Contact Us",
       privacySection15Text:
         "For privacy inquiries, GDPR requests, or to exercise your data rights, please contact us through our Contact page or using the contact information provided on the main website. We commit to addressing your concerns promptly.",
+      privacyLastUpdated: "Last Updated: May 5, 2026",
     },
     es: {
       // Common
@@ -803,6 +806,7 @@
       careersOptionLogistics: "Logística",
       careersOptionAdministration: "Administración",
       careersOptionCustomerRelations: "Relaciones con Clientes",
+      careersOptionItSupport: "Soporte de TI",
       experienceLevelLabel: "Nivel de experiencia",
       resumeLinkLabel: "Enlace de currículum/perfil",
       educationLevelLabel: "Nivel educativo",
@@ -998,6 +1002,7 @@
         "Si tienes alguna pregunta sobre estos Términos y Condiciones, contáctanos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
       termsLastUpdated: "Última actualización: 5 de mayo de 2026",
 
+      cookiesLastUpdated: "Última actualización: 5 de mayo de 2026",
       cookiesTitle: "Política de consentimiento de cookies",
       cookiesSection1Title: "1. ¿Qué son las cookies?",
       cookiesSection1Text:
@@ -1193,6 +1198,7 @@
       privacySection15Title: "15. Contáctanos",
       privacySection15Text:
         "Para consultas de privacidad, solicitudes relacionadas con el RGPD o para ejercer tus derechos sobre tus datos, contáctanos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio web principal. Nos comprometemos a atender tus inquietudes con prontitud.",
+      privacyLastUpdated: "Última actualización: 5 de mayo de 2026",
     },
   };
 
@@ -1214,10 +1220,7 @@
     currentLanguage: getInitialLanguage(),
 
     init() {
-      this.currentLanguage =
-        localStorage.getItem("language") ||
-        document.documentElement.lang ||
-        "en";
+      this.currentLanguage = getInitialLanguage();
       if (!translations[this.currentLanguage]) this.currentLanguage = "en";
       document.documentElement.lang = this.currentLanguage;
       this.applyLanguage();
@@ -1272,20 +1275,39 @@
     },
 
     setupLanguageToggle() {
+      const languageOptions = document.querySelectorAll("[data-language-option]");
       const toggle = document.getElementById("language-toggle");
-      if (!toggle) return;
 
-      const updateToggleText = () => {
-        toggle.textContent = this.currentLanguage === "en" ? "ES" : "EN";
+      const updateLanguageControls = () => {
+        languageOptions.forEach((option) => {
+          const isActive = option.dataset.languageOption === this.currentLanguage;
+          option.setAttribute("aria-pressed", String(isActive));
+          option.classList.toggle("language-active", isActive);
+        });
+
+        if (toggle) {
+          toggle.textContent = this.currentLanguage === "en" ? "ES" : "EN";
+        }
       };
 
-      updateToggleText();
-      toggle.addEventListener("click", () => {
-        this.toggleLanguage();
-        updateToggleText();
+      languageOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+          const selectedLanguage = option.dataset.languageOption;
+          this.setLanguage(selectedLanguage);
+          window.dispatchEvent(
+            new CustomEvent("language:changed", {
+              detail: { language: selectedLanguage },
+            }),
+          );
+        });
       });
 
-      window.addEventListener("language:changed", updateToggleText);
+      if (toggle) {
+        toggle.addEventListener("click", () => this.toggleLanguage());
+      }
+
+      updateLanguageControls();
+      window.addEventListener("language:changed", updateLanguageControls);
     },
   };
 
