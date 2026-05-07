@@ -75,7 +75,7 @@
         getThemeToggles().forEach((toggle) => {
           const isMobilePaletteToggle = toggle.dataset.themeToggle === "mobile";
           if (isMobilePaletteToggle) {
-            toggle.textContent = nextTheme === THEME_LIGHT ? "SUN" : "Moon";
+            toggle.textContent = this.current === THEME_LIGHT ? "SUN" : "Moon";
           } else {
             const key = nextTheme === THEME_DARK ? "darkTheme" : "lightTheme";
             const fallbackText = nextTheme === THEME_DARK ? "Dark" : "Light";
