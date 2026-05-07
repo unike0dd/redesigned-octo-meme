@@ -27,6 +27,7 @@
 
   const THEME = {
     current: readClientCache(STORAGE_KEY) || THEME_LIGHT,
+    themeControlListenersBound: false,
 
     init() {
       this.current = readClientCache(STORAGE_KEY) || THEME_LIGHT;
@@ -96,29 +97,38 @@
         });
       };
 
-      const toggle = document.getElementById("theme-toggle");
-      if (toggle && toggle.dataset.themeToggleBound !== "true") {
-        toggle.dataset.themeToggleBound = "true";
-        toggle.addEventListener("click", () => {
-          this.toggleTheme();
-        });
-      }
+      const bindThemeControls = () => {
+        getThemeToggles().forEach((toggle) => {
+          if (toggle.dataset.themeToggleBound === "true") return;
 
-      document.querySelectorAll("[data-theme-option]").forEach((option) => {
-        if (option.dataset.themeOptionBound === "true") return;
-
-        option.dataset.themeOptionBound = "true";
-        option.addEventListener("click", () => {
-          this.setTheme(option.dataset.themeOption);
-          window.dispatchEvent(
-            new CustomEvent("theme:changed", { detail: { theme: this.current } }),
-          );
+          toggle.dataset.themeToggleBound = "true";
+          toggle.addEventListener("click", () => {
+            this.toggleTheme();
+          });
         });
-      });
+
+        document.querySelectorAll("[data-theme-option]").forEach((option) => {
+          if (option.dataset.themeOptionBound === "true") return;
+
+          option.dataset.themeOptionBound = "true";
+          option.addEventListener("click", () => {
+            this.setTheme(option.dataset.themeOption);
+            window.dispatchEvent(
+              new CustomEvent("theme:changed", { detail: { theme: this.current } }),
+            );
+          });
+        });
+
+        updateThemeControls();
+      };
 
       bindThemeControls();
-      window.addEventListener("theme:changed", bindThemeControls);
-      window.addEventListener("language:changed", bindThemeControls);
+
+      if (!this.themeControlListenersBound) {
+        this.themeControlListenersBound = true;
+        window.addEventListener("theme:changed", bindThemeControls);
+        window.addEventListener("language:changed", bindThemeControls);
+      }
     },
   };
 
