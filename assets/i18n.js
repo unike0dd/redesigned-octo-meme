@@ -187,9 +187,11 @@
       placeholderAddExperienceEntry: "Add experience level entry",
       placeholderAddLanguageEntry: "Add language entry",
       placeholderAddSkillEntry: "Add skill entry",
+      placeholderAddAreaInterestEntry: "Add area of interest entry",
       placeholderAddProjectEntry: "Add project entry",
       placeholderAddEducationEntry: "Add education entry",
       submitApplication: "Submit Application",
+      submitContact: "Submit",
       clearForm: "Clear Form",
 
       careersTitle: "Careers",
@@ -745,18 +747,18 @@
 
       contactTitle: "Contacto",
       contactIntro:
-        "Póngase en contacto para soporte, incorporación, proyectos y oportunidades de asociación.",
+        "Ponte en contacto para soporte, incorporación, proyectos y oportunidades de colaboración.",
       fullName: "Nombre completo",
       emailAddress: "Dirección de correo electrónico",
       countryCode: "Código de país",
       contactNumber: "Número de contacto",
       city: "Ciudad",
       stateProvince: "Estado/Provincia",
-      spaceSuiteApt: "Espacio/Suite/Apto",
+      spaceSuiteApt: "Espacio/Suite/Apartamento",
       countryZipCode: "Código postal del país",
       bestContactTime: "Mejor hora para contactarte",
       messageLabel: "Mensaje",
-      inquiryAboutTitle: "Consulta sobre asistente remoto",
+      inquiryAboutTitle: "Consulta sobre Asistente Remoto",
       skillsLabel: "Habilidades",
       languagesLabel: "Idiomas",
       projectsLabel: "Proyectos",
@@ -768,9 +770,11 @@
       placeholderAddExperienceEntry: "Agregar nivel de experiencia",
       placeholderAddLanguageEntry: "Agregar idioma",
       placeholderAddSkillEntry: "Agregar habilidad",
+      placeholderAddAreaInterestEntry: "Agregar área de interés",
       placeholderAddProjectEntry: "Agregar proyecto",
       placeholderAddEducationEntry: "Agregar educación",
       submitApplication: "Enviar solicitud",
+      submitContact: "Enviar",
       clearForm: "Limpiar formulario",
 
       careersTitle: "Carreras",
@@ -1159,7 +1163,12 @@
     currentLanguage: localStorage.getItem("language") || "en",
 
     init() {
-      this.currentLanguage = localStorage.getItem("language") || "en";
+      this.currentLanguage =
+        localStorage.getItem("language") ||
+        document.documentElement.lang ||
+        "en";
+      if (!translations[this.currentLanguage]) this.currentLanguage = "en";
+      document.documentElement.lang = this.currentLanguage;
       this.applyLanguage();
       this.setupLanguageToggle();
     },
