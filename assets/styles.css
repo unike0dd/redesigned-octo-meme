@@ -171,6 +171,26 @@ header {
   color: var(--cta);
   background: #fff;
 }
+.learning-page-links {
+  margin: 1.5rem 0 1rem;
+}
+.learning-page-links p {
+  margin-top: 0;
+  color: var(--muted);
+}
+.learning-link-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.75rem;
+}
+.learning-link-grid .btn {
+  width: 100%;
+  min-height: 48px;
+  text-align: center;
+}
+:root.dark-theme .btn.ghost {
+  background: #111827;
+}
 .section {
   padding: 2.7rem 0;
 }
