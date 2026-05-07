@@ -268,6 +268,24 @@
       trackAdminTitle: "Administrative Back Office",
       trackAdminText:
         "Learn documentation, reporting rhythm, and process upkeep.",
+      adminLearningTitle: "Administrative Back Office Learning",
+      adminLearningIntro:
+        "Training designed for operational support teams that manage internal systems, scheduling, documentation, and task workflows.",
+      learningObjectivesTitle: "Learning Objectives",
+      adminLearningObjective1:
+        "Develop reliable documentation and reporting habits",
+      adminLearningObjective2:
+        "Improve task coordination across teams and stakeholders",
+      adminLearningObjective3:
+        "Learn how to maintain consistent administrative workflows",
+      keyTopicsTitle: "Key Topics",
+      adminLearningTopic1: "Calendar and communication management",
+      adminLearningTopic2: "Document organization and version control",
+      adminLearningTopic3: "Vendor follow-up and service coordination",
+      practicalApplicationTitle: "Practical Application",
+      adminLearningApplication:
+        "These skills help back office teams reduce operational friction and support faster decision-making across the business.",
+      backToLearning: "Back to Learning",
       adminBackOfficeServiceIntro:
         "Our back office services bring structure and reliability to your internal operations, helping reduce risk and maintain a consistent business rhythm.",
       adminBackOfficeHandleTitle: "What We Handle",
@@ -829,6 +847,25 @@
       trackAdminTitle: "Back Office Administrativo",
       trackAdminText:
         "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
+      adminLearningTitle: "Aprendizaje de Administración Back Office",
+      adminLearningIntro:
+        "Capacitación diseñada para equipos de soporte operativo que gestionan sistemas internos, programación, documentación y flujos de trabajo de tareas.",
+      learningObjectivesTitle: "Objetivos de aprendizaje",
+      adminLearningObjective1:
+        "Desarrollar hábitos confiables de documentación y reportes.",
+      adminLearningObjective2:
+        "Mejorar la coordinación de tareas entre equipos y partes interesadas.",
+      adminLearningObjective3:
+        "Aprender cómo mantener flujos administrativos consistentes.",
+      keyTopicsTitle: "Temas clave",
+      adminLearningTopic1: "Gestión de calendario y comunicación.",
+      adminLearningTopic2: "Organización de documentos y control de versiones.",
+      adminLearningTopic3:
+        "Seguimiento con proveedores y coordinación de servicios.",
+      practicalApplicationTitle: "Aplicación práctica",
+      adminLearningApplication:
+        "Estas habilidades ayudan a los equipos de back office a reducir la fricción operativa y apoyar una toma de decisiones más rápida en todo el negocio.",
+      backToLearning: "Volver a Aprendizaje",
       adminBackOfficeServiceIntro:
         "Nuestros servicios de back office aportan estructura y confiabilidad a tus operaciones internas, ayudando a reducir riesgos y mantener un ritmo empresarial constante.",
       adminBackOfficeHandleTitle: "Lo que gestionamos",
@@ -1159,8 +1196,22 @@
     },
   };
 
+  function normalizeLanguage(lang) {
+    const normalized = String(lang || "").split("-")[0];
+    return translations[normalized] ? normalized : "";
+  }
+
+  function getInitialLanguage() {
+    return (
+      normalizeLanguage(document.documentElement.dataset.pageLanguage) ||
+      normalizeLanguage(localStorage.getItem("language")) ||
+      normalizeLanguage(document.documentElement.lang) ||
+      "en"
+    );
+  }
+
   const I18N = {
-    currentLanguage: localStorage.getItem("language") || "en",
+    currentLanguage: getInitialLanguage(),
 
     init() {
       this.currentLanguage =
