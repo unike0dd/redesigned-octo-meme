@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-page-language="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Aprendizaje de Relaciones con Clientes: mejores prácticas de comunicación, flujos de escalación y habilidades de atención al cliente."
+      data-i18n-content="customerLearningMetaDescription"
     />
-    <title>Aprendizaje de Relaciones con Clientes | Gabriel Services</title>
+    <title data-i18n="customerLearningPageTitle">Aprendizaje de Relaciones con Clientes | Gabriel Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,7 +28,24 @@
           ><a href="../careers.html" data-i18n="careers">Careers</a
           ><a href="../contact.html" data-i18n="contact">Contact</a
           ><a href="../learning.html" data-i18n="learning">Learning</a>
-          <button id="language-toggle" class="toggle-btn">EN</button>
+          <div class="language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
+            <button
+              type="button"
+              class="toggle-btn"
+              data-language-option="en"
+              aria-label="Switch to English" data-i18n-aria-label="switchToEnglish"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              class="toggle-btn"
+              data-language-option="es"
+              aria-label="Switch to Spanish" data-i18n-aria-label="switchToSpanish"
+            >
+              ES
+            </button>
+          </div>
           <button id="theme-toggle" class="toggle-btn">Dark</button>
         </nav>
       </div>
@@ -35,41 +53,41 @@
 
     <main class="section">
       <div class="container">
-        <h1>Aprendizaje de Relaciones con Clientes</h1>
-        <p>
+        <h1 data-i18n="customerLearningTitle">Aprendizaje de Relaciones con Clientes</h1>
+        <p data-i18n="customerLearningIntro">
           Aprende cómo gestionar comunicaciones con clientes, manejar
           escalaciones y mantener un ritmo de servicio confiable en cada
           interacción con el cliente.
         </p>
 
         <section class="card">
-          <h2>Objetivos de aprendizaje</h2>
+          <h2 data-i18n="learningObjectivesTitle">Objetivos de aprendizaje</h2>
           <ul>
-            <li>
+            <li data-i18n="customerLearningObjective1">
               Dominar mejores prácticas de comunicación para equipos que tratan
               directamente con clientes.
             </li>
-            <li>
+            <li data-i18n="customerLearningObjective2">
               Comprender flujos de escalación y resolución rápida de problemas.
             </li>
-            <li>
+            <li data-i18n="customerLearningObjective3">
               Desarrollar un proceso consistente de seguimiento y satisfacción.
             </li>
           </ul>
         </section>
 
         <section class="card">
-          <h2>Temas clave</h2>
+          <h2 data-i18n="keyTopicsTitle">Temas clave</h2>
           <ul>
-            <li>Seguimiento de tickets y control de resolución.</li>
-            <li>Medición de satisfacción y retroalimentación del cliente.</li>
-            <li>Comunicación clara y oportuna con el cliente.</li>
+            <li data-i18n="customerLearningTopic1">Seguimiento de tickets y control de resolución.</li>
+            <li data-i18n="customerLearningTopic2">Medición de satisfacción y retroalimentación del cliente.</li>
+            <li data-i18n="customerLearningTopic3">Comunicación clara y oportuna con el cliente.</li>
           </ul>
         </section>
 
         <section class="card">
-          <h2>Aplicación práctica</h2>
-          <p>
+          <h2 data-i18n="practicalApplicationTitle">Aplicación práctica</h2>
+          <p data-i18n="customerLearningApplication">
             Estas prácticas ayudan a los equipos a convertir las interacciones
             con clientes en resultados confiables y traspasos más claros entre
             operaciones.
@@ -77,19 +95,19 @@
         </section>
 
         <section class="card learning-page-links" aria-labelledby="related-learning-title">
-          <h2 id="related-learning-title">Explorar otras rutas de aprendizaje</h2>
-          <p>
+          <h2 id="related-learning-title" data-i18n="relatedLearningTitle">Explorar otras rutas de aprendizaje</h2>
+          <p data-i18n="relatedLearningText">
             Continúa navegando entre las rutas principales para comparar
             habilidades, flujos de trabajo y aplicaciones prácticas.
           </p>
-          <nav class="learning-link-grid" aria-label="Rutas de aprendizaje relacionadas">
-            <a class="btn ghost" href="logistics-operations.html">Operaciones Logísticas</a>
-            <a class="btn ghost" href="administrative-backoffice.html">Administración Back Office</a>
-            <a class="btn ghost" href="it-support.html">IT Support</a>
+          <nav class="learning-link-grid" aria-label="Rutas de aprendizaje relacionadas" data-i18n-aria-label="relatedLearningAria">
+            <a class="btn ghost" href="logistics-operations.html" data-i18n="logisticsOps">Operaciones Logísticas</a>
+            <a class="btn ghost" href="administrative-backoffice.html" data-i18n="adminBackOffice">Administración Back Office</a>
+            <a class="btn ghost" href="it-support.html" data-i18n="itSupport">IT Support</a>
           </nav>
         </section>
 
-        <a class="btn primary" href="../learning.html">Volver a Aprendizaje</a>
+        <a class="btn primary" href="../learning.html" data-i18n="backToLearning">Volver a Aprendizaje</a>
       </div>
     </main>
 

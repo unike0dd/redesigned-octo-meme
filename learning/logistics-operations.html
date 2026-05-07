@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-page-language="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
       content="Ruta de aprendizaje para Operaciones Logísticas: coordinación de flujos de trabajo, sistemas de seguimiento y habilidades de continuidad."
+      data-i18n-content="logisticsLearningMetaDescription"
     />
-    <title>Aprendizaje de Operaciones Logísticas | Gabriel Services</title>
+    <title data-i18n="logisticsLearningPageTitle">Aprendizaje de Operaciones Logísticas | Gabriel Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,7 +28,24 @@
           ><a href="../careers.html" data-i18n="careers">Careers</a
           ><a href="../contact.html" data-i18n="contact">Contact</a
           ><a href="../learning.html" data-i18n="learning">Learning</a>
-          <button id="language-toggle" class="toggle-btn">EN</button>
+          <div class="language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
+            <button
+              type="button"
+              class="toggle-btn"
+              data-language-option="en"
+              aria-label="Switch to English" data-i18n-aria-label="switchToEnglish"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              class="toggle-btn"
+              data-language-option="es"
+              aria-label="Switch to Spanish" data-i18n-aria-label="switchToSpanish"
+            >
+              ES
+            </button>
+          </div>
           <button id="theme-toggle" class="toggle-btn">Dark</button>
         </nav>
       </div>
@@ -35,25 +53,25 @@
 
     <main class="section">
       <div class="container">
-        <h1>Aprendizaje de Operaciones Logísticas</h1>
-        <p>
+        <h1 data-i18n="logisticsLearningTitle">Aprendizaje de Operaciones Logísticas</h1>
+        <p data-i18n="logisticsLearningIntro">
           Guía práctica para equipos de logística y profesionales de operaciones,
           enfocada en la continuidad, la disciplina de seguimiento y la
           coordinación de procesos.
         </p>
 
         <section class="card">
-          <h2>Objetivos de aprendizaje</h2>
+          <h2 data-i18n="learningObjectivesTitle">Objetivos de aprendizaje</h2>
           <ul>
-            <li>
+            <li data-i18n="logisticsLearningObjective1">
               Comprender los principales flujos de trabajo logísticos y los
               puntos de traspaso
             </li>
-            <li>
+            <li data-i18n="logisticsLearningObjective2">
               Aprender mejores prácticas para el seguimiento de envíos y la
               gestión de excepciones
             </li>
-            <li>
+            <li data-i18n="logisticsLearningObjective3">
               Crear procesos de comunicación repetibles para transportistas y
               proveedores
             </li>
@@ -61,20 +79,20 @@
         </section>
 
         <section class="card">
-          <h2>Temas clave</h2>
+          <h2 data-i18n="keyTopicsTitle">Temas clave</h2>
           <ul>
-            <li>Coordinación de despachos y planificación operativa</li>
-            <li>
+            <li data-i18n="logisticsLearningTopic1">Coordinación de despachos y planificación operativa</li>
+            <li data-i18n="logisticsLearningTopic2">
               Estándares de visibilidad para envíos aéreos, marítimos y
               terrestres
             </li>
-            <li>Gestión de seguimientos y control de escalaciones</li>
+            <li data-i18n="logisticsLearningTopic3">Gestión de seguimientos y control de escalaciones</li>
           </ul>
         </section>
 
         <section class="card">
-          <h2>Aplicación práctica</h2>
-          <p>
+          <h2 data-i18n="practicalApplicationTitle">Aplicación práctica</h2>
+          <p data-i18n="logisticsLearningApplication">
             Esta ruta está diseñada para personas que necesitan convertir la
             planificación logística en una ejecución diaria predecible, sin
             agregar carga operativa.
@@ -82,19 +100,19 @@
         </section>
 
         <section class="card learning-page-links" aria-labelledby="related-learning-title">
-          <h2 id="related-learning-title">Explorar otras rutas de aprendizaje</h2>
-          <p>
+          <h2 id="related-learning-title" data-i18n="relatedLearningTitle">Explorar otras rutas de aprendizaje</h2>
+          <p data-i18n="relatedLearningText">
             Continúa navegando entre las rutas principales para comparar
             habilidades, flujos de trabajo y aplicaciones prácticas.
           </p>
-          <nav class="learning-link-grid" aria-label="Rutas de aprendizaje relacionadas">
-            <a class="btn ghost" href="administrative-backoffice.html">Administración Back Office</a>
-            <a class="btn ghost" href="customer-relations.html">Relaciones con Clientes</a>
-            <a class="btn ghost" href="it-support.html">IT Support</a>
+          <nav class="learning-link-grid" aria-label="Rutas de aprendizaje relacionadas" data-i18n-aria-label="relatedLearningAria">
+            <a class="btn ghost" href="administrative-backoffice.html" data-i18n="adminBackOffice">Administración Back Office</a>
+            <a class="btn ghost" href="customer-relations.html" data-i18n="customerRelations">Relaciones con Clientes</a>
+            <a class="btn ghost" href="it-support.html" data-i18n="itSupport">IT Support</a>
           </nav>
         </section>
 
-        <a class="btn primary" href="../learning.html">Volver a Aprendizaje</a>
+        <a class="btn primary" href="../learning.html" data-i18n="backToLearning">Volver a Aprendizaje</a>
       </div>
     </main>
 

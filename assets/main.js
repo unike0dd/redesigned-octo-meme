@@ -198,24 +198,29 @@
     if (document.querySelector(".mobile-nav")) return;
 
     const mobileNav = document.createElement("nav");
+    const basePath = getSiteBasePath();
     mobileNav.className = "mobile-nav";
     mobileNav.setAttribute("aria-label", "Mobile Navigation");
+    mobileNav.setAttribute("data-i18n-aria-label", "mobileNavigation");
     mobileNav.innerHTML = `
       <div id="services-dropup" class="services-dropup">
-        <a href="learning.html">Logistics</a>
-        <a href="learning.html">Admin Back Office</a>
-        <a href="learning.html">Customer Relations</a>
-        <a href="learning.html">IT Support</a>
+        <a href="${basePath}/learning.html" data-i18n="logisticsOps">Logistics</a>
+        <a href="${basePath}/learning.html" data-i18n="adminBackOffice">Admin Back Office</a>
+        <a href="${basePath}/learning.html" data-i18n="customerRelations">Customer Relations</a>
+        <a href="${basePath}/learning.html" data-i18n="itSupport">IT Support</a>
       </div>
       <div class="menu">
-        <a href="./">Home</a>
-        <button id="mobile-services-toggle" type="button">Services</button>
-        <a href="careers.html">Careers</a>
-                <a href="contact.html">Contact</a>
+        <a href="${basePath}/" data-i18n="home">Home</a>
+        <button id="mobile-services-toggle" type="button" data-i18n="services">Services</button>
+        <a href="${basePath}/careers.html" data-i18n="careers">Careers</a>
+        <a href="${basePath}/contact.html" data-i18n="contact">Contact</a>
       </div>
     `;
 
     document.body.appendChild(mobileNav);
+    if (window.I18N && typeof I18N.applyLanguage === "function") {
+      I18N.applyLanguage();
+    }
   }
 
   function ensureSkipLink() {
