@@ -3,7 +3,7 @@
   "audience": "gabo io chatbot retrieval only",
   "purpose": "High-quality customer experience and lead-generation responses for Gabriel Services website visitors.",
   "accessPolicy": "This directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot for grounded answers and should not be presented as a public navigation section.",
-  "updated": "2026-05-06",
+  "updated": "2026-05-07",
   "entries": [
     {
       "id": "privacy-gdpr-es",
@@ -101,6 +101,34 @@
       "answer": "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales para reducir fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante. Las áreas son: Operaciones Logísticas, con coordinación estructurada, seguimiento de envíos y continuidad operativa para la cadena de suministro; Back Office Administrativo, con documentación, gestión de calendarios, reportes y disciplina de procesos; Operaciones de Relaciones con Clientes, con comunicaciones, resolución de problemas y flujos de seguimiento para mejorar satisfacción y retención; y Soporte de TI, con soporte técnico diario, triaje de tickets y asistencia al usuario para continuidad confiable.",
       "leadGenerationPrompt": "Si deseas mejorar logística, administración, relaciones con clientes o soporte de TI, puedo recopilar tus datos de contacto, el área prioritaria y el principal reto operativo para que Gabriel Services te contacte con una recomendación alineada.",
       "recommendedCta": "Visita la página de Contacto o explora el servicio específico que mejor coincida con tu necesidad operativa."
+    },
+    {
+      "id": "customer-relations-learning-es",
+      "language": "es",
+      "title": "Aprendizaje de Relaciones con Clientes",
+      "sourceUrl": "/learning/customer-relations.html",
+      "intents": [
+        "aprendizaje de relaciones con clientes",
+        "relaciones con clientes",
+        "atención al cliente",
+        "atencion al cliente",
+        "comunicación con clientes",
+        "comunicacion con clientes",
+        "escalaciones",
+        "flujos de escalación",
+        "flujos de escalacion",
+        "seguimiento de tickets",
+        "resolución de problemas",
+        "resolucion de problemas",
+        "satisfacción del cliente",
+        "satisfaccion del cliente",
+        "retroalimentación del cliente",
+        "retroalimentacion del cliente",
+        "customer relations learning"
+      ],
+      "answer": "El aprendizaje de Relaciones con Clientes enseña cómo gestionar comunicaciones con clientes, manejar escalaciones y mantener un ritmo de servicio confiable en cada interacción. Sus objetivos son dominar mejores prácticas de comunicación para equipos que tratan directamente con clientes, comprender flujos de escalación y resolución rápida de problemas, y desarrollar un proceso consistente de seguimiento y satisfacción. Los temas clave incluyen seguimiento de tickets y control de resolución, medición de satisfacción y retroalimentación del cliente, y comunicación clara y oportuna con el cliente. Estas prácticas ayudan a convertir interacciones con clientes en resultados confiables y traspasos más claros entre operaciones.",
+      "leadGenerationPrompt": "Si quieres fortalecer comunicaciones con clientes, seguimiento de tickets, escalaciones o medición de satisfacción, puedo recopilar tus datos de contacto, el flujo de atención que deseas mejorar y el reto principal para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita Aprendizaje de Relaciones con Clientes o usa Volver a Aprendizaje para explorar otros recursos de capacitación."
     },
     {
       "id": "careers-es",
