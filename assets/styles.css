@@ -1,4 +1,6 @@
 :root {
+  --mouse-x: 50%;
+  --mouse-y: 50%;
   --brand-navy: #10233f;
   --brand-blue: #1f4e8c;
   --brand-sky: #e9f1fb;
@@ -9,14 +11,29 @@
   --border: #d5dde9;
   --cta: #1f4e8c;
   --cta-hover: #163860;
+  --royal-bg-1: #050505;
+  --royal-bg-2: #0b0907;
+  --royal-gold: #b99245;
+  --royal-gold-bright: #d8b76a;
+  --royal-gold-hot: #e7c978;
+  --royal-text: #f6f1e8;
+  --royal-muted: rgba(246, 241, 232, 0.72);
+  --royal-card-bg: #0d0c0a;
+  --royal-card-bg-hover: #14100b;
+  --royal-card-border: rgba(255, 255, 255, 0.08);
+  --royal-card-border-hover: rgba(216, 183, 106, 0.58);
 }
 
 :root.dark-theme {
-  --text: #e5e7eb;
-  --muted: #a0a9b8;
-  --surface: #1a1a1a;
-  --border: #333;
+  --text: var(--royal-text);
+  --muted: var(--royal-muted);
+  --surface: var(--royal-card-bg);
+  --border: var(--royal-card-border);
   --brand-sky: #1a2a4a;
+  --brand-blue: var(--royal-gold-bright);
+  --brand-gold: var(--royal-gold-bright);
+  --cta: var(--royal-gold);
+  --cta-hover: #d8b76a;
 }
 * {
   box-sizing: border-box;
@@ -34,7 +51,78 @@ body {
 }
 
 :root.dark-theme body {
-  background: #0f0f0f;
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(185, 146, 69, 0.1),
+      transparent 34rem
+    ),
+    linear-gradient(180deg, var(--royal-bg-1), var(--royal-bg-2));
+}
+
+:root.dark-theme body::before,
+:root.dark-theme body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+:root.dark-theme body::before {
+  background-image: radial-gradient(
+    circle,
+    rgba(185, 146, 69, 0.15) 1px,
+    transparent 1.45px
+  );
+  background-size: 18px 18px;
+  opacity: 0.32;
+}
+
+:root.dark-theme body::after {
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(231, 201, 120, 0.62) 1.05px,
+      transparent 1.85px
+    ),
+    radial-gradient(
+      circle,
+      rgba(185, 146, 69, 0.28) 1.8px,
+      transparent 3px
+    );
+  background-position: 0 0, 9px 9px;
+  background-size: 18px 18px, 36px 36px;
+  opacity: 0;
+  -webkit-mask-image: radial-gradient(
+    circle 150px at var(--mouse-x) var(--mouse-y),
+    black 0%,
+    black 30%,
+    transparent 74%
+  );
+  mask-image: radial-gradient(
+    circle 150px at var(--mouse-x) var(--mouse-y),
+    black 0%,
+    black 30%,
+    transparent 74%
+  );
+  filter:
+    drop-shadow(0 0 1px rgba(231, 201, 120, 0.38))
+    drop-shadow(0 0 5px rgba(185, 146, 69, 0.18));
+  transition: opacity 160ms ease;
+}
+
+:root.dark-theme body.mouse-active::after {
+  opacity: 0.72;
+}
+
+:root.dark-theme body > main,
+:root.dark-theme body > section,
+:root.dark-theme body > footer {
+  position: relative;
+  z-index: 1;
 }
 .toggle-btn {
   background: rgba(255, 255, 255, 0.15);
@@ -126,7 +214,10 @@ header {
 }
 
 :root.dark-theme .hero {
-  background: #1a1a1a;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 44%),
+    rgba(13, 12, 10, 0.88);
+  border-bottom-color: rgba(216, 183, 106, 0.18);
 }
 .eyebrow {
   text-transform: uppercase;
@@ -139,6 +230,12 @@ header {
   margin: 0.5rem 0 1rem;
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   color: var(--brand-navy);
+}
+
+:root.dark-theme .hero h1,
+:root.dark-theme .section h2,
+:root.dark-theme .card h3 {
+  color: var(--royal-text);
 }
 .hero p {
   max-width: 760px;
@@ -171,6 +268,12 @@ header {
   color: var(--cta);
   background: #fff;
 }
+
+:root.dark-theme .btn.ghost {
+  color: var(--royal-gold-bright);
+  background: rgba(13, 12, 10, 0.72);
+  border-color: rgba(216, 183, 106, 0.46);
+}
 .section {
   padding: 2.7rem 0;
 }
@@ -192,12 +295,108 @@ header {
   padding: 1rem;
   box-shadow: 0 3px 14px rgba(16, 35, 63, 0.07);
   transition:
+    transform 180ms ease,
+    background 180ms ease,
     background-color 0.3s ease,
-    border-color 0.3s ease;
+    border-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 :root.dark-theme .card {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--royal-card-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 44%),
+    var(--royal-card-bg);
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.3);
+}
+
+:root.dark-theme .card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(216, 183, 106, 0.58),
+    rgba(255, 255, 255, 0.03),
+    rgba(185, 146, 69, 0.42)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease;
+}
+
+:root.dark-theme .card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    var(--royal-gold-hot),
+    transparent
+  );
+  box-shadow: 0 0 10px rgba(231, 201, 120, 0.24);
+  opacity: 0;
+  transform: scaleY(0.55);
+  pointer-events: none;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+:root.dark-theme .card > * {
+  position: relative;
+  z-index: 1;
+}
+
+:root.dark-theme .card:hover,
+:root.dark-theme .card:focus-within {
+  transform: translateY(-3px);
+  border-color: var(--royal-card-border-hover);
+  background:
+    linear-gradient(180deg, rgba(185, 146, 69, 0.045), transparent 44%),
+    var(--royal-card-bg-hover);
+  box-shadow:
+    0 0 0 1px rgba(216, 183, 106, 0.08),
+    0 20px 54px rgba(0, 0, 0, 0.42),
+    0 0 24px rgba(185, 146, 69, 0.09);
+}
+
+:root.dark-theme .card:hover::before,
+:root.dark-theme .card:focus-within::before {
+  opacity: 1;
+}
+
+:root.dark-theme .card:hover::after,
+:root.dark-theme .card:focus-within::after {
+  opacity: 0.9;
+  transform: scaleY(1);
+}
+
+:root.dark-theme .card a {
+  display: inline-flex;
+  color: var(--royal-gold-bright);
+  font-weight: 700;
+  transition: transform 180ms ease;
+}
+
+:root.dark-theme .card:hover a,
+:root.dark-theme .card:focus-within a {
+  transform: translateX(5px);
 }
 .card h3 {
   margin-top: 0.2rem;
@@ -271,7 +470,8 @@ footer {
 }
 
 :root.dark-theme footer {
-  background: #0a0f1a;
+  background: #090805;
+  border-top: 1px solid rgba(216, 183, 106, 0.16);
 }
 .footer-grid {
   display: grid;
@@ -338,7 +538,8 @@ form {
 }
 
 :root.dark-theme form {
-  background: #1a1a1a;
+  background: rgba(13, 12, 10, 0.92);
+  border-color: var(--royal-card-border);
 }
 label {
   display: block;
@@ -467,7 +668,8 @@ textarea {
 }
 
 :root.dark-theme .services-dropup {
-  background: #1a1a1a;
+  background: var(--royal-card-bg);
+  border-color: var(--royal-card-border-hover);
 }
 .services-dropup.open {
   display: block;
@@ -540,6 +742,19 @@ textarea {
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  :root.dark-theme body::after,
+  :root.dark-theme .card,
+  :root.dark-theme .card::before,
+  :root.dark-theme .card::after,
+  :root.dark-theme .card a {
+    transition: none;
+  }
+
+  :root.dark-theme .card:hover,
+  :root.dark-theme .card:focus-within {
+    transform: none;
+  }
+
   * {
     scroll-behavior: auto !important;
     transition: none !important;

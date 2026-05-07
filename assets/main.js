@@ -576,6 +576,28 @@
       .forEach((target) => observer.observe(target));
   }
 
+  function initRoyalDarkPointerEffects() {
+    const root = document.documentElement;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduceMotion) return;
+
+    window.addEventListener(
+      "pointermove",
+      (event) => {
+        root.style.setProperty("--mouse-x", `${event.clientX}px`);
+        root.style.setProperty("--mouse-y", `${event.clientY}px`);
+        document.body.classList.add("mouse-active");
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("pointerleave", () => {
+      document.body.classList.remove("mouse-active");
+    });
+  }
+
   function initPage() {
     ensurePrimaryNav();
     ensureMobileNav();
@@ -584,6 +606,7 @@
     initNumericOnlyInputs();
     initMobileServiceMenu();
     initScrollLazyLoad();
+    initRoyalDarkPointerEffects();
     initSecureForms();
     initChatbot();
   }
