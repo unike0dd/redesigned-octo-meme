@@ -96,21 +96,25 @@
         });
       };
 
-      const bindThemeControls = () => {
-        getThemeToggles().forEach((toggle) => {
-          if (toggle.dataset.themeToggleBound === "true") return;
-          toggle.dataset.themeToggleBound = "true";
-          toggle.addEventListener("click", () => this.toggleTheme());
+      const toggle = document.getElementById("theme-toggle");
+      if (toggle && toggle.dataset.themeToggleBound !== "true") {
+        toggle.dataset.themeToggleBound = "true";
+        toggle.addEventListener("click", () => {
+          this.toggleTheme();
         });
+      }
 
-        document.querySelectorAll("[data-theme-option]").forEach((option) => {
-          if (option.dataset.themeOptionBound === "true") return;
-          option.dataset.themeOptionBound = "true";
-          option.addEventListener("click", () => this.setTheme(option.dataset.themeOption));
+      document.querySelectorAll("[data-theme-option]").forEach((option) => {
+        if (option.dataset.themeOptionBound === "true") return;
+
+        option.dataset.themeOptionBound = "true";
+        option.addEventListener("click", () => {
+          this.setTheme(option.dataset.themeOption);
+          window.dispatchEvent(
+            new CustomEvent("theme:changed", { detail: { theme: this.current } }),
+          );
         });
-
-        updateThemeControls();
-      };
+      });
 
       bindThemeControls();
       window.addEventListener("theme:changed", bindThemeControls);
