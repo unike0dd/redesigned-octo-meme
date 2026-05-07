@@ -27,6 +27,7 @@
 
   const THEME = {
     current: readClientCache(STORAGE_KEY) || THEME_LIGHT,
+    themeControlListenersBound: false,
 
     init() {
       this.current = readClientCache(STORAGE_KEY) || THEME_LIGHT;
@@ -122,8 +123,12 @@
       };
 
       bindThemeControls();
-      window.addEventListener("theme:changed", bindThemeControls);
-      window.addEventListener("language:changed", bindThemeControls);
+
+      if (!this.themeControlListenersBound) {
+        this.themeControlListenersBound = true;
+        window.addEventListener("theme:changed", bindThemeControls);
+        window.addEventListener("language:changed", bindThemeControls);
+      }
     },
   };
 
