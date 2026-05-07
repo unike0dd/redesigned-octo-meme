@@ -1,4 +1,9 @@
 (function () {
+  if (window.GaboChatbot?.init) {
+    window.GaboChatbot.init();
+    return;
+  }
+
   const CHATBOT_ID = "gabo-chatbot-fab";
   const CF_WORKER_ENDPOINT = "/api/ops-online-chat";
   const CONFIDENCE_THRESHOLD = 0.28;
@@ -157,6 +162,13 @@
     const chatForm = document.getElementById("gabo-chatbot-form");
     const chatInput = document.getElementById("gabo-chatbot-input");
     const chatSend = document.getElementById("gabo-chatbot-send");
+
+    if (!chatPanel || !closeButton || !chatLog || !chatForm || !chatInput || !chatSend) {
+      fab.remove();
+      container.remove();
+      return;
+    }
+
     let hasWelcomed = false;
 
     chatPanel.hidden = true;
@@ -170,12 +182,14 @@
       return message;
     };
 
-    const setChatOpen = (open) => {
+    const setChatOpen = (open, returnFocus = true) => {
       container.classList.toggle("open", open);
       chatPanel.classList.toggle("open", open);
       chatPanel.hidden = !open;
+      fab.hidden = open;
+      fab.setAttribute("aria-hidden", String(open));
       fab.setAttribute("aria-expanded", String(open));
-      fab.setAttribute("aria-label", open ? "Close gabo io chatbot" : "Open gabo io chatbot");
+      fab.setAttribute("aria-label", open ? "gabo io chatbot is open" : "Open gabo io chatbot");
 
       if (open) {
         if (!hasWelcomed) {
@@ -183,12 +197,20 @@
           hasWelcomed = true;
         }
         chatInput.focus();
+      } else if (returnFocus) {
+        fab.focus();
       }
     };
 
     const sendChatMessage = async (message) => {
       const trimmed = String(message || "").trim();
       if (!trimmed) return;
+
+      if (["exit", "quit"].includes(trimmed.toLowerCase())) {
+        chatInput.value = "";
+        setChatOpen(false);
+        return;
+      }
 
       addChatMessage(trimmed, "gabo-user");
       chatInput.value = "";
@@ -235,6 +257,11 @@
     closeButton.addEventListener("click", () => setChatOpen(false));
     container.addEventListener("click", (event) => {
       if (event.target === container) {
+        setChatOpen(false);
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && container.classList.contains("open")) {
         setChatOpen(false);
       }
     });

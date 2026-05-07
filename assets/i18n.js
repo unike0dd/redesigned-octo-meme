@@ -1462,48 +1462,26 @@
     },
 
     setupLanguageToggle() {
-      const updateLanguageControls = () => {
-        document.querySelectorAll("[data-language-option]").forEach((option) => {
-          const isActive = option.dataset.languageOption === this.currentLanguage;
-          option.setAttribute("aria-pressed", String(isActive));
-          option.classList.toggle("language-active", isActive);
-        });
+      const toggle = document.getElementById("language-toggle");
+      if (!toggle) return;
 
-        const toggle = document.getElementById("language-toggle");
-        if (toggle) {
-          toggle.textContent = this.currentLanguage.toUpperCase();
-          toggle.setAttribute(
-            "aria-label",
-            this.currentLanguage === "en"
-              ? this.t("switchToSpanish")
-              : this.t("switchToEnglish"),
-          );
-        }
+      const getNextLanguage = () => (this.currentLanguage === "en" ? "es" : "en");
+
+      const updateLanguageToggle = () => {
+        const nextLanguage = getNextLanguage();
+        toggle.textContent = nextLanguage.toUpperCase();
+        toggle.setAttribute(
+          "aria-label",
+          nextLanguage === "es"
+            ? this.t("switchToSpanish")
+            : this.t("switchToEnglish"),
+        );
       };
 
-      if (!this.hasLanguageOptionListener) {
-        document.addEventListener("click", (event) => {
-          const option = event.target.closest("[data-language-option]");
-          if (!option) return;
+      toggle.addEventListener("click", () => this.toggleLanguage());
 
-          const selectedLanguage = option.dataset.languageOption;
-          this.setLanguage(selectedLanguage);
-          window.dispatchEvent(
-            new CustomEvent("language:changed", {
-              detail: { language: selectedLanguage },
-            }),
-          );
-        });
-        this.hasLanguageOptionListener = true;
-      }
-
-      const toggle = document.getElementById("language-toggle");
-      if (toggle) {
-        toggle.addEventListener("click", () => this.toggleLanguage());
-      }
-
-      updateLanguageControls();
-      window.addEventListener("language:changed", updateLanguageControls);
+      updateLanguageToggle();
+      window.addEventListener("language:changed", updateLanguageToggle);
     },
   };
 
