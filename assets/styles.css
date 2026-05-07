@@ -11,17 +11,21 @@
   --border: #d5dde9;
   --cta: #1f4e8c;
   --cta-hover: #163860;
-  --royal-bg-1: #050505;
-  --royal-bg-2: #0b0907;
-  --royal-gold: #b99245;
-  --royal-gold-bright: #d8b76a;
-  --royal-gold-hot: #e7c978;
+  --royal-bg-1: #1b063f;
+  --royal-bg-2: #2e0a68;
+  --royal-bg-3: #4b148f;
+  --royal-bg-4: #120329;
+  --royal-purple-glow: #8e4dff;
+  --royal-lavender-glow: #d9c3ff;
+  --royal-gold: #7a4dff;
+  --royal-gold-bright: #c8a8ff;
+  --royal-gold-hot: #f0e6ff;
   --royal-text: #f6f1e8;
   --royal-muted: rgba(246, 241, 232, 0.72);
-  --royal-card-bg: #0d0c0a;
-  --royal-card-bg-hover: #14100b;
-  --royal-card-border: rgba(255, 255, 255, 0.08);
-  --royal-card-border-hover: rgba(216, 183, 106, 0.58);
+  --royal-card-bg: rgba(28, 7, 65, 0.86);
+  --royal-card-bg-hover: rgba(50, 12, 111, 0.9);
+  --royal-card-border: rgba(216, 195, 255, 0.13);
+  --royal-card-border-hover: rgba(217, 195, 255, 0.78);
 }
 
 :root.dark-theme {
@@ -41,13 +45,38 @@
 body {
   margin: 0;
   color: var(--text);
-  background: #f8fafc;
+  background:
+    radial-gradient(
+      circle at 12% 18%,
+      rgba(142, 77, 255, 0.2),
+      transparent 30rem
+    ),
+    radial-gradient(
+      circle at 84% 12%,
+      rgba(217, 195, 255, 0.22),
+      transparent 28rem
+    ),
+    linear-gradient(135deg, #f3ecff 0%, #e8dcff 45%, #d8c7ff 100%);
+  background-size: 140% 140%, 130% 130%, 200% 200%;
   font-family: "Inter", "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
+  animation: royal-purple-background 60s ease-in-out infinite alternate;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+@keyframes royal-purple-background {
+  0% {
+    background-position: 0% 0%, 100% 0%, 0% 50%;
+  }
+  50% {
+    background-position: 72% 34%, 18% 64%, 100% 50%;
+  }
+  100% {
+    background-position: 100% 100%, 0% 100%, 42% 50%;
+  }
 }
 
 :root.dark-theme body {
@@ -56,10 +85,22 @@ body {
   background:
     radial-gradient(
       circle at top left,
-      rgba(185, 146, 69, 0.1),
+      rgba(217, 195, 255, 0.18),
       transparent 34rem
     ),
-    linear-gradient(180deg, var(--royal-bg-1), var(--royal-bg-2));
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(142, 77, 255, 0.28),
+      transparent 30rem
+    ),
+    linear-gradient(
+      135deg,
+      var(--royal-bg-4),
+      var(--royal-bg-1) 32%,
+      var(--royal-bg-2) 68%,
+      var(--royal-bg-3)
+    );
+  background-size: 140% 140%, 130% 130%, 220% 220%;
 }
 
 :root.dark-theme body::before,
@@ -74,7 +115,7 @@ body {
 :root.dark-theme body::before {
   background-image: radial-gradient(
     circle,
-    rgba(185, 146, 69, 0.15) 1px,
+    rgba(217, 195, 255, 0.14) 1px,
     transparent 1.45px
   );
   background-size: 18px 18px;
@@ -85,12 +126,12 @@ body {
   background-image:
     radial-gradient(
       circle,
-      rgba(231, 201, 120, 0.62) 1.05px,
+      rgba(240, 230, 255, 0.62) 1.05px,
       transparent 1.85px
     ),
     radial-gradient(
       circle,
-      rgba(185, 146, 69, 0.28) 1.8px,
+      rgba(142, 77, 255, 0.32) 1.8px,
       transparent 3px
     );
   background-position: 0 0, 9px 9px;
@@ -109,8 +150,8 @@ body {
     transparent 74%
   );
   filter:
-    drop-shadow(0 0 1px rgba(231, 201, 120, 0.38))
-    drop-shadow(0 0 5px rgba(185, 146, 69, 0.18));
+    drop-shadow(0 0 1px rgba(240, 230, 255, 0.42))
+    drop-shadow(0 0 5px rgba(142, 77, 255, 0.28));
   transition: opacity 160ms ease;
 }
 
@@ -225,9 +266,9 @@ header {
 
 :root.dark-theme .hero {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.026), transparent 44%),
-    rgba(13, 12, 10, 0.88);
-  border-bottom-color: rgba(216, 183, 106, 0.18);
+    linear-gradient(180deg, rgba(217, 195, 255, 0.08), transparent 44%),
+    rgba(30, 8, 70, 0.78);
+  border-bottom-color: rgba(217, 195, 255, 0.22);
 }
 .eyebrow {
   text-transform: uppercase;
@@ -312,6 +353,14 @@ header {
     box-shadow 180ms ease;
 }
 
+.card:hover,
+.card:focus-within {
+  border-color: rgba(142, 77, 255, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(217, 195, 255, 0.22),
+    0 10px 30px rgba(75, 20, 143, 0.16);
+}
+
 :root.dark-theme .card {
   position: relative;
   overflow: hidden;
@@ -330,10 +379,10 @@ header {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(216, 183, 106, 0.58),
-    rgba(255, 255, 255, 0.03),
-    rgba(185, 146, 69, 0.42)
+    rgba(255, 255, 255, 0.08),
+    rgba(240, 230, 255, 0.82),
+    rgba(142, 77, 255, 0.54),
+    rgba(217, 195, 255, 0.7)
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -359,7 +408,7 @@ header {
     var(--royal-gold-hot),
     transparent
   );
-  box-shadow: 0 0 10px rgba(231, 201, 120, 0.24);
+  box-shadow: 0 0 14px rgba(217, 195, 255, 0.36);
   opacity: 0;
   transform: scaleY(0.55);
   pointer-events: none;
@@ -378,12 +427,13 @@ header {
   transform: translateY(-3px);
   border-color: var(--royal-card-border-hover);
   background:
-    linear-gradient(180deg, rgba(185, 146, 69, 0.045), transparent 44%),
+    linear-gradient(180deg, rgba(217, 195, 255, 0.08), transparent 44%),
     var(--royal-card-bg-hover);
   box-shadow:
-    0 0 0 1px rgba(216, 183, 106, 0.08),
-    0 20px 54px rgba(0, 0, 0, 0.42),
-    0 0 24px rgba(185, 146, 69, 0.09);
+    0 0 0 1px rgba(217, 195, 255, 0.18),
+    0 20px 54px rgba(13, 3, 32, 0.48),
+    0 0 28px rgba(142, 77, 255, 0.18),
+    inset 0 0 18px rgba(240, 230, 255, 0.07);
 }
 
 :root.dark-theme .card:hover::before,
@@ -480,8 +530,8 @@ footer {
 }
 
 :root.dark-theme footer {
-  background: #090805;
-  border-top: 1px solid rgba(216, 183, 106, 0.16);
+  background: #120329;
+  border-top: 1px solid rgba(217, 195, 255, 0.18);
 }
 .footer-grid {
   display: grid;
@@ -548,7 +598,7 @@ form {
 }
 
 :root.dark-theme form {
-  background: rgba(13, 12, 10, 0.92);
+  background: rgba(28, 7, 65, 0.9);
   border-color: var(--royal-card-border);
 }
 label {
@@ -573,8 +623,8 @@ textarea {
 :root.dark-theme input,
 :root.dark-theme select,
 :root.dark-theme textarea {
-  background: #2a2a2a;
-  border-color: #444;
+  background: rgba(18, 3, 41, 0.92);
+  border-color: rgba(217, 195, 255, 0.24);
   color: #e5e7eb;
 }
 textarea {
