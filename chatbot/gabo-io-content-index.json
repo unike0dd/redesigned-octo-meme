@@ -1,8 +1,8 @@
 {
-  "repository": "gabo-io-only",
+  "repository": "chatbot/gabo-io-only",
   "audience": "gabo io chatbot retrieval only",
   "purpose": "High-quality customer experience and lead-generation responses for Gabriel Services website visitors.",
-  "accessPolicy": "This directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot for grounded answers and should not be presented as a public navigation section.",
+  "accessPolicy": "The /chatbot directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot and Cloudflare Worker for grounded answers and should not be presented as a public navigation section.",
   "updated": "2026-05-07",
   "entries": [
     {
