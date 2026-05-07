@@ -65,13 +65,29 @@
     },
 
     setupThemeToggle() {
+      const getThemeToggles = () =>
+        document.querySelectorAll("#theme-toggle, [data-theme-toggle]");
+      const getNextTheme = () =>
+        this.current === THEME_LIGHT ? THEME_DARK : THEME_LIGHT;
+
       const updateThemeControls = () => {
-        const toggle = document.getElementById("theme-toggle");
-        if (toggle) {
-          const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
-          const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
-          toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
-        }
+        const nextTheme = getNextTheme();
+        getThemeToggles().forEach((toggle) => {
+          const isMobilePaletteToggle = toggle.dataset.themeToggle === "mobile";
+          if (isMobilePaletteToggle) {
+            toggle.textContent = nextTheme === THEME_LIGHT ? "SUN" : "Moon";
+          } else {
+            const key = nextTheme === THEME_DARK ? "darkTheme" : "lightTheme";
+            const fallbackText = nextTheme === THEME_DARK ? "Dark" : "Light";
+            toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
+          }
+          toggle.setAttribute(
+            "aria-label",
+            nextTheme === THEME_DARK
+              ? "Switch to dark theme"
+              : "Switch to light theme",
+          );
+        });
 
         document.querySelectorAll("[data-theme-option]").forEach((option) => {
           const isActive = option.dataset.themeOption === this.current;
@@ -80,18 +96,25 @@
         });
       };
 
-      updateToggleText();
-      if (toggle.dataset.themeToggleBound === "true") return;
+      const bindThemeControls = () => {
+        getThemeToggles().forEach((toggle) => {
+          if (toggle.dataset.themeToggleBound === "true") return;
+          toggle.dataset.themeToggleBound = "true";
+          toggle.addEventListener("click", () => this.toggleTheme());
+        });
 
-      toggle.dataset.themeToggleBound = "true";
-      toggle.addEventListener("click", () => {
-        this.toggleTheme();
-        updateToggleText();
-      });
+        document.querySelectorAll("[data-theme-option]").forEach((option) => {
+          if (option.dataset.themeOptionBound === "true") return;
+          option.dataset.themeOptionBound = "true";
+          option.addEventListener("click", () => this.setTheme(option.dataset.themeOption));
+        });
 
-      updateThemeControls();
-      window.addEventListener("theme:changed", updateThemeControls);
-      window.addEventListener("language:changed", updateThemeControls);
+        updateThemeControls();
+      };
+
+      bindThemeControls();
+      window.addEventListener("theme:changed", bindThemeControls);
+      window.addEventListener("language:changed", bindThemeControls);
     },
   };
 

@@ -1462,26 +1462,34 @@
     },
 
     setupLanguageToggle() {
-      const toggle = document.getElementById("language-toggle");
-      if (!toggle) return;
-
+      const getLanguageToggles = () =>
+        document.querySelectorAll("#language-toggle, [data-language-toggle]");
       const getNextLanguage = () => (this.currentLanguage === "en" ? "es" : "en");
 
       const updateLanguageToggle = () => {
         const nextLanguage = getNextLanguage();
-        toggle.textContent = nextLanguage.toUpperCase();
-        toggle.setAttribute(
-          "aria-label",
-          nextLanguage === "es"
-            ? this.t("switchToSpanish")
-            : this.t("switchToEnglish"),
-        );
+        getLanguageToggles().forEach((toggle) => {
+          toggle.textContent = nextLanguage.toUpperCase();
+          toggle.setAttribute(
+            "aria-label",
+            nextLanguage === "es"
+              ? this.t("switchToSpanish")
+              : this.t("switchToEnglish"),
+          );
+        });
       };
 
-      toggle.addEventListener("click", () => this.toggleLanguage());
+      const bindLanguageToggles = () => {
+        getLanguageToggles().forEach((toggle) => {
+          if (toggle.dataset.languageToggleBound === "true") return;
+          toggle.dataset.languageToggleBound = "true";
+          toggle.addEventListener("click", () => this.toggleLanguage());
+        });
+        updateLanguageToggle();
+      };
 
-      updateLanguageToggle();
-      window.addEventListener("language:changed", updateLanguageToggle);
+      bindLanguageToggles();
+      window.addEventListener("language:changed", bindLanguageToggles);
     },
   };
 
