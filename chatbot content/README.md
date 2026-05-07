@@ -11,4 +11,5 @@ This directory is dedicated to **gabo io ONLY** for grounded chatbot retrieval. 
 
 ## Current content
 
-- `gabo-io-content-index.json`: Spanish Logistics Operations, Careers, Service Overview, Privacy & GDPR, Cookies Consent, and Terms & Conditions retrieval entries for CX and lead generation.
+- `gabo-io-content-index.json`: Spanish Logistics Operations service and learning, Careers, Service Overview, Privacy & GDPR, Cookies Consent, and Terms & Conditions retrieval entries for CX and lead generation.
+- `logistics-operations-learning-es.md`: Spanish Logistics Operations Learning retrieval content for gabo io chatbot answers about the learning route.

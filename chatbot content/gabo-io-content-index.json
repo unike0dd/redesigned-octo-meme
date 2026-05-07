@@ -3,7 +3,7 @@
   "audience": "gabo io chatbot retrieval only",
   "purpose": "High-quality customer experience and lead-generation responses for Gabriel Services website visitors.",
   "accessPolicy": "This directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot for grounded answers and should not be presented as a public navigation section.",
-  "updated": "2026-05-06",
+  "updated": "2026-05-07",
   "entries": [
     {
       "id": "privacy-gdpr-es",
@@ -162,6 +162,44 @@
       "answer": "Operaciones Logísticas de Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos para mantener tu cadena de suministro en movimiento. Ofrecemos coordinación de despachos y comunicación con transportistas; seguimiento de envíos por transporte aéreo, marítimo y terrestre; monitoreo del estado del inventario y gestión de excepciones; y seguimiento con proveedores y transportistas para proteger los tiempos de entrega. Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos ejecución constante con traspasos claros, plantillas de comunicación, actualizaciones periódicas, escalación temprana de problemas y próximos pasos accionables basados en datos.",
       "leadGenerationPrompt": "Si necesitas soporte logístico confiable sin aumentar la carga interna, puedo recopilar tu información de contacto, tipo de operación, principales rutas o modos de transporte y el reto más urgente para que Gabriel Services te contacte.",
       "recommendedCta": "Visita Operaciones Logísticas o usa Volver a Servicios para comparar este servicio con otras áreas de soporte operativo."
+    },
+    {
+      "id": "logistics-operations-learning-es",
+      "language": "es",
+      "title": "Aprendizaje de Operaciones Logísticas",
+      "sourceUrl": "/learning/logistics-operations.html",
+      "intents": [
+        "aprendizaje de operaciones logísticas",
+        "aprendizaje de operaciones logisticas",
+        "formación logística",
+        "formacion logistica",
+        "capacitación logística",
+        "capacitacion logistica",
+        "ruta de aprendizaje logística",
+        "ruta de aprendizaje logistica",
+        "objetivos de aprendizaje logística",
+        "objetivos de aprendizaje logistica",
+        "flujos de trabajo logísticos",
+        "flujos de trabajo logisticos",
+        "puntos de traspaso",
+        "seguimiento de envíos",
+        "seguimiento de envios",
+        "gestión de excepciones",
+        "gestion de excepciones",
+        "comunicación con transportistas",
+        "comunicacion con transportistas",
+        "comunicación con proveedores",
+        "comunicacion con proveedores",
+        "coordinación de despachos",
+        "coordinacion de despachos",
+        "planificación operativa",
+        "planificacion operativa",
+        "escalaciones logísticas",
+        "escalaciones logisticas"
+      ],
+      "answer": "Aprendizaje de Operaciones Logísticas es una ruta práctica para equipos de logística y profesionales de operaciones, enfocada en la continuidad, la disciplina de seguimiento y la coordinación de procesos. Ayuda a comprender los principales flujos de trabajo logísticos y puntos de traspaso; aprender mejores prácticas para el seguimiento de envíos y la gestión de excepciones; y crear procesos de comunicación repetibles para transportistas y proveedores. Sus temas clave incluyen coordinación de despachos y planificación operativa, estándares de visibilidad para envíos aéreos, marítimos y terrestres, y gestión de seguimientos con control de escalaciones. Está diseñada para convertir la planificación logística en una ejecución diaria predecible sin agregar carga operativa.",
+      "leadGenerationPrompt": "Si quieres fortalecer las habilidades de tu equipo en seguimiento, gestión de excepciones, comunicación con transportistas o ejecución logística diaria, puedo recopilar tus datos de contacto, el área logística prioritaria y el principal reto de aprendizaje para que Gabriel Services te contacte.",
+      "recommendedCta": "Visita Aprendizaje de Operaciones Logísticas o usa Volver a Aprendizaje para explorar otras rutas de capacitación operativa."
     }
   ]
 }
