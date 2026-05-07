@@ -6,8 +6,9 @@
     <meta
       name="description"
       content="Ruta de aprendizaje para Administración Back Office: disciplina de procesos, reportes y habilidades de operaciones internas."
+      data-i18n-content="adminLearningMetaDescription"
     />
-    <title>Aprendizaje de Administración Back Office | Gabriel Services</title>
+    <title data-i18n="adminLearningPageTitle">Aprendizaje de Administración Back Office | Gabriel Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,7 +28,24 @@
           ><a href="../careers.html" data-i18n="careers">Careers</a
           ><a href="../contact.html" data-i18n="contact">Contact</a
           ><a href="../learning.html" data-i18n="learning">Learning</a>
-          <button id="language-toggle" class="toggle-btn">EN</button>
+          <div class="language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
+            <button
+              type="button"
+              class="toggle-btn"
+              data-language-option="en"
+              aria-label="Switch to English" data-i18n-aria-label="switchToEnglish"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              class="toggle-btn"
+              data-language-option="es"
+              aria-label="Switch to Spanish" data-i18n-aria-label="switchToSpanish"
+            >
+              ES
+            </button>
+          </div>
           <button id="theme-toggle" class="toggle-btn">Dark</button>
         </nav>
       </div>
@@ -85,15 +103,15 @@
         </section>
 
         <section class="card learning-page-links" aria-labelledby="related-learning-title">
-          <h2 id="related-learning-title">Explorar otras rutas de aprendizaje</h2>
-          <p>
+          <h2 id="related-learning-title" data-i18n="relatedLearningTitle">Explorar otras rutas de aprendizaje</h2>
+          <p data-i18n="relatedLearningText">
             Continúa navegando entre las rutas principales para comparar
             habilidades, flujos de trabajo y aplicaciones prácticas.
           </p>
-          <nav class="learning-link-grid" aria-label="Rutas de aprendizaje relacionadas">
-            <a class="btn ghost" href="logistics-operations.html">Operaciones Logísticas</a>
-            <a class="btn ghost" href="customer-relations.html">Relaciones con Clientes</a>
-            <a class="btn ghost" href="it-support.html">IT Support</a>
+          <nav class="learning-link-grid" aria-label="Rutas de aprendizaje relacionadas" data-i18n-aria-label="relatedLearningAria">
+            <a class="btn ghost" href="logistics-operations.html" data-i18n="logisticsOps">Operaciones Logísticas</a>
+            <a class="btn ghost" href="customer-relations.html" data-i18n="customerRelations">Relaciones con Clientes</a>
+            <a class="btn ghost" href="it-support.html" data-i18n="itSupport">IT Support</a>
           </nav>
         </section>
 

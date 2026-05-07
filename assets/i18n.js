@@ -14,6 +14,17 @@
       brand: "Gabriel Services",
       tagline: "Outsource, Delivered",
 
+      // Browser page titles
+      homePageTitle: "Gabriel Services | Outsource, Delivered",
+      aboutPageTitle: "About Gabriel Services",
+      careersPageTitle: "Careers | Gabriel Services",
+      servicesPageTitle: "Gabriel Services | Service Overview",
+      logisticsServicePageTitle: "Logistics Operations | Gabriel Services",
+      adminServicePageTitle: "Administrative Back Office | Gabriel Services",
+      customerServicePageTitle:
+        "Customer Relations Operations | Gabriel Services",
+      itServicePageTitle: "IT Support | Gabriel Services",
+
       // Footer sections
       company: "Company",
       servicePagesLabel: "Service Pages",
@@ -40,6 +51,10 @@
       lightTheme: "Light",
       darkTheme: "Dark",
       languageLabel: "Language",
+      languageSelector: "Language selector",
+      mobileNavigation: "Mobile Navigation",
+      switchToEnglish: "Switch to English",
+      switchToSpanish: "Switch to Spanish",
       themeLabelText: "Theme",
 
       // Footer meta
@@ -286,6 +301,68 @@
       practicalApplicationTitle: "Practical Application",
       adminLearningApplication:
         "These skills help back office teams reduce operational friction and support faster decision-making across the business.",
+      adminLearningPageTitle: "Administrative Back Office Learning | Gabriel Services",
+      adminLearningMetaDescription:
+        "Learning track for Administrative Back Office: process discipline, reporting, and internal operations skills.",
+      logisticsLearningPageTitle: "Logistics Operations Learning | Gabriel Services",
+      logisticsLearningMetaDescription:
+        "Learning track for Logistics Operations: workflow coordination, tracking systems, and continuity skills.",
+      logisticsLearningTitle: "Logistics Operations Learning",
+      logisticsLearningIntro:
+        "A practical guide for logistics teams and operations professionals focused on continuity, tracking discipline, and process coordination.",
+      logisticsLearningObjective1:
+        "Understand core logistics workflows and handoff points",
+      logisticsLearningObjective2:
+        "Learn best practices for shipment tracking and exception management",
+      logisticsLearningObjective3:
+        "Create repeatable communication processes for carriers and suppliers",
+      logisticsLearningTopic1: "Dispatch coordination and operations planning",
+      logisticsLearningTopic2:
+        "Visibility standards for air, ocean, and ground shipments",
+      logisticsLearningTopic3:
+        "Follow-up management and escalation control",
+      logisticsLearningApplication:
+        "This track is designed for people who need to turn logistics planning into predictable daily execution without adding operational burden.",
+      customerLearningPageTitle: "Customer Relations Learning | Gabriel Services",
+      customerLearningMetaDescription:
+        "Customer Relations learning track: communication best practices, escalation flows, and customer care skills.",
+      customerLearningTitle: "Customer Relations Learning",
+      customerLearningIntro:
+        "Learn how to manage customer communications, handle escalations, and maintain a reliable service rhythm in every customer interaction.",
+      customerLearningObjective1:
+        "Master communication best practices for customer-facing teams.",
+      customerLearningObjective2:
+        "Understand escalation flows and fast issue-resolution practices.",
+      customerLearningObjective3:
+        "Develop a consistent follow-up and satisfaction process.",
+      customerLearningTopic1: "Ticket follow-up and resolution control.",
+      customerLearningTopic2:
+        "Customer satisfaction measurement and feedback.",
+      customerLearningTopic3:
+        "Clear and timely customer communication.",
+      customerLearningApplication:
+        "These practices help teams convert customer interactions into reliable outcomes and clearer handoffs across operations.",
+      itLearningPageTitle: "IT Support Learning | Gabriel Services",
+      itLearningMetaDescription:
+        "Learning track for IT Support: support workflows, ticket management, and user-centered IT operations.",
+      itLearningTitle: "IT Support Learning",
+      itLearningIntro:
+        "A practical learning track for IT support workflows, ticket handling, and user-facing technical operations.",
+      itLearningObjective1:
+        "Understand ticket lifecycle and user support workflows",
+      itLearningObjective2:
+        "Learn effective technical communication and escalation practices",
+      itLearningObjective3:
+        "Build measurable support habits for daily operations",
+      itLearningTopic1: "Help desk intake, categorization, and response planning",
+      itLearningTopic2: "Incident tracking and progress communication",
+      itLearningTopic3: "Support documentation and follow-up handoffs",
+      itLearningApplication:
+        "This track is built for teams that need consistent technical support without losing focus on reliable user service delivery.",
+      relatedLearningTitle: "Explore other learning tracks",
+      relatedLearningText:
+        "Keep moving between the core learning tracks to compare skills, workflows, and practical applications.",
+      relatedLearningAria: "Related learning tracks",
       backToLearning: "Back to Learning",
       adminBackOfficeServiceIntro:
         "Our back office services bring structure and reliability to your internal operations, helping reduce risk and maintain a consistent business rhythm.",
@@ -442,9 +519,9 @@
       cookiesSection2AnalyticalTitle: "Analytical Cookies",
       cookiesSection2AnalyticalText:
         "We use analytical cookies to understand how our website is used, including the duration of visits and the paths users take through the website. This helps us improve the design and functionality of our website.",
-      cookiesSection3Title: "3. Local Storage",
+      cookiesSection3Title: "3. Browser Cache / Local Storage",
       cookiesSection3Text:
-        "To enhance user experience, we use localStorage to store your preferences, including:",
+        "To enhance user experience, we save your language and theme choices in your browser cache using localStorage, including:",
       cookiesSection3List1: "Language preference (English or Spanish)",
       cookiesSection3List2: "Theme preference (Light or Dark mode)",
       cookiesSection3Text2:
@@ -616,6 +693,17 @@
       brand: "Gabriel Services",
       tagline: "Tercerización, Entregada",
 
+      // Browser page titles
+      homePageTitle: "Gabriel Services | Tercerización, Entregada",
+      aboutPageTitle: "Acerca de Gabriel Services",
+      careersPageTitle: "Carreras | Gabriel Services",
+      servicesPageTitle: "Gabriel Services | Descripción General de Servicios",
+      logisticsServicePageTitle: "Operaciones Logísticas | Gabriel Services",
+      adminServicePageTitle: "Back Office Administrativo | Gabriel Services",
+      customerServicePageTitle:
+        "Operaciones de Relaciones con Clientes | Gabriel Services",
+      itServicePageTitle: "Soporte de TI | Gabriel Services",
+
       // Footer sections
       company: "Empresa",
       servicePagesLabel: "Páginas de Servicios",
@@ -642,6 +730,10 @@
       lightTheme: "Claro",
       darkTheme: "Oscuro",
       languageLabel: "Idioma",
+      languageSelector: "Selector de idioma",
+      mobileNavigation: "Navegación móvil",
+      switchToEnglish: "Cambiar a inglés",
+      switchToSpanish: "Cambiar a español",
       themeLabelText: "Tema",
 
       // Footer meta
@@ -869,6 +961,70 @@
       practicalApplicationTitle: "Aplicación práctica",
       adminLearningApplication:
         "Estas habilidades ayudan a los equipos de back office a reducir la fricción operativa y apoyar una toma de decisiones más rápida en todo el negocio.",
+      adminLearningPageTitle: "Aprendizaje de Administración Back Office | Gabriel Services",
+      adminLearningMetaDescription:
+        "Ruta de aprendizaje para Administración Back Office: disciplina de procesos, reportes y habilidades de operaciones internas.",
+      logisticsLearningPageTitle: "Aprendizaje de Operaciones Logísticas | Gabriel Services",
+      logisticsLearningMetaDescription:
+        "Ruta de aprendizaje para Operaciones Logísticas: coordinación de flujos de trabajo, sistemas de seguimiento y habilidades de continuidad.",
+      logisticsLearningTitle: "Aprendizaje de Operaciones Logísticas",
+      logisticsLearningIntro:
+        "Guía práctica para equipos de logística y profesionales de operaciones, enfocada en la continuidad, la disciplina de seguimiento y la coordinación de procesos.",
+      logisticsLearningObjective1:
+        "Comprender los principales flujos de trabajo logísticos y los puntos de traspaso",
+      logisticsLearningObjective2:
+        "Aprender mejores prácticas para el seguimiento de envíos y la gestión de excepciones",
+      logisticsLearningObjective3:
+        "Crear procesos de comunicación repetibles para transportistas y proveedores",
+      logisticsLearningTopic1: "Coordinación de despachos y planificación operativa",
+      logisticsLearningTopic2:
+        "Estándares de visibilidad para envíos aéreos, marítimos y terrestres",
+      logisticsLearningTopic3:
+        "Gestión de seguimientos y control de escalaciones",
+      logisticsLearningApplication:
+        "Esta ruta está diseñada para personas que necesitan convertir la planificación logística en una ejecución diaria predecible, sin agregar carga operativa.",
+      customerLearningPageTitle: "Aprendizaje de Relaciones con Clientes | Gabriel Services",
+      customerLearningMetaDescription:
+        "Aprendizaje de Relaciones con Clientes: mejores prácticas de comunicación, flujos de escalación y habilidades de atención al cliente.",
+      customerLearningTitle: "Aprendizaje de Relaciones con Clientes",
+      customerLearningIntro:
+        "Aprende cómo gestionar comunicaciones con clientes, manejar escalaciones y mantener un ritmo de servicio confiable en cada interacción con el cliente.",
+      customerLearningObjective1:
+        "Dominar mejores prácticas de comunicación para equipos que tratan directamente con clientes.",
+      customerLearningObjective2:
+        "Comprender flujos de escalación y resolución rápida de problemas.",
+      customerLearningObjective3:
+        "Desarrollar un proceso consistente de seguimiento y satisfacción.",
+      customerLearningTopic1: "Seguimiento de tickets y control de resolución.",
+      customerLearningTopic2:
+        "Medición de satisfacción y retroalimentación del cliente.",
+      customerLearningTopic3:
+        "Comunicación clara y oportuna con el cliente.",
+      customerLearningApplication:
+        "Estas prácticas ayudan a los equipos a convertir las interacciones con clientes en resultados confiables y traspasos más claros entre operaciones.",
+      itLearningPageTitle: "Aprendizaje de Soporte de TI | Gabriel Services",
+      itLearningMetaDescription:
+        "Ruta de aprendizaje de Soporte de TI: flujos de soporte, gestión de tickets y operaciones de TI centradas en usuarios.",
+      itLearningTitle: "Aprendizaje de Soporte de TI",
+      itLearningIntro:
+        "Ruta práctica de aprendizaje para flujos de soporte de TI, manejo de tickets y operaciones técnicas orientadas al usuario.",
+      itLearningObjective1:
+        "Comprender el ciclo de vida de tickets y los flujos de soporte a usuarios",
+      itLearningObjective2:
+        "Aprender prácticas efectivas de comunicación técnica y escalación",
+      itLearningObjective3:
+        "Crear hábitos medibles de soporte para operaciones diarias",
+      itLearningTopic1:
+        "Recepción de mesa de ayuda, categorización y planificación de respuesta",
+      itLearningTopic2: "Seguimiento de incidentes y comunicación de progreso",
+      itLearningTopic3:
+        "Documentación de soporte y traspasos de seguimiento",
+      itLearningApplication:
+        "Esta ruta está creada para equipos que necesitan soporte técnico constante sin perder el enfoque en una entrega confiable de servicio al usuario.",
+      relatedLearningTitle: "Explorar otras rutas de aprendizaje",
+      relatedLearningText:
+        "Continúa navegando entre las rutas principales para comparar habilidades, flujos de trabajo y aplicaciones prácticas.",
+      relatedLearningAria: "Rutas de aprendizaje relacionadas",
       backToLearning: "Volver a Aprendizaje",
       adminBackOfficeServiceIntro:
         "Nuestros servicios de back office aportan estructura y confiabilidad a tus operaciones internas, ayudando a reducir riesgos y mantener un ritmo empresarial constante.",
@@ -1035,9 +1191,9 @@
       cookiesSection2AnalyticalTitle: "Cookies analíticas",
       cookiesSection2AnalyticalText:
         "Usamos cookies analíticas para comprender cómo se utiliza nuestro sitio web, incluida la duración de las visitas y las rutas que los usuarios siguen dentro del sitio web. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web.",
-      cookiesSection3Title: "3. Almacenamiento local",
+      cookiesSection3Title: "3. Caché del navegador / almacenamiento local",
       cookiesSection3Text:
-        "Para mejorar la experiencia del usuario, usamos localStorage para almacenar tus preferencias, incluyendo:",
+        "Para mejorar la experiencia del usuario, guardamos tus elecciones de idioma y tema en la caché de tu navegador mediante localStorage, incluyendo:",
       cookiesSection3List1: "Preferencia de idioma (inglés o español)",
       cookiesSection3List2: "Preferencia de tema visual (modo claro u oscuro)",
       cookiesSection3Text2:
@@ -1202,6 +1358,25 @@
     },
   };
 
+  const LANGUAGE_STORAGE_KEY = "language";
+
+  function readClientCache(key) {
+    try {
+      return window.localStorage?.getItem(key) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function writeClientCache(key, value) {
+    try {
+      window.localStorage?.setItem(key, value);
+      document.documentElement.dataset.preferenceCache = "localStorage";
+    } catch (error) {
+      document.documentElement.dataset.preferenceCache = "unavailable";
+    }
+  }
+
   function normalizeLanguage(lang) {
     const normalized = String(lang || "").split("-")[0];
     return translations[normalized] ? normalized : "";
@@ -1209,8 +1384,8 @@
 
   function getInitialLanguage() {
     return (
+      normalizeLanguage(readClientCache(LANGUAGE_STORAGE_KEY)) ||
       normalizeLanguage(document.documentElement.dataset.pageLanguage) ||
-      normalizeLanguage(localStorage.getItem("language")) ||
       normalizeLanguage(document.documentElement.lang) ||
       "en"
     );
@@ -1235,7 +1410,7 @@
     setLanguage(lang) {
       if (!translations[lang]) return;
       this.currentLanguage = lang;
-      localStorage.setItem("language", lang);
+      writeClientCache(LANGUAGE_STORAGE_KEY, lang);
       this.applyLanguage();
       document.documentElement.lang = lang;
     },
@@ -1267,6 +1442,18 @@
         el.title = this.t(key);
       });
 
+      // Apply to data-i18n-aria-label
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-aria-label");
+        el.setAttribute("aria-label", this.t(key));
+      });
+
+      // Apply to data-i18n-content for meta descriptions and similar content attributes
+      document.querySelectorAll("[data-i18n-content]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-content");
+        el.setAttribute("content", this.t(key));
+      });
+
       // Apply to data-i18n-html (for content with HTML tags)
       document.querySelectorAll("[data-i18n-html]").forEach((el) => {
         const key = el.getAttribute("data-i18n-html");
@@ -1286,7 +1473,13 @@
         });
 
         if (toggle) {
-          toggle.textContent = this.currentLanguage === "en" ? "ES" : "EN";
+          toggle.textContent = this.currentLanguage.toUpperCase();
+          toggle.setAttribute(
+            "aria-label",
+            this.currentLanguage === "en"
+              ? this.t("switchToSpanish")
+              : this.t("switchToEnglish"),
+          );
         }
       };
 

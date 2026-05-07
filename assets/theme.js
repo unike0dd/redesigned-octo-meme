@@ -3,11 +3,28 @@
   const THEME_LIGHT = "light";
   const STORAGE_KEY = "theme";
 
+  function readClientCache(key) {
+    try {
+      return window.localStorage?.getItem(key) || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function writeClientCache(key, value) {
+    try {
+      window.localStorage?.setItem(key, value);
+      document.documentElement.dataset.preferenceCache = "localStorage";
+    } catch (error) {
+      document.documentElement.dataset.preferenceCache = "unavailable";
+    }
+  }
+
   const THEME = {
-    current: localStorage.getItem(STORAGE_KEY) || THEME_LIGHT,
+    current: readClientCache(STORAGE_KEY) || THEME_LIGHT,
 
     init() {
-      this.current = localStorage.getItem(STORAGE_KEY) || THEME_LIGHT;
+      this.current = readClientCache(STORAGE_KEY) || THEME_LIGHT;
       this.applyTheme();
       this.setupThemeToggle();
     },
@@ -19,7 +36,7 @@
     setTheme(theme) {
       if (![THEME_DARK, THEME_LIGHT].includes(theme)) return;
       this.current = theme;
-      localStorage.setItem(STORAGE_KEY, theme);
+      writeClientCache(STORAGE_KEY, theme);
       this.applyTheme();
     },
 
@@ -47,7 +64,9 @@
       if (!toggle) return;
 
       const updateToggleText = () => {
-        toggle.textContent = this.current === THEME_LIGHT ? "Dark" : "Light";
+        const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
+        const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
+        toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
       };
 
       updateToggleText();
@@ -57,6 +76,7 @@
       });
 
       window.addEventListener("theme:changed", updateToggleText);
+      window.addEventListener("language:changed", updateToggleText);
     },
   };
 
