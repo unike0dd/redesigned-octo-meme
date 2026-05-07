@@ -138,15 +138,12 @@ body {
 
 .language-switcher {
   display: inline-flex;
-  gap: 0.35rem;
   align-items: center;
 }
 
-.language-switcher .toggle-btn[aria-pressed="true"],
-.toggle-btn.language-active {
-  background: #fff;
-  color: var(--brand-navy);
-  border-color: #fff;
+#language-toggle,
+#theme-toggle {
+  min-width: 4.25rem;
 }
 
 .toggle-btn:hover {
