@@ -815,10 +815,10 @@
 
       learningTitle: "Aprendizaje",
       learningIntro:
-        "Guía y conocimiento práctico de servicio para soporte operativo orientado a flujos de trabajo con preferencia por el inglés.",
+        "Guía y conocimiento práctico de servicio para soporte operativo orientado a flujos de trabajo, con preferencia por el inglés.",
       trackLogisticsTitle: "Operaciones Logísticas",
       trackLogisticsText:
-        "Aprenda coordinación, seguimiento y elementos esenciales de continuidad.",
+        "Aprende los fundamentos de coordinación, seguimiento y continuidad.",
       logisticsServiceTitle: "Operaciones Logísticas",
       logisticsServiceIntro:
         "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento.",
@@ -846,7 +846,7 @@
       backToServices: "Volver a Servicios",
       trackAdminTitle: "Back Office Administrativo",
       trackAdminText:
-        "Aprenda documentación, ritmo de informes y mantenimiento de procesos.",
+        "Aprende documentación, ritmo de reportes y mantenimiento de procesos.",
       adminLearningTitle: "Aprendizaje de Administración Back Office",
       adminLearningIntro:
         "Capacitación diseñada para equipos de soporte operativo que gestionan sistemas internos, programación, documentación y flujos de trabajo de tareas.",
@@ -891,7 +891,7 @@
         "Un sólido soporte de back office ayuda a las empresas a escalar al eliminar fricción administrativa, mejorar la consistencia y liberar a tu equipo para enfocarse en trabajos de mayor valor.",
       trackCustomerTitle: "Operaciones de Clientes",
       trackCustomerText:
-        "Aprenda flujo de seguimiento, continuidad de escalamiento y ritmo de respuesta.",
+        "Aprende flujo de seguimiento, continuidad de escalaciones y ritmo de respuesta.",
       customerRelationsServiceTitle:
         "Operaciones de Relaciones con Clientes",
       customerRelationsServiceIntro:
@@ -919,7 +919,7 @@
         "Las operaciones sólidas de relaciones con clientes reducen la pérdida de clientes, mejoran la percepción de la marca y garantizan que tus clientes siempre se sientan apoyados.",
       trackITTitle: "Soporte de TI",
       trackITText:
-        "Aprenda conceptos básicos de triaje, comunicación de tickets y manejo de solicitudes.",
+        "Aprende fundamentos de clasificación, comunicación de tickets y manejo de solicitudes.",
       itSupportServiceIntro:
         "Gabriel Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos.",
       serviceHighlightsTitle: "Aspectos destacados del servicio",
