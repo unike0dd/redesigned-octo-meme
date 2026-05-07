@@ -65,13 +65,19 @@
     },
 
     setupThemeToggle() {
-      const toggle = document.getElementById("theme-toggle");
-      if (!toggle) return;
+      const updateThemeControls = () => {
+        const toggle = document.getElementById("theme-toggle");
+        if (toggle) {
+          const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
+          const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
+          toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
+        }
 
-      const updateToggleText = () => {
-        const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
-        const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
-        toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
+        document.querySelectorAll("[data-theme-option]").forEach((option) => {
+          const isActive = option.dataset.themeOption === this.current;
+          option.setAttribute("aria-pressed", String(isActive));
+          option.classList.toggle("theme-active", isActive);
+        });
       };
 
       updateToggleText();
@@ -83,8 +89,9 @@
         updateToggleText();
       });
 
-      window.addEventListener("theme:changed", updateToggleText);
-      window.addEventListener("language:changed", updateToggleText);
+      updateThemeControls();
+      window.addEventListener("theme:changed", updateThemeControls);
+      window.addEventListener("language:changed", updateThemeControls);
     },
   };
 
