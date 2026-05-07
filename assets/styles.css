@@ -653,21 +653,54 @@ textarea {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
 }
 .mobile-nav .menu {
-  display: flex;
-  justify-content: space-around;
-  padding: 0.5rem;
+  display: grid;
+  grid-template-columns:
+    minmax(42px, 1fr) minmax(58px, 1.15fr) minmax(76px, 1.35fr)
+    minmax(48px, 1fr) minmax(48px, 1fr);
+  align-items: center;
+  gap: clamp(0.1rem, 0.8vw, 0.35rem);
+  padding: 0.42rem 0.5rem;
 }
 .mobile-nav button,
 .mobile-nav a {
   color: #f1f7ff;
   background: transparent;
   border: none;
-  font-size: 0.82rem;
-  padding: 0.5rem;
+  border-radius: 9px;
+  font-size: clamp(0.66rem, 2.3vw, 0.82rem);
+  padding: 0.44rem clamp(0.18rem, 1.2vw, 0.5rem);
+  text-align: center;
+}
+.mobile-preference-controls {
+  display: grid;
+  gap: 0.16rem;
+  justify-self: center;
+  min-width: 74px;
+}
+.mobile-language-switcher,
+.mobile-theme-switcher {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.15rem;
+}
+.mobile-preference-controls button {
+  min-height: 24px;
+  padding: 0.18rem 0.22rem;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.66rem;
+  line-height: 1;
+}
+.mobile-preference-controls button[aria-pressed="true"],
+.mobile-preference-controls .language-active,
+.mobile-preference-controls .theme-active {
+  background: #fff;
+  color: var(--brand-navy);
+  border-color: #fff;
 }
 .services-dropup {
   position: absolute;
-  bottom: 56px;
+  bottom: calc(100% + 8px);
   left: 16%;
   right: 16%;
   background: #fff;
@@ -694,7 +727,7 @@ textarea {
 }
 @media (max-width: 900px) {
   body {
-    padding-bottom: 90px;
+    padding-bottom: 105px;
   }
   .hero {
     min-height: auto;
@@ -936,11 +969,11 @@ textarea {
 
 @media (max-width: 900px) {
   #gabo-chatbot-fab {
-    bottom: calc(20px + 56px + 7px);
+    bottom: calc(20px + 68px + 7px);
   }
 
   #gabo-chatbot-container {
-    bottom: calc(20px + 56px + 7px);
+    bottom: calc(20px + 68px + 7px);
     right: 5vw;
     width: 90vw;
     height: 85svh;

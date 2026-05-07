@@ -60,23 +60,45 @@
     },
 
     setupThemeToggle() {
-      const toggle = document.getElementById("theme-toggle");
-      if (!toggle) return;
+      const updateThemeControls = () => {
+        const toggle = document.getElementById("theme-toggle");
+        if (toggle) {
+          const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
+          const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
+          toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
+        }
 
-      const updateToggleText = () => {
-        const key = this.current === THEME_LIGHT ? "darkTheme" : "lightTheme";
-        const fallbackText = this.current === THEME_LIGHT ? "Dark" : "Light";
-        toggle.textContent = window.I18N?.t ? window.I18N.t(key) : fallbackText;
+        document.querySelectorAll("[data-theme-option]").forEach((option) => {
+          const isActive = option.dataset.themeOption === this.current;
+          option.setAttribute("aria-pressed", String(isActive));
+          option.classList.toggle("theme-active", isActive);
+        });
       };
 
-      updateToggleText();
-      toggle.addEventListener("click", () => {
-        this.toggleTheme();
-        updateToggleText();
-      });
+      const toggle = document.getElementById("theme-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", () => {
+          this.toggleTheme();
+          updateThemeControls();
+        });
+      }
 
-      window.addEventListener("theme:changed", updateToggleText);
-      window.addEventListener("language:changed", updateToggleText);
+      if (!this.hasThemeOptionListener) {
+        document.addEventListener("click", (event) => {
+          const option = event.target.closest("[data-theme-option]");
+          if (!option) return;
+
+          this.setTheme(option.dataset.themeOption);
+          window.dispatchEvent(
+            new CustomEvent("theme:changed", { detail: { theme: this.current } }),
+          );
+        });
+        this.hasThemeOptionListener = true;
+      }
+
+      updateThemeControls();
+      window.addEventListener("theme:changed", updateThemeControls);
+      window.addEventListener("language:changed", updateThemeControls);
     },
   };
 

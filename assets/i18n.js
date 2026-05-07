@@ -1462,16 +1462,14 @@
     },
 
     setupLanguageToggle() {
-      const languageOptions = document.querySelectorAll("[data-language-option]");
-      const toggle = document.getElementById("language-toggle");
-
       const updateLanguageControls = () => {
-        languageOptions.forEach((option) => {
+        document.querySelectorAll("[data-language-option]").forEach((option) => {
           const isActive = option.dataset.languageOption === this.currentLanguage;
           option.setAttribute("aria-pressed", String(isActive));
           option.classList.toggle("language-active", isActive);
         });
 
+        const toggle = document.getElementById("language-toggle");
         if (toggle) {
           toggle.textContent = this.currentLanguage.toUpperCase();
           toggle.setAttribute(
@@ -1483,8 +1481,11 @@
         }
       };
 
-      languageOptions.forEach((option) => {
-        option.addEventListener("click", () => {
+      if (!this.hasLanguageOptionListener) {
+        document.addEventListener("click", (event) => {
+          const option = event.target.closest("[data-language-option]");
+          if (!option) return;
+
           const selectedLanguage = option.dataset.languageOption;
           this.setLanguage(selectedLanguage);
           window.dispatchEvent(
@@ -1493,8 +1494,10 @@
             }),
           );
         });
-      });
+        this.hasLanguageOptionListener = true;
+      }
 
+      const toggle = document.getElementById("language-toggle");
       if (toggle) {
         toggle.addEventListener("click", () => this.toggleLanguage());
       }
