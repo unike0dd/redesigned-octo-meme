@@ -11,5 +11,5 @@ This directory is dedicated to **gabo io ONLY** for grounded chatbot retrieval. 
 
 ## Current content
 
-- `gabo-io-content-index.json`: Spanish Logistics Operations, Customer Relations Learning, Careers, Service Overview, Privacy & GDPR, Cookies Consent, and Terms & Conditions retrieval entries for CX and lead generation.
-- `customer-relations-learning-es.md`: Spanish Customer Relations learning retrieval content for communication, escalation, ticket follow-up, satisfaction, and practical application guidance.
+- `gabo-io-content-index.json`: Spanish Contact, Logistics Operations, Careers, Service Overview, Privacy & GDPR, Cookies Consent, and Terms & Conditions retrieval entries for CX and lead generation.
+- `contact-es.md`: Spanish Contact page retrieval details, form fields, remote assistant inquiry fields, and lead-generation guidance.
