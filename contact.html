@@ -75,18 +75,25 @@
             />
           </div>
           <div class="form-grid">
-            <div>
-              <label data-i18n="fullName">Nombre completo</label
-              ><input name="fullName" autocomplete="name" />
+            <div class="floating-field">
+              <label for="contact-full-name" data-i18n="fullName">Nombre completo</label>
+              <input id="contact-full-name" name="fullName" autocomplete="name" />
             </div>
-            <div>
-              <label data-i18n="emailAddress"
+            <div class="floating-field">
+              <label for="contact-email-address" data-i18n="emailAddress"
                 >Dirección de correo electrónico</label
-              ><input name="emailAddress" type="email" autocomplete="email" />
-            </div>
-            <div>
-              <label data-i18n="countryCode">Código de país</label>
+              >
               <input
+                id="contact-email-address"
+                name="emailAddress"
+                type="email"
+                autocomplete="email"
+              />
+            </div>
+            <div class="floating-field">
+              <label for="contact-country-code" data-i18n="countryCode">Código de país</label>
+              <input
+                id="contact-country-code"
                 type="tel"
                 inputmode="numeric"
                 pattern="[0-9]+"
@@ -95,9 +102,10 @@
                 name="countryCode"
               />
             </div>
-            <div>
-              <label data-i18n="contactNumber">Número de contacto</label>
+            <div class="floating-field">
+              <label for="contact-number" data-i18n="contactNumber">Número de contacto</label>
               <input
+                id="contact-number"
                 type="tel"
                 inputmode="numeric"
                 pattern="[0-9]+"
@@ -106,20 +114,26 @@
                 name="contactNumber"
               />
             </div>
-            <div>
-              <label data-i18n="city">Ciudad</label><input name="city" />
+            <div class="floating-field">
+              <label for="contact-city" data-i18n="city">Ciudad</label>
+              <input id="contact-city" name="city" />
             </div>
-            <div>
-              <label data-i18n="stateProvince">Estado/Provincia</label
-              ><input name="stateProvince" />
+            <div class="floating-field">
+              <label for="contact-state-province" data-i18n="stateProvince">Estado/Provincia</label>
+              <input id="contact-state-province" name="stateProvince" />
             </div>
-            <div>
-              <label data-i18n="spaceSuiteApt">Espacio/Suite/Apartamento</label
-              ><input name="spaceSuiteApt" />
+            <div class="floating-field">
+              <label for="contact-space-suite-apt" data-i18n="spaceSuiteApt"
+                >Espacio/Suite/Apartamento</label
+              >
+              <input id="contact-space-suite-apt" name="spaceSuiteApt" />
             </div>
-            <div>
-              <label data-i18n="countryZipCode">Código postal del país</label>
+            <div class="floating-field">
+              <label for="contact-country-zip-code" data-i18n="countryZipCode"
+                >Código postal del país</label
+              >
               <input
+                id="contact-country-zip-code"
                 type="text"
                 inputmode="numeric"
                 pattern="[0-9]+"
@@ -146,9 +160,17 @@
               </div>
             </div>
           </div>
-          <label data-i18n="messageLabel">Mensaje</label
-          ><textarea name="message"></textarea>
-          <h3 data-i18n="inquiryAboutTitle">Consulta sobre Asistente Remoto</h3>
+          <div class="floating-field floating-field-textarea">
+            <label for="contact-message" data-i18n="messageLabel">Mensaje</label>
+            <textarea id="contact-message" name="message"></textarea>
+          </div>
+          <h3 data-i18n="inquiryAboutTitle">
+            Cuéntanos tus expectativas sobre la experiencia, el conocimiento y
+            las habilidades del Asistente Remoto
+          </h3>
+          <p class="inquiry-helper" data-i18n="inquiryAboutHelper">
+            Aptitud, habilidades, experiencia, conocimiento
+          </p>
           <div class="form-grid inquiry-grid">
             <div
               class="entry-group"
@@ -175,7 +197,8 @@
                 </div>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddSkillEntry">Agregar habilidad</label>
                   <input
                     data-i18n-placeholder="placeholderAddSkillEntry"
                     name="skills[]"
@@ -209,7 +232,8 @@
                 </div>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddAreaInterestEntry">Agregar área de interés</label>
                   <input
                     data-i18n-placeholder="placeholderAddAreaInterestEntry"
                     name="areasOfInterest[]"
@@ -245,7 +269,8 @@
                 </div>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddExperienceEntry">Agregar nivel de experiencia</label>
                   <input
                     data-i18n-placeholder="placeholderAddExperienceEntry"
                     name="experienceLevels[]"
@@ -279,7 +304,8 @@
                 </div>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddEducationEntry">Agregar educación</label>
                   <input
                     data-i18n-placeholder="placeholderAddEducationEntry"
                     name="education[]"
@@ -313,7 +339,8 @@
                 </div>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddLanguageEntry">Agregar idioma</label>
                   <input
                     data-i18n-placeholder="placeholderAddLanguageEntry"
                     name="languages[]"

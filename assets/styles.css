@@ -654,6 +654,86 @@ textarea {
   min-height: 130px;
 }
 
+.floating-field {
+  position: relative;
+}
+
+.floating-field label {
+  position: absolute;
+  top: 50%;
+  left: 0.72rem;
+  z-index: 1;
+  max-width: calc(100% - 1.44rem);
+  margin: 0;
+  padding: 0 0.28rem;
+  border-radius: 6px;
+  background: #fff;
+  color: var(--muted);
+  line-height: 1.1;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transform-origin: left center;
+  transition:
+    color 0.2s ease,
+    top 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.3s ease;
+}
+
+.floating-field input,
+.floating-field textarea {
+  padding: 1rem 0.62rem 0.48rem;
+}
+
+.floating-field input::placeholder,
+.floating-field textarea::placeholder {
+  color: transparent;
+}
+
+.floating-field-textarea label {
+  top: 1.25rem;
+}
+
+.floating-field.is-focused label,
+.floating-field.has-value label {
+  top: 0;
+  color: var(--brand-navy);
+  transform: translateY(-50%) scale(0.84);
+}
+
+.floating-field.is-focused input,
+.floating-field.is-focused textarea {
+  border-color: var(--brand-navy);
+  box-shadow: 0 0 0 3px rgba(25, 67, 122, 0.12);
+  outline: none;
+}
+
+:root.dark-theme .floating-field label {
+  background: rgba(28, 7, 65, 0.98);
+  color: #d8c9ff;
+}
+
+:root.dark-theme .floating-field.is-focused label,
+:root.dark-theme .floating-field.has-value label {
+  color: var(--royal-gold-bright);
+}
+
+:root.dark-theme .floating-field.is-focused input,
+:root.dark-theme .floating-field.is-focused textarea {
+  border-color: var(--royal-gold-bright);
+  box-shadow: 0 0 0 3px rgba(255, 211, 106, 0.16);
+}
+
+.inquiry-helper {
+  margin: -0.25rem 0 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+:root.dark-theme .inquiry-helper {
+  color: #d8c9ff;
+}
+
 .form-honeypot,
 .career-honeypot {
   position: absolute !important;

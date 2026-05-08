@@ -683,6 +683,48 @@
     });
   }
 
+
+  function setupFloatingField(field) {
+    if (!field || field.dataset.floatingFieldReady === "true") return;
+
+    const controls = Array.from(field.querySelectorAll("input, textarea"));
+    if (!controls.length) return;
+
+    const updateValueState = () => {
+      field.classList.toggle(
+        "has-value",
+        controls.some((control) => Boolean(control.value)),
+      );
+    };
+
+    field.addEventListener("focusin", () => {
+      field.classList.add("is-focused");
+    });
+
+    field.addEventListener("focusout", () => {
+      field.classList.remove("is-focused");
+      updateValueState();
+    });
+
+    controls.forEach((control) => {
+      control.addEventListener("input", updateValueState);
+      control.addEventListener("change", updateValueState);
+    });
+
+    const form = controls[0].form;
+    if (form) {
+      form.addEventListener("reset", () => window.setTimeout(updateValueState, 0));
+    }
+
+    field.dataset.floatingFieldReady = "true";
+    updateValueState();
+    window.setTimeout(updateValueState, 150);
+  }
+
+  function initFloatingFields(root = document) {
+    root.querySelectorAll(".floating-field").forEach(setupFloatingField);
+  }
+
   function initRepeatableEntryGroups() {
     const groups = document.querySelectorAll("[data-repeatable-group]");
     if (!groups.length) return;
@@ -700,17 +742,27 @@
       const placeholder =
         firstInput?.getAttribute("placeholder") ||
         "Add " + fieldName.toLowerCase() + " entry";
+      const placeholderKey = firstInput?.getAttribute("data-i18n-placeholder");
       const inputName = firstInput?.getAttribute("name") || `${fieldName}[]`;
 
       addBtn.addEventListener("click", () => {
         const row = document.createElement("div");
-        row.className = "entry-row";
+        row.className = "entry-row floating-field entry-floating-field";
+        const label = document.createElement("label");
+        label.textContent = placeholder;
+        if (placeholderKey) {
+          label.setAttribute("data-i18n", placeholderKey);
+        }
         const input = document.createElement("input");
         input.setAttribute("name", inputName);
         input.setAttribute("placeholder", placeholder);
-        input.setAttribute("aria-label", fieldName + " entry");
-        row.appendChild(input);
+        if (placeholderKey) {
+          input.setAttribute("data-i18n-placeholder", placeholderKey);
+        }
+        input.setAttribute("aria-label", placeholder);
+        row.append(label, input);
         list.appendChild(row);
+        setupFloatingField(row);
         input.focus();
       });
 
@@ -837,6 +889,7 @@
     ensurePrimaryNav();
     ensureMobileNav();
     ensureSkipLink();
+    initFloatingFields();
     initRepeatableEntryGroups();
     initNumericOnlyInputs();
     initMobileServiceMenu();

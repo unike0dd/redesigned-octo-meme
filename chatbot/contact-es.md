@@ -21,11 +21,11 @@ La página de Contacto permite ponerte en contacto con Gabriel Services para sop
 - Mejor hora para contactarte.
 - Mensaje.
 
-## Consulta sobre Asistente Remoto
+## Expectativas sobre el Asistente Remoto
 
-El formulario también incluye una sección de **Consulta sobre Asistente Remoto** para capturar detalles sobre:
+El formulario también incluye una sección para **expectativas sobre el Asistente Remoto** y captura detalles sobre:
 
-- Habilidades.
+- Aptitud, habilidades, experiencia y conocimiento.
 - Área de interés.
 - Nivel de experiencia.
 - Educación.
@@ -33,15 +33,15 @@ El formulario también incluye una sección de **Consulta sobre Asistente Remoto
 
 Cada sección permite usar **Agregar +** para incluir más información o **Eliminar -** para quitar una entrada.
 
-## Lead-generation guidance
+## Guía para generación de prospectos
 
-When a visitor asks to contact Gabriel Services, request support, discuss onboarding, share project needs, or explore collaboration opportunities, ask for:
+Cuando un visitante pida contactar a Gabriel Services, solicitar soporte, hablar sobre incorporación, compartir necesidades de proyecto o explorar oportunidades de colaboración, pide:
 
-- Full name and email address.
-- Country code and contact number.
-- City, state/province, and postal code.
-- Best date/time to contact them.
-- Message or business need.
-- For remote assistant inquiries: skills, area of interest, experience level, education, and languages.
+- Nombre completo y dirección de correo electrónico.
+- Código de país y número de contacto.
+- Ciudad, estado/provincia y código postal.
+- Mejor fecha/hora para contactarle.
+- Mensaje o necesidad del negocio.
+- Para expectativas sobre el Asistente Remoto: aptitud, habilidades, experiencia, conocimiento, área de interés, nivel de experiencia, educación e idiomas.
 
-Suggested CTA: visit the Contact page, complete the Spanish form, and use **Enviar** when the information is ready. Use **Limpiar formulario** only if they want to reset the form.
+CTA sugerido: visita la página Contacto, completa el formulario en español y usa **Enviar** cuando la información esté lista. Usa **Limpiar formulario** solo si deseas reiniciar el formulario.
