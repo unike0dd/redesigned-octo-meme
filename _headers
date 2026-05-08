@@ -35,3 +35,25 @@
 
 /preview/*
   X-Robots-Tag: noindex, nofollow, noarchive
+
+/contact/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/careers/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+/api/contact
+  Cache-Control: no-store, max-age=0
+  Access-Control-Allow-Origin: https://www.gabo.services
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST
+  Access-Control-Allow-Headers: Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Gabo-Asset-ID, X-Gabo-Repo-ID, X-Gabo-Integrity-SHA256
+  Vary: Origin
+
+/api/careers
+  Cache-Control: no-store, max-age=0
+  Access-Control-Allow-Origin: https://www.gabo.services
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST
+  Access-Control-Allow-Headers: Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Gabo-Asset-ID, X-Gabo-Repo-ID, X-Gabo-Integrity-SHA256
+  Vary: Origin
