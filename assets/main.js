@@ -11,6 +11,26 @@
   };
   const CORS_ALLOWLIST = [window.location.origin];
 
+  const EXTENSION_MESSAGE_CHANNEL_CLOSED =
+    /(?:runtime\.lastError.*message channel closed before a response was received|listener indicated an asynchronous response.*message channel closed)/i;
+
+  function isKnownExtensionRuntimeNoise(reason) {
+    const text = String(reason?.message || reason || "");
+    return EXTENSION_MESSAGE_CHANNEL_CLOSED.test(text);
+  }
+
+  function initRuntimeErrorDiagnostics() {
+    window.addEventListener("error", (event) => {
+      if (!isKnownExtensionRuntimeNoise(event.message || event.error)) return;
+      event.preventDefault();
+    });
+
+    window.addEventListener("unhandledrejection", (event) => {
+      if (!isKnownExtensionRuntimeNoise(event.reason)) return;
+      event.preventDefault();
+    });
+  }
+
   function enforceClientSecurityPolicy() {
     Object.entries(SECURITY_HEADERS).forEach(([name, content]) => {
       const selector = `meta[http-equiv="${name}"], meta[name="${name}"]`;
@@ -171,10 +191,15 @@
 
   function initSecurityRuntime() {
     enforceClientSecurityPolicy();
+    initRuntimeErrorDiagnostics();
     window.GaboSecurity = {
       scanAndSanitizePayload,
       sha256Hex,
       corsAllowlist: CORS_ALLOWLIST.slice(),
+      knownRuntimeNoise: {
+        source: "browser-extension-message-channel",
+        pattern: EXTENSION_MESSAGE_CHANNEL_CLOSED.source,
+      },
       frameworks: ["OWASP ASVS", "CISA CPG", "NIST CSF", "PCI DSS 4.0"],
     };
   }
@@ -483,6 +508,7 @@
   }
 
   function initPage() {
+    initSecurityRuntime();
     ensurePrimaryNav();
     ensureMobileNav();
     ensureSkipLink();
