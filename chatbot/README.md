@@ -6,13 +6,13 @@ This directory is dedicated to **gabo io ONLY** for the website chatbot runtime,
 
 - `gabo-io.js`: browser chatbot widget. It renders the gabo io floating action button and chat panel, loads this directory's content index, sends the visitor message plus grounded retrieval context to the Cloudflare Worker endpoint `/api/ops-online-chat`, and falls back to local grounded EN/ES content if the Worker is unavailable.
 - `gabo-io-content-index.json`: repository-grounded bilingual EN/ES content index used by the chatbot and Worker to answer with confidence and provide relevant source-aware context.
-- `repo-content-sync-worker.js`: Cloudflare Worker module for repo-to-chatbot synchronization. It fetches the latest `gabo-io-content-index.json` directly from the repository raw URL and posts the EN/ES retrieval payload to the Cloudflare Chatbot Worker.
-- `*.md`: supporting retrieval briefs for service, learning, contact, and lead-generation responses.
+- `repo-content-sync-worker.js`: Cloudflare Worker module for repo-to-chatbot synchronization and interaction bridging. It fetches the latest `gabo-io-content-index.json` plus the EN/ES Markdown briefs for Logistics Operations, Customer Relations, Administrative Back Office, and IT Support directly from the repository raw URL, then posts or forwards that retrieval payload to the Cloudflare Chatbot Worker for CX and lead generation.
+- `*.md`: supporting retrieval briefs for service, learning, contact, and lead-generation responses. The EN/ES domain briefs for Logistics Operations, IT Support, Administrative Back Office, and Customer Relations must each combine their matching `/services/...` page content and `/learning/...` page content so chatbot answers can cover service support and learning guidance alike.
 
 ## Retrieval rules
 
 - Use this content only for gabo io chatbot responses.
-- Keep answers concise, privacy-aware, and tied to Gabriel Services website content.
+- Keep answers concise, privacy-aware, and tied to Gabriel Services website content from the matching Services and Learning pages for Logistics Operations, IT Support, Administrative Back Office, and Customer Relations.
 - Prefer the entry `answer` for direct responses and append the `leadGenerationPrompt` only when the visitor shows buying intent, asks for help, or needs follow-up.
 - Match the active site language first (`en` or `es`) and only fall back to all entries when a language-specific match is not available.
 - Do not treat this directory as a public site navigation section.
@@ -29,22 +29,23 @@ Every Submit/Enter action passes through the browser TinyML sanitation gateway b
 
 ## Cloudflare Chatbot Worker handoff
 
-The browser chatbot continues communicating with the Cloudflare Chatbot Worker at `/api/ops-online-chat`. Each request includes:
+The browser chatbot continues communicating with the Cloudflare Chatbot Worker at `/api/ops-online-chat`. The repo worker can also bridge end-user chat requests through `POST /chat` when deployed in front of the Cloudflare Chatbot Worker. Each request includes:
 
 - `message`: the end user's sanitized message text from the chat input.
 - `lang`: the active website language (`en` or `es`).
 - `retrieval.contentDirectory`: `/chatbot/`, so the Worker can identify the dedicated chatbot knowledge directory.
 - `retrieval.contentIndexUrl`: the active URL for `gabo-io-content-index.json`.
-- `retrieval.sourceOfTruth`: `repo-en-es`, indicating the response context comes from the repository EN/ES index.
+- `retrieval.sourceOfTruth`: `repo-en-es` from the browser widget or `repo-services-learning-md-en-es` from the repo worker, indicating the response context comes from the repository EN/ES index and service/learning Markdown briefs.
 - `retrieval.assetId` and `retrieval.origin`: same-origin asset context for Worker-side validation.
 - `retrieval.languages`: supported chatbot languages.
 - `retrieval.matches`: the top local website-content matches with confidence scores.
+- `retrieval.serviceLearningBriefs`: when routed through the repo worker, the Logistics, Customer Relations, Administrative Back Office, and IT Support Markdown briefs grouped by domain and language for CX and lead-generation grounding.
 
 If the Worker cannot be reached, `gabo-io.js` answers directly from `gabo-io-content-index.json` so the chatbot remains available on each website page.
 
 ## Repo sync worker
 
-Deploy `repo-content-sync-worker.js` as a Cloudflare Worker when you need the repository to push the latest chatbot content into the Cloudflare Chatbot Worker.
+Deploy `repo-content-sync-worker.js` as a Cloudflare Worker when you need the repository to push the latest chatbot content into the Cloudflare Chatbot Worker or bridge chatbot/end-user interactions with repo-grounded Markdown context.
 
 ### Environment variables
 
@@ -56,9 +57,11 @@ Deploy `repo-content-sync-worker.js` as a Cloudflare Worker when you need the re
 
 ### Endpoints
 
-- `GET /health`: confirms the repo worker is online and shows the active content index and chatbot worker URLs.
-- `GET /manifest`: fetches the latest repository EN/ES index and returns the complete sync payload without pushing it.
-- `POST /sync`: fetches the latest repository EN/ES index and posts it to the Cloudflare Chatbot Worker.
+- `GET /health`: confirms the repo worker is online and shows the active content index, chatbot worker URL, and configured service/learning Markdown paths.
+- `GET /briefs`: fetches the Logistics, Customer Relations, Administrative Back Office, and IT Support EN/ES Markdown briefs from the repo raw URL and returns them grouped by domain.
+- `GET /manifest`: fetches the latest repository EN/ES index plus service/learning Markdown briefs and returns the complete sync payload without pushing it.
+- `POST /sync`: fetches the latest repository EN/ES index plus service/learning Markdown briefs and posts them to the Cloudflare Chatbot Worker.
+- `POST /chat`: forwards a chatbot/end-user interaction to the Cloudflare Chatbot Worker with the repository index and the four domain Markdown brief groups attached under `retrieval.serviceLearningBriefs`.
 
 ### Scheduled updates
 
