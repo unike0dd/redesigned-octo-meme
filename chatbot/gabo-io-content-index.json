@@ -15,7 +15,18 @@
   "workerSync": {
     "repoWorker": "/chatbot/repo-content-sync-worker.js",
     "chatbotWorkerEndpoint": "/api/ops-online-chat",
-    "handoffPurpose": "Keep the Cloudflare Chatbot Worker updated with current EN and ES repository-grounded retrieval content for CX and lead generation."
+    "handoffPurpose": "Keep the Cloudflare Chatbot Worker updated with current EN and ES repository-grounded index content plus service/learning Markdown briefs for CX, lead generation, and end-user interaction grounding.",
+    "serviceLearningBriefs": [
+      "chatbot/logistics-operations-learning-en.md",
+      "chatbot/logistics-operations-learning-es.md",
+      "chatbot/customer-relations-learning-en.md",
+      "chatbot/customer-relations-learning-es.md",
+      "chatbot/administrative-backoffice-en.md",
+      "chatbot/administrative-backoffice-es.md",
+      "chatbot/it-support-en.md",
+      "chatbot/it-support-es.md"
+    ],
+    "interactionEndpoint": "/chat"
   },
   "entries": [
     {
