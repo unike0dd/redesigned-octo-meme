@@ -1,5 +1,3 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/inter-ui/4.1.1/inter.min.css");
-
 :root {
   --mouse-x: 50%;
   --mouse-y: 50%;
@@ -60,7 +58,7 @@ body {
     ),
     linear-gradient(135deg, #f3ecff 0%, #e8dcff 45%, #d8c7ff 100%);
   background-size: 140% 140%, 130% 130%, 200% 200%;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
   animation: royal-purple-background 60s ease-in-out infinite alternate;
