@@ -654,15 +654,18 @@ textarea {
   min-height: 130px;
 }
 
+.form-honeypot,
 .career-honeypot {
-  position: absolute;
-  left: -10000px;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  display: none !important;
+  visibility: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .form-grid {

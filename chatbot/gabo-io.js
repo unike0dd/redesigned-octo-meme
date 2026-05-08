@@ -294,7 +294,10 @@
         <div id="gabo-chat-log" aria-live="polite"></div>
         <div id="gabo-chatbot-form-container">
           <form id="gabo-chatbot-form" autocomplete="off">
-            <input id="gabo-chatbot-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none;" />
+            <div class="form-honeypot gabo-chatbot-honeypot" aria-hidden="true" hidden inert>
+              <label for="gabo-chatbot-website">Website URL</label>
+              <input id="gabo-chatbot-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+            </div>
             <input id="gabo-chatbot-input" type="text" placeholder="${getLocalizedText("inputPlaceholder")}" maxlength="256" required />
             <button id="gabo-chatbot-send" type="submit" aria-label="Send message">${getLocalizedText("send")}</button>
           </form>
