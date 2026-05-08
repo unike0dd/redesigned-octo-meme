@@ -11,6 +11,12 @@ This repository contains a clean, deployable static website for Gabriel Services
 - Added `robots.txt` and `sitemap.xml` for SEO indexing
 - Consolidated legal content into one page per legal item under `legal/`, with EN and ES language controls
 
+## Browser console diagnostics
+
+Chrome can report `Unchecked runtime.lastError: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received` while viewing the site. The website code does not call `chrome.runtime`, `browser.runtime`, or extension messaging APIs; this warning is usually emitted by a browser extension content script that injects itself into the page.
+
+The client runtime now registers a narrow diagnostic guard for this known extension-message-channel noise so it does not break site observability or mask first-party application errors. If the warning persists, validate the page in an incognito/private window with extensions disabled, then re-enable extensions one at a time to identify the source.
+
 ## Deploy
 This repository is ready for GitHub Pages deployment via `.github/workflows/deploy-pages.yml`. The site publishes the repository root to the `gh-pages` branch automatically on every push to `main`.
 
