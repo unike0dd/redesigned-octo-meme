@@ -630,6 +630,18 @@ textarea {
 textarea {
   min-height: 130px;
 }
+
+.career-honeypot {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -640,6 +652,22 @@ textarea {
   gap: 0.6rem;
   margin-top: 1rem;
   flex-wrap: wrap;
+}
+
+.security-form-note {
+  display: block;
+  margin-top: 0.85rem;
+  color: var(--brand-navy);
+  font-weight: 700;
+}
+
+.is-security-warning {
+  border-color: #b42318;
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+}
+
+:root.dark-theme .security-form-note {
+  color: var(--royal-gold-bright);
 }
 .entry-group {
   display: flex;

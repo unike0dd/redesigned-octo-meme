@@ -44,31 +44,159 @@
     });
   }
 
-  function simpleThreatScore(value) {
+  const TINY_ML_RISK_THRESHOLD = 3;
+  const TINY_ML_BLOCKING_RESIDUAL_THRESHOLD = 1;
+  const TINY_ML_MAX_FIELD_LENGTH = 2000;
+  const TINY_ML_HONEYPOT_SESSION_BLOCK_KEY =
+    "gabo-careers-honeypot-session-blocked";
+
+  const TINY_ML_RISK_SIGNATURES = [
+    { label: "script-tag", weight: 4, pattern: /<\s*\/?\s*script\b/gi },
+    {
+      label: "dangerous-html-tag",
+      weight: 3,
+      pattern:
+        /<\s*\/?\s*(?:iframe|object|embed|applet|meta|link|base|form|input|button|svg|math|template|style)\b/gi,
+    },
+    { label: "event-handler", weight: 3, pattern: /\bon[a-z]{3,}\s*=/gi },
+    {
+      label: "active-uri",
+      weight: 4,
+      pattern: /\b(?:javascript|vbscript|data)\s*:/gi,
+    },
+    {
+      label: "encoded-active-uri",
+      weight: 4,
+      pattern: /(?:%6a%61%76%61%73%63%72%69%70%74|&#x?6a;?)/gi,
+    },
+    { label: "html-tag", weight: 2, pattern: /<\/?[a-z][\s\S]*?>/gi },
+    {
+      label: "code-block",
+      weight: 4,
+      pattern: /```[\s\S]*?```|~~~[\s\S]*?~~~/g,
+    },
+    { label: "inline-code", weight: 2, pattern: /`[^`\n]{2,}`/g },
+    {
+      label: "js-code-token",
+      weight: 3,
+      pattern:
+        /\b(?:eval|Function|setTimeout|setInterval|fetch|XMLHttpRequest|document\.|window\.|localStorage|sessionStorage|import\s|require\s*\(|process\.|child_process)\b/gi,
+    },
+    {
+      label: "programming-declaration",
+      weight: 2,
+      pattern:
+        /\b(?:const|let|var|function|class|def|lambda|async\s+function|return|public\s+class|using\s+namespace)\b[\s\w]*(?:[({=;:]|=>)/gi,
+    },
+    {
+      label: "sql-injection",
+      weight: 3,
+      pattern:
+        /(?:\bunion\s+(?:all\s+)?select\b|\bselect\b[\s\S]{0,80}\bfrom\b|\binsert\s+into\b|\bupdate\b[\s\S]{0,80}\bset\b|\bdelete\s+from\b|\bdrop\s+(?:table|database)\b|\btruncate\s+table\b|--\s|\/\*|\*\/|;\s*(?:select|drop|insert|delete|update)\b)/gi,
+    },
+    {
+      label: "shell-or-path-exec",
+      weight: 3,
+      pattern:
+        /(?:\.\.\/|\b(?:curl|wget|bash|sh|powershell|cmd\.exe|chmod|sudo|rm\s+-rf|nc\s+-|python\s+-c|node\s+-e)\b|\|\||&&)/gi,
+    },
+    {
+      label: "template-injection",
+      weight: 3,
+      pattern: /(?:\$\{[\s\S]*?\}|\{\{[\s\S]*?\}\}|<%[\s\S]*?%>)/g,
+    },
+    {
+      label: "dense-code-punctuation",
+      weight: 2,
+      pattern: /(?:[{}()[\];=<>|&]{5,}|[A-Za-z_$][\w$]*\s*=>)/g,
+    },
+  ];
+
+  function decodeHtmlEntities(value) {
     const text = String(value || "");
-    if (!text.trim()) return 0;
-    const patterns = [
-      /<\s*script/gi,
-      /javascript:/gi,
-      /on[a-z]+\s*=/gi,
-      /<\/?[a-z][\s\S]*?>/gi,
-      /union\s+select/gi,
-      /\b(drop|truncate|alter)\s+table\b/gi,
-      /\.\.\//g,
-      /%3cscript/gi,
-    ];
-    return patterns.reduce((score, pattern) => {
-      const matches = text.match(pattern);
-      return score + (matches ? matches.length : 0);
+    if (!/[&][#a-z0-9]+;/i.test(text) || !document.createElement) return text;
+    const decoder = document.createElement("textarea");
+    decoder.innerHTML = text;
+    return decoder.value;
+  }
+
+  function summarizeThreats(value) {
+    const text = decodeHtmlEntities(value);
+    const reasons = [];
+    const score = TINY_ML_RISK_SIGNATURES.reduce((total, signature) => {
+      const matches = text.match(signature.pattern);
+      if (!matches) return total;
+      reasons.push(signature.label);
+      return total + matches.length * signature.weight;
     }, 0);
+
+    const punctuation = text.replace(/[\w\s.,'"@:+/#-]/g, "").length;
+    const density = text.length ? punctuation / text.length : 0;
+    if (text.length > 24 && density > 0.22) {
+      reasons.push("punctuation-density");
+      return { score: score + 2, reasons: Array.from(new Set(reasons)) };
+    }
+
+    return { score, reasons: Array.from(new Set(reasons)) };
+  }
+
+  function removeCodeLikeLines(value) {
+    return String(value || "")
+      .split(/\r?\n/)
+      .filter((line) => {
+        const trimmed = line.trim();
+        if (!trimmed) return true;
+        return !/(?:^\s*(?:const|let|var|function|class|def|import|export|return|if|for|while)\b|=>|[{};]{2,}|<\/?[a-z][\s\S]*?>|\b(?:SELECT|DROP|DELETE|INSERT|UPDATE)\b)/i.test(
+          trimmed,
+        );
+      })
+      .join(" ");
   }
 
   function sanitizeTextValue(value) {
-    return String(value || "")
+    return removeCodeLikeLines(decodeHtmlEntities(value))
+      .replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, " ")
+      .replace(/`[^`\n]{2,}`/g, " ")
+      .replace(
+        /<\s*(script|style|iframe|object|embed|applet|svg|math|template)[\s\S]*?<\s*\/\s*\1\s*>/gi,
+        " ",
+      )
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\b(?:javascript|vbscript|data)\s*:[^\s,;)]*/gi, " ")
+      .replace(/\bon[a-z]{3,}\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]*)/gi, " ")
+      .replace(/\b(?:eval|Function|setTimeout|setInterval)\s*\([^)]*\)/gi, " ")
+      .replace(/(?:\/\*[\s\S]*?\*\/|<!--|-->|--\s*$)/gm, " ")
+      .replace(/[<>`{}()[\];|\\]/g, " ")
       .replace(/[\u0000-\u001F\u007F]/g, " ")
-      .replace(/[<>`]/g, "")
       .replace(/\s+/g, " ")
-      .trim();
+      .trim()
+      .slice(0, TINY_ML_MAX_FIELD_LENGTH);
+  }
+
+  function runTinyMlSanitizer(value) {
+    const raw = String(value || "");
+    const cleaned = sanitizeTextValue(raw);
+    const rawThreat = summarizeThreats(raw);
+    const residualThreat = summarizeThreats(cleaned);
+    const removedCharacters = Math.max(raw.length - cleaned.length, 0);
+    const blocked =
+      rawThreat.score >= TINY_ML_RISK_THRESHOLD ||
+      residualThreat.score >= TINY_ML_BLOCKING_RESIDUAL_THRESHOLD;
+
+    return {
+      cleaned,
+      blocked,
+      removedCharacters,
+      rawThreatScore: rawThreat.score,
+      residualThreatScore: residualThreat.score,
+      reasons: Array.from(
+        new Set([...rawThreat.reasons, ...residualThreat.reasons]),
+      ),
+    };
+  }
+
+  function simpleThreatScore(value) {
+    return summarizeThreats(value).score;
   }
 
   async function sha256Hex(value) {
@@ -83,19 +211,163 @@
       .join("");
   }
 
+  function isHoneypotField(field) {
+    return !!field?.matches?.('[data-tinyml-honeypot="true"]');
+  }
+
+  function getHoneypotFields(form) {
+    return Array.from(form.querySelectorAll('[data-tinyml-honeypot="true"]'));
+  }
+
+  function isHoneypotSessionBlocked() {
+    try {
+      return (
+        window.sessionStorage?.getItem(TINY_ML_HONEYPOT_SESSION_BLOCK_KEY) ===
+        "true"
+      );
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function flagHoneypotSessionBlocked() {
+    try {
+      window.sessionStorage?.setItem(TINY_ML_HONEYPOT_SESSION_BLOCK_KEY, "true");
+    } catch (error) {
+      document.documentElement.dataset.tinyMlSessionBlocked = "true";
+    }
+  }
+
+  function closeHoneypotSession(form, statusNode, honeypotField) {
+    const honeypotValue = String(honeypotField?.value || "");
+    flagHoneypotSessionBlocked();
+    form.reset();
+    form.removeAttribute("data-integrity-sha256");
+    form.dataset.tinyMlSession = "blocked";
+
+    Array.from(form.querySelectorAll("input, textarea, select, button")).forEach(
+      (field) => {
+        field.disabled = true;
+        markFieldState(field, false);
+      },
+    );
+
+    if (statusNode) {
+      statusNode.textContent =
+        "TinyML closed this application session after bot-trap activity was detected.";
+    }
+
+    return {
+      cleaned: {},
+      report: [
+        {
+          key:
+            honeypotField?.getAttribute("name") ||
+            honeypotField?.id ||
+            "honeypot",
+          threatScore: TINY_ML_RISK_THRESHOLD,
+          residualThreatScore: TINY_ML_BLOCKING_RESIDUAL_THRESHOLD,
+          removedCharacters: honeypotValue.length,
+          reasons: ["honeypot-filled", "session-closed"],
+          blocked: true,
+        },
+      ],
+      blocked: true,
+      honeypotTriggered: true,
+      sessionClosed: true,
+    };
+  }
+
+  function detectFilledHoneypot(form) {
+    return getHoneypotFields(form).find((field) =>
+      String(field.value || "").trim(),
+    );
+  }
+
   function scanAndSanitizePayload(payload) {
     const report = [];
     const cleaned = {};
 
     Object.entries(payload || {}).forEach(([key, rawValue]) => {
-      const normalized = sanitizeTextValue(rawValue);
-      const threatScore = simpleThreatScore(rawValue);
-      cleaned[key] = normalized;
-      report.push({ key, threatScore, blocked: threatScore >= 2 });
+      const result = runTinyMlSanitizer(rawValue);
+      cleaned[key] = result.cleaned;
+      report.push({
+        key,
+        threatScore: result.rawThreatScore,
+        residualThreatScore: result.residualThreatScore,
+        removedCharacters: result.removedCharacters,
+        reasons: result.reasons,
+        blocked: result.blocked,
+      });
     });
 
     const blocked = report.some((entry) => entry.blocked);
     return { cleaned, report, blocked };
+  }
+
+  function getFieldKey(field, index) {
+    const label =
+      field.getAttribute("name") ||
+      field.getAttribute("aria-label") ||
+      field.closest(".entry-group")?.getAttribute("data-field-name") ||
+      field.previousElementSibling?.textContent ||
+      field.id ||
+      `field-${index + 1}`;
+    return `${String(label).trim() || "field"} #${index + 1}`;
+  }
+
+  function buildGatewayEnvelope(form, result, fingerprint) {
+    return {
+      repoId:
+        form.getAttribute("data-repo-id") || "unike0dd/redesigned-octo-meme",
+      assetId: form.getAttribute("data-asset-id") || "careers.html",
+      src: form.getAttribute("data-src") || window.location.pathname,
+      origin: window.location.origin,
+      formId: form.id || "careers-application-form",
+      integritySha256: fingerprint,
+      sanitizedAt: new Date().toISOString(),
+      tinyMl: {
+        policy: "aggressive-client-sanitize-v1",
+        threshold: TINY_ML_RISK_THRESHOLD,
+        residualThreshold: TINY_ML_BLOCKING_RESIDUAL_THRESHOLD,
+        report: result.report,
+      },
+      payload: result.cleaned,
+    };
+  }
+
+  async function forwardSanitizedPayload(form, result, statusNode) {
+    if (!form.matches('[data-secure-gateway="careers"]')) return;
+
+    const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
+    form.setAttribute("data-integrity-sha256", fingerprint);
+
+    const endpoint =
+      form.getAttribute("data-cf-worker-url") ||
+      form.getAttribute("data-upstream-path") ||
+      "/api/careers";
+    const gatewayUrl = new URL(endpoint, window.location.origin);
+    const envelope = buildGatewayEnvelope(form, result, fingerprint);
+
+    await fetch(gatewayUrl.toString(), {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Gabo-Origin": envelope.origin,
+        "X-Gabo-Source": envelope.src,
+        "X-Gabo-Asset-ID": envelope.assetId,
+        "X-Gabo-Repo-ID": envelope.repoId,
+        "X-Gabo-Integrity-SHA256": fingerprint,
+      },
+      body: JSON.stringify(envelope),
+    });
+
+    if (statusNode) {
+      statusNode.textContent =
+        "Application payload was sanitized, integrity-signed, and sent to the secure gateway.";
+    }
   }
 
   function markFieldState(field, isInvalid) {
@@ -105,29 +377,30 @@
   }
 
   function secureFormSubmission(form, statusNode) {
+    if (isHoneypotSessionBlocked()) {
+      return closeHoneypotSession(form, statusNode);
+    }
+
+    const filledHoneypot = detectFilledHoneypot(form);
+    if (filledHoneypot) {
+      return closeHoneypotSession(form, statusNode, filledHoneypot);
+    }
+
     const elements = Array.from(
       form.querySelectorAll("input, textarea, select"),
-    ).filter((field) => !field.disabled);
+    ).filter((field) => !field.disabled && !isHoneypotField(field));
 
     const payload = {};
-    elements.forEach((field) => {
-      const key =
-        field.getAttribute("name") ||
-        field.getAttribute("aria-label") ||
-        field.previousElementSibling?.textContent ||
-        field.id ||
-        "field";
+    const fieldKeys = new Map();
+    elements.forEach((field, index) => {
+      const key = getFieldKey(field, index);
+      fieldKeys.set(field, key);
       payload[key] = field.value;
     });
 
     const result = scanAndSanitizePayload(payload);
     elements.forEach((field) => {
-      const key =
-        field.getAttribute("name") ||
-        field.getAttribute("aria-label") ||
-        field.previousElementSibling?.textContent ||
-        field.id ||
-        "field";
+      const key = fieldKeys.get(field);
       const line = result.report.find((entry) => entry.key === key);
       const isInvalid = !!line?.blocked;
       markFieldState(field, isInvalid);
@@ -137,9 +410,10 @@
     });
 
     if (statusNode) {
+      const threatCount = result.report.filter((entry) => entry.blocked).length;
       statusNode.textContent = result.blocked
-        ? "Potentially malicious input was blocked. Please remove script/code fragments."
-        : "Input passed sanitization and integrity checks.";
+        ? `TinyML blocked ${threatCount} field(s). Remove malicious or programming payloads before submitting.`
+        : "TinyML cleaned the form and passed residual integrity checks.";
     }
 
     return result;
@@ -155,6 +429,19 @@
       message.setAttribute("aria-live", "polite");
       form.appendChild(message);
 
+      getHoneypotFields(form).forEach((field) => {
+        field.addEventListener("input", () => {
+          if (String(field.value || "").trim()) {
+            closeHoneypotSession(form, message, field);
+          }
+        });
+      });
+
+      if (isHoneypotSessionBlocked()) {
+        closeHoneypotSession(form, message);
+        return;
+      }
+
       form.addEventListener("submit", async (event) => {
         const result = secureFormSubmission(form, message);
         if (result.blocked) {
@@ -162,8 +449,23 @@
           return;
         }
 
-        const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
-        form.setAttribute("data-integrity-sha256", fingerprint);
+        const usesSecureGateway = form.matches('[data-secure-gateway="careers"]');
+        if (!usesSecureGateway) {
+          const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
+          form.setAttribute("data-integrity-sha256", fingerprint);
+          return;
+        }
+
+        event.preventDefault();
+        try {
+          await forwardSanitizedPayload(form, result, message);
+        } catch (error) {
+          form.setAttribute("data-gateway-error", String(error?.message || error));
+          if (message) {
+            message.textContent =
+              "TinyML passed, but the secure gateway is unavailable. Please try again.";
+          }
+        }
       });
     });
   }
@@ -194,6 +496,9 @@
     initRuntimeErrorDiagnostics();
     window.GaboSecurity = {
       scanAndSanitizePayload,
+      sanitizeTextValue,
+      simpleThreatScore,
+      isHoneypotSessionBlocked,
       sha256Hex,
       corsAllowlist: CORS_ALLOWLIST.slice(),
       knownRuntimeNoise: {

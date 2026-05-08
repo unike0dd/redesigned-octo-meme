@@ -47,7 +47,27 @@
           Apply to support operations, communication, and service delivery
           workflows across all service domains.
         </p>
-        <form>
+        <form
+          id="careers-application-form"
+          method="post"
+          action="/api/careers"
+          data-secure-gateway="careers"
+          data-upstream-path="/api/careers"
+          data-repo-id="unike0dd/redesigned-octo-meme"
+          data-asset-id="careers.html"
+          data-src="/redesigned-octo-meme/careers.html"
+        >
+          <div class="career-honeypot" aria-hidden="true">
+            <label for="career-website-url">Website URL</label>
+            <input
+              id="career-website-url"
+              name="website_url"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+              data-tinyml-honeypot="true"
+            />
+          </div>
           <div class="form-grid">
             <div><label data-i18n="fullName">Full Name</label><input /></div>
             <div>
