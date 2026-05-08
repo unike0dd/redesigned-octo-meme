@@ -7,6 +7,9 @@
   const CHATBOT_ID = "gabo-chatbot-fab";
   const CF_WORKER_ENDPOINT = "/api/ops-online-chat";
   const CONFIDENCE_THRESHOLD = 0.28;
+  const SUPPORTED_CHAT_LANGUAGES = ["en", "es"];
+  const MAX_SANITIZED_MESSAGE_LENGTH = 220;
+  const CHATBOT_ASSET_ID = "gabo-io-repo-en-es-widget";
 
   function getSiteBasePath() {
     const parts = window.location.pathname.split("/").filter(Boolean);
@@ -33,12 +36,155 @@
   }
 
   function getChatLanguage() {
-    return window.I18N?.currentLanguage || document.documentElement.lang || "en";
+    const language = window.I18N?.currentLanguage || document.documentElement.lang || "en";
+    return SUPPORTED_CHAT_LANGUAGES.includes(language) ? language : "en";
+  }
+
+  function getLocalizedText(key) {
+    const language = getChatLanguage();
+    const copy = {
+      en: {
+        groundedPrefix: "Based on Gabriel Services website content:",
+        lowConfidence: "I want to answer accurately from Gabriel Services website content. Please ask about services, learning paths, careers, contact, privacy, cookies, or terms so gabo io can ground the reply with confidence.",
+        loadingError: "gabo io is having trouble loading website content. Please try again soon.",
+        welcome: "gabo io is online. How can we help?",
+        inputPlaceholder: "Type your message...",
+        send: "Send",
+      },
+      es: {
+        groundedPrefix: "Según el contenido del sitio web de Gabriel Services:",
+        lowConfidence: "Quiero responder con precisión usando el contenido del sitio web de Gabriel Services. Pregunta sobre servicios, rutas de aprendizaje, carreras, contacto, privacidad, cookies o términos para que gabo io pueda fundamentar la respuesta con confianza.",
+        loadingError: "gabo io tiene problemas para cargar el contenido del sitio web. Inténtalo de nuevo pronto.",
+        welcome: "gabo io está en línea. ¿Cómo podemos ayudar?",
+        inputPlaceholder: "Escribe tu mensaje...",
+        send: "Enviar",
+      },
+    };
+    return (copy[language] || copy.en)[key] || copy.en[key];
   }
 
   function getChatbotContentUrl() {
     return `${getSiteBasePath()}/chatbot/gabo-io-content-index.json`;
   }
+
+  function decodeHtmlEntities(value) {
+    const decoder = document.createElement("textarea");
+    decoder.innerHTML = String(value || "");
+    return decoder.value;
+  }
+
+  function squeezeWhitespace(value) {
+    return String(value || "").replace(/\s+/g, " ").trim();
+  }
+
+  function tinyMlScanRisk(value) {
+    const text = String(value || "");
+    const normalizedText = text.toLowerCase();
+    const lines = text.split(/\r?\n/);
+    const signatures = [
+      { name: "codeBlock", weight: 8, pattern: /```|~~~|<\/?code\b|<\/?pre\b/i },
+      { name: "dangerousTag", weight: 10, pattern: /<\/?(?:script|iframe|object|embed|svg|math|link|meta|base|form|input|button|textarea|style|video|audio|source)\b/i },
+      { name: "eventHandler", weight: 9, pattern: /\bon[a-z]{3,}\s*=/i },
+      { name: "dangerousUri", weight: 9, pattern: /\b(?:javascript|vbscript|data|file|blob):/i },
+      { name: "domAccess", weight: 7, pattern: /\b(?:document|window|localStorage|sessionStorage|indexedDB|navigator|location)\s*\./i },
+      { name: "execution", weight: 9, pattern: /\b(?:eval|Function|setTimeout|setInterval|fetch|XMLHttpRequest|importScripts|postMessage)\s*\(/i },
+      { name: "programmingKeyword", weight: 5, pattern: /\b(?:function|class|const|let|var|import|export|return|async|await|=>|require|module\.exports)\b/i },
+      { name: "shellOrRuntime", weight: 8, pattern: /(?:^|\s)(?:npm|pnpm|yarn|node|python|python3|bash|sh|powershell|curl|wget|chmod|sudo|rm\s+-rf|docker|kubectl)\b/i },
+      { name: "sqli", weight: 9, pattern: /(?:\bunion\s+select\b|\bselect\b.+\bfrom\b|\binsert\s+into\b|\bdrop\s+table\b|\bdelete\s+from\b|\bor\s+1\s*=\s*1\b|--|\/\*|\*\/)/i },
+      { name: "templateInjection", weight: 8, pattern: /(?:\$\{|\{\{|\}\}|<%|%>|#\{|\[\[|\]\])/ },
+      { name: "encodedPayload", weight: 5, pattern: /(?:%3c|%3e|%27|%22|&#x?[0-9a-f]+;|\\x[0-9a-f]{2}|\\u[0-9a-f]{4})/i },
+    ];
+
+    const matches = signatures.filter((signature) => signature.pattern.test(text));
+    const codeLikeLines = lines.filter((line) => {
+      const trimmed = line.trim();
+      if (!trimmed) return false;
+      const punctuation = (trimmed.match(/[{}()[\];=<>`|&$]/g) || []).length;
+      const densePunctuation = punctuation / Math.max(trimmed.length, 1) > 0.12 && punctuation >= 3;
+      return densePunctuation || /^[\s>$]*(?:const|let|var|function|class|if|for|while|return|import|export|SELECT|DROP|curl|npm|python|bash)\b/i.test(trimmed);
+    });
+    const punctuationCount = (text.match(/[{}()[\];=<>`|&$]/g) || []).length;
+    const denseCodePunctuation = punctuationCount / Math.max(text.length, 1) > 0.16 && punctuationCount >= 6;
+    const riskScore = matches.reduce((score, match) => score + match.weight, 0)
+      + codeLikeLines.length * 4
+      + (denseCodePunctuation ? 6 : 0)
+      + (normalizedText.includes("</") ? 4 : 0);
+
+    return {
+      riskScore,
+      matches: matches.map((match) => match.name),
+      codeLikeLines: codeLikeLines.length,
+      denseCodePunctuation,
+    };
+  }
+
+  function tinyMlSanitizeMessage(value) {
+    return squeezeWhitespace(decodeHtmlEntities(value)
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/~~~[\s\S]*?~~~/g, " ")
+      .replace(/`[^`]*`/g, " ")
+      .replace(/<!--[\s\S]*?-->/g, " ")
+      .replace(/<\/?(?:script|iframe|object|embed|svg|math|link|meta|base|form|input|button|textarea|style|video|audio|source)[^>]*>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\bon[a-z]{3,}\s*=\s*(?:"[^"]*"|'[^']*'|\S+)/gi, " ")
+      .replace(/\b(?:javascript|vbscript|data|file|blob):\S*/gi, " ")
+      .replace(/\b(?:eval|Function|setTimeout|setInterval|fetch|XMLHttpRequest|importScripts|postMessage)\s*\([^)]*\)/gi, " ")
+      .replace(/\b(?:document|window|localStorage|sessionStorage|indexedDB|navigator|location)\s*\.[\w.]+/gi, " ")
+      .replace(/(?:\$\{|\{\{|\}\}|<%|%>|#\{|\[\[|\]\])/g, " ")
+      .split(/\r?\n/)
+      .filter((line) => {
+        const trimmed = line.trim();
+        if (!trimmed) return false;
+        if (/^[\s>$]*(?:const|let|var|function|class|if|for|while|return|import|export|SELECT|DROP|INSERT|DELETE|curl|npm|python|bash|sudo|chmod|docker|kubectl)\b/i.test(trimmed)) return false;
+        const punctuation = (trimmed.match(/[{}()[\];=<>`|&$]/g) || []).length;
+        return !(punctuation / Math.max(trimmed.length, 1) > 0.12 && punctuation >= 3);
+      })
+      .join(" ")
+      .replace(/\b(?:function|class|const|let|var|import|export|module\.exports|require|async|await|return)\b/gi, " ")
+      .replace(/\b(?:union\s+select|select\s+.+\s+from|insert\s+into|drop\s+table|delete\s+from|or\s+1\s*=\s*1)\b/gi, " ")
+      .replace(/(?:--|\/\*|\*\/)/g, " ")
+      .slice(0, MAX_SANITIZED_MESSAGE_LENGTH));
+  }
+
+  function inspectTinyMlSubmission(message, honeypotValue) {
+    if (squeezeWhitespace(honeypotValue)) {
+      return { blocked: true, reason: "honeypot", sanitized: "", risk: { riskScore: 99, matches: ["honeypot"] } };
+    }
+
+    const original = String(message || "");
+    const originalRisk = tinyMlScanRisk(original);
+    const sanitized = tinyMlSanitizeMessage(original);
+    const residualRisk = tinyMlScanRisk(sanitized);
+    const removedCharacters = Math.max(0, original.length - sanitized.length);
+    const removedRatio = original.length ? removedCharacters / original.length : 0;
+    const blocked = !sanitized
+      || residualRisk.riskScore >= 7
+      || residualRisk.matches.length > 0
+      || originalRisk.riskScore >= 18
+      || (originalRisk.riskScore >= 10 && removedRatio > 0.35);
+
+    return {
+      blocked,
+      reason: blocked ? "tinyml-risk" : "clean",
+      sanitized,
+      risk: {
+        original: originalRisk,
+        residual: residualRisk,
+        removedCharacters,
+        removedRatio: Number(removedRatio.toFixed(2)),
+      },
+    };
+  }
+
+  function verifyGatewayPath() {
+    const endpoint = new URL(CF_WORKER_ENDPOINT, window.location.origin);
+    const contentIndex = new URL(getChatbotContentUrl(), window.location.origin);
+    return endpoint.origin === window.location.origin
+      && endpoint.pathname === CF_WORKER_ENDPOINT
+      && contentIndex.origin === window.location.origin
+      && contentIndex.pathname.endsWith("/chatbot/gabo-io-content-index.json");
+  }
+
 
   let contentIndexPromise;
 
@@ -101,7 +247,7 @@
     const best = ranked[0];
     if (!best || best.confidence < CONFIDENCE_THRESHOLD) {
       return {
-        reply: "I want to answer accurately from Gabriel Services website content. Please ask about services, learning paths, careers, contact, privacy, cookies, or terms so gabo io can ground the reply with confidence.",
+        reply: getLocalizedText("lowConfidence"),
         confidence: 0,
         matches: [],
       };
@@ -109,7 +255,7 @@
 
     return {
       reply: [
-        "Based on Gabriel Services website content:",
+        getLocalizedText("groundedPrefix"),
         best.entry.answer,
         best.entry.leadGenerationPrompt,
         best.entry.recommendedCta,
@@ -148,8 +294,9 @@
         <div id="gabo-chat-log" aria-live="polite"></div>
         <div id="gabo-chatbot-form-container">
           <form id="gabo-chatbot-form" autocomplete="off">
-            <input id="gabo-chatbot-input" type="text" placeholder="Type your message..." maxlength="256" required />
-            <button id="gabo-chatbot-send" type="submit" aria-label="Send message">Send</button>
+            <input id="gabo-chatbot-website" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;opacity:0;pointer-events:none;" />
+            <input id="gabo-chatbot-input" type="text" placeholder="${getLocalizedText("inputPlaceholder")}" maxlength="256" required />
+            <button id="gabo-chatbot-send" type="submit" aria-label="Send message">${getLocalizedText("send")}</button>
           </form>
         </div>
       </div>
@@ -161,15 +308,17 @@
     const chatLog = document.getElementById("gabo-chat-log");
     const chatForm = document.getElementById("gabo-chatbot-form");
     const chatInput = document.getElementById("gabo-chatbot-input");
+    const chatHoneypot = document.getElementById("gabo-chatbot-website");
     const chatSend = document.getElementById("gabo-chatbot-send");
 
-    if (!chatPanel || !closeButton || !chatLog || !chatForm || !chatInput || !chatSend) {
+    if (!chatPanel || !closeButton || !chatLog || !chatForm || !chatInput || !chatHoneypot || !chatSend) {
       fab.remove();
       container.remove();
       return;
     }
 
     let hasWelcomed = false;
+    let sessionBlocked = false;
 
     chatPanel.hidden = true;
 
@@ -193,7 +342,7 @@
 
       if (open) {
         if (!hasWelcomed) {
-          addChatMessage("gabo io is online. How can we help?", "gabo-bot");
+          addChatMessage(getLocalizedText("welcome"), "gabo-bot");
           hasWelcomed = true;
         }
         chatInput.focus();
@@ -202,8 +351,26 @@
       }
     };
 
+    const blockChatSession = () => {
+      sessionBlocked = true;
+      chatInput.value = "";
+      chatHoneypot.value = "";
+      chatInput.disabled = true;
+      chatSend.disabled = true;
+      chatForm.reset();
+      setChatOpen(false, false);
+    };
+
     const sendChatMessage = async (message) => {
-      const trimmed = String(message || "").trim();
+      if (sessionBlocked) return;
+
+      const inspected = inspectTinyMlSubmission(message, chatHoneypot.value);
+      if (inspected.blocked) {
+        blockChatSession();
+        return;
+      }
+
+      const trimmed = inspected.sanitized;
       if (!trimmed) return;
 
       if (["exit", "quit"].includes(trimmed.toLowerCase())) {
@@ -212,14 +379,20 @@
         return;
       }
 
+      if (!verifyGatewayPath()) {
+        blockChatSession();
+        return;
+      }
+
       addChatMessage(trimmed, "gabo-user");
       chatInput.value = "";
+      chatHoneypot.value = "";
       const botMessage = addChatMessage("…", "gabo-bot");
       chatSend.disabled = true;
       chatInput.disabled = true;
 
       const grounded = await findGroundedChatbotAnswer(trimmed).catch(() => ({
-        reply: "gabo io is having trouble loading website content. Please try again soon.",
+        reply: getLocalizedText("loadingError"),
         confidence: 0,
         matches: [],
       }));
@@ -234,6 +407,10 @@
             retrieval: {
               contentDirectory: "/chatbot/",
               contentIndexUrl: getChatbotContentUrl(),
+              sourceOfTruth: "repo-en-es",
+              assetId: CHATBOT_ASSET_ID,
+              origin: window.location.origin,
+              languages: SUPPORTED_CHAT_LANGUAGES,
               confidence: grounded.confidence,
               matches: grounded.matches,
             },
@@ -275,6 +452,7 @@
     init,
     loadContent: loadChatbotContent,
     findGroundedAnswer: findGroundedChatbotAnswer,
+    tinyMlInspect: inspectTinyMlSubmission,
   };
 
   if (document.readyState === "loading") {
