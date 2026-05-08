@@ -9,6 +9,13 @@
     "Permissions-Policy":
       "geolocation=(), camera=(), microphone=(), payment=(), usb=()",
   };
+
+  const CLIENT_SECURITY_POLICIES = {
+    "Content-Security-Policy": SECURITY_HEADERS["Content-Security-Policy"].replace(
+      "frame-ancestors 'none'; ",
+      "",
+    ),
+  };
   const CORS_ALLOWLIST = [window.location.origin];
 
   const EXTENSION_MESSAGE_CHANNEL_CLOSED =
@@ -32,7 +39,7 @@
   }
 
   function enforceClientSecurityPolicy() {
-    Object.entries(SECURITY_HEADERS).forEach(([name, content]) => {
+    Object.entries(CLIENT_SECURITY_POLICIES).forEach(([name, content]) => {
       const selector = `meta[http-equiv="${name}"], meta[name="${name}"]`;
       let meta = document.head.querySelector(selector);
       if (!meta) {
@@ -201,6 +208,7 @@
         pattern: EXTENSION_MESSAGE_CHANNEL_CLOSED.source,
       },
       frameworks: ["OWASP ASVS", "CISA CPG", "NIST CSF", "PCI DSS 4.0"],
+      securityHeaders: { ...SECURITY_HEADERS },
     };
   }
 
@@ -347,11 +355,6 @@
       ).trim();
 
       node.textContent = finalText;
-      const finalHeight = Math.ceil(node.getBoundingClientRect().height);
-      if (finalHeight > 0) {
-        node.style.minHeight = `${finalHeight}px`;
-      }
-
       node.textContent = finalText.replace(/[A-Za-z]/g, () => randomLetter());
       setTimeout(() => scrambleToText(node), delay);
     });
@@ -486,7 +489,6 @@
   }
 
   function initRoyalDarkPointerEffects() {
-    const root = document.documentElement;
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -494,9 +496,7 @@
 
     window.addEventListener(
       "pointermove",
-      (event) => {
-        root.style.setProperty("--mouse-x", `${event.clientX}px`);
-        root.style.setProperty("--mouse-y", `${event.clientY}px`);
+      () => {
         document.body.classList.add("mouse-active");
       },
       { passive: true },

@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/inter-ui/4.1.1/inter.min.css");
+
 :root {
   --mouse-x: 50%;
   --mouse-y: 50%;
@@ -214,7 +216,7 @@ h2,
 h3,
 h4,
 .serif {
-  font-family: "Libre Baskerville", "Times New Roman", Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
   letter-spacing: 0.01em;
 }
 a {
@@ -578,6 +580,18 @@ footer a {
 .legal-section ul {
   margin: 0.5rem 0;
   padding-left: 1.5rem;
+}
+
+.legal-divider {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.legal-last-updated {
+  color: var(--muted);
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
 
 :root.dark-theme .legal-section h2 {
