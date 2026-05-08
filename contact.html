@@ -25,7 +25,11 @@
           ><a href="careers.html" data-i18n="careers">Carreras</a
           ><a href="contact.html" data-i18n="contact">Contacto</a
           ><a href="learning.html" data-i18n="learning">Aprendizaje</a>
-          <div class="language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
+          <div
+            class="language-switcher"
+            aria-label="Language selector"
+            data-i18n-aria-label="languageSelector"
+          >
             <button
               id="language-toggle"
               type="button"
@@ -47,12 +51,21 @@
           Ponte en contacto para soporte, incorporación, proyectos y
           oportunidades de colaboración.
         </p>
-        <form>
+        <form
+          data-contact-gateway="true"
+          data-repo-id="unike0dd/redesigned-octo-meme"
+          data-source-path="contact.html"
+          data-asset-source="github-pages-static-contact-form"
+        >
           <div class="form-grid">
-            <div><label data-i18n="fullName">Nombre completo</label><input /></div>
             <div>
-              <label data-i18n="emailAddress">Dirección de correo electrónico</label
-              ><input type="email" />
+              <label data-i18n="fullName">Nombre completo</label
+              ><input name="fullName" autocomplete="name" />
+            </div>
+            <div>
+              <label data-i18n="emailAddress"
+                >Dirección de correo electrónico</label
+              ><input name="emailAddress" type="email" autocomplete="email" />
             </div>
             <div>
               <label data-i18n="countryCode">Código de país</label>
@@ -62,6 +75,7 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="tel-country-code"
+                name="countryCode"
               />
             </div>
             <div>
@@ -72,16 +86,19 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="tel-national"
+                name="contactNumber"
               />
             </div>
-            <div><label data-i18n="city">Ciudad</label><input /></div>
+            <div>
+              <label data-i18n="city">Ciudad</label><input name="city" />
+            </div>
             <div>
               <label data-i18n="stateProvince">Estado/Provincia</label
-              ><input />
+              ><input name="stateProvince" />
             </div>
             <div>
               <label data-i18n="spaceSuiteApt">Espacio/Suite/Apartamento</label
-              ><input />
+              ><input name="spaceSuiteApt" />
             </div>
             <div>
               <label data-i18n="countryZipCode">Código postal del país</label>
@@ -91,6 +108,7 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="postal-code"
+                name="countryZipCode"
               />
             </div>
             <div class="entry-group best-contact-time">
@@ -98,12 +116,21 @@
                 >Mejor hora para contactarte</label
               >
               <div class="best-contact-row">
-                <input type="date" aria-label="Mejor fecha de contacto" />
-                <input type="time" aria-label="Mejor hora de contacto" />
+                <input
+                  name="bestContactDate"
+                  type="date"
+                  aria-label="Mejor fecha de contacto"
+                />
+                <input
+                  name="bestContactTime"
+                  type="time"
+                  aria-label="Mejor hora de contacto"
+                />
               </div>
             </div>
           </div>
-          <label data-i18n="messageLabel">Mensaje</label><textarea></textarea>
+          <label data-i18n="messageLabel">Mensaje</label
+          ><textarea name="message"></textarea>
           <h3 data-i18n="inquiryAboutTitle">Consulta sobre Asistente Remoto</h3>
           <div class="form-grid inquiry-grid">
             <div
@@ -134,6 +161,7 @@
                 <div class="entry-row">
                   <input
                     data-i18n-placeholder="placeholderAddSkillEntry"
+                    name="skills[]"
                     placeholder="Agregar habilidad"
                   />
                 </div>
@@ -167,6 +195,7 @@
                 <div class="entry-row">
                   <input
                     data-i18n-placeholder="placeholderAddAreaInterestEntry"
+                    name="areasOfInterest[]"
                     placeholder="Agregar área de interés"
                   />
                 </div>
@@ -178,7 +207,9 @@
               data-field-name="Nivel de experiencia"
             >
               <div class="entry-group-header">
-                <label data-i18n="experienceLevelLabel">Nivel de experiencia</label>
+                <label data-i18n="experienceLevelLabel"
+                  >Nivel de experiencia</label
+                >
                 <div class="entry-group-actions">
                   <button
                     class="btn ghost entry-btn"
@@ -200,6 +231,7 @@
                 <div class="entry-row">
                   <input
                     data-i18n-placeholder="placeholderAddExperienceEntry"
+                    name="experienceLevels[]"
                     placeholder="Agregar nivel de experiencia"
                   />
                 </div>
@@ -233,6 +265,7 @@
                 <div class="entry-row">
                   <input
                     data-i18n-placeholder="placeholderAddEducationEntry"
+                    name="education[]"
                     placeholder="Agregar educación"
                   />
                 </div>
@@ -266,6 +299,7 @@
                 <div class="entry-row">
                   <input
                     data-i18n-placeholder="placeholderAddLanguageEntry"
+                    name="languages[]"
                     placeholder="Agregar idioma"
                   />
                 </div>
