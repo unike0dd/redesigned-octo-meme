@@ -57,11 +57,8 @@ body {
       transparent 28rem
     ),
     linear-gradient(135deg, #f3ecff 0%, #e8dcff 45%, #d8c7ff 100%);
-  background-size:
-    140% 140%,
-    130% 130%,
-    200% 200%;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-size: 140% 140%, 130% 130%, 200% 200%;
+  font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
   animation: royal-purple-background 60s ease-in-out infinite alternate;
@@ -228,7 +225,7 @@ h2,
 h3,
 h4,
 .serif {
-  font-family: "Libre Baskerville", "Times New Roman", Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
   letter-spacing: 0.01em;
 }
 a {
@@ -592,6 +589,18 @@ footer a {
 .legal-section ul {
   margin: 0.5rem 0;
   padding-left: 1.5rem;
+}
+
+.legal-divider {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.legal-last-updated {
+  color: var(--muted);
+  margin-top: 2rem;
+  font-size: 0.9rem;
 }
 
 :root.dark-theme .legal-section h2 {
