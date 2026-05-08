@@ -1,4 +1,5 @@
 const PAGE_NAME = "contact";
+const PAGE_ENV_PREFIX = PAGE_NAME.toUpperCase();
 const ACCEPTED_PATHS = new Set(["/api/contact", "/", "/health"]);
 const RESPONSE_HEADERS = {
   "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
@@ -43,6 +44,19 @@ const RISK_SIGNATURES = [
   { label: "sql-injection", weight: 3, pattern: /(?:\bunion\s+(?:all\s+)?select\b|\bselect\b[\s\S]{0,80}\bfrom\b|\binsert\s+into\b|\bdelete\s+from\b|\bdrop\s+table\b|--\s*$)/gim },
   { label: "shell-command", weight: 3, pattern: /\b(?:curl|wget|bash|powershell|cmd\.exe|rm\s+-rf)\b/gi },
 ];
+
+function getEnvValue(env, ...keys) {
+  for (const key of keys) {
+    const value = env?.[key];
+    if (value) return value;
+  }
+  return "";
+}
+
+function getOptionalWorkerUrl(request, env, ...keys) {
+  const configured = getEnvValue(env, ...keys);
+  return configured ? new URL(configured, request.url).toString() : "";
+}
 
 function corsOrigin(request) {
   const origin = request.headers.get("Origin") || "";
@@ -154,6 +168,74 @@ function assertOrigin(request, env) {
   }
 }
 
+async function postJsonWorker(url, envelope, token, userAgent) {
+  if (!url) return { forwarded: false, reason: "worker URL not configured" };
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "User-Agent": userAgent,
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body: JSON.stringify(envelope),
+  });
+  const responseText = await response.text();
+  let responseJson = null;
+  try {
+    responseJson = responseText ? JSON.parse(responseText) : null;
+  } catch (error) {
+    responseJson = null;
+  }
+
+  return {
+    forwarded: response.ok,
+    status: response.status,
+    url,
+    response: responseText.slice(0, 1000),
+    envelope: responseJson?.envelope || responseJson?.sanitizedEnvelope || responseJson?.payload || null,
+  };
+}
+
+async function forwardToCfTinyWorker(request, env, envelope) {
+  const url = getOptionalWorkerUrl(
+    request,
+    env,
+    `${PAGE_ENV_PREFIX}_CF_TINY_WORKER_URL`,
+    "CF_TINY_WORKER_URL",
+  );
+  return postJsonWorker(
+    url,
+    {
+      ...envelope,
+      handoff: {
+        ...(envelope.handoff || {}),
+        current: `gabo-${PAGE_NAME}-repo-worker`,
+        next: `gabo-${PAGE_NAME}-cf-tiny-worker`,
+        final: `gabo-${PAGE_NAME}-cf-worker`,
+      },
+    },
+    getEnvValue(env, `${PAGE_ENV_PREFIX}_CF_TINY_WORKER_TOKEN`, "CF_TINY_WORKER_TOKEN"),
+    `gabo-${PAGE_NAME}-repo-worker-to-cf-tiny`,
+  );
+}
+
+async function forwardToCfWorker(request, env, envelope) {
+  const url = getOptionalWorkerUrl(
+    request,
+    env,
+    `${PAGE_ENV_PREFIX}_CF_WORKER_URL`,
+    "CF_WORKER_URL",
+  );
+  return postJsonWorker(
+    url,
+    envelope,
+    getEnvValue(env, `${PAGE_ENV_PREFIX}_CF_WORKER_TOKEN`, "CF_WORKER_TOKEN"),
+    `gabo-${PAGE_NAME}-repo-worker-to-cf-worker`,
+  );
+}
+
 async function forwardToRepository(env, envelope) {
   if (!env.GITHUB_TOKEN) {
     return { forwarded: false, reason: "GITHUB_TOKEN not configured" };
@@ -202,11 +284,35 @@ async function handlePost(request, env) {
     },
     receivedAt: new Date().toISOString(),
   };
-  const repositoryResult = await forwardToRepository(env, envelope);
+  const cfTinyWorkerResult = await forwardToCfTinyWorker(request, env, envelope);
+  if (cfTinyWorkerResult.url && !cfTinyWorkerResult.forwarded) {
+    return jsonResponse(request, {
+      ok: false,
+      worker: `gabo-${PAGE_NAME}-repo-worker`,
+      error: "CF Tiny Worker rejected or failed the TinyML handoff.",
+      cfTinyWorkerResult,
+      serverTinyMl: envelope.serverTinyMl,
+    }, { status: 502 });
+  }
+  const tinyValidatedEnvelope = cfTinyWorkerResult.envelope || envelope;
+  const cfWorkerResult = await forwardToCfWorker(request, env, tinyValidatedEnvelope);
+  const shouldForwardRepository = !cfWorkerResult.forwarded || env.FORWARD_TO_REPOSITORY_AFTER_CF === "true";
+  const repositoryResult = shouldForwardRepository
+    ? await forwardToRepository(env, tinyValidatedEnvelope)
+    : { forwarded: false, reason: "CF Worker accepted the TinyML-validated handoff" };
+
   return jsonResponse(request, {
     ok: true,
     worker: `gabo-${PAGE_NAME}-repo-worker`,
+    flow: [
+      `${PAGE_NAME}-browser-tiny-ml`,
+      `gabo-${PAGE_NAME}-repo-worker`,
+      `gabo-${PAGE_NAME}-cf-tiny-worker`,
+      `gabo-${PAGE_NAME}-cf-worker`,
+    ],
     integrityMatched,
+    cfTinyWorkerResult,
+    cfWorkerResult,
     repositoryResult,
     serverTinyMl: envelope.serverTinyMl,
   });
@@ -225,6 +331,15 @@ async function handleRequest(request, env) {
       page: PAGE_NAME,
       acceptedPaths: Array.from(ACCEPTED_PATHS),
       headersPolicy: RESPONSE_HEADERS,
+      firstTouch: `${PAGE_NAME}-browser-tiny-ml`,
+      handoffOrder: [
+        `${PAGE_NAME}-browser-tiny-ml`,
+        `gabo-${PAGE_NAME}-repo-worker`,
+        `gabo-${PAGE_NAME}-cf-tiny-worker`,
+        `gabo-${PAGE_NAME}-cf-worker`,
+      ],
+      cfTinyWorkerConfigured: Boolean(getEnvValue(env, `${PAGE_ENV_PREFIX}_CF_TINY_WORKER_URL`, "CF_TINY_WORKER_URL")),
+      cfWorkerConfigured: Boolean(getEnvValue(env, `${PAGE_ENV_PREFIX}_CF_WORKER_URL`, "CF_WORKER_URL")),
     });
   }
   if (request.method === "POST") return handlePost(request, env);
