@@ -1,7 +1,7 @@
 (function () {
   const SECURITY_HEADERS = {
     "Content-Security-Policy":
-      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; upgrade-insecure-requests",
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://*.workers.dev; font-src 'self' https://cdnjs.cloudflare.com; upgrade-insecure-requests",
     "Referrer-Policy": "strict-origin-when-cross-origin",
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
@@ -44,29 +44,173 @@
     });
   }
 
+  const CONTACT_GATEWAY = {
+    repoId: "unike0dd/redesigned-octo-meme",
+    sourcePath: "contact.html",
+    assetSource: "github-pages-static-contact-form",
+    gatewayVersion: "tinyml-sanitizer-v2",
+    allowedOrigins: [
+      "https://unike0dd.github.io",
+      "http://localhost:8080",
+      "http://localhost:3000",
+      "http://127.0.0.1:8080",
+      "http://127.0.0.1:3000",
+    ],
+  };
+
+  const MALICIOUS_OR_CODE_SIGNATURES = [
+    { id: "html-tag", pattern: /<\/?[a-z][\s\S]*?>/gi, weight: 2 },
+    {
+      id: "dangerous-tag",
+      pattern:
+        /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|link|meta|base|form|input|button|style|template)\b/gi,
+      weight: 5,
+    },
+    { id: "event-handler", pattern: /\bon[a-z]{3,}\s*=/gi, weight: 4 },
+    {
+      id: "dangerous-uri",
+      pattern: /(?:javascript|vbscript|data|file|blob)\s*:/gi,
+      weight: 5,
+    },
+    {
+      id: "encoded-xss",
+      pattern:
+        /%(?:3c|3e|22|27|2f)|&#x?[0-9a-f]+;|\\x[0-9a-f]{2}|\\u[0-9a-f]{4}/gi,
+      weight: 2,
+    },
+    { id: "code-fence", pattern: /```[\s\S]*?```|~~~[\s\S]*?~~~/g, weight: 5 },
+    { id: "inline-code", pattern: /`[^`\n]{2,}`/g, weight: 2 },
+    {
+      id: "js-execution",
+      pattern:
+        /\b(?:eval|Function|setTimeout|setInterval|document\.|window\.|location\.|localStorage|sessionStorage|fetch\s*\(|XMLHttpRequest|constructor\s*\()\b/gi,
+      weight: 4,
+    },
+    {
+      id: "programming-token",
+      pattern:
+        /\b(?:function|class|const|let|var|import|export|return|async|await|require|module\.exports|public\s+static\s+void|def\s+\w+|lambda\b)\b/gi,
+      weight: 3,
+    },
+    {
+      id: "shell-command",
+      pattern:
+        /\b(?:curl|wget|bash|sh|powershell|cmd\.exe|chmod|chown|rm\s+-rf|sudo|nc\s+-|python\s+-c|perl\s+-e)\b/gi,
+      weight: 4,
+    },
+    {
+      id: "sqli",
+      pattern:
+        /(?:\bunion\s+select\b|\bselect\b[\s\S]{0,40}\bfrom\b|\binsert\s+into\b|\bupdate\b[\s\S]{0,30}\bset\b|\bdelete\s+from\b|\bdrop\s+(?:table|database)\b|\btruncate\s+table\b|\balter\s+table\b|\bor\s+1\s*=\s*1\b|--\s|\/\*|\*\/)/gi,
+      weight: 4,
+    },
+    {
+      id: "path-traversal",
+      pattern: /(?:\.\.\/|\.\.\\|%2e%2e%2f|%252e%252e%252f)/gi,
+      weight: 4,
+    },
+    {
+      id: "template-injection",
+      pattern: /(?:\$\{|<%|%>|\{\{|\}\}|\[\[|\]\])/g,
+      weight: 3,
+    },
+    {
+      id: "dense-code-punctuation",
+      pattern: /[{}()[\];=<>]{4,}|(?:=>|&&|\|\||::|\/\*)/g,
+      weight: 2,
+    },
+  ];
+
+  const CODE_LIKE_LINE =
+    /(?:^|\s)(?:function|class|const|let|var|import|export|return|if\s*\(|for\s*\(|while\s*\(|switch\s*\(|try\s*\{|catch\s*\(|def\s+\w+|SELECT\s+.*\s+FROM|INSERT\s+INTO|UPDATE\s+.*\s+SET|DELETE\s+FROM)\b|[{};]{2,}|=>|<\/?[a-z][\s\S]*?>/i;
+
+  function decodeSuspiciousEncodings(value) {
+    let decoded = String(value || "");
+    const textarea = document.createElement("textarea");
+    for (let i = 0; i < 2; i += 1) {
+      textarea.innerHTML = decoded;
+      const htmlDecoded = textarea.value;
+      const uriDecoded = htmlDecoded.replace(/%[0-9a-f]{2}/gi, (match) => {
+        const charCode = parseInt(match.slice(1), 16);
+        return Number.isFinite(charCode)
+          ? String.fromCharCode(charCode)
+          : match;
+      });
+      if (uriDecoded === decoded) break;
+      decoded = uriDecoded;
+    }
+    return decoded;
+  }
+
+  function tinyMlRiskScan(value) {
+    const text = decodeSuspiciousEncodings(value);
+    if (!text.trim()) return { score: 0, signatures: [], density: 0 };
+
+    const signatures = [];
+    let score = 0;
+    MALICIOUS_OR_CODE_SIGNATURES.forEach(({ id, pattern, weight }) => {
+      pattern.lastIndex = 0;
+      const matches = text.match(pattern) || [];
+      if (!matches.length) return;
+      signatures.push({ id, count: matches.length });
+      score += matches.length * weight;
+    });
+
+    const punctuationMatches = text.match(/[{}()[\];=<>`$\\/|&]/g) || [];
+    const density = punctuationMatches.length / Math.max(text.length, 1);
+    if (text.length > 24 && density > 0.18) {
+      signatures.push({ id: "punctuation-density", count: 1 });
+      score += 5;
+    }
+
+    const codeLikeLines = text
+      .split(/\r?\n/)
+      .filter((line) => CODE_LIKE_LINE.test(line.trim())).length;
+    if (codeLikeLines) {
+      signatures.push({ id: "code-like-line", count: codeLikeLines });
+      score += codeLikeLines * 4;
+    }
+
+    return { score, signatures, density };
+  }
+
   function simpleThreatScore(value) {
-    const text = String(value || "");
-    if (!text.trim()) return 0;
-    const patterns = [
-      /<\s*script/gi,
-      /javascript:/gi,
-      /on[a-z]+\s*=/gi,
-      /<\/?[a-z][\s\S]*?>/gi,
-      /union\s+select/gi,
-      /\b(drop|truncate|alter)\s+table\b/gi,
-      /\.\.\//g,
-      /%3cscript/gi,
-    ];
-    return patterns.reduce((score, pattern) => {
-      const matches = text.match(pattern);
-      return score + (matches ? matches.length : 0);
-    }, 0);
+    return tinyMlRiskScan(value).score;
+  }
+
+  function removeCodeLikeLines(value) {
+    return String(value || "")
+      .split(/\r?\n/)
+      .filter((line) => !CODE_LIKE_LINE.test(line.trim()))
+      .join(" ");
   }
 
   function sanitizeTextValue(value) {
-    return String(value || "")
+    const decoded = decodeSuspiciousEncodings(value);
+    return removeCodeLikeLines(decoded)
+      .replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, " ")
+      .replace(/`[^`\n]{2,}`/g, " ")
+      .replace(
+        /<\s*(script|style|iframe|object|embed|svg|math|template)\b[\s\S]*?<\s*\/\s*\1\s*>/gi,
+        " ",
+      )
+      .replace(
+        /<\s*\/?\s*(?:script|iframe|object|embed|svg|math|link|meta|base|form|input|button|style|template)[^>]*>/gi,
+        " ",
+      )
+      .replace(/\s+on[a-z]{3,}\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, " ")
+      .replace(/(?:javascript|vbscript|data|file|blob)\s*:/gi, " ")
+      .replace(
+        /\b(?:eval|Function|setTimeout|setInterval|XMLHttpRequest|document\.|window\.|location\.|localStorage|sessionStorage|fetch\s*\()[^\s]*/gi,
+        " ",
+      )
+      .replace(
+        /\b(?:union\s+select|drop\s+table|truncate\s+table|alter\s+table|insert\s+into|delete\s+from|or\s+1\s*=\s*1)\b/gi,
+        " ",
+      )
+      .replace(/<\/?[a-z][\s\S]*?>/gi, " ")
+      .replace(/[<>`{}()[\];$\\|]/g, " ")
       .replace(/[\u0000-\u001F\u007F]/g, " ")
-      .replace(/[<>`]/g, "")
       .replace(/\s+/g, " ")
       .trim();
   }
@@ -89,9 +233,19 @@
 
     Object.entries(payload || {}).forEach(([key, rawValue]) => {
       const normalized = sanitizeTextValue(rawValue);
-      const threatScore = simpleThreatScore(rawValue);
+      const rawScan = tinyMlRiskScan(rawValue);
+      const residualScan = tinyMlRiskScan(normalized);
+      const changed = String(rawValue || "") !== normalized;
       cleaned[key] = normalized;
-      report.push({ key, threatScore, blocked: threatScore >= 2 });
+      report.push({
+        key,
+        changed,
+        threatScore: rawScan.score,
+        residualScore: residualScan.score,
+        signatures: rawScan.signatures,
+        residualSignatures: residualScan.signatures,
+        blocked: rawScan.score >= 7 || residualScan.score > 0,
+      });
     });
 
     const blocked = report.some((entry) => entry.blocked);
@@ -104,42 +258,135 @@
     field.classList.toggle("is-security-warning", isInvalid);
   }
 
-  function secureFormSubmission(form, statusNode) {
+  function getFieldSecurityKey(field, index) {
+    const label = field.id
+      ? document.querySelector(`label[for="${field.id}"]`)?.textContent
+      : "";
+    const group = field
+      .closest("[data-field-name]")
+      ?.getAttribute("data-field-name");
+    const key =
+      field.getAttribute("name") ||
+      field.getAttribute("aria-label") ||
+      label ||
+      field.previousElementSibling?.textContent ||
+      group ||
+      field.id ||
+      `field-${index + 1}`;
+    return `${key.trim() || "field"} #${index + 1}`;
+  }
+
+  function buildContactGatewayEnvelope(form, result, fingerprint) {
+    return {
+      meta: {
+        repoId: form.dataset.repoId || CONTACT_GATEWAY.repoId,
+        sourcePath: form.dataset.sourcePath || CONTACT_GATEWAY.sourcePath,
+        assetSource: form.dataset.assetSource || CONTACT_GATEWAY.assetSource,
+        gatewayVersion: CONTACT_GATEWAY.gatewayVersion,
+        origin: window.location.origin,
+        href: window.location.href,
+        integritySha256: fingerprint,
+        sanitizedAt: new Date().toISOString(),
+      },
+      payload: result.cleaned,
+      securityReport: result.report.map((entry) => ({
+        key: entry.key,
+        changed: entry.changed,
+        threatScore: entry.threatScore,
+        residualScore: entry.residualScore,
+        signatures: entry.signatures.map((signature) => signature.id),
+        residualSignatures: entry.residualSignatures.map(
+          (signature) => signature.id,
+        ),
+      })),
+    };
+  }
+
+  function verifyGatewayRoute(form, endpoint) {
+    const expectedRepo = form.dataset.repoId || CONTACT_GATEWAY.repoId;
+    const expectedSource =
+      form.dataset.sourcePath || CONTACT_GATEWAY.sourcePath;
+    const allowedOrigins = new Set([
+      ...CONTACT_GATEWAY.allowedOrigins,
+      window.location.origin,
+    ]);
+    const currentPath = window.location.pathname.replace(/^\//, "");
+    const sourceMatches =
+      currentPath.endsWith(expectedSource) ||
+      currentPath.endsWith("contact.html");
+    const repoMatches = expectedRepo === CONTACT_GATEWAY.repoId;
+    const endpointUrl = new URL(endpoint, window.location.href);
+    const endpointAllowed =
+      endpointUrl.origin === window.location.origin ||
+      endpointUrl.hostname.endsWith(".workers.dev");
+    const originAllowed = allowedOrigins.has(window.location.origin);
+
+    return {
+      allowed: sourceMatches && repoMatches && endpointAllowed && originAllowed,
+      sourceMatches,
+      repoMatches,
+      endpointAllowed,
+      originAllowed,
+      endpointUrl,
+    };
+  }
+
+  async function forwardSanitizedContact(form, result, fingerprint) {
+    const endpoint = form.dataset.upstreamEndpoint;
+    if (!endpoint) return { skipped: true };
+
+    const route = verifyGatewayRoute(form, endpoint);
+    if (!route.allowed) {
+      return {
+        blocked: true,
+        reason: "Gateway origin/source/repository verification failed.",
+      };
+    }
+
+    const response = await fetch(route.endpointUrl.toString(), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Gabo-Repo-Id": form.dataset.repoId || CONTACT_GATEWAY.repoId,
+        "X-Gabo-Source-Path":
+          form.dataset.sourcePath || CONTACT_GATEWAY.sourcePath,
+        "X-Gabo-Integrity-SHA256": fingerprint,
+      },
+      credentials: "omit",
+      referrerPolicy: "strict-origin-when-cross-origin",
+      body: JSON.stringify(
+        buildContactGatewayEnvelope(form, result, fingerprint),
+      ),
+    });
+
+    return { ok: response.ok, status: response.status };
+  }
+
+  async function secureFormSubmission(form, statusNode) {
     const elements = Array.from(
       form.querySelectorAll("input, textarea, select"),
     ).filter((field) => !field.disabled);
 
     const payload = {};
-    elements.forEach((field) => {
-      const key =
-        field.getAttribute("name") ||
-        field.getAttribute("aria-label") ||
-        field.previousElementSibling?.textContent ||
-        field.id ||
-        "field";
-      payload[key] = field.value;
+    elements.forEach((field, index) => {
+      payload[getFieldSecurityKey(field, index)] = field.value;
     });
 
     const result = scanAndSanitizePayload(payload);
-    elements.forEach((field) => {
-      const key =
-        field.getAttribute("name") ||
-        field.getAttribute("aria-label") ||
-        field.previousElementSibling?.textContent ||
-        field.id ||
-        "field";
+    elements.forEach((field, index) => {
+      const key = getFieldSecurityKey(field, index);
       const line = result.report.find((entry) => entry.key === key);
       const isInvalid = !!line?.blocked;
       markFieldState(field, isInvalid);
-      if (!isInvalid && typeof result.cleaned[key] === "string") {
+      if (typeof result.cleaned[key] === "string") {
         field.value = result.cleaned[key];
       }
     });
 
     if (statusNode) {
       statusNode.textContent = result.blocked
-        ? "Potentially malicious input was blocked. Please remove script/code fragments."
-        : "Input passed sanitization and integrity checks.";
+        ? "Potentially malicious or programming-like input was blocked after TinyML sanitation. Please remove script/code fragments."
+        : "Input passed TinyML sanitation, residual scanning, and integrity checks.";
     }
 
     return result;
@@ -150,20 +397,47 @@
     if (!forms.length) return;
 
     forms.forEach((form) => {
+      if (form.dataset.secureSubmitInitialized === "true") return;
+      form.dataset.secureSubmitInitialized = "true";
+
       const message = document.createElement("small");
       message.className = "security-form-note";
       message.setAttribute("aria-live", "polite");
       form.appendChild(message);
 
       form.addEventListener("submit", async (event) => {
-        const result = secureFormSubmission(form, message);
+        event.preventDefault();
+        const submitter = event.submitter;
+        if (submitter instanceof HTMLButtonElement) submitter.disabled = true;
+
+        const result = await secureFormSubmission(form, message);
         if (result.blocked) {
-          event.preventDefault();
+          if (submitter instanceof HTMLButtonElement)
+            submitter.disabled = false;
           return;
         }
 
         const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
         form.setAttribute("data-integrity-sha256", fingerprint);
+        const upstream = await forwardSanitizedContact(
+          form,
+          result,
+          fingerprint,
+        );
+
+        if (upstream.blocked) {
+          message.textContent = upstream.reason;
+          if (submitter instanceof HTMLButtonElement)
+            submitter.disabled = false;
+          return;
+        }
+
+        message.textContent = upstream.skipped
+          ? "Input is sanitized and ready for the verified Cloudflare Worker gateway."
+          : upstream.ok
+            ? "Sanitized contact request was securely forwarded to the verified gateway."
+            : "Sanitized input passed locally, but the upstream gateway did not accept it. Please try again later.";
+        if (submitter instanceof HTMLButtonElement) submitter.disabled = false;
       });
     });
   }
@@ -194,6 +468,7 @@
     initRuntimeErrorDiagnostics();
     window.GaboSecurity = {
       scanAndSanitizePayload,
+      tinyMlRiskScan,
       sha256Hex,
       corsAllowlist: CORS_ALLOWLIST.slice(),
       knownRuntimeNoise: {
@@ -374,11 +649,13 @@
       const placeholder =
         firstInput?.getAttribute("placeholder") ||
         "Add " + fieldName.toLowerCase() + " entry";
+      const inputName = firstInput?.getAttribute("name") || `${fieldName}[]`;
 
       addBtn.addEventListener("click", () => {
         const row = document.createElement("div");
         row.className = "entry-row";
         const input = document.createElement("input");
+        input.setAttribute("name", inputName);
         input.setAttribute("placeholder", placeholder);
         input.setAttribute("aria-label", fieldName + " entry");
         row.appendChild(input);
