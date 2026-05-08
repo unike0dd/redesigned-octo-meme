@@ -177,16 +177,6 @@ async function forwardToRepository(env, envelope) {
 async function handlePost(request, env) {
   assertOrigin(request, env);
   const body = await request.json();
-  const tinyMlProof = body.tinyMl || {};
-  const expectedScanner = `${PAGE_NAME}-form-only`;
-  if (tinyMlProof.beforeWorker !== true || tinyMlProof.isolatedScanner !== expectedScanner) {
-    return jsonResponse(request, {
-      ok: false,
-      worker: `gabo-${PAGE_NAME}-repo-worker`,
-      error: `${PAGE_NAME} submissions must be scanned and cleansed by the page-specific TinyML before reaching this CF Worker.`,
-      expectedScanner,
-    }, { status: 428 });
-  }
   const scan = scanPayload(body.payload || {});
   if (scan.blocked) {
     return jsonResponse(request, {

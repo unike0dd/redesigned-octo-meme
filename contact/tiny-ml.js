@@ -203,8 +203,6 @@
       securityHeaders: { ...SECURITY_HEADERS },
       tinyMl: {
         page: PAGE_NAME,
-        isolatedScanner: `${PAGE_NAME}-form-only`,
-        beforeWorker: true,
         policy: `${PAGE_NAME}-tinyml-cleanse-v1`,
         threshold: RISK_THRESHOLD,
         residualThreshold: RESIDUAL_THRESHOLD,
@@ -217,9 +215,8 @@
   async function sendEnvelope(form, result, status) {
     const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
     form.setAttribute("data-integrity-sha256", fingerprint);
-    const endpoint = form.getAttribute("data-cf-worker-url") || form.getAttribute("data-upstream-path") || DEFAULT_ENDPOINT;
+    const endpoint = form.getAttribute("data-cf-worker-url") || form.getAttribute("data-upstream-path") || form.action || DEFAULT_ENDPOINT;
     const envelope = buildEnvelope(form, result, fingerprint);
-    form.dataset.tinymlScanStatus = "passed-before-worker";
     const response = await fetch(new URL(endpoint, window.location.origin).toString(), {
       method: "POST",
       mode: "cors",
@@ -241,7 +238,6 @@
   function initForm(form) {
     if (form.dataset[`${PAGE_NAME}TinyMlInitialized`] === "true") return;
     form.dataset[`${PAGE_NAME}TinyMlInitialized`] = "true";
-    form.dataset.submitPolicy = `${PAGE_NAME}-tinyml-required-before-worker`;
     const status = ensureStatus(form);
     if (window.sessionStorage?.getItem(BLOCK_KEY) === "true") {
       closeSession(form, status);

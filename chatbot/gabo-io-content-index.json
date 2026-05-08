@@ -5,7 +5,7 @@
   "accessPolicy": "The /chatbot directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot, repo sync worker, and Cloudflare Chatbot Worker for grounded answers and should not be presented as a public navigation section.",
   "updated": "2026-05-08",
   "sourceOfTruth": {
-    "repoContent": "Repository HTML and assets/i18n.js EN/ES copy",
+    "repoContent": "Repository Services pages, Learning pages, and assets/i18n.js EN/ES copy",
     "contentDirectory": "/chatbot/",
     "languages": [
       "en",
@@ -145,9 +145,13 @@
         "supply chain",
         "exceptions"
       ],
-      "answer": "Logistics Operations supports logistics workflows with operational oversight, dispatch coordination, shipment visibility, inventory-status monitoring, exception management, and supplier or carrier follow-up across air, ocean, and ground transportation. Gabriel Services integrates with existing logistics ecosystems and keeps handoffs, updates, escalations, and next steps clear.",
+      "answer": "Logistics Operations combines service support and learning guidance. The service covers dispatch coordination, carrier communication, shipment tracking for air, ocean, and ground transport, inventory status monitoring, exception management, and supplier or carrier follow-up. The learning path teaches logistics workflows, handoffs, tracking discipline, exception management, repeatable communication, dispatch planning, visibility standards, follow-up management, and escalation control.",
       "leadGenerationPrompt": "If logistics continuity is the priority, I can collect routes, shipment modes, current bottlenecks, volume, and contact details.",
-      "recommendedCta": "Visit Logistics Operations or Contact to request service support."
+      "recommendedCta": "Visit Logistics Operations, Logistics Operations Learning, or Contact to request service support or training.",
+      "sourceUrls": [
+        "/services/logistics-operations.html",
+        "/learning/logistics-operations.html"
+      ]
     },
     {
       "id": "logistics-operations-es",
@@ -168,9 +172,13 @@
         "cadena de suministro",
         "excepciones"
       ],
-      "answer": "Operaciones Logísticas apoya flujos logísticos con supervisión operativa, coordinación de despachos, visibilidad de envíos, monitoreo de inventario, gestión de excepciones y seguimiento con proveedores o transportistas en transporte aéreo, marítimo y terrestre. Gabriel Services se integra al ecosistema logístico existente y mantiene claros los traspasos, actualizaciones, escalaciones y próximos pasos.",
+      "answer": "Operaciones Logísticas combina soporte de servicio y guía de aprendizaje. El servicio cubre coordinación de despachos, comunicación con transportistas, seguimiento de envíos aéreos, marítimos y terrestres, monitoreo de inventario, gestión de excepciones y seguimiento con proveedores o transportistas. La ruta de aprendizaje enseña flujos logísticos, traspasos, disciplina de seguimiento, gestión de excepciones, comunicación repetible, planificación de despachos, estándares de visibilidad, seguimiento y control de escalaciones.",
       "leadGenerationPrompt": "Si la continuidad logística es la prioridad, puedo recopilar rutas, modos de transporte, cuellos de botella, volumen y datos de contacto.",
-      "recommendedCta": "Visita Operaciones Logísticas o Contacto para solicitar apoyo del servicio."
+      "recommendedCta": "Visita Operaciones Logísticas, Aprendizaje de Operaciones Logísticas o Contacto para solicitar servicio o capacitación.",
+      "sourceUrls": [
+        "/services/logistics-operations.html",
+        "/learning/logistics-operations.html"
+      ]
     },
     {
       "id": "administrative-backoffice-en",
@@ -189,9 +197,13 @@
         "reporting",
         "email management"
       ],
-      "answer": "Administrative Back Office adds structure and reliability to internal operations through executive administrative support, calendar management, document preparation, filing, version control, email and internal communications coordination, vendor follow-up, invoice control, and reporting support.",
+      "answer": "Administrative Back Office combines service support and learning guidance. The service covers executive administrative support, calendar management, document preparation, filing, version control, internal communication coordination, vendor follow-up, invoice tracking, reporting support, task ownership, documented task flows, progress tracking, and stakeholder updates. The learning path teaches documentation and reporting habits, task coordination, consistent administrative workflows, calendar and communication management, document organization, version control, vendor follow-up, and service coordination.",
       "leadGenerationPrompt": "If administrative friction is slowing the team, I can collect the recurring tasks, stakeholders, document or calendar needs, reporting priorities, and contact details.",
-      "recommendedCta": "Visit Administrative Back Office or Contact to request service support."
+      "recommendedCta": "Visit Administrative Back Office, Administrative Back Office Learning, or Contact to request service support or training.",
+      "sourceUrls": [
+        "/services/administrative-backoffice.html",
+        "/learning/administrative-backoffice.html"
+      ]
     },
     {
       "id": "administrative-backoffice-es",
@@ -212,9 +224,13 @@
         "gestión de correo",
         "gestion de correo"
       ],
-      "answer": "Back Office Administrativo aporta estructura y confiabilidad a operaciones internas mediante soporte administrativo ejecutivo, gestión de calendario, preparación de documentos, archivo, control de versiones, coordinación de correos y comunicaciones internas, seguimiento con proveedores, control de facturas y soporte de reportes.",
+      "answer": "Back Office Administrativo combina soporte de servicio y guía de aprendizaje. El servicio cubre soporte administrativo ejecutivo, gestión de calendario, preparación de documentos, archivo, control de versiones, coordinación de comunicaciones internas, seguimiento con proveedores, control de facturas, soporte de reportes, responsabilidad de tareas, flujos documentados, seguimiento de progreso y actualizaciones a responsables. La ruta de aprendizaje enseña hábitos de documentación y reportes, coordinación de tareas, flujos administrativos consistentes, gestión de calendario y comunicación, organización de documentos, control de versiones, seguimiento con proveedores y coordinación de servicios.",
       "leadGenerationPrompt": "Si la fricción administrativa retrasa al equipo, puedo recopilar tareas recurrentes, responsables, necesidades de documentos o calendario, prioridades de reportes y datos de contacto.",
-      "recommendedCta": "Visita Back Office Administrativo o Contacto para solicitar apoyo del servicio."
+      "recommendedCta": "Visita Back Office Administrativo, Aprendizaje de Administración Back Office o Contacto para solicitar servicio o capacitación.",
+      "sourceUrls": [
+        "/services/administrative-backoffice.html",
+        "/learning/administrative-backoffice.html"
+      ]
     },
     {
       "id": "customer-relations-en",
@@ -232,9 +248,13 @@
         "first contact resolution",
         "communication management"
       ],
-      "answer": "Customer Relations Operations helps maintain customer satisfaction and resolution flow through ticket follow-up, resolution tracking, CSAT support, billing clarification, first-contact-resolution support, and customer communication management.",
+      "answer": "Customer Relations combines service support and learning guidance. The service covers customer communication, escalation management, follow-up workflows, ticket follow-up, resolution tracking, satisfaction check-ins, feedback support, billing clarification, first-contact resolution support, status communication, standardized responses, escalation protocols, and clear handoffs. The learning path teaches customer communication practices, escalation flows, fast issue resolution, consistent follow-up, satisfaction processes, ticket resolution control, feedback measurement, and timely communication.",
       "leadGenerationPrompt": "If customer communication needs support, I can collect inquiry volume, escalation issues, response expectations, satisfaction goals, and contact details.",
-      "recommendedCta": "Visit Customer Relations Operations or Contact to request service support."
+      "recommendedCta": "Visit Customer Relations Operations, Customer Relations Learning, or Contact to request service support or training.",
+      "sourceUrls": [
+        "/services/customer-relations.html",
+        "/learning/customer-relations.html"
+      ]
     },
     {
       "id": "customer-relations-es",
@@ -255,9 +275,13 @@
         "resolución en primer contacto",
         "comunicación con clientes"
       ],
-      "answer": "Operaciones de Relaciones con Clientes ayuda a mantener la satisfacción del cliente y el flujo de resolución mediante seguimiento de tickets, control de resolución, soporte CSAT, aclaración de facturación, apoyo a resolución en primer contacto y gestión de comunicación con clientes.",
+      "answer": "Relaciones con Clientes combina soporte de servicio y guía de aprendizaje. El servicio cubre comunicación con clientes, gestión de escalaciones, flujos de seguimiento, seguimiento de tickets, control de resolución, revisiones de satisfacción, soporte de retroalimentación, aclaración de facturación, resolución en primer contacto, comunicación de estado, respuestas estandarizadas, protocolos de escalación y traspasos claros. La ruta de aprendizaje enseña prácticas de comunicación, flujos de escalación, resolución rápida, seguimiento consistente, procesos de satisfacción, control de resolución de tickets, medición de retroalimentación y comunicación oportuna.",
       "leadGenerationPrompt": "Si la comunicación con clientes necesita apoyo, puedo recopilar volumen de consultas, problemas de escalación, expectativas de respuesta, metas de satisfacción y datos de contacto.",
-      "recommendedCta": "Visita Operaciones de Relaciones con Clientes o Contacto para solicitar apoyo del servicio."
+      "recommendedCta": "Visita Operaciones de Relaciones con Clientes, Aprendizaje de Relaciones con Clientes o Contacto para solicitar servicio o capacitación.",
+      "sourceUrls": [
+        "/services/customer-relations.html",
+        "/learning/customer-relations.html"
+      ]
     },
     {
       "id": "it-support-en",
@@ -276,9 +300,13 @@
         "incident investigation",
         "root cause"
       ],
-      "answer": "IT Support provides structured technical support coverage for Level I and Level II needs, including help desk intake, ticket creation, basic and advanced troubleshooting, end-user assistance, account access support, escalation coordination, incident investigation, system and workflow support, root-cause analysis, and resolution ownership after escalation.",
+      "answer": "IT Support combines service support and learning guidance. The service covers help desk intake, ticket creation, ticket triage, basic troubleshooting, issue diagnosis, end-user assistance, account access, system support coordination, escalation management, clear status updates, and user-focused communication. The learning path teaches ticket lifecycle, user support workflows, technical communication, escalation practices, measurable support habits, help desk categorization, response planning, incident tracking, progress communication, documentation, and follow-up handoffs.",
       "leadGenerationPrompt": "If IT continuity is the need, I can collect ticket volume, user groups, systems affected, support hours, escalation needs, and contact details.",
-      "recommendedCta": "Visit IT Support or Contact to request service support."
+      "recommendedCta": "Visit IT Support, IT Support Learning, or Contact to request service support or training.",
+      "sourceUrls": [
+        "/services/it-support.html",
+        "/learning/it-support.html"
+      ]
     },
     {
       "id": "it-support-es",
@@ -299,9 +327,13 @@
         "investigación de incidentes",
         "causa raíz"
       ],
-      "answer": "Soporte de TI ofrece cobertura técnica estructurada para necesidades de Nivel I y Nivel II, incluyendo recepción de mesa de ayuda, creación de tickets, solución básica y avanzada de problemas, asistencia a usuarios, soporte de acceso a cuentas, coordinación de escalaciones, investigación de incidentes, soporte de sistemas y flujos, análisis de causa raíz y responsabilidad de resolución tras escalación.",
+      "answer": "Soporte de TI combina soporte de servicio y guía de aprendizaje. El servicio cubre recepción de mesa de ayuda, creación de tickets, clasificación de tickets, solución básica de problemas, diagnóstico de incidencias, asistencia a usuarios finales, acceso a cuentas, coordinación de soporte de sistemas, gestión de escalaciones, actualizaciones claras de estado y comunicación enfocada en el usuario. La ruta de aprendizaje enseña ciclo de vida de tickets, flujos de soporte al usuario, comunicación técnica, prácticas de escalación, hábitos medibles de soporte, categorización de mesa de ayuda, planificación de respuestas, seguimiento de incidentes, comunicación del progreso, documentación y traspasos de seguimiento.",
       "leadGenerationPrompt": "Si la continuidad de TI es la necesidad, puedo recopilar volumen de tickets, grupos de usuarios, sistemas afectados, horarios de soporte, necesidades de escalación y datos de contacto.",
-      "recommendedCta": "Visita Soporte de TI o Contacto para solicitar apoyo del servicio."
+      "recommendedCta": "Visita Soporte de TI, Aprendizaje de Soporte de TI o Contacto para solicitar servicio o capacitación.",
+      "sourceUrls": [
+        "/services/it-support.html",
+        "/learning/it-support.html"
+      ]
     },
     {
       "id": "logistics-operations-learning-en",
@@ -317,11 +349,16 @@
         "exception management",
         "carrier communication",
         "supplier communication",
-        "dispatch coordination"
+        "dispatch coordination",
+        "service and learning"
       ],
       "answer": "This learning path helps logistics teams understand workflows and handoffs, learn shipment tracking and exception-management practices, and create repeatable communication processes for carriers and suppliers. Topics include dispatch coordination, operational planning, visibility standards for air, ocean, and ground shipments, follow-up management, and escalation control.",
       "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
-      "recommendedCta": "Visit Logistics Operations Learning or Learning to compare paths."
+      "recommendedCta": "Visit Logistics Operations Learning or Learning to compare paths.",
+      "sourceUrls": [
+        "/services/logistics-operations.html",
+        "/learning/logistics-operations.html"
+      ]
     },
     {
       "id": "logistics-operations-learning-es",
@@ -338,11 +375,16 @@
         "seguimiento de envíos",
         "gestion de excepciones",
         "comunicación con transportistas",
-        "coordinación de despachos"
+        "coordinación de despachos",
+        "service and learning"
       ],
       "answer": "Esta ruta ayuda a equipos de logística a entender flujos de trabajo y traspasos, aprender prácticas de seguimiento de envíos y gestión de excepciones, y crear procesos repetibles de comunicación con transportistas y proveedores. Incluye coordinación de despachos, planificación operativa, estándares de visibilidad para envíos aéreos, marítimos y terrestres, gestión de seguimiento y control de escalaciones.",
       "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
-      "recommendedCta": "Visita Aprendizaje de Operaciones Logísticas o Aprendizaje para comparar rutas."
+      "recommendedCta": "Visita Aprendizaje de Operaciones Logísticas o Aprendizaje para comparar rutas.",
+      "sourceUrls": [
+        "/services/logistics-operations.html",
+        "/learning/logistics-operations.html"
+      ]
     },
     {
       "id": "administrative-backoffice-learning-en",
@@ -357,11 +399,16 @@
         "records",
         "vendor coordination",
         "reporting",
-        "task tracking"
+        "task tracking",
+        "service and learning"
       ],
       "answer": "This learning path supports administrative teams with practical operating discipline for documentation, scheduling, record upkeep, internal communication, vendor coordination, reporting, and task tracking so back-office work stays consistent and visible.",
       "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
-      "recommendedCta": "Visit Administrative Back Office Learning or Learning to compare paths."
+      "recommendedCta": "Visit Administrative Back Office Learning or Learning to compare paths.",
+      "sourceUrls": [
+        "/services/administrative-backoffice.html",
+        "/learning/administrative-backoffice.html"
+      ]
     },
     {
       "id": "administrative-backoffice-learning-es",
@@ -378,11 +425,16 @@
         "registros",
         "coordinación de proveedores",
         "reportes",
-        "seguimiento de tareas"
+        "seguimiento de tareas",
+        "service and learning"
       ],
       "answer": "Esta ruta apoya a equipos administrativos con disciplina operativa práctica para documentación, programación, mantenimiento de registros, comunicación interna, coordinación con proveedores, reportes y seguimiento de tareas para que el trabajo de back office sea consistente y visible.",
       "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
-      "recommendedCta": "Visita Aprendizaje de Back Office Administrativo o Aprendizaje para comparar rutas."
+      "recommendedCta": "Visita Aprendizaje de Back Office Administrativo o Aprendizaje para comparar rutas.",
+      "sourceUrls": [
+        "/services/administrative-backoffice.html",
+        "/learning/administrative-backoffice.html"
+      ]
     },
     {
       "id": "customer-relations-learning-en",
@@ -401,7 +453,11 @@
       ],
       "answer": "This learning path teaches customer communication, escalation handling, reliable service rhythm, ticket follow-up, resolution control, satisfaction measurement, feedback practices, and timely communication so teams convert customer interactions into dependable outcomes.",
       "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
-      "recommendedCta": "Visit Customer Relations Learning or Learning to compare paths."
+      "recommendedCta": "Visit Customer Relations Learning or Learning to compare paths.",
+      "sourceUrls": [
+        "/services/customer-relations.html",
+        "/learning/customer-relations.html"
+      ]
     },
     {
       "id": "customer-relations-learning-es",
@@ -417,11 +473,16 @@
         "resolución",
         "satisfacción",
         "retroalimentación",
-        "comunicación"
+        "comunicación",
+        "service and learning"
       ],
       "answer": "Esta ruta enseña comunicación con clientes, manejo de escalaciones, ritmo de servicio confiable, seguimiento de tickets, control de resolución, medición de satisfacción, prácticas de retroalimentación y comunicación oportuna para convertir interacciones en resultados confiables.",
       "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
-      "recommendedCta": "Visita Aprendizaje de Relaciones con Clientes o Aprendizaje para comparar rutas."
+      "recommendedCta": "Visita Aprendizaje de Relaciones con Clientes o Aprendizaje para comparar rutas.",
+      "sourceUrls": [
+        "/services/customer-relations.html",
+        "/learning/customer-relations.html"
+      ]
     },
     {
       "id": "it-support-learning-en",
@@ -436,11 +497,16 @@
         "end user support",
         "account access",
         "escalation",
-        "incident workflow"
+        "incident workflow",
+        "service and learning"
       ],
       "answer": "This learning path helps support teams structure help desk intake, ticket creation, basic troubleshooting, user assistance, account access support, escalation coordination, incident workflow, system support, and resolution ownership.",
       "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
-      "recommendedCta": "Visit IT Support Learning or Learning to compare paths."
+      "recommendedCta": "Visit IT Support Learning or Learning to compare paths.",
+      "sourceUrls": [
+        "/services/it-support.html",
+        "/learning/it-support.html"
+      ]
     },
     {
       "id": "it-support-learning-es",
@@ -456,11 +522,16 @@
         "soporte a usuarios",
         "acceso a cuentas",
         "escalación",
-        "flujo de incidentes"
+        "flujo de incidentes",
+        "service and learning"
       ],
       "answer": "Esta ruta ayuda a equipos de soporte a estructurar la recepción de mesa de ayuda, creación de tickets, solución básica de problemas, asistencia a usuarios, soporte de acceso a cuentas, coordinación de escalaciones, flujo de incidentes, soporte de sistemas y responsabilidad de resolución.",
       "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
-      "recommendedCta": "Visita Aprendizaje de Soporte de TI o Aprendizaje para comparar rutas."
+      "recommendedCta": "Visita Aprendizaje de Soporte de TI o Aprendizaje para comparar rutas.",
+      "sourceUrls": [
+        "/services/it-support.html",
+        "/learning/it-support.html"
+      ]
     },
     {
       "id": "contact-en",

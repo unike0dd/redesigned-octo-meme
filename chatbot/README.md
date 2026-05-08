@@ -7,12 +7,12 @@ This directory is dedicated to **gabo io ONLY** for the website chatbot runtime,
 - `gabo-io.js`: browser chatbot widget. It renders the gabo io floating action button and chat panel, loads this directory's content index, sends the visitor message plus grounded retrieval context to the Cloudflare Worker endpoint `/api/ops-online-chat`, and falls back to local grounded EN/ES content if the Worker is unavailable.
 - `gabo-io-content-index.json`: repository-grounded bilingual EN/ES content index used by the chatbot and Worker to answer with confidence and provide relevant source-aware context.
 - `repo-content-sync-worker.js`: Cloudflare Worker module for repo-to-chatbot synchronization. It fetches the latest `gabo-io-content-index.json` directly from the repository raw URL and posts the EN/ES retrieval payload to the Cloudflare Chatbot Worker.
-- `*.md`: supporting retrieval briefs for service, learning, contact, and lead-generation responses.
+- `*.md`: supporting retrieval briefs for service, learning, contact, and lead-generation responses. The EN/ES domain briefs for Logistics Operations, IT Support, Administrative Back Office, and Customer Relations must each combine their matching `/services/...` page content and `/learning/...` page content so chatbot answers can cover service support and learning guidance alike.
 
 ## Retrieval rules
 
 - Use this content only for gabo io chatbot responses.
-- Keep answers concise, privacy-aware, and tied to Gabriel Services website content.
+- Keep answers concise, privacy-aware, and tied to Gabriel Services website content from the matching Services and Learning pages for Logistics Operations, IT Support, Administrative Back Office, and Customer Relations.
 - Prefer the entry `answer` for direct responses and append the `leadGenerationPrompt` only when the visitor shows buying intent, asks for help, or needs follow-up.
 - Match the active site language first (`en` or `es`) and only fall back to all entries when a language-specific match is not available.
 - Do not treat this directory as a public site navigation section.
