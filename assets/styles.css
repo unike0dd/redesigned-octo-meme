@@ -58,7 +58,7 @@ body {
     ),
     linear-gradient(135deg, #f3ecff 0%, #e8dcff 45%, #d8c7ff 100%);
   background-size: 140% 140%, 130% 130%, 200% 200%;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
   animation: royal-purple-background 60s ease-in-out infinite alternate;
@@ -69,13 +69,22 @@ body {
 
 @keyframes royal-purple-background {
   0% {
-    background-position: 0% 0%, 100% 0%, 0% 50%;
+    background-position:
+      0% 0%,
+      100% 0%,
+      0% 50%;
   }
   50% {
-    background-position: 72% 34%, 18% 64%, 100% 50%;
+    background-position:
+      72% 34%,
+      18% 64%,
+      100% 50%;
   }
   100% {
-    background-position: 100% 100%, 0% 100%, 42% 50%;
+    background-position:
+      100% 100%,
+      0% 100%,
+      42% 50%;
   }
 }
 
@@ -100,7 +109,10 @@ body {
       var(--royal-bg-2) 68%,
       var(--royal-bg-3)
     );
-  background-size: 140% 140%, 130% 130%, 220% 220%;
+  background-size:
+    140% 140%,
+    130% 130%,
+    220% 220%;
 }
 
 :root.dark-theme body::before,
@@ -129,13 +141,13 @@ body {
       rgba(240, 230, 255, 0.62) 1.05px,
       transparent 1.85px
     ),
-    radial-gradient(
-      circle,
-      rgba(142, 77, 255, 0.32) 1.8px,
-      transparent 3px
-    );
-  background-position: 0 0, 9px 9px;
-  background-size: 18px 18px, 36px 36px;
+    radial-gradient(circle, rgba(142, 77, 255, 0.32) 1.8px, transparent 3px);
+  background-position:
+    0 0,
+    9px 9px;
+  background-size:
+    18px 18px,
+    36px 36px;
   opacity: 0;
   -webkit-mask-image: radial-gradient(
     circle 150px at var(--mouse-x) var(--mouse-y),
@@ -149,8 +161,7 @@ body {
     black 30%,
     transparent 74%
   );
-  filter:
-    drop-shadow(0 0 1px rgba(240, 230, 255, 0.42))
+  filter: drop-shadow(0 0 1px rgba(240, 230, 255, 0.42))
     drop-shadow(0 0 5px rgba(142, 77, 255, 0.28));
   transition: opacity 160ms ease;
 }
@@ -214,7 +225,7 @@ h2,
 h3,
 h4,
 .serif {
-  font-family: "Libre Baskerville", "Times New Roman", Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
   letter-spacing: 0.01em;
 }
 a {
@@ -580,6 +591,18 @@ footer a {
   padding-left: 1.5rem;
 }
 
+.legal-divider {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.legal-last-updated {
+  color: var(--muted);
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
 :root.dark-theme .legal-section h2 {
   color: #e0e7ff;
 }
@@ -895,7 +918,9 @@ textarea {
   font-family: inherit;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 #gabo-chatbot-fab:hover {
@@ -1028,7 +1053,9 @@ textarea {
   padding: 0.6rem 0.9rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, opacity 0.2s;
+  transition:
+    transform 0.2s,
+    opacity 0.2s;
 }
 
 #gabo-chatbot-send:hover {
@@ -1054,4 +1081,26 @@ textarea {
     height: 85svh;
     max-height: 85vh;
   }
+}
+
+.security-form-note {
+  display: block;
+  margin-top: 0.85rem;
+  color: #334155;
+  font-weight: 700;
+}
+
+input.is-security-warning,
+select.is-security-warning,
+textarea.is-security-warning {
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 3px rgba(185, 28, 28, 0.16);
+}
+
+:root.dark-theme .security-form-note {
+  color: #fecaca;
+}
+
+.security-form-note:empty {
+  display: none;
 }

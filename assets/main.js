@@ -1,13 +1,29 @@
 (function () {
   const SECURITY_HEADERS = {
+    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
     "Content-Security-Policy":
-      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self'; font-src 'self' https://cdnjs.cloudflare.com; upgrade-insecure-requests",
-    "Referrer-Policy": "strict-origin-when-cross-origin",
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';",
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
-    "Cross-Origin-Resource-Policy": "same-origin",
+    "X-XSS-Protection": "0",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "Cross-Origin-Resource-Policy": "same-site",
+    "Cross-Origin-Opener-Policy": "same-origin",
     "Permissions-Policy":
-      "geolocation=(), camera=(), microphone=(), payment=(), usb=()",
+      "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), clipboard-read=(), clipboard-write=(self), display-capture=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), otp-credentials=(), payment=(), picture-in-picture=(), publickey-credentials-create=(), publickey-credentials-get=(self), screen-wake-lock=(), serial=(), speaker-selection=(), storage-access=(), usb=(), web-share=(), xr-spatial-tracking=()",
+    "X-Permitted-Cross-Domain-Policies": "none",
+    "X-DNS-Prefetch-Control": "off",
+    "X-Download-Options": "noopen",
+    "Access-Control-Allow-Origin": "https://www.gabo.services",
+    "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    Vary: "Origin",
+  };
+
+  const CLIENT_SECURITY_POLICIES = {
+    "Content-Security-Policy": SECURITY_HEADERS[
+      "Content-Security-Policy"
+    ].replace("frame-ancestors 'none'; ", ""),
   };
   const CORS_ALLOWLIST = [window.location.origin];
 
@@ -32,7 +48,7 @@
   }
 
   function enforceClientSecurityPolicy() {
-    Object.entries(SECURITY_HEADERS).forEach(([name, content]) => {
+    Object.entries(CLIENT_SECURITY_POLICIES).forEach(([name, content]) => {
       const selector = `meta[http-equiv="${name}"], meta[name="${name}"]`;
       let meta = document.head.querySelector(selector);
       if (!meta) {
@@ -404,7 +420,7 @@
       const line = result.report.find((entry) => entry.key === key);
       const isInvalid = !!line?.blocked;
       markFieldState(field, isInvalid);
-      if (!isInvalid && typeof result.cleaned[key] === "string") {
+      if (typeof result.cleaned[key] === "string") {
         field.value = result.cleaned[key];
       }
     });
@@ -424,6 +440,9 @@
     if (!forms.length) return;
 
     forms.forEach((form) => {
+      if (form.dataset.secureSubmitInitialized === "true") return;
+      form.dataset.secureSubmitInitialized = "true";
+
       const message = document.createElement("small");
       message.className = "security-form-note";
       message.setAttribute("aria-live", "polite");
@@ -443,9 +462,14 @@
       }
 
       form.addEventListener("submit", async (event) => {
-        const result = secureFormSubmission(form, message);
+        event.preventDefault();
+        const submitter = event.submitter;
+        if (submitter instanceof HTMLButtonElement) submitter.disabled = true;
+
+        const result = await secureFormSubmission(form, message);
         if (result.blocked) {
-          event.preventDefault();
+          if (submitter instanceof HTMLButtonElement)
+            submitter.disabled = false;
           return;
         }
 
@@ -506,6 +530,7 @@
         pattern: EXTENSION_MESSAGE_CHANNEL_CLOSED.source,
       },
       frameworks: ["OWASP ASVS", "CISA CPG", "NIST CSF", "PCI DSS 4.0"],
+      securityHeaders: { ...SECURITY_HEADERS },
     };
   }
 
@@ -652,11 +677,6 @@
       ).trim();
 
       node.textContent = finalText;
-      const finalHeight = Math.ceil(node.getBoundingClientRect().height);
-      if (finalHeight > 0) {
-        node.style.minHeight = `${finalHeight}px`;
-      }
-
       node.textContent = finalText.replace(/[A-Za-z]/g, () => randomLetter());
       setTimeout(() => scrambleToText(node), delay);
     });
@@ -679,11 +699,13 @@
       const placeholder =
         firstInput?.getAttribute("placeholder") ||
         "Add " + fieldName.toLowerCase() + " entry";
+      const inputName = firstInput?.getAttribute("name") || `${fieldName}[]`;
 
       addBtn.addEventListener("click", () => {
         const row = document.createElement("div");
         row.className = "entry-row";
         const input = document.createElement("input");
+        input.setAttribute("name", inputName);
         input.setAttribute("placeholder", placeholder);
         input.setAttribute("aria-label", fieldName + " entry");
         row.appendChild(input);
@@ -791,7 +813,6 @@
   }
 
   function initRoyalDarkPointerEffects() {
-    const root = document.documentElement;
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -799,9 +820,7 @@
 
     window.addEventListener(
       "pointermove",
-      (event) => {
-        root.style.setProperty("--mouse-x", `${event.clientX}px`);
-        root.style.setProperty("--mouse-y", `${event.clientY}px`);
+      () => {
         document.body.classList.add("mouse-active");
       },
       { passive: true },
