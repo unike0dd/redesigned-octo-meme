@@ -805,6 +805,15 @@ textarea {
   flex-direction: column;
   gap: 0.4rem;
 }
+.experience-entry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.55fr);
+  gap: 0.5rem;
+  align-items: end;
+}
+.entry-select-field label {
+  margin-top: 0;
+}
 .best-contact-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -960,7 +969,8 @@ textarea {
 }
 @media (max-width: 640px) {
   .form-grid,
-  .footer-grid {
+  .footer-grid,
+  .experience-entry-row {
     grid-template-columns: 1fr;
   }
 }

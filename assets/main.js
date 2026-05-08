@@ -733,46 +733,41 @@
       const list = group.querySelector("[data-repeat-list]");
       const addBtn = group.querySelector("[data-repeat-add]");
       const removeBtn = group.querySelector("[data-repeat-remove]");
-      const fieldName =
-        group.getAttribute("data-field-name") || "additional entry";
-
       if (!list || !addBtn || !removeBtn) return;
 
-      const firstInput = list.querySelector("input");
-      const placeholder =
-        firstInput?.getAttribute("placeholder") ||
-        "Add " + fieldName.toLowerCase() + " entry";
-      const placeholderKey = firstInput?.getAttribute("data-i18n-placeholder");
-      const inputName = firstInput?.getAttribute("name") || `${fieldName}[]`;
+      const templateRow = list.querySelector(".entry-row");
+      const focusableSelector = "input, select, textarea";
+
+      const clearRowValues = (row) => {
+        row.querySelectorAll("input, textarea").forEach((field) => {
+          field.value = "";
+          field.dispatchEvent(new Event("input", { bubbles: true }));
+        });
+        row.querySelectorAll("select").forEach((field) => {
+          field.selectedIndex = 0;
+          field.dispatchEvent(new Event("change", { bubbles: true }));
+        });
+      };
+
+      if (!templateRow) return;
 
       addBtn.addEventListener("click", () => {
-        const row = document.createElement("div");
-        row.className = "entry-row floating-field entry-floating-field";
-        const label = document.createElement("label");
-        label.textContent = placeholder;
-        if (placeholderKey) {
-          label.setAttribute("data-i18n", placeholderKey);
-        }
-        const input = document.createElement("input");
-        input.setAttribute("name", inputName);
-        input.setAttribute("placeholder", placeholder);
-        if (placeholderKey) {
-          input.setAttribute("data-i18n-placeholder", placeholderKey);
-        }
-        input.setAttribute("aria-label", placeholder);
-        row.append(label, input);
+        const row = templateRow.cloneNode(true);
+        clearRowValues(row);
         list.appendChild(row);
-        setupFloatingField(row);
-        input.focus();
+        initFloatingFields(row);
+        window.I18N?.applyLanguage?.();
+        row.querySelector(focusableSelector)?.focus();
       });
 
       removeBtn.addEventListener("click", () => {
         const rows = list.querySelectorAll(".entry-row");
         if (rows.length <= 1) {
-          const onlyInput = rows[0]?.querySelector("input");
-          if (onlyInput) {
-            onlyInput.value = "";
-            onlyInput.focus();
+          const onlyRow = rows[0];
+          if (onlyRow) {
+            clearRowValues(onlyRow);
+            initFloatingFields(onlyRow);
+            onlyRow.querySelector(focusableSelector)?.focus();
           }
           return;
         }
