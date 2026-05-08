@@ -164,19 +164,36 @@
             <div
               class="entry-group full-row"
               data-repeatable-group
-              data-field-name="Experience Level"
+              data-field-name="Experience"
             >
               <div class="entry-group-header">
-                <label data-i18n="experienceLevelLabel">Experience Level</label>
+                <label data-i18n="experienceLabel">Experience</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddExperienceEntry">Add experience level entry</label>
-                  <input
-                    name="experienceLevels[]"
-                    data-i18n-placeholder="placeholderAddExperienceEntry"
-                    placeholder="Add experience level entry"
-                  />
+                <div class="entry-row experience-entry-row">
+                  <div class="floating-field entry-floating-field">
+                    <label data-i18n="placeholderAddExperienceEntry">Add experience entry</label>
+                    <input
+                      name="experience[]"
+                      data-i18n-placeholder="placeholderAddExperienceEntry"
+                      placeholder="Add experience entry"
+                    />
+                  </div>
+                  <div class="entry-select-field">
+                    <label>
+                      <span data-i18n="experienceLevelLabel">Experience Level</span>
+                      <select name="experienceLevels[]" data-experience-level-select>
+                        <option data-i18n="experienceLevelEntryLevel">Entry Level</option>
+                        <option data-i18n="experienceLevelJunior">Junior</option>
+                        <option data-i18n="experienceLevelIntermediate">Intermediate</option>
+                        <option data-i18n="experienceLevelAdvanced">Advanced</option>
+                        <option data-i18n="experienceLevelSenior">Senior</option>
+                        <option data-i18n="experienceLevelExpert">Expert</option>
+                        <option data-i18n="experienceLevelEngineer">Engineer</option>
+                        <option data-i18n="experienceLevelCLevel">C Level</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="entry-group-actions">
