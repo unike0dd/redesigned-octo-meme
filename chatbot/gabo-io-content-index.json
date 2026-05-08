@@ -26,7 +26,15 @@
       "chatbot/it-support-en.md",
       "chatbot/it-support-es.md"
     ],
-    "interactionEndpoint": "/chat"
+    "interactionEndpoint": "/chat",
+    "firstTouch": "chatbot-browser-tiny-ml",
+    "handoffOrder": [
+      "chatbot-browser-tiny-ml",
+      "gabo-io-repo-content-sync-worker",
+      "gabo-io-cf-tiny-worker",
+      "gabo-io-cloudflare-chatbot-worker"
+    ],
+    "cfTinyWorkerEnv": "CF_CHATBOT_TINY_WORKER_URL or CF_TINY_WORKER_URL"
   },
   "entries": [
     {

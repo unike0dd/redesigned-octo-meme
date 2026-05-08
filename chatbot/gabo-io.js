@@ -5,7 +5,7 @@
   }
 
   const CHATBOT_ID = "gabo-chatbot-fab";
-  const CF_WORKER_ENDPOINT = "/api/ops-online-chat";
+  const REPO_WORKER_INTERACTION_ENDPOINT = "/api/ops-online-chat";
   const CONFIDENCE_THRESHOLD = 0.28;
   const SUPPORTED_CHAT_LANGUAGES = ["en", "es"];
   const MAX_SANITIZED_MESSAGE_LENGTH = 220;
@@ -177,10 +177,10 @@
   }
 
   function verifyGatewayPath() {
-    const endpoint = new URL(CF_WORKER_ENDPOINT, window.location.origin);
+    const endpoint = new URL(REPO_WORKER_INTERACTION_ENDPOINT, window.location.origin);
     const contentIndex = new URL(getChatbotContentUrl(), window.location.origin);
     return endpoint.origin === window.location.origin
-      && endpoint.pathname === CF_WORKER_ENDPOINT
+      && endpoint.pathname === REPO_WORKER_INTERACTION_ENDPOINT
       && contentIndex.origin === window.location.origin
       && contentIndex.pathname.endsWith("/chatbot/gabo-io-content-index.json");
   }
@@ -401,12 +401,23 @@
       }));
 
       try {
-        const response = await fetch(CF_WORKER_ENDPOINT, {
+        const response = await fetch(REPO_WORKER_INTERACTION_ENDPOINT, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             message: trimmed,
             lang: getChatLanguage(),
+            handoff: {
+              order: [
+                "chatbot-browser-tiny-ml",
+                "gabo-io-repo-content-sync-worker",
+                "gabo-io-cf-tiny-worker",
+                "gabo-io-cloudflare-chatbot-worker",
+              ],
+              current: "chatbot-browser-tiny-ml",
+              next: "gabo-io-repo-content-sync-worker",
+              final: "gabo-io-cloudflare-chatbot-worker",
+            },
             retrieval: {
               contentDirectory: "/chatbot/",
               contentIndexUrl: getChatbotContentUrl(),
