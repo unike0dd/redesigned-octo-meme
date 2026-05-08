@@ -1,36 +1,68 @@
-# Aprendizaje de Operaciones Logísticas — gabo io retrieval content
+# Servicios y Aprendizaje de Operaciones Logísticas — gabo io retrieval content
 
-**Source URL:** `/learning/logistics-operations.html`
+**Source URLs:** `/services/logistics-operations.html`, `/learning/logistics-operations.html`
 **Language:** Spanish (`es`)
 **Audience:** gabo io chatbot only
 
-## Core answer
+## Alcance del contenido
 
-Aprendizaje de Operaciones Logísticas es una ruta práctica para equipos de logística y profesionales de operaciones, enfocada en la continuidad, la disciplina de seguimiento y la coordinación de procesos.
+- Dominio: Operaciones Logísticas.
+- Contenido de servicios: resumen del servicio, trabajo gestionado, modelo de entrega y valor para el negocio.
+- Contenido de aprendizaje: objetivos de aprendizaje, temas clave y aplicación práctica para Aprendizaje de Operaciones Logísticas.
+- Uso de recuperación: responder con soporte de servicio y guía de aprendizaje cuando el visitante pregunte por este dominio.
 
-## Objetivos de aprendizaje
+## Respuesta principal
+
+Operaciones Logísticas apoya los flujos logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos para mantener la cadena de suministro en movimiento. El contenido de aprendizaje ayuda a los equipos a comprender flujos de trabajo y puntos de traspaso, mejorar el seguimiento de envíos, gestionar excepciones y crear procesos de comunicación repetibles para transportistas y proveedores.
+
+## Contenido del servicio
+
+### Lo que ofrece Gabriel Services
+
+- Coordinación de despachos y comunicación con transportistas.
+- Seguimiento de envíos para transporte aéreo, marítimo y terrestre.
+- Monitoreo del estado de inventario y gestión de excepciones.
+- Seguimiento con proveedores y transportistas para proteger los tiempos de entrega.
+
+### Cómo trabaja Gabriel Services
+
+Gabriel Services se integra en el ecosistema logístico del cliente, se alinea con hitos operativos y proporciona ejecución diaria consistente.
+
+- Prácticas claras de traspaso y plantillas de comunicación.
+- Actualizaciones periódicas de estado y escalación temprana de problemas.
+- Seguimiento basado en datos con próximos pasos accionables.
+
+### Por qué elegir este servicio
+
+Este servicio es ideal para empresas que necesitan soporte logístico confiable sin agregar carga interna. Gabriel Services ayuda a reducir retrasos, mejorar la visibilidad y mantener las operaciones receptivas.
+
+## Contenido de aprendizaje
+
+Aprendizaje de Operaciones Logísticas es una guía práctica para equipos de logística y profesionales de operaciones, enfocada en continuidad, disciplina de seguimiento y coordinación de procesos.
+
+### Objetivos de aprendizaje
 
 - Comprender los principales flujos de trabajo logísticos y los puntos de traspaso.
 - Aprender mejores prácticas para el seguimiento de envíos y la gestión de excepciones.
 - Crear procesos de comunicación repetibles para transportistas y proveedores.
 
-## Temas clave
+### Temas clave
 
 - Coordinación de despachos y planificación operativa.
 - Estándares de visibilidad para envíos aéreos, marítimos y terrestres.
 - Gestión de seguimientos y control de escalaciones.
 
-## Aplicación práctica
+### Aplicación práctica
 
 Esta ruta está diseñada para personas que necesitan convertir la planificación logística en una ejecución diaria predecible, sin agregar carga operativa.
 
-## Lead-generation guidance
+## Guía para generación de leads
 
-When a visitor asks about learning, training, implementation, or support for logistics operations, ask for:
+Cuando un visitante pregunte por ayuda, precios, disponibilidad, capacitación o soporte de implementación, solicita:
 
-- Contact name and preferred contact method.
-- Logistics role, team size, or operating area.
-- Shipment modes used: air, ocean, ground, or mixed.
-- Main learning need: workflows, handoffs, tracking, exception management, communication, or escalations.
+- Nombre de contacto y método de contacto preferido.
+- Rol logístico, tamaño del equipo o área operativa.
+- Modos de envío utilizados: aéreo, marítimo, terrestre o mixto.
+- Necesidades actuales de despacho, comunicación con transportistas, seguimiento de envíos, visibilidad de inventario, gestión de excepciones, traspasos o escalaciones.
 
-Suggested CTA: **Volver a Aprendizaje** or visit the Contact page to request logistics operations learning support.
+CTA sugerido: **Volver a Servicios**, **Volver a Aprendizaje** o visitar la página de Contacto para solicitar apoyo de Operaciones Logísticas.
