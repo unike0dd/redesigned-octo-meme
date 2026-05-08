@@ -52,21 +52,26 @@
           oportunidades de colaboración.
         </p>
         <form
+          id="contact-request-form"
+          method="post"
+          action="/api/contact"
           data-contact-gateway="true"
+          data-page-tinyml="contact"
+          data-upstream-path="/api/contact"
+          data-asset-id="contact.html"
           data-repo-id="unike0dd/redesigned-octo-meme"
           data-source-path="contact.html"
           data-asset-source="github-pages-static-contact-form"
         >
-          <div class="honeypot-field" aria-hidden="true" data-honeypot-wrap>
-            <label for="contact-company-website">Company website</label>
+          <div class="form-honeypot contact-honeypot" aria-hidden="true" hidden inert>
+            <label for="contact-website-url">Website URL</label>
             <input
-              id="contact-company-website"
-              name="companyWebsite"
+              id="contact-website-url"
+              name="website_url"
               type="text"
               tabindex="-1"
               autocomplete="off"
-              inputmode="none"
-              data-honeypot="true"
+              data-tinyml-honeypot="true"
             />
           </div>
           <div class="form-grid">
@@ -329,6 +334,7 @@
       </div>
     </main>
     <script src="./assets/footer.js"></script>
+    <script src="./contact/tiny-ml.js"></script>
     <script src="./assets/main.js"></script>
   </body>
 </html>

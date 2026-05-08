@@ -57,11 +57,8 @@ body {
       transparent 28rem
     ),
     linear-gradient(135deg, #f3ecff 0%, #e8dcff 45%, #d8c7ff 100%);
-  background-size:
-    140% 140%,
-    130% 130%,
-    200% 200%;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  background-size: 140% 140%, 130% 130%, 200% 200%;
+  font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.6;
   padding-bottom: 0;
   animation: royal-purple-background 60s ease-in-out infinite alternate;
@@ -228,7 +225,7 @@ h2,
 h3,
 h4,
 .serif {
-  font-family: "Libre Baskerville", "Times New Roman", Georgia, serif;
+  font-family: Georgia, "Times New Roman", serif;
   letter-spacing: 0.01em;
 }
 a {
@@ -594,6 +591,18 @@ footer a {
   padding-left: 1.5rem;
 }
 
+.legal-divider {
+  margin: 3rem 0;
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.legal-last-updated {
+  color: var(--muted);
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
 :root.dark-theme .legal-section h2 {
   color: #e0e7ff;
 }
@@ -644,6 +653,21 @@ textarea {
 textarea {
   min-height: 130px;
 }
+
+.form-honeypot,
+.career-honeypot {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  display: none !important;
+  visibility: hidden !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -654,6 +678,22 @@ textarea {
   gap: 0.6rem;
   margin-top: 1rem;
   flex-wrap: wrap;
+}
+
+.security-form-note {
+  display: block;
+  margin-top: 0.85rem;
+  color: var(--brand-navy);
+  font-weight: 700;
+}
+
+.is-security-warning {
+  border-color: #b42318;
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+}
+
+:root.dark-theme .security-form-note {
+  color: var(--royal-gold-bright);
 }
 .entry-group {
   display: flex;
@@ -1066,14 +1106,4 @@ textarea.is-security-warning {
 
 .security-form-note:empty {
   display: none;
-}
-
-.honeypot-field {
-  position: absolute;
-  left: -10000px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
 }
