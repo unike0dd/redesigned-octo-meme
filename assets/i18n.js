@@ -190,7 +190,9 @@
       countryZipCode: "Country Zip Code",
       bestContactTime: "Best Time to Contact You",
       messageLabel: "Message",
-      inquiryAboutTitle: "Inquiry About Remote Assistant",
+      inquiryAboutTitle:
+        "Tell us your expectation about the Remote Assistant expertise, knowledge and abilities",
+      inquiryAboutHelper: "Aptitude, skills, experience, knowledge",
       skillsLabel: "Skills",
       languagesLabel: "Languages",
       projectsLabel: "Projects",
@@ -213,8 +215,7 @@
       careersIntro:
         "Apply to support operations, communication, and service delivery workflows across all service domains.",
       availabilityLabel: "Availability",
-      areaInterestLabel:
-        "Area of Interest",
+      areaInterestLabel: "Area of Interest",
       careersOptionLogistics: "Logistics",
       careersOptionAdministration: "Administration",
       careersOptionCustomerRelations: "Customer Relations",
@@ -229,27 +230,10 @@
       educationOptionDoctorate: "Doctorate",
       educationOptionCertified: "Certified",
       bestContactTime: "Best Time to Contact You",
+      bestContactDateLabel: "Best contact date",
+      bestContactTimeLabel: "Best contact time",
       messageLabel: "Message",
-      availabilityLabel: "Availability",
-      areaInterestLabel:
-        "Area of Interest",
-      careersOptionLogistics: "Logistics",
-      careersOptionAdministration: "Administration",
-      careersOptionCustomerRelations: "Customer Relations",
-      experienceLevelLabel: "Experience Level",
-      resumeLinkLabel: "Resume/Profile link",
-      educationLevelLabel: "Education Level",
-      educationOptionHighSchool: "High School",
-      educationOptionAssociate: "Associate",
-      educationOptionBachelor: "Bachelor",
-      educationOptionMaster: "Master",
-      educationOptionDoctorate: "Doctorate",
-      educationOptionCertified: "Certified",
-      bestContactTime: "Best Time to Contact You",
-      messageLabel: "Message",
-      careersTitle: "Careers",
-      careersIntro:
-        "Apply to support operations, communication, and service delivery workflows across all service domains.",
+      careerMessagePrompt: "Tell us about YOU",
 
       learningTitle: "Learning",
       learningIntro:
@@ -871,7 +855,9 @@
       countryZipCode: "Código postal del país",
       bestContactTime: "Mejor hora para contactarte",
       messageLabel: "Mensaje",
-      inquiryAboutTitle: "Consulta sobre Asistente Remoto",
+      inquiryAboutTitle:
+        "Cuéntanos tus expectativas sobre la experiencia, el conocimiento y las habilidades del Asistente Remoto",
+      inquiryAboutHelper: "Aptitud, habilidades, experiencia, conocimiento",
       skillsLabel: "Habilidades",
       languagesLabel: "Idiomas",
       projectsLabel: "Proyectos",
@@ -908,6 +894,11 @@
       educationOptionMaster: "Maestría",
       educationOptionDoctorate: "Doctorado",
       educationOptionCertified: "Certificación",
+      bestContactTime: "Mejor hora para contactarte",
+      bestContactDateLabel: "Mejor fecha de contacto",
+      bestContactTimeLabel: "Mejor hora de contacto",
+      messageLabel: "Mensaje",
+      careerMessagePrompt: "Cuéntanos sobre TI",
 
       learningTitle: "Aprendizaje",
       learningIntro:

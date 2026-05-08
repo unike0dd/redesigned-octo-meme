@@ -14,10 +14,10 @@ The Contact page lets visitors reach Gabriel Services for support, onboarding, p
 - Country code and contact number.
 - City, state/province, space/suite/apartment, and country zip code.
 - Best time to contact and message.
-- Remote Assistant inquiry details: skills, area of interest, experience level, education, and languages.
+- Remote Assistant expectation details: expertise, knowledge, abilities, aptitude, skills, experience, education, areas of interest, and languages.
 
 ## Lead-generation guidance
 
-When a visitor wants to contact Gabriel Services, gather name, email, phone, location, best contact time, service interest, project needs, and any Remote Assistant details.
+When a visitor wants to contact Gabriel Services, gather name, email, phone, location, best contact time, service interest, project needs, and any Remote Assistant expectation details.
 
 Suggested CTA: visit Contact, complete the form, and submit when ready.

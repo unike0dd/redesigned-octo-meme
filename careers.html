@@ -70,14 +70,24 @@
             />
           </div>
           <div class="form-grid">
-            <div><label data-i18n="fullName">Full Name</label><input /></div>
-            <div>
-              <label data-i18n="emailAddress">Email Address</label
-              ><input type="email" />
+            <div class="floating-field">
+              <label for="career-full-name" data-i18n="fullName">Full Name</label>
+              <input id="career-full-name" name="fullName" autocomplete="name" />
             </div>
-            <div>
-              <label data-i18n="countryCode">Country Code</label>
+            <div class="floating-field">
+              <label for="career-email-address" data-i18n="emailAddress">Email Address</label>
               <input
+                id="career-email-address"
+                name="emailAddress"
+                type="email"
+                autocomplete="email"
+              />
+            </div>
+            <div class="floating-field">
+              <label for="career-country-code" data-i18n="countryCode">Country Code</label>
+              <input
+                id="career-country-code"
+                name="countryCode"
                 type="tel"
                 inputmode="numeric"
                 pattern="[0-9]+"
@@ -85,9 +95,11 @@
                 autocomplete="tel-country-code"
               />
             </div>
-            <div>
-              <label data-i18n="contactNumber">Contact Number</label>
+            <div class="floating-field">
+              <label for="career-contact-number" data-i18n="contactNumber">Contact Number</label>
               <input
+                id="career-contact-number"
+                name="contactNumber"
                 type="tel"
                 inputmode="numeric"
                 pattern="[0-9]+"
@@ -95,13 +107,19 @@
                 autocomplete="tel-national"
               />
             </div>
-            <div><label data-i18n="city">City</label><input /></div>
-            <div>
-              <label data-i18n="stateProvince">State/Province</label><input />
+            <div class="floating-field">
+              <label for="career-city" data-i18n="city">City</label>
+              <input id="career-city" name="city" />
             </div>
-            <div>
-              <label data-i18n="countryZipCode">Country Zip Code</label>
+            <div class="floating-field">
+              <label for="career-state-province" data-i18n="stateProvince">State/Province</label>
+              <input id="career-state-province" name="stateProvince" />
+            </div>
+            <div class="floating-field">
+              <label for="career-country-zip-code" data-i18n="countryZipCode">Country Zip Code</label>
               <input
+                id="career-country-zip-code"
+                name="countryZipCode"
                 type="text"
                 inputmode="numeric"
                 pattern="[0-9]+"
@@ -109,15 +127,13 @@
                 autocomplete="postal-code"
               />
             </div>
-            <div>
-              <label data-i18n="availabilityLabel">Availability</label><input />
+            <div class="floating-field">
+              <label for="career-availability" data-i18n="availabilityLabel">Availability</label>
+              <input id="career-availability" name="availability" />
             </div>
             <div>
-              <label data-i18n="areaInterestLabel"
-                >Area of Interest (Logistics / Admin / Customer Relations / IT
-                Support)</label
-              >
-              <select>
+              <label for="career-area-interest" data-i18n="areaInterestLabel">Area of Interest</label>
+              <select id="career-area-interest" name="areaInterest">
                 <option data-i18n="careersOptionLogistics">Logistics</option>
                 <option data-i18n="careersOptionAdministration">
                   Administration
@@ -128,13 +144,13 @@
                 <option data-i18n="careersOptionItSupport">IT Support</option>
               </select>
             </div>
-            <div>
-              <label data-i18n="resumeLinkLabel">Resume/Profile link</label
-              ><input />
+            <div class="floating-field">
+              <label for="career-resume-link" data-i18n="resumeLinkLabel">Resume/Profile link</label>
+              <input id="career-resume-link" name="resumeLink" type="url" />
             </div>
             <div>
-              <label data-i18n="educationLevelLabel">Education Level</label>
-              <select>
+              <label for="career-education-level" data-i18n="educationLevelLabel">Education Level</label>
+              <select id="career-education-level" name="educationLevel">
                 <option data-i18n="educationOptionHighSchool">
                   High School
                 </option>
@@ -154,8 +170,10 @@
                 <label data-i18n="experienceLevelLabel">Experience Level</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddExperienceEntry">Add experience level entry</label>
                   <input
+                    name="experienceLevels[]"
                     data-i18n-placeholder="placeholderAddExperienceEntry"
                     placeholder="Add experience level entry"
                   />
@@ -187,8 +205,10 @@
                 <label data-i18n="languagesLabel">Languages</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddLanguageEntry">Add language entry</label>
                   <input
+                    name="languages[]"
                     data-i18n-placeholder="placeholderAddLanguageEntry"
                     placeholder="Add language entry"
                   />
@@ -220,8 +240,10 @@
                 <label data-i18n="skillsLabel">Skills</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddSkillEntry">Add skill entry</label>
                   <input
+                    name="skills[]"
                     data-i18n-placeholder="placeholderAddSkillEntry"
                     placeholder="Add skill entry"
                   />
@@ -253,8 +275,10 @@
                 <label data-i18n="projectsLabel">Projects</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddProjectEntry">Add project entry</label>
                   <input
+                    name="projects[]"
                     data-i18n-placeholder="placeholderAddProjectEntry"
                     placeholder="Add project entry"
                   />
@@ -286,8 +310,10 @@
                 <label data-i18n="educationLabel">Education</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row">
+                <div class="entry-row floating-field entry-floating-field">
+                  <label data-i18n="placeholderAddEducationEntry">Add education entry</label>
                   <input
+                    name="education[]"
                     data-i18n-placeholder="placeholderAddEducationEntry"
                     placeholder="Add education entry"
                   />
@@ -311,20 +337,40 @@
               </div>
             </div>
             <div class="entry-group best-contact-time full-row">
-              <label data-i18n="bestContactTime"
-                >Best Time to Contact You</label
-              >
+              <label data-i18n="bestContactTime">Best Time to Contact You</label>
               <div class="best-contact-row">
-                <input type="date" aria-label="Best contact date" />
-                <input type="time" aria-label="Best contact time" />
+                <div class="floating-field">
+                  <label for="career-best-contact-date" data-i18n="bestContactDateLabel">Best contact date</label>
+                  <input
+                    id="career-best-contact-date"
+                    name="bestContactDate"
+                    type="date"
+                    aria-label="Best contact date"
+                    data-i18n-aria-label="bestContactDateLabel"
+                  />
+                </div>
+                <div class="floating-field">
+                  <label for="career-best-contact-time" data-i18n="bestContactTimeLabel">Best contact time</label>
+                  <input
+                    id="career-best-contact-time"
+                    name="bestContactTime"
+                    type="time"
+                    aria-label="Best contact time"
+                    data-i18n-aria-label="bestContactTimeLabel"
+                  />
+                </div>
               </div>
             </div>
           </div>
-          <label data-i18n="messageLabel">Message</label>
-          <textarea
-            data-i18n-placeholder="messageLabel"
-            placeholder="Tell us about YOU"
-          ></textarea>
+          <div class="floating-field floating-field-textarea">
+            <label for="career-message" data-i18n="careerMessagePrompt">Tell us about YOU</label>
+            <textarea
+              id="career-message"
+              name="message"
+              data-i18n-placeholder="careerMessagePrompt"
+              placeholder="Tell us about YOU"
+            ></textarea>
+          </div>
           <div class="form-actions">
             <button
               class="btn primary"
