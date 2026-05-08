@@ -50,8 +50,10 @@
         <form
           id="careers-application-form"
           method="post"
-          action="/api/careers"
+          action="careers.html"
           data-secure-gateway="careers"
+          data-cf-worker-url="/api/careers"
+          data-page-tinyml="careers"
           data-upstream-path="/api/careers"
           data-repo-id="unike0dd/redesigned-octo-meme"
           data-asset-id="careers.html"
@@ -339,6 +341,7 @@
       </div>
     </main>
     <script src="./assets/footer.js"></script>
+    <script src="./careers/tiny-ml.js"></script>
     <script src="./assets/main.js"></script>
   </body>
 </html>

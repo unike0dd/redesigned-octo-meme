@@ -440,6 +440,7 @@
     if (!forms.length) return;
 
     forms.forEach((form) => {
+      if (form.dataset.pageTinyml) return;
       if (form.dataset.secureSubmitInitialized === "true") return;
       form.dataset.secureSubmitInitialized = "true";
 
