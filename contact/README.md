@@ -18,27 +18,7 @@ Every Contact submission is configured so TinyML is the first touch before any r
 
 ## Repo sanitizer integrity base
 
-The repo worker calculates `X-Gabo-Repo-Sanitized-SHA256` only after building the sanitized Contact package, using the stable JSON string of this exact base:
-
-```json
-{
-  "formType": "<formType>",
-  "route": "<route>",
-  "site": "<site>",
-  "repo": "<repo>",
-  "request_id": "<request_id>",
-  "source": "<source>",
-  "fields": {},
-  "lists": {},
-  "security": {
-    "lane": "<lane>",
-    "origin": "<origin>",
-    "repo_id": "<repo_id>",
-    "asset_id": "<asset_id>",
-    "session_id": "<session_id>"
-  }
-}
-```
+The repo worker calculates `X-Gabo-Repo-Sanitized-SHA256` only after building the sanitized Contact package, using the stable JSON string of the full sanitized Contact package.
 
 ## Environment variables
 

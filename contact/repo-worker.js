@@ -547,23 +547,7 @@ function buildContactPackage(input, ctx) {
 }
 
 async function calculateRepoSanitizedSha256(canonical) {
-  return sha256Hex(stableStringify({
-    formType: canonical.formType,
-    route: canonical.route,
-    site: canonical.site,
-    repo: canonical.repo,
-    request_id: canonical.request_id,
-    source: canonical.source,
-    fields: canonical.fields,
-    lists: canonical.lists,
-    security: {
-      lane: canonical.security.lane,
-      origin: canonical.security.origin,
-      repo_id: canonical.security.repo_id,
-      asset_id: canonical.security.asset_id,
-      session_id: canonical.security.session_id
-    }
-  }));
+  return sha256Hex(stableStringify(canonical));
 }
 
 function validateContact(payload) {
