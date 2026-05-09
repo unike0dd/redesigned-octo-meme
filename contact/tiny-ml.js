@@ -3,7 +3,8 @@
 
   const FORM_SELECTOR = 'form[data-contact-gateway="true"]';
 
-  const DEFAULT_REPO_ENDPOINT = "/api/contact";
+  const DEFAULT_REPO_ENDPOINT = "https://contact-api.gabo.services/api/contact";
+  const LEGACY_REPO_ENDPOINT_PATH = "/api/contact";
   const DEFAULT_ASSET_ID = "redesigned-octo-meme-contact";
   const DEFAULT_REPO_ID = "CONTACTO";
   const DEFAULT_SOURCE = "contact.html";
@@ -423,7 +424,7 @@
     try {
       const url = new URL(value, location.origin);
 
-      if (url.origin === location.origin && url.pathname === DEFAULT_REPO_ENDPOINT) {
+      if (url.origin === location.origin && url.pathname === LEGACY_REPO_ENDPOINT_PATH) {
         return DEFAULT_REPO_ENDPOINT;
       }
     } catch {
