@@ -17,7 +17,7 @@ const RESPONSE_HEADERS = {
   "X-DNS-Prefetch-Control": "off",
   "X-Download-Options": "noopen",
   "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS, POST",
-  "Access-Control-Allow-Headers": "Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Gabo-Asset-ID, X-Gabo-Repo-ID, X-Gabo-Integrity-SHA256",
+  "Access-Control-Allow-Headers": "Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Gabo-Asset-ID, X-Gabo-Repo-ID, X-Gabo-Session-Id, X-Gabo-Nonce, X-Gabo-Integrity-SHA256, X-Gabo-Repo-Sanitized-SHA256",
   Vary: "Origin",
 };
 const ALLOWED_ORIGINS = new Set([
@@ -149,11 +149,84 @@ function scanPayload(payload = {}) {
   return { cleaned, report, blocked: report.some((entry) => entry.blocked) };
 }
 
+function stableStringify(value) {
+  if (value === null || typeof value !== "object") return JSON.stringify(value);
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
+  return `{${Object.keys(value)
+    .sort()
+    .map((key) => `${JSON.stringify(key)}:${stableStringify(value[key])}`)
+    .join(",")}}`;
+}
+
 async function sha256Hex(value) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(value || "")));
   return Array.from(new Uint8Array(digest))
     .map((byte) => byte.toString(16).padStart(2, "0"))
     .join("");
+}
+
+function timingSafeEqual(left, right) {
+  const a = String(left || "");
+  const b = String(right || "");
+  if (!a || !b || a.length !== b.length) return false;
+  let diff = 0;
+  for (let index = 0; index < a.length; index += 1) {
+    diff |= a.charCodeAt(index) ^ b.charCodeAt(index);
+  }
+  return diff === 0;
+}
+
+function getRequestOrigin(request, body) {
+  return request.headers.get("Origin") || request.headers.get("X-Gabo-Origin") || body?.origin || "";
+}
+
+function getClientSession(request, body) {
+  const bodySession = body?.clientSession && typeof body.clientSession === "object" ? body.clientSession : {};
+  return {
+    sessionId: request.headers.get("X-Gabo-Session-Id") || bodySession.id || bodySession.sessionId || "",
+    nonce: request.headers.get("X-Gabo-Nonce") || bodySession.nonce || "",
+  };
+}
+
+async function verifyClientIntegrity(request, body, cleanedFields) {
+  const clientFingerprint = body.clientIntegrity?.sha256 || body.integritySha256 || request.headers.get("X-Gabo-Integrity-SHA256") || "";
+  if (!clientFingerprint) {
+    return { ok: false, message: "Client integrity SHA-256 is required." };
+  }
+
+  const session = getClientSession(request, body);
+  const origin = getRequestOrigin(request, body);
+  const source = body.src || body.source || request.headers.get("X-Gabo-Source") || `/${PAGE_NAME}.html`;
+
+  if (session.sessionId && session.nonce) {
+    const expectedBase = {
+      route: PAGE_NAME,
+      origin,
+      source,
+      session_id: session.sessionId,
+      nonce: session.nonce,
+      cleanedFields,
+    };
+    const expectedSha256 = await sha256Hex(stableStringify(expectedBase));
+    return {
+      ok: timingSafeEqual(clientFingerprint, expectedSha256),
+      message: "Client integrity SHA-256 mismatch.",
+      clientFingerprint,
+      expectedSha256,
+      fingerprintBase: "route+origin+source+session_id+nonce+cleanedFields",
+      session,
+    };
+  }
+
+  const legacySha256 = await sha256Hex(JSON.stringify(cleanedFields));
+  return {
+    ok: timingSafeEqual(clientFingerprint, legacySha256),
+    message: "Client integrity SHA-256 mismatch.",
+    clientFingerprint,
+    expectedSha256: legacySha256,
+    fingerprintBase: "legacy-cleanedFields-json",
+    session,
+  };
 }
 
 function assertOrigin(request, env) {
@@ -177,6 +250,14 @@ async function postJsonWorker(url, envelope, token, userAgent) {
       Accept: "application/json",
       "Content-Type": "application/json",
       "User-Agent": userAgent,
+      "X-Gabo-Origin": envelope.origin || "",
+      "X-Gabo-Source": envelope.src || envelope.source || `/${PAGE_NAME}.html`,
+      "X-Gabo-Asset-ID": envelope.assetId || "",
+      "X-Gabo-Repo-ID": envelope.repoId || "",
+      "X-Gabo-Session-Id": envelope.clientSession?.id || "",
+      "X-Gabo-Nonce": envelope.clientSession?.nonce || "",
+      "X-Gabo-Integrity-SHA256": envelope.serverTinyMl?.clientFingerprint || envelope.integritySha256 || "",
+      "X-Gabo-Repo-Sanitized-SHA256": envelope.serverTinyMl?.repoSanitizedFingerprint || "",
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
     body: JSON.stringify(envelope),
@@ -268,22 +349,48 @@ async function handlePost(request, env) {
       report: scan.report,
     }, { status: 422 });
   }
-  const serverFingerprint = await sha256Hex(JSON.stringify(scan.cleaned));
-  const clientFingerprint = body.integritySha256 || request.headers.get("X-Gabo-Integrity-SHA256") || "";
-  const integrityMatched = !clientFingerprint || clientFingerprint === serverFingerprint;
+  const integrity = await verifyClientIntegrity(request, body, scan.cleaned);
+  if (!integrity.ok) {
+    return jsonResponse(request, {
+      ok: false,
+      worker: `gabo-${PAGE_NAME}-repo-worker`,
+      error: integrity.message,
+    }, { status: 403 });
+  }
+  const repoSanitizedFingerprint = await sha256Hex(stableStringify({
+    type: body.type || `${PAGE_NAME}-form-submission`,
+    route: PAGE_NAME,
+    repoId: body.repoId || "",
+    assetId: body.assetId || "",
+    src: body.src || body.source || request.headers.get("X-Gabo-Source") || `/${PAGE_NAME}.html`,
+    origin: getRequestOrigin(request, body),
+    payload: scan.cleaned,
+    security: {
+      lane: PAGE_NAME,
+      session_id: integrity.session.sessionId,
+    },
+  }));
   const envelope = {
     ...body,
     payload: scan.cleaned,
+    clientSession: {
+      ...(body.clientSession || {}),
+      id: integrity.session.sessionId || body.clientSession?.id,
+      nonce: integrity.session.nonce || body.clientSession?.nonce,
+    },
     serverTinyMl: {
       page: PAGE_NAME,
       policy: `${PAGE_NAME}-repo-worker-cleanse-v1`,
       report: scan.report,
-      serverFingerprint,
-      clientFingerprint,
-      integrityMatched,
+      serverFingerprint: integrity.expectedSha256,
+      clientFingerprint: integrity.clientFingerprint,
+      integrityMatched: true,
+      fingerprintBase: integrity.fingerprintBase,
+      repoSanitizedFingerprint,
     },
     receivedAt: new Date().toISOString(),
   };
+  const integrityMatched = true;
   const cfTinyWorkerResult = await forwardToCfTinyWorker(request, env, envelope);
   if (cfTinyWorkerResult.url && !cfTinyWorkerResult.forwarded) {
     return jsonResponse(request, {
