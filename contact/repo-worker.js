@@ -9,6 +9,9 @@ const ACCEPTED_PATHS = new Set([
 
 const EXPECTED_ASSET_ID = "redesigned-octo-meme-contact";
 const EXPECTED_REPO_ID = "CONTACTO";
+const EXPECTED_SOURCE = "contact.html";
+const EXPECTED_SITE = "Gabriel Services";
+const EXPECTED_REPO = "redesigned-octo-meme";
 
 const CF_TINYML_PATH = "/__ops/contact/tinyml";
 const CF_TINYML_ORIGIN = "https://unike0dd.github.io";
@@ -400,7 +403,7 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
     "Accept": "application/json",
 
     "X-Gabo-Origin": CF_TINYML_ORIGIN,
-    "X-Gabo-Source": "contact.html",
+    "X-Gabo-Source": EXPECTED_SOURCE,
     "X-Ops-Asset-Id": ctx.assetId,
     "X-Gabo-Repo-Id": ctx.repoId,
     "X-Gabo-Session-Id": ctx.sessionId,
@@ -504,13 +507,13 @@ function buildContactPackage(input, ctx) {
   return {
     formType: "contact",
     route: "contact",
-    site: "Gabriel Services",
-    repo: "redesigned-octo-meme",
+    site: EXPECTED_SITE,
+    repo: EXPECTED_REPO,
     request_id: cleanText(input.request_id || input.requestId || crypto.randomUUID()).slice(0, 120),
 
     submittedAt: cleanText(input.submittedAt || ""),
     received_at: now,
-    source: cleanText(input.pageUrl || input.source || ""),
+    source: EXPECTED_SOURCE,
     source_worker: WORKER_NAME,
 
     fields,
@@ -527,7 +530,7 @@ function buildContactPackage(input, ctx) {
       worker: WORKER_NAME,
       lane: "contact",
       origin: ctx.origin,
-      repo: "redesigned-octo-meme",
+      repo: EXPECTED_REPO,
       repo_id: ctx.repoId,
       asset_id: ctx.assetId,
       session_id: ctx.sessionId,
@@ -550,7 +553,25 @@ function buildContactPackage(input, ctx) {
 }
 
 async function calculateRepoSanitizedSha256(canonical) {
-  return sha256Hex(stableStringify(canonical));
+  const repoHashBase = {
+    formType: canonical.formType,
+    route: canonical.route,
+    site: canonical.site,
+    repo: canonical.repo,
+    request_id: canonical.request_id,
+    source: canonical.source,
+    fields: canonical.fields,
+    lists: canonical.lists,
+    security: {
+      lane: canonical.security?.lane || "",
+      origin: canonical.security?.origin || "",
+      repo_id: canonical.security?.repo_id || "",
+      asset_id: canonical.security?.asset_id || "",
+      session_id: canonical.security?.session_id || ""
+    }
+  };
+
+  return sha256Hex(stableStringify(repoHashBase));
 }
 
 function validateContact(payload) {

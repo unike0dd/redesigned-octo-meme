@@ -7,13 +7,15 @@ This Markdown document describes the Contact-specific browser TinyML sanitizer a
 Every Contact submission is configured so TinyML is the first touch before any repo or Cloudflare Worker receives user-provided content:
 
 1. `contact/tiny-ml.js` runs in the browser first, blocks honeypot sessions, sanitizes each field, signs the cleaned payload, and sends only the sanitized envelope to `/api/contact`.
-2. `contact/repo-worker.js` receives the sanitized envelope, repeats the TinyML cleanse server-side, verifies the integrity fingerprint, and refuses residual risk before any upstream handoff.
-3. The repo worker posts the verified envelope to `CONTACT_CF_TINYML_URL` (defaulting to `https://contacto.gabo.services/__ops/contact/tinyml`) and includes the server-only `CONTACT_REPO_TO_TINYML_SECRET` as a worker-to-worker handoff header. If the CF TinyML worker rejects or fails, the handoff stops.
+2. `functions/api/contact.js` binds the `/api/contact` Pages route to `contact/repo-worker.js` so the repo Worker logic executes instead of being treated as a static asset.
+3. `contact/repo-worker.js` receives the sanitized envelope, repeats the TinyML cleanse server-side, verifies the integrity fingerprint, and refuses residual risk before any upstream handoff.
+4. The repo worker posts the verified envelope to `CONTACT_CF_TINYML_URL` (defaulting to `https://contacto.gabo.services/__ops/contact/tinyml`) and includes the server-only `CONTACT_REPO_TO_TINYML_SECRET` as a worker-to-worker handoff header. If the CF TinyML worker rejects or fails, the handoff stops.
 
 ## Files
 
 - `tiny-ml.js` runs in the browser, applies the same security-header policy values used by `_headers`, cleanses every Contact form field, blocks bot honeypot sessions, signs the sanitized payload with SHA-256, and sends only the cleansed envelope to `/api/contact`.
-- `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, and enforces the `browser TinyML → repo worker → CF TinyML worker` order.
+- `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, computes the repo sanitized SHA-256 over the downstream integrity base, and enforces the `browser TinyML → repo worker → CF TinyML worker` order.
+- `../../functions/api/contact.js` is the Cloudflare Pages Function route adapter for `POST /api/contact`; deploy it with Pages Functions or map `/api/contact` directly to the Worker so `contact/repo-worker.js` is executed server-side.
 
 ## Environment variables
 
