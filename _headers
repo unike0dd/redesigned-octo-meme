@@ -48,7 +48,7 @@
   Cache-Control: no-store, max-age=0
   Access-Control-Allow-Origin: https://www.gabo.services
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST
-  Access-Control-Allow-Headers: Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Ops-Asset-Id, X-Gabo-Repo-Id, X-Gabo-Session-Id, X-Gabo-Nonce, X-Gabo-Integrity-SHA256, X-Gabo-Repo-Sanitized-SHA256, X-Gabo-Headers-Policy, X-Gabo-Repo-To-TinyML-Secret
+  Access-Control-Allow-Headers: Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Ops-Asset-Id, X-Gabo-Repo-Id, X-Gabo-Session-Id, X-Gabo-Nonce, X-Gabo-Integrity-SHA256
   Vary: Origin
 
 /api/careers

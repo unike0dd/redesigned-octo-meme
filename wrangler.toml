@@ -1,0 +1,12 @@
+name = "gabo-contact-repo-worker"
+main = "contact/repo-worker.js"
+compatibility_date = "2026-05-09"
+workers_dev = true
+
+# This Worker is the executable repo-side /api/contact gateway. Deploy it on the
+# same Cloudflare Pages project or proxied custom domain that serves contact.html
+# so browser requests to /api/contact are handled by Cloudflare instead of static
+# GitHub Pages.
+
+[vars]
+CONTACT_CF_TINYML_URL = "https://contacto.gabo.services/__ops/contact/tinyml"
