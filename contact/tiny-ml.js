@@ -509,13 +509,13 @@
       throw new Error(
         responseJson && responseJson.message
           ? responseJson.message
-          : `Contact repo worker rejected: ${response.status}`
+          : `Contact API Gateway Worker rejected: ${response.status}`
       );
     }
 
     status.textContent =
       responseJson.message ||
-      "Contact TinyML passed and the repo worker accepted the handoff.";
+      "Contact TinyML passed and the Contact API Gateway Worker accepted the handoff.";
 
     form.reset();
   }
@@ -565,12 +565,12 @@
           return;
         }
 
-        status.textContent = "Contact TinyML cleaned the form. Sending to repo worker.";
+        status.textContent = "Contact TinyML cleaned the form. Sending to the Contact API Gateway Worker.";
 
         await submitForm(form, status, scan);
       } catch (error) {
         form.dataset.contactError = String(error && error.message ? error.message : error);
-        status.textContent = "Contact TinyML passed, but the repo worker handoff failed.";
+        status.textContent = "Contact TinyML passed, but the Contact API Gateway Worker handoff failed.";
       } finally {
         if (submitter && "disabled" in submitter) {
           submitter.disabled = false;

@@ -1,5 +1,5 @@
 const PAGE_NAME = "contact";
-const WORKER_NAME = "gabo-contact-repo-worker";
+const WORKER_NAME = "contact-api.gabo.services";
 
 const ACCEPTED_PATHS = new Set([
   "/",
@@ -21,7 +21,7 @@ const MAX_DEPTH = 8;
 const MAX_RISK_SCORE = 55;
 
 const HEADER_POLICY_ID = "contact-repo-tinyml-v1";
-const REPO_GATE_VALUE = "contact-repo-worker";
+const REPO_GATE_VALUE = "contact-api-gateway-worker";
 
 const ALLOWED_ORIGINS = new Set([
   "https://unike0dd.github.io",
@@ -110,6 +110,11 @@ const ALLOWED_REQUEST_HEADERS = [
   "X-Gabo-Integrity-SHA256"
 ];
 
+const SERVER_ONLY_CLIENT_HEADERS = [
+  "X-Gabo-Repo-To-TinyML-Secret",
+  "CONTACT_REPO_TO_TINYML_SECRET"
+];
+
 const RISK_PATTERNS = [
   "javascript:",
   "data:text/html",
@@ -158,7 +163,7 @@ export default {
         ok: false,
         worker: WORKER_NAME,
         page: PAGE_NAME,
-        message: "Contact repo worker failed.",
+        message: "Contact API Gateway Worker failed.",
         error: cleanText(error && error.message ? error.message : error)
       });
     }
@@ -187,9 +192,11 @@ async function handleRequest(request, env) {
     return jsonResponse(request, 200, {
       ok: true,
       worker: WORKER_NAME,
-      page: PAGE_NAME,
+      route: PAGE_NAME,
+      status: "online",
       accepted_paths: Array.from(ACCEPTED_PATHS),
-      next_hop: "cf-tinyml-contact",
+      next_hop: "contacto.gabo.services",
+      upstream_path: CF_TINYML_PATH,
       header_policy: HEADER_POLICY_ID
     });
   }
@@ -314,7 +321,7 @@ async function handleContactPost(request, env) {
     return jsonResponse(request, 400, {
       ok: false,
       worker: WORKER_NAME,
-      message: "Contact repo worker rejected the payload during security inspection.",
+      message: "Contact API Gateway Worker rejected the payload during security inspection.",
       flags: inspection.flags
     });
   }
@@ -367,14 +374,14 @@ async function handleContactPost(request, env) {
     return jsonResponse(request, forwardResult.status || 502, {
       ok: false,
       worker: WORKER_NAME,
-      message: forwardResult.message || "Contact repo worker could not complete the CF TinyML handoff."
+      message: forwardResult.message || "Contact API Gateway Worker could not complete the CF TinyML handoff."
     });
   }
 
   return jsonResponse(request, 200, {
     ok: true,
     worker: WORKER_NAME,
-    message: "Contact repo worker accepted and forwarded the cleaned submission.",
+    message: "Contact API Gateway Worker accepted and forwarded the cleaned submission.",
     request_id: canonical.request_id,
     next_hop: "cf-tinyml-contact"
   });
@@ -397,7 +404,7 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
     return {
       ok: false,
       status: 500,
-      message: "Contact repo-to-TinyML shared secret is not configured."
+      message: "Contact API Gateway Worker Cloudflare secret is not configured."
     };
   }
 
@@ -622,10 +629,14 @@ function validateOrigin(origin, env) {
 }
 
 function rejectServerOnlyClientHeaders(request) {
-  if (request.headers.has("X-Gabo-Repo-To-TinyML-Secret")) {
+  const rejected = SERVER_ONLY_CLIENT_HEADERS.find((headerName) =>
+    request.headers.has(headerName)
+  );
+
+  if (rejected) {
     return {
       ok: false,
-      message: "Repo-to-TinyML secret is server-side only."
+      message: "Contact API Gateway Worker secret is server-side only."
     };
   }
 
