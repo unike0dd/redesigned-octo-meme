@@ -417,12 +417,29 @@
     };
   }
 
+  function normalizeRepoEndpoint(value) {
+    if (!value || value === DEFAULT_REPO_ENDPOINT) return DEFAULT_REPO_ENDPOINT;
+
+    try {
+      const url = new URL(value, location.origin);
+
+      if (url.origin === location.origin && url.pathname === DEFAULT_REPO_ENDPOINT) {
+        return DEFAULT_REPO_ENDPOINT;
+      }
+    } catch {
+      return DEFAULT_REPO_ENDPOINT;
+    }
+
+    return DEFAULT_REPO_ENDPOINT;
+  }
+
   function getConfig(form) {
     return {
-      endpoint:
+      endpoint: normalizeRepoEndpoint(
         form.getAttribute("data-upstream-path") ||
         form.getAttribute("action") ||
-        DEFAULT_REPO_ENDPOINT,
+        DEFAULT_REPO_ENDPOINT
+      ),
 
       assetId:
         form.getAttribute("data-ops-asset-id") ||

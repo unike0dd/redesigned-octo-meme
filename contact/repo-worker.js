@@ -12,7 +12,7 @@ const EXPECTED_REPO_ID = "CONTACTO";
 
 const CF_TINYML_PATH = "/__ops/contact/tinyml";
 const CF_TINYML_ORIGIN = "https://unike0dd.github.io";
-const DEFAULT_CF_TINYML_URL = `https://contact-guard.gabo.services${CF_TINYML_PATH}`;
+const DEFAULT_CF_TINYML_URL = `https://contacto.gabo.services${CF_TINYML_PATH}`;
 
 const MAX_BODY_BYTES = 24 * 1024;
 const MAX_FIELD_LENGTH = 5000;
@@ -42,7 +42,7 @@ const RESPONSE_HEADERS = {
     "style-src 'self'",
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
-    "connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services https://contact-guard.gabo.services https://contacto.gabo.services",
+    "connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services https://contacto.gabo.services",
     "frame-src 'self' https://challenges.cloudflare.com",
     "worker-src 'self'",
     "manifest-src 'self'",
@@ -107,6 +107,9 @@ const ALLOWED_REQUEST_HEADERS = [
   "X-Gabo-Session-Id",
   "X-Gabo-Nonce",
   "X-Gabo-Integrity-SHA256",
+  "X-Gabo-Repo-Sanitized-SHA256",
+  "X-Gabo-Headers-Policy",
+  "X-Gabo-Repo-To-TinyML-Secret",
 
   "X-Gabo-Asset-ID",
   "X-Gabo-Repo-ID"
