@@ -10,14 +10,16 @@ const ACCEPTED_PATHS = new Set([
 const EXPECTED_ASSET_ID = "redesigned-octo-meme-contact";
 const EXPECTED_REPO_ID = "CONTACTO";
 
-const DEFAULT_CF_TINYML_URL = "https://contact-guard.gabo.services/__ops/contact/tinyml";
+const CF_TINYML_PATH = "/__ops/contact/tinyml";
+const CF_TINYML_ORIGIN = "https://unike0dd.github.io";
+const DEFAULT_CF_TINYML_URL = `https://contact-guard.gabo.services${CF_TINYML_PATH}`;
 
 const MAX_BODY_BYTES = 24 * 1024;
 const MAX_FIELD_LENGTH = 5000;
 const MAX_DEPTH = 8;
 const MAX_RISK_SCORE = 55;
 
-const HEADER_POLICY_ID = "redesigned-octo-meme-contact-headers-v1";
+const HEADER_POLICY_ID = "contact-repo-tinyml-v1";
 const REPO_GATE_VALUE = "contact-repo-worker";
 
 const ALLOWED_ORIGINS = new Set([
@@ -326,9 +328,11 @@ async function handleContactPost(request, env) {
     sessionId: sessionCheck.sessionId,
     nonce: sessionCheck.nonce,
     clientIntegritySha256: integrity.clientSha256,
-    repoIntegritySha256: integrity.repoSha256,
     inspection
   });
+
+  const repoSanitizedSha256 = await calculateRepoSanitizedSha256(canonical);
+  canonical.integrity.repo_sha256 = repoSanitizedSha256;
 
   const validation = validateContact(canonical);
 
@@ -347,7 +351,7 @@ async function handleContactPost(request, env) {
     sessionId: sessionCheck.sessionId,
     nonce: sessionCheck.nonce,
     clientIntegritySha256: integrity.clientSha256,
-    repoIntegritySha256: integrity.repoSha256
+    repoIntegritySha256: repoSanitizedSha256
   });
 
   if (!forwardResult.ok) {
@@ -368,7 +372,7 @@ async function handleContactPost(request, env) {
 }
 
 async function forwardToCfTinyMl(request, env, canonical, ctx) {
-  const targetUrl = cleanText(env.CONTACT_CF_TINYML_URL || DEFAULT_CF_TINYML_URL);
+  const targetUrl = normalizeCfTinyMlUrl(env.CONTACT_CF_TINYML_URL || DEFAULT_CF_TINYML_URL);
 
   if (!targetUrl) {
     return {
@@ -384,7 +388,7 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
     return {
       ok: false,
       status: 500,
-      message: "CONTACT_REPO_TO_TINYML_SECRET must be configured on the repo worker only."
+      message: "Contact repo-to-TinyML shared secret is not configured."
     };
   }
 
@@ -392,18 +396,19 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
     "Content-Type": "application/json",
     "Accept": "application/json",
 
-    "X-Gabo-Origin": ctx.origin,
+    "X-Gabo-Origin": CF_TINYML_ORIGIN,
     "X-Gabo-Source": "contact.html",
     "X-Ops-Asset-Id": ctx.assetId,
     "X-Gabo-Repo-Id": ctx.repoId,
     "X-Gabo-Session-Id": ctx.sessionId,
     "X-Gabo-Nonce": ctx.nonce,
     "X-Gabo-Integrity-SHA256": ctx.clientIntegritySha256,
-    "X-Gabo-Repo-Integrity-SHA256": ctx.repoIntegritySha256,
+    "X-Gabo-Repo-Sanitized-SHA256": ctx.repoIntegritySha256,
     "X-Gabo-Headers-Policy": HEADER_POLICY_ID,
-    "X-Gabo-Repo-Gate": REPO_GATE_VALUE,
-    "X-Gabo-Repo-To-TinyML-Secret": sharedSecret
+    "X-Gabo-Repo-To-TinyML-Secret": sharedSecret,
+    "X-Gabo-Repo-Gate": REPO_GATE_VALUE
   };
+
 
   const response = await fetch(targetUrl, {
     method: "POST",
@@ -434,6 +439,20 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
     ok: true,
     status: response.status
   };
+}
+
+function normalizeCfTinyMlUrl(value) {
+  const rawUrl = cleanText(value || DEFAULT_CF_TINYML_URL);
+
+  if (!rawUrl) return "";
+
+  try {
+    const url = new URL(rawUrl);
+    url.pathname = CF_TINYML_PATH;
+    return url.toString();
+  } catch {
+    return "";
+  }
 }
 
 function buildContactPackage(input, ctx) {
@@ -508,6 +527,7 @@ function buildContactPackage(input, ctx) {
       repo: "redesigned-octo-meme",
       repo_id: ctx.repoId,
       asset_id: ctx.assetId,
+      session_id: ctx.sessionId,
       header_policy: HEADER_POLICY_ID,
       next_hop: "cf-tinyml-contact"
     },
@@ -519,11 +539,15 @@ function buildContactPackage(input, ctx) {
       flags: ctx.inspection.flags,
       body_length: ctx.inspection.bodyLength,
       client_sha256: ctx.clientIntegritySha256,
-      repo_sha256: ctx.repoIntegritySha256,
+      repo_sha256: cleanText(ctx.repoIntegritySha256 || ""),
       browser_tinyml: "passed",
       repo_worker: "passed"
     }
   };
+}
+
+async function calculateRepoSanitizedSha256(canonical) {
+  return sha256Hex(stableStringify(canonical));
 }
 
 function validateContact(payload) {
@@ -670,12 +694,12 @@ async function verifyClientIntegrity(request, cleanedBody, origin, sessionCheck)
         : {};
 
   const expectedBase = {
-    page: PAGE_NAME,
+    route: PAGE_NAME,
     origin,
-    path: sourcePath,
-    cleanedFields,
-    sessionId: sessionCheck.sessionId,
-    nonce: sessionCheck.nonce
+    source: sourcePath,
+    session_id: sessionCheck.sessionId,
+    nonce: sessionCheck.nonce,
+    cleanedFields
   };
 
   const expectedSha256 = await sha256Hex(stableStringify(expectedBase));
@@ -687,20 +711,10 @@ async function verifyClientIntegrity(request, cleanedBody, origin, sessionCheck)
     };
   }
 
-  const repoSha256 = await sha256Hex(stableStringify({
-    page: PAGE_NAME,
-    origin,
-    sessionId: sessionCheck.sessionId,
-    nonce: sessionCheck.nonce,
-    payload: cleanedBody,
-    checkedAt: "repo-worker"
-  }));
-
   return {
     ok: true,
     clientSha256,
-    expectedSha256,
-    repoSha256
+    expectedSha256
   };
 }
 
