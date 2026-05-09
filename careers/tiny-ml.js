@@ -149,6 +149,33 @@
     return { cleaned, report, blocked: report.some((entry) => entry.blocked) };
   }
 
+  function createSession() {
+    const sessionId =
+      (window.crypto?.randomUUID && window.crypto.randomUUID()) ||
+      `${PAGE_NAME}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    const bytes = new Uint8Array(32);
+    if (window.crypto?.getRandomValues) {
+      window.crypto.getRandomValues(bytes);
+    } else {
+      for (let index = 0; index < bytes.length; index += 1) {
+        bytes[index] = Math.floor(Math.random() * 256);
+      }
+    }
+    const nonce = Array.from(bytes)
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+    return { sessionId, nonce, issuedAt: new Date().toISOString() };
+  }
+
+  function stableStringify(value) {
+    if (value === null || typeof value !== "object") return JSON.stringify(value);
+    if (Array.isArray(value)) return `[${value.map(stableStringify).join(",")}]`;
+    return `{${Object.keys(value)
+      .sort()
+      .map((key) => `${JSON.stringify(key)}:${stableStringify(value[key])}`)
+      .join(",")}}`;
+  }
+
   async function sha256Hex(value) {
     if (!window.crypto?.subtle || !window.TextEncoder) return "";
     const digest = await window.crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(value || "")));
@@ -190,16 +217,28 @@
     };
   }
 
-  function buildEnvelope(form, result, fingerprint) {
+  function buildEnvelope(form, result, fingerprint, session, source) {
     return {
       type: `${PAGE_NAME}-form-submission`,
       repoId: form.getAttribute("data-repo-id") || "unike0dd/redesigned-octo-meme",
       assetId: form.getAttribute("data-asset-id") || form.getAttribute("data-source-path") || `${PAGE_NAME}.html`,
-      src: form.getAttribute("data-src") || form.getAttribute("data-source-path") || window.location.pathname,
+      src: source,
       origin: window.location.origin,
       formId: form.id || `${PAGE_NAME}-form`,
       sanitizedAt: new Date().toISOString(),
       integritySha256: fingerprint,
+      clientSession: {
+        id: session.sessionId,
+        nonce: session.nonce,
+        issuedAt: session.issuedAt,
+      },
+      clientIntegrity: {
+        checked: true,
+        checked_at: new Date().toISOString(),
+        sha256: fingerprint,
+        fingerprintBase: "route+origin+source+session_id+nonce+cleanedFields",
+        report: result.report,
+      },
       securityHeaders: { ...SECURITY_HEADERS },
       tinyMl: {
         page: PAGE_NAME,
@@ -213,10 +252,20 @@
   }
 
   async function sendEnvelope(form, result, status) {
-    const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
-    form.setAttribute("data-integrity-sha256", fingerprint);
     const endpoint = form.getAttribute("data-cf-worker-url") || form.getAttribute("data-upstream-path") || form.action || DEFAULT_ENDPOINT;
-    const envelope = buildEnvelope(form, result, fingerprint);
+    const source = form.getAttribute("data-src") || form.getAttribute("data-source-path") || window.location.pathname;
+    const session = createSession();
+    const fingerprintBase = {
+      route: PAGE_NAME,
+      origin: window.location.origin,
+      source,
+      session_id: session.sessionId,
+      nonce: session.nonce,
+      cleanedFields: result.cleaned,
+    };
+    const fingerprint = await sha256Hex(stableStringify(fingerprintBase));
+    form.setAttribute("data-integrity-sha256", fingerprint);
+    const envelope = buildEnvelope(form, result, fingerprint, session, source);
     const response = await fetch(new URL(endpoint, window.location.origin).toString(), {
       method: "POST",
       mode: "cors",
@@ -227,6 +276,8 @@
         "X-Gabo-Source": envelope.src,
         "X-Gabo-Asset-ID": envelope.assetId,
         "X-Gabo-Repo-ID": envelope.repoId,
+        "X-Gabo-Session-Id": session.sessionId,
+        "X-Gabo-Nonce": session.nonce,
         "X-Gabo-Integrity-SHA256": fingerprint,
       },
       body: JSON.stringify(envelope),
