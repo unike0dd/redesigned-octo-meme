@@ -1,6 +1,6 @@
 # Careers form edge scripts
 
-This directory contains the Careers-specific browser TinyML sanitizer and repo worker.
+This Markdown document describes the Careers-specific browser TinyML sanitizer and repo worker. Runtime scripts remain in the `careers/` directory.
 
 ## Required handoff order
 

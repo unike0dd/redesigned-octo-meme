@@ -419,7 +419,7 @@
               final: "gabo-io-cloudflare-chatbot-worker",
             },
             retrieval: {
-              contentDirectory: "/chatbot/",
+              contentDirectory: "/readme MD/chatbot/",
               contentIndexUrl: getChatbotContentUrl(),
               sourceOfTruth: "repo-en-es",
               assetId: CHATBOT_ASSET_ID,

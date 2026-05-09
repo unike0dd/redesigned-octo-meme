@@ -1,6 +1,6 @@
 # Contact form edge scripts
 
-This directory contains the Contact-specific browser TinyML sanitizer and repo worker.
+This Markdown document describes the Contact-specific browser TinyML sanitizer and repo worker. Runtime scripts remain in the `contact/` directory.
 
 ## Required handoff order
 
