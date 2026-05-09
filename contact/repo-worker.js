@@ -12,7 +12,7 @@ const EXPECTED_REPO_ID = "CONTACTO";
 
 const CF_TINYML_PATH = "/__ops/contact/tinyml";
 const CF_TINYML_ORIGIN = "https://unike0dd.github.io";
-const DEFAULT_CF_TINYML_URL = `https://contacto.gabo.services${CF_TINYML_PATH}`;
+const CF_TINYML_URL = `https://contacto.gabo.services${CF_TINYML_PATH}`;
 
 const MAX_BODY_BYTES = 24 * 1024;
 const MAX_FIELD_LENGTH = 5000;
@@ -375,15 +375,7 @@ async function handleContactPost(request, env) {
 }
 
 async function forwardToCfTinyMl(request, env, canonical, ctx) {
-  const targetUrl = normalizeCfTinyMlUrl(env.CONTACT_CF_TINYML_URL || DEFAULT_CF_TINYML_URL);
-
-  if (!targetUrl) {
-    return {
-      ok: false,
-      status: 500,
-      message: "Contact CF TinyML URL is not configured."
-    };
-  }
+  const targetUrl = CF_TINYML_URL;
 
   const sharedSecret = cleanText(env.CONTACT_REPO_TO_TINYML_SECRET || "");
 
@@ -444,20 +436,6 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
   };
 }
 
-function normalizeCfTinyMlUrl(value) {
-  const rawUrl = cleanText(value || DEFAULT_CF_TINYML_URL);
-
-  if (!rawUrl) return "";
-
-  try {
-    const url = new URL(rawUrl);
-    url.pathname = CF_TINYML_PATH;
-    return url.toString();
-  } catch {
-    return "";
-  }
-}
-
 function buildContactPackage(input, ctx) {
   const now = new Date().toISOString();
 
@@ -510,7 +488,8 @@ function buildContactPackage(input, ctx) {
 
     submittedAt: cleanText(input.submittedAt || ""),
     received_at: now,
-    source: cleanText(input.pageUrl || input.source || ""),
+    source: "contact.html",
+    page_url: cleanText(input.pageUrl || ""),
     source_worker: WORKER_NAME,
 
     fields,
@@ -550,7 +529,27 @@ function buildContactPackage(input, ctx) {
 }
 
 async function calculateRepoSanitizedSha256(canonical) {
-  return sha256Hex(stableStringify(canonical));
+  return sha256Hex(stableStringify(buildRepoSanitizedHashBase(canonical)));
+}
+
+function buildRepoSanitizedHashBase(canonical) {
+  return {
+    formType: canonical.formType,
+    route: canonical.route,
+    site: canonical.site,
+    repo: canonical.repo,
+    request_id: canonical.request_id,
+    source: canonical.source,
+    fields: canonical.fields,
+    lists: canonical.lists,
+    security: {
+      lane: canonical.security.lane,
+      origin: canonical.security.origin,
+      repo_id: canonical.security.repo_id,
+      asset_id: canonical.security.asset_id,
+      session_id: canonical.security.session_id
+    }
+  };
 }
 
 function validateContact(payload) {
@@ -780,7 +779,36 @@ function cleanDeep(value, depth = 0) {
     return output;
   }
 
-  return cleanText(value).slice(0, MAX_FIELD_LENGTH);
+  return sanitizeText(value);
+}
+
+function sanitizeText(value) {
+  return String(value ?? "")
+    .normalize("NFKC")
+    .replace(/\u0000/g, "")
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/~~~[\s\S]*?~~~/g, " ")
+    .replace(/`[^`]{1,500}`/g, " ")
+    .replace(/<\s*(script|style|iframe|object|embed|svg|math|form|template)\b[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, " ")
+    .replace(/<\s*(script|style|iframe|object|embed|svg|math|form|template|meta|link|base)\b[^>]*>/gi, " ")
+    .replace(/<\/?[^>]+>/g, " ")
+    .replace(/\bon\w+\s*=\s*["'][\s\S]*?["']/gi, " ")
+    .replace(/\bon\w+\s*=\s*[^\s>]+/gi, " ")
+    .replace(/\bjavascript\s*:/gi, " ")
+    .replace(/\bvbscript\s*:/gi, " ")
+    .replace(/\bdata\s*:\s*text\/html\b/gi, " ")
+    .replace(/\beval\s*\(/gi, " ")
+    .replace(/\bnew\s+Function\b/gi, " ")
+    .replace(/\bsetTimeout\s*\(/gi, " ")
+    .replace(/\bsetInterval\s*\(/gi, " ")
+    .replace(/\bdocument\.(cookie|write|location)\b/gi, " ")
+    .replace(/\bwindow\.(location|open)\b/gi, " ")
+    .replace(/\b(import|export|function|class|const|let|var|return|await|async|fetch|XMLHttpRequest|localStorage|sessionStorage)\b/gi, " ")
+    .replace(/[{}()[\];=<>$\\|]/g, " ")
+    .replace(/[\u0001-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, MAX_FIELD_LENGTH);
 }
 
 function cleanText(value) {
