@@ -13,12 +13,12 @@ Every Contact submission is configured so TinyML is the first touch before any r
 ## Files
 
 - `tiny-ml.js` runs in the browser, applies the same security-header policy values used by `_headers`, cleanses every Contact form field, blocks bot honeypot sessions, signs the sanitized payload with SHA-256, and sends only the cleansed envelope to `/api/contact`.
-- `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, and enforces the `browser TinyML → repo worker → CF TinyML` order.
+- `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, and enforces the `browser TinyML → repo worker → CF TinyML worker` order.
 
 ## Environment variables
 
 - `CONTACT_CF_TINYML_URL` (optional): CF TinyML URL. Defaults to `https://contacto.gabo.services/__ops/contact/tinyml` when the binding is not set.
-- `CONTACT_REPO_TO_TINYML_SECRET` (required secret): server-side shared secret sent only by `contact/repo-worker.js` to the CF TinyML. Do not place this value in `contact.html`, browser JavaScript, repository docs, or any client-visible asset.
+- `CONTACT_REPO_TO_TINYML_SECRET` (required secret): server-side shared secret sent only by `contact/repo-worker.js` to the CF TinyML worker. Do not place this value in `contact.html`, browser JavaScript, repository docs, or any client-visible asset.
 
 ## Cloudflare configuration
 
