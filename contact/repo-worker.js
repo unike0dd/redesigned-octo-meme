@@ -1,5 +1,5 @@
 const PAGE_NAME = "contact";
-const WORKER_NAME = "gabo-contact-repo-worker";
+const WORKER_NAME = "contact-api.gabo.services";
 
 const ACCEPTED_PATHS = new Set([
   "/",
@@ -187,9 +187,11 @@ async function handleRequest(request, env) {
     return jsonResponse(request, 200, {
       ok: true,
       worker: WORKER_NAME,
-      page: PAGE_NAME,
+      route: PAGE_NAME,
+      status: "online",
       accepted_paths: Array.from(ACCEPTED_PATHS),
-      next_hop: "cf-tinyml-contact",
+      next_hop: "contacto.gabo.services",
+      upstream_path: CF_TINYML_PATH,
       header_policy: HEADER_POLICY_ID
     });
   }
