@@ -1,3 +1,6 @@
+// Contact API Gateway Worker source template for the deployed contact-api.gabo.services Worker.
+// GitHub Pages does not execute this file directly; Wrangler deploys it as the gateway.
+
 const PAGE_NAME = "contact";
 const WORKER_NAME = "contact-api.gabo.services";
 
@@ -188,7 +191,16 @@ async function handleRequest(request, env) {
     });
   }
 
-  if (request.method === "GET" || request.method === "HEAD") {
+  if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/health") {
+    return compactJsonResponse(request, 200, {
+      ok: true,
+      worker: WORKER_NAME,
+      route: PAGE_NAME,
+      status: "online"
+    });
+  }
+
+  if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/") {
     return jsonResponse(request, 200, {
       ok: true,
       worker: WORKER_NAME,
@@ -948,6 +960,16 @@ function responseHeaders(request, extra = {}) {
 
 function jsonResponse(request, status, body, extraHeaders = {}) {
   return new Response(JSON.stringify(body, null, 2), {
+    status,
+    headers: responseHeaders(request, {
+      "Content-Type": "application/json; charset=utf-8",
+      ...extraHeaders
+    })
+  });
+}
+
+function compactJsonResponse(request, status, body, extraHeaders = {}) {
+  return new Response(JSON.stringify(body), {
     status,
     headers: responseHeaders(request, {
       "Content-Type": "application/json; charset=utf-8",
