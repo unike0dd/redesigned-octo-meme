@@ -710,7 +710,7 @@ async function verifyClientIntegrity(request, cleanedBody, origin, sessionCheck)
         : {};
 
   const expectedBase = {
-    route: "contact",
+    route: PAGE_NAME,
     origin,
     source: sourcePath,
     session_id: sessionCheck.sessionId,
