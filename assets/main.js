@@ -625,65 +625,6 @@
     document.body.insertAdjacentElement("afterbegin", skipLink);
   }
 
-  function activateServiceLetterScramble() {
-    const targets = document.querySelectorAll("[data-scramble]");
-    if (!targets.length) return;
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-    function randomLetter() {
-      return alphabet[Math.floor(Math.random() * alphabet.length)];
-    }
-
-    function scrambleToText(node) {
-      const finalText = (
-        node.dataset.scramble ||
-        node.textContent ||
-        ""
-      ).trim();
-      if (!finalText) return;
-
-      let frame = 0;
-      const totalFrames = Math.max(20, finalText.replace(/\s/g, "").length * 3);
-      const interval = setInterval(() => {
-        const revealCount = Math.floor(
-          (frame / totalFrames) * finalText.length,
-        );
-        let output = "";
-        for (let i = 0; i < finalText.length; i += 1) {
-          const char = finalText[i];
-          if (char === " ") {
-            output += " ";
-          } else if (i < revealCount) {
-            output += char;
-          } else {
-            output += randomLetter();
-          }
-        }
-        node.textContent = output;
-        frame += 1;
-
-        if (frame > totalFrames) {
-          clearInterval(interval);
-          node.textContent = finalText;
-        }
-      }, 45);
-    }
-
-    targets.forEach((node, idx) => {
-      const delay = idx * 220;
-      const finalText = (
-        node.dataset.scramble ||
-        node.textContent ||
-        ""
-      ).trim();
-
-      node.textContent = finalText;
-      node.textContent = finalText.replace(/[A-Za-z]/g, () => randomLetter());
-      setTimeout(() => scrambleToText(node), delay);
-    });
-  }
-
-
   function setupFloatingField(field) {
     if (!field || field.dataset.floatingFieldReady === "true") return;
 
