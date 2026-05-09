@@ -107,13 +107,7 @@ const ALLOWED_REQUEST_HEADERS = [
   "X-Gabo-Repo-Id",
   "X-Gabo-Session-Id",
   "X-Gabo-Nonce",
-  "X-Gabo-Integrity-SHA256",
-  "X-Gabo-Repo-Sanitized-SHA256",
-  "X-Gabo-Headers-Policy",
-  "X-Gabo-Repo-To-TinyML-Secret",
-
-  "X-Gabo-Asset-ID",
-  "X-Gabo-Repo-ID"
+  "X-Gabo-Integrity-SHA256"
 ];
 
 const RISK_PATTERNS = [

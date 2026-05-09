@@ -15,6 +15,7 @@ Every Contact submission is configured so TinyML is the first touch before any r
 - `tiny-ml.js` runs in the browser, applies the same security-header policy values used by `_headers`, cleanses every Contact form field, blocks bot honeypot sessions, signs the sanitized payload with SHA-256, and sends only the cleansed envelope to `/api/contact`.
 - `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, computes `X-Gabo-Repo-Sanitized-SHA256` from the repaired `contacto.gabo.services` integrity base, and enforces the `browser TinyML → repo worker → CF TinyML worker` order.
 - `functions/api/contact.js` is the Cloudflare Pages Function adapter for `POST /api/contact`; it delegates the Pages route to `contact/repo-worker.js` so the endpoint is executable when the site is deployed on Cloudflare Pages instead of remaining a static file.
+- `wrangler.toml` is the deployable Cloudflare Worker configuration for the repo-side Contact gateway. It points Wrangler at `contact/repo-worker.js` and pins the non-secret upstream URL to `https://contacto.gabo.services/__ops/contact/tinyml`.
 
 ## Environment variables
 
@@ -23,12 +24,18 @@ Every Contact submission is configured so TinyML is the first touch before any r
 
 ## Cloudflare configuration
 
-Deploy either the Worker entrypoint in `contact/repo-worker.js` with a `/api/contact` route, or deploy the Cloudflare Pages Function adapter at `functions/api/contact.js` so `POST /api/contact` executes the same worker logic before forwarding to `https://contacto.gabo.services/__ops/contact/tinyml`.
+GitHub Pages cannot execute `POST /api/contact`; it will return `405 Method Not Allowed` because `/api/contact` is not a static asset. The Contact form therefore needs one of these executable Cloudflare deployments in front of the route:
+
+1. **Cloudflare Pages Functions:** deploy the repository as a Cloudflare Pages project so `functions/api/contact.js` handles `POST /api/contact` on the same origin that serves `contact.html`.
+2. **Cloudflare Worker route:** deploy `contact/repo-worker.js` with `wrangler.toml`, then attach the Worker to the `/api/contact` route on the same Cloudflare-proxied custom domain that serves the site. A Worker cannot be attached to `unike0dd.github.io` because that hostname is not inside the Cloudflare zone.
+
+The browser is allowed to send only the public headers listed in `contact/tiny-ml.js`: `Content-Type`, `X-Gabo-Origin`, `X-Gabo-Source`, `X-Ops-Asset-Id`, `X-Gabo-Repo-Id`, `X-Gabo-Session-Id`, `X-Gabo-Nonce`, and `X-Gabo-Integrity-SHA256`. The repo-side Worker adds `X-Gabo-Repo-Sanitized-SHA256`, `X-Gabo-Headers-Policy: contact-repo-tinyml-v1`, and `X-Gabo-Repo-To-TinyML-Secret` server-side before forwarding to `https://contacto.gabo.services/__ops/contact/tinyml`.
 
 Set the URL as a normal Worker or Pages variable and the shared secret as a Worker or Pages secret. The secret value must stay server-side and should never be committed:
 
 ```sh
 wrangler secret put CONTACT_REPO_TO_TINYML_SECRET
+wrangler deploy --config wrangler.toml
 ```
 
 Example non-secret variable value:
