@@ -8,7 +8,7 @@ routes = [
   { pattern = "contact-api.gabo.services", custom_domain = true }
 ]
 
-# This Worker is the executable repo-side Contact API gateway for GitHub Pages.
+# This Worker is the executable Contact API Gateway Worker for GitHub Pages.
 # Deploy it on the proxied custom domain contact-api.gabo.services so browser
 # requests to https://contact-api.gabo.services/api/contact are handled by
 # Cloudflare instead of static GitHub Pages.
