@@ -380,6 +380,14 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
 
   const sharedSecret = cleanText(env.CONTACT_REPO_TO_TINYML_SECRET || "");
 
+  if (!sharedSecret) {
+    return {
+      ok: false,
+      status: 500,
+      message: "CONTACT_REPO_TO_TINYML_SECRET must be configured on the repo worker only."
+    };
+  }
+
   const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -393,12 +401,9 @@ async function forwardToCfTinyMl(request, env, canonical, ctx) {
     "X-Gabo-Integrity-SHA256": ctx.clientIntegritySha256,
     "X-Gabo-Repo-Integrity-SHA256": ctx.repoIntegritySha256,
     "X-Gabo-Headers-Policy": HEADER_POLICY_ID,
-    "X-Gabo-Repo-Gate": REPO_GATE_VALUE
+    "X-Gabo-Repo-Gate": REPO_GATE_VALUE,
+    "X-Gabo-Repo-To-TinyML-Secret": sharedSecret
   };
-
-  if (sharedSecret) {
-    headers["X-Gabo-Repo-To-TinyML-Secret"] = sharedSecret;
-  }
 
   const response = await fetch(targetUrl, {
     method: "POST",
