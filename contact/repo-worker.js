@@ -710,12 +710,12 @@ async function verifyClientIntegrity(request, cleanedBody, origin, sessionCheck)
         : {};
 
   const expectedBase = {
-    page: PAGE_NAME,
+    route: PAGE_NAME,
     origin,
-    path: sourcePath,
-    cleanedFields,
-    sessionId: sessionCheck.sessionId,
-    nonce: sessionCheck.nonce
+    source: sourcePath,
+    session_id: sessionCheck.sessionId,
+    nonce: sessionCheck.nonce,
+    cleanedFields
   };
 
   const expectedSha256 = await sha256Hex(stableStringify(expectedBase));
