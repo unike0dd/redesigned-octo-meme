@@ -13,7 +13,7 @@ Every Contact submission is configured so browser TinyML is the first touch befo
 ## Files
 
 - `tiny-ml.js` runs in the browser, applies the same security-header policy values used by `_headers`, cleanses every Contact form field, blocks bot honeypot sessions, signs the sanitized payload with SHA-256, and sends only the cleansed envelope to `https://contact-api.gabo.services/api/contact`.
-- `repo-worker.js` is the Contact API Gateway Worker entrypoint for `https://contact-api.gabo.services`. It mirrors the `_headers` policy in every response, exposes `/health`, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, computes `X-Gabo-Repo-Sanitized-SHA256` from the repaired `contacto.gabo.services` integrity base, and enforces the `browser TinyML → Contact API Gateway Worker → CF TinyML worker` order.
+- `repo-worker.js` is the Contact API Gateway Worker source template for the deployed `https://contact-api.gabo.services` Worker. It is not executed directly by GitHub Pages. It mirrors the `_headers` policy in every response, exposes `/health`, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, computes `X-Gabo-Repo-Sanitized-SHA256` from the repaired `contacto.gabo.services` integrity base, and enforces the `browser TinyML → Contact API Gateway Worker → CF TinyML worker` order.
 - `functions/api/contact.js` is the Cloudflare Pages Function adapter for `POST /api/contact`; it delegates the Pages route to `contact/repo-worker.js` so the endpoint is executable when the site is deployed on Cloudflare Pages instead of remaining a static file.
 - `wrangler.toml` is the deployable Cloudflare Worker configuration for the Contact API Gateway Worker. It points Wrangler at `contact/repo-worker.js`, names the deployable worker `contact-api-gabo-services`, binds the custom domain route `contact-api.gabo.services`, and pins the non-secret upstream URL to `https://contacto.gabo.services/__ops/contact/tinyml`.
 
@@ -53,7 +53,7 @@ After deploying `wrangler.toml` and assigning the custom domain, verify the Cont
 curl -sS https://contact-api.gabo.services/health
 ```
 
-The response should include `"ok": true`, `"worker": "contact-api.gabo.services"`, `"route": "contact"`, and `"status": "online"`. If the hostname still returns `ERR_NAME_NOT_RESOLVED`, create or repair the Cloudflare Worker custom domain/DNS record before retesting.
+The expected response is `{"ok":true,"worker":"contact-api.gabo.services","route":"contact","status":"online"}`. If the hostname still returns `ERR_NAME_NOT_RESOLVED`, create or repair the Cloudflare Worker custom domain/DNS record before retesting.
 
 The downstream Workers are outside this repository, but the expected operational checks remain:
 
@@ -62,7 +62,7 @@ curl -sS https://bridgeapp.gabo.services/health
 curl -sS https://apps.gabo.services/health
 ```
 
-Expected downstream JSON shape for both health checks is `{"ok":true,"worker":"<hostname>","route":"contact","status":"online"}`. Keep those domains out of browser `connect-src`; the public browser flow should contact only `contact-api.gabo.services`, while `contacto.gabo.services` remains allowed for health/debug visibility.
+Expected downstream JSON shape for both health checks is `{"ok":true,"worker":"<hostname>","route":"contact","status":"online"}`. Keep `bridgeapp.gabo.services`, `apps.gabo.services`, and Apps Script URLs out of browser `connect-src`; the public browser submission target is `contact-api.gabo.services`, while `contacto.gabo.services` remains in `connect-src` for the existing browser CSP health/debug allowance.
 
 ### Downstream enforcement contract
 
