@@ -1,5 +1,5 @@
 const DEFAULT_CONTENT_INDEX_PATH = "chatbot/gabo-io-content-index.json";
-const DEFAULT_CONTENT_DIRECTORY = "/chatbot/";
+const DEFAULT_CONTENT_DIRECTORY = "/readme MD/chatbot/";
 const DEFAULT_CHATBOT_WORKER_PATH = "/api/ops-online-chat";
 const MAX_SANITIZED_MESSAGE_LENGTH = 220;
 
@@ -10,8 +10,8 @@ const SERVICE_LEARNING_BRIEFS = [
     serviceUrl: "/services/logistics-operations.html",
     learningUrl: "/learning/logistics-operations.html",
     briefs: {
-      en: "chatbot/logistics-operations-learning-en.md",
-      es: "chatbot/logistics-operations-learning-es.md",
+      en: "readme MD/chatbot/logistics-operations-learning-en.md",
+      es: "readme MD/chatbot/logistics-operations-learning-es.md",
     },
   },
   {
@@ -20,8 +20,8 @@ const SERVICE_LEARNING_BRIEFS = [
     serviceUrl: "/services/customer-relations.html",
     learningUrl: "/learning/customer-relations.html",
     briefs: {
-      en: "chatbot/customer-relations-learning-en.md",
-      es: "chatbot/customer-relations-learning-es.md",
+      en: "readme MD/chatbot/customer-relations-learning-en.md",
+      es: "readme MD/chatbot/customer-relations-learning-es.md",
     },
   },
   {
@@ -30,8 +30,8 @@ const SERVICE_LEARNING_BRIEFS = [
     serviceUrl: "/services/administrative-backoffice.html",
     learningUrl: "/learning/administrative-backoffice.html",
     briefs: {
-      en: "chatbot/administrative-backoffice-en.md",
-      es: "chatbot/administrative-backoffice-es.md",
+      en: "readme MD/chatbot/administrative-backoffice-en.md",
+      es: "readme MD/chatbot/administrative-backoffice-es.md",
     },
   },
   {
@@ -40,8 +40,8 @@ const SERVICE_LEARNING_BRIEFS = [
     serviceUrl: "/services/it-support.html",
     learningUrl: "/learning/it-support.html",
     briefs: {
-      en: "chatbot/it-support-en.md",
-      es: "chatbot/it-support-es.md",
+      en: "readme MD/chatbot/it-support-en.md",
+      es: "readme MD/chatbot/it-support-es.md",
     },
   },
 ];
@@ -68,8 +68,16 @@ function getRepoRawBase(env) {
   return trimSlash(env.REPO_RAW_BASE);
 }
 
+function encodeRepoPath(path) {
+  return String(path || "")
+    .replace(/^\/+/, "")
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/");
+}
+
 function getRepoRawUrl(env, path) {
-  return `${getRepoRawBase(env)}/${String(path || "").replace(/^\/+/, "")}`;
+  return `${getRepoRawBase(env)}/${encodeRepoPath(path)}`;
 }
 
 function getIndexUrl(env) {

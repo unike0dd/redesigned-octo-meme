@@ -1,10 +1,10 @@
 # gabo io chatbot
 
-This directory is dedicated to **gabo io ONLY** for the website chatbot runtime, repo-grounded retrieval content, and the repository worker that keeps the Cloudflare Chatbot Worker current. It keeps chatbot assets separated from shared site utilities while preserving the chatbot's presence on every page through `assets/main.js`, which dynamically loads `chatbot/gabo-io.js`.
+This documentation folder centralizes the **gabo io ONLY** Markdown retrieval briefs and chatbot operating notes while the runtime assets remain in `chatbot/`. The browser chatbot still appears on every page through `assets/main.js`, which dynamically loads `chatbot/gabo-io.js`.
 
 ## Runtime architecture
 
-- `gabo-io.js`: browser chatbot widget. It renders the gabo io floating action button and chat panel, loads this directory's content index, applies browser TinyML as the first touch, sends only the sanitized visitor message plus grounded retrieval context to the repo worker route mounted at `/api/ops-online-chat`, and falls back to local grounded EN/ES content if the Worker chain is unavailable.
+- `gabo-io.js`: browser chatbot widget. It renders the gabo io floating action button and chat panel, loads the `chatbot/gabo-io-content-index.json` content index, applies browser TinyML as the first touch, sends only the sanitized visitor message plus grounded retrieval context to the repo worker route mounted at `/api/ops-online-chat`, and falls back to local grounded EN/ES content if the Worker chain is unavailable.
 - `gabo-io-content-index.json`: repository-grounded bilingual EN/ES content index used by the chatbot and Worker to answer with confidence and provide relevant source-aware context.
 - `repo-content-sync-worker.js`: Cloudflare Worker module for repo-to-chatbot synchronization and interaction bridging. It fetches the latest `gabo-io-content-index.json` directly from the repository raw URL, repeats TinyML checks before repository retrieval for end-user chat, posts configured interactions to the CF Tiny Worker first, and only then hands the validated payload to the Cloudflare Chatbot Worker.
 - `*.md`: supporting retrieval briefs for service, learning, contact, and lead-generation responses. The EN/ES domain briefs for Logistics Operations, IT Support, Administrative Back Office, and Customer Relations must each combine their matching `/services/...` page content and `/learning/...` page content so chatbot answers can cover service support and learning guidance alike.
@@ -15,7 +15,7 @@ This directory is dedicated to **gabo io ONLY** for the website chatbot runtime,
 - Keep answers concise, privacy-aware, and tied to Gabriel Services website content from the matching Services and Learning pages for Logistics Operations, IT Support, Administrative Back Office, and Customer Relations.
 - Prefer the entry `answer` for direct responses and append the `leadGenerationPrompt` only when the visitor shows buying intent, asks for help, or needs follow-up.
 - Match the active site language first (`en` or `es`) and only fall back to all entries when a language-specific match is not available.
-- Do not treat this directory as a public site navigation section.
+- Do not treat this Markdown documentation folder as a public site navigation section.
 
 ## TinyML submit gateway
 
@@ -33,7 +33,7 @@ The chatbot interaction order is now fixed as `browser TinyML â†’ repo worker â†
 
 - `message`: the end user's sanitized message text from the chat input.
 - `lang`: the active website language (`en` or `es`).
-- `retrieval.contentDirectory`: `/chatbot/`, so the Worker can identify the dedicated chatbot knowledge directory.
+- `retrieval.contentDirectory`: `/readme MD/chatbot/`, so the Worker can identify the dedicated chatbot knowledge directory.
 - `retrieval.contentIndexUrl`: the active URL for `gabo-io-content-index.json`.
 - `retrieval.sourceOfTruth`: `repo-en-es` from the browser widget or `repo-services-learning-md-en-es` from the repo worker, indicating the response context comes from the repository EN/ES index and service/learning Markdown briefs.
 - `retrieval.assetId` and `retrieval.origin`: same-origin asset context for Worker-side validation.

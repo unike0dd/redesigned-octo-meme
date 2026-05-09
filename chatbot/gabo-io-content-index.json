@@ -2,11 +2,11 @@
   "repository": "chatbot/gabo-io-only",
   "audience": "gabo io chatbot retrieval only",
   "purpose": "Bilingual English and Spanish customer experience and lead-generation responses for Gabriel Services website visitors, grounded in repository website content.",
-  "accessPolicy": "The /chatbot directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot, repo sync worker, and Cloudflare Chatbot Worker for grounded answers and should not be presented as a public navigation section.",
+  "accessPolicy": "The /readme MD/chatbot directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot, repo sync worker, and Cloudflare Chatbot Worker for grounded answers and should not be presented as a public navigation section.",
   "updated": "2026-05-08",
   "sourceOfTruth": {
     "repoContent": "Repository Services pages, Learning pages, and assets/i18n.js EN/ES copy",
-    "contentDirectory": "/chatbot/",
+    "contentDirectory": "/readme MD/chatbot/",
     "languages": [
       "en",
       "es"
@@ -17,14 +17,14 @@
     "chatbotWorkerEndpoint": "/api/ops-online-chat",
     "handoffPurpose": "Keep the Cloudflare Chatbot Worker updated with current EN and ES repository-grounded index content plus service/learning Markdown briefs for CX, lead generation, and end-user interaction grounding.",
     "serviceLearningBriefs": [
-      "chatbot/logistics-operations-learning-en.md",
-      "chatbot/logistics-operations-learning-es.md",
-      "chatbot/customer-relations-learning-en.md",
-      "chatbot/customer-relations-learning-es.md",
-      "chatbot/administrative-backoffice-en.md",
-      "chatbot/administrative-backoffice-es.md",
-      "chatbot/it-support-en.md",
-      "chatbot/it-support-es.md"
+      "readme MD/chatbot/logistics-operations-learning-en.md",
+      "readme MD/chatbot/logistics-operations-learning-es.md",
+      "readme MD/chatbot/customer-relations-learning-en.md",
+      "readme MD/chatbot/customer-relations-learning-es.md",
+      "readme MD/chatbot/administrative-backoffice-en.md",
+      "readme MD/chatbot/administrative-backoffice-es.md",
+      "readme MD/chatbot/it-support-en.md",
+      "readme MD/chatbot/it-support-es.md"
     ],
     "interactionEndpoint": "/chat",
     "firstTouch": "chatbot-browser-tiny-ml",
