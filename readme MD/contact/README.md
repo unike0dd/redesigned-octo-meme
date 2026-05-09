@@ -13,7 +13,8 @@ Every Contact submission is configured so TinyML is the first touch before any r
 ## Files
 
 - `tiny-ml.js` runs in the browser, applies the same security-header policy values used by `_headers`, cleanses every Contact form field, blocks bot honeypot sessions, signs the sanitized payload with SHA-256, and sends only the cleansed envelope to `/api/contact`.
-- `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, and enforces the `browser TinyML → repo worker → CF TinyML worker` order.
+- `repo-worker.js` is the Contact Cloudflare Worker entrypoint. It mirrors the `_headers` policy in every response, validates the origin, re-cleanses the submitted payload server-side, verifies the client fingerprint when present, computes `X-Gabo-Repo-Sanitized-SHA256` from the repaired `contacto.gabo.services` integrity base, and enforces the `browser TinyML → repo worker → CF TinyML worker` order.
+- `functions/api/contact.js` is the Cloudflare Pages Function adapter for `POST /api/contact`; it delegates the Pages route to `contact/repo-worker.js` so the endpoint is executable when the site is deployed on Cloudflare Pages instead of remaining a static file.
 
 ## Environment variables
 
@@ -22,7 +23,9 @@ Every Contact submission is configured so TinyML is the first touch before any r
 
 ## Cloudflare configuration
 
-Set the URL as a normal Worker variable and the shared secret as a Worker secret. The secret value must stay server-side and should never be committed:
+Deploy either the Worker entrypoint in `contact/repo-worker.js` with a `/api/contact` route, or deploy the Cloudflare Pages Function adapter at `functions/api/contact.js` so `POST /api/contact` executes the same worker logic before forwarding to `https://contacto.gabo.services/__ops/contact/tinyml`.
+
+Set the URL as a normal Worker or Pages variable and the shared secret as a Worker or Pages secret. The secret value must stay server-side and should never be committed:
 
 ```sh
 wrangler secret put CONTACT_REPO_TO_TINYML_SECRET

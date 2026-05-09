@@ -9,6 +9,7 @@ const ACCEPTED_PATHS = new Set([
 
 const EXPECTED_ASSET_ID = "redesigned-octo-meme-contact";
 const EXPECTED_REPO_ID = "CONTACTO";
+const EXPECTED_SOURCE = "contact.html";
 
 const CF_TINYML_PATH = "/__ops/contact/tinyml";
 const CF_TINYML_ORIGIN = "https://unike0dd.github.io";
@@ -240,6 +241,16 @@ async function handleContactPost(request, env) {
     });
   }
 
+  const forbiddenClientHeaders = rejectServerOnlyClientHeaders(request);
+
+  if (!forbiddenClientHeaders.ok) {
+    return jsonResponse(request, 403, {
+      ok: false,
+      worker: WORKER_NAME,
+      message: forbiddenClientHeaders.message
+    });
+  }
+
   const contentType = request.headers.get("Content-Type") || "";
 
   if (!contentType.toLowerCase().includes("application/json")) {
@@ -331,7 +342,8 @@ async function handleContactPost(request, env) {
     sessionId: sessionCheck.sessionId,
     nonce: sessionCheck.nonce,
     clientIntegritySha256: integrity.clientSha256,
-    inspection
+    inspection,
+    source: identity.source
   });
 
   const repoSanitizedSha256 = await calculateRepoSanitizedSha256(canonical);
@@ -510,7 +522,7 @@ function buildContactPackage(input, ctx) {
 
     submittedAt: cleanText(input.submittedAt || ""),
     received_at: now,
-    source: cleanText(input.pageUrl || input.source || ""),
+    source: ctx.source,
     source_worker: WORKER_NAME,
 
     fields,
@@ -550,7 +562,29 @@ function buildContactPackage(input, ctx) {
 }
 
 async function calculateRepoSanitizedSha256(canonical) {
-  return sha256Hex(stableStringify(canonical));
+  return sha256Hex(stableStringify(buildRepoSanitizedIntegrityBase(canonical)));
+}
+
+function buildRepoSanitizedIntegrityBase(canonical) {
+  const security = canonical.security || {};
+
+  return {
+    formType: canonical.formType,
+    route: canonical.route,
+    site: canonical.site,
+    repo: canonical.repo,
+    request_id: canonical.request_id,
+    source: canonical.source,
+    fields: canonical.fields || {},
+    lists: canonical.lists || {},
+    security: {
+      lane: security.lane,
+      origin: security.origin,
+      repo_id: security.repo_id,
+      asset_id: security.asset_id,
+      session_id: security.session_id
+    }
+  };
 }
 
 function validateContact(payload) {
@@ -593,6 +627,17 @@ function validateOrigin(origin, env) {
   };
 }
 
+function rejectServerOnlyClientHeaders(request) {
+  if (request.headers.has("X-Gabo-Repo-To-TinyML-Secret")) {
+    return {
+      ok: false,
+      message: "Repo-to-TinyML secret is server-side only."
+    };
+  }
+
+  return { ok: true };
+}
+
 function validateIdentity(request) {
   const assetId =
     cleanText(request.headers.get("X-Ops-Asset-Id") || "") ||
@@ -601,6 +646,15 @@ function validateIdentity(request) {
   const repoId =
     cleanText(request.headers.get("X-Gabo-Repo-Id") || "") ||
     cleanText(request.headers.get("X-Gabo-Repo-ID") || "");
+
+  const source = cleanText(request.headers.get("X-Gabo-Source") || EXPECTED_SOURCE);
+
+  if (source !== EXPECTED_SOURCE) {
+    return {
+      ok: false,
+      message: "Source identity rejected."
+    };
+  }
 
   if (assetId !== EXPECTED_ASSET_ID) {
     return {
@@ -619,7 +673,8 @@ function validateIdentity(request) {
   return {
     ok: true,
     assetId,
-    repoId
+    repoId,
+    source
   };
 }
 
