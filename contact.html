@@ -51,29 +51,7 @@
           Ponte en contacto para soporte, incorporación, proyectos y
           oportunidades de colaboración.
         </p>
-        <form
-          id="contact-request-form"
-          action="https://contact-api.gabo.services/api/contact"
-          data-upstream-path="https://contact-api.gabo.services/api/contact"
-          data-asset-id="redesigned-octo-meme-contact"
-          data-repo-id="CONTACTO"
-          method="post"
-          data-contact-gateway="true"
-          data-page-tinyml="contact"
-          data-source-path="contact.html"
-          data-asset-source="github-pages-static-contact-form"
-        >
-          <div class="form-honeypot contact-honeypot" aria-hidden="true" hidden inert>
-            <label for="contact-website-url">Website URL</label>
-            <input
-              id="contact-website-url"
-              name="website_url"
-              type="text"
-              tabindex="-1"
-              autocomplete="off"
-              data-tinyml-honeypot="true"
-            />
-          </div>
+        <form id="contact-request-form">
           <div class="form-grid">
             <div class="floating-field">
               <label for="contact-full-name" data-i18n="fullName">Nombre completo</label>
@@ -351,7 +329,7 @@
             </div>
           </div>
           <div class="form-actions">
-            <button class="btn primary" type="submit" data-i18n="submitContact">
+            <button class="btn primary" type="button" data-i18n="contactButtonLabel">
               Enviar</button
             ><button class="btn ghost" type="reset" data-i18n="clearForm">
               Limpiar formulario
@@ -361,8 +339,6 @@
       </div>
     </main>
     <script src="./assets/footer.js"></script>
-    <script src="./contact/tiny-ml.js" defer></script>
-    <script src="./contact/repo-worker.js" defer></script>
     <script src="./assets/main.js"></script>
   </body>
 </html>

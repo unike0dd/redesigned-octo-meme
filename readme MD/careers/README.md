@@ -6,7 +6,7 @@ This Markdown document describes the Careers-specific browser TinyML sanitizer a
 
 Every Careers submission is configured so TinyML is the first touch before any repo or Cloudflare Worker receives user-provided content:
 
-1. `careers/tiny-ml.js` runs in the browser first, blocks honeypot sessions, sanitizes each field, signs the cleaned payload with the same stable fingerprint base used by Contact, and sends only the sanitized envelope to `/api/careers`.
+1. `careers/tiny-ml.js` runs in the browser first, blocks honeypot sessions, sanitizes each field, signs the cleaned payload and sends only the sanitized envelope to `/api/careers`.
 2. `careers/repo-worker.js` receives the sanitized envelope, repeats the TinyML cleanse server-side, recomputes and verifies the browser fingerprint, and refuses residual risk before any upstream handoff.
 3. When `CAREERS_CF_TINY_WORKER_URL` or `CF_TINY_WORKER_URL` is configured, the repo worker posts the verified envelope to the CF Tiny Worker next, including the client fingerprint and repo-side sanitized fingerprint headers. If that configured Tiny Worker rejects or fails, the handoff stops before the CF Worker.
 4. When `CAREERS_CF_WORKER_URL` or `CF_WORKER_URL` is configured, the repo worker posts the Tiny Worker-validated envelope to the final CF Worker. GitHub repository dispatch remains the fallback when no final CF Worker is configured, or can be enabled after the CF Worker with `FORWARD_TO_REPOSITORY_AFTER_CF=true`.
