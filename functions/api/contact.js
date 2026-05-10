@@ -1,5 +1,5 @@
-import contactRepoWorker from "../../contact/repo-worker.js";
+import contactIntakeWorker from "../../contact/intake-worker.js";
 
 export function onRequest(context) {
-  return contactRepoWorker.fetch(context.request, context.env || {});
+  return contactIntakeWorker.fetch(context.request, context.env || {});
 }

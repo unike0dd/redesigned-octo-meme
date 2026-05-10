@@ -53,8 +53,8 @@
         </p>
         <form
           id="contact-request-form"
-          action="https://contact-api.gabo.services/api/contact"
-          data-upstream-path="https://contact-api.gabo.services/api/contact"
+          action="https://contacto.gabo.services/api/contact"
+          data-upstream-path="https://contacto.gabo.services/api/contact"
           data-asset-id="redesigned-octo-meme-contact"
           data-repo-id="CONTACTO"
           method="post"
@@ -63,11 +63,16 @@
           data-source-path="contact.html"
           data-asset-source="github-pages-static-contact-form"
         >
-          <div class="form-honeypot contact-honeypot" aria-hidden="true" hidden inert>
+          <div
+            class="form-honeypot contact-honeypot"
+            aria-hidden="true"
+            hidden
+            inert
+          >
             <label for="contact-website-url">Website URL</label>
             <input
               id="contact-website-url"
-              name="website_url"
+              name="website"
               type="text"
               tabindex="-1"
               autocomplete="off"
@@ -76,8 +81,15 @@
           </div>
           <div class="form-grid">
             <div class="floating-field">
-              <label for="contact-full-name" data-i18n="fullName">Nombre completo</label>
-              <input id="contact-full-name" name="fullName" autocomplete="name" />
+              <label for="contact-full-name" data-i18n="fullName"
+                >Nombre completo</label
+              >
+              <input
+                id="contact-full-name"
+                name="fullName"
+                autocomplete="name"
+                required
+              />
             </div>
             <div class="floating-field">
               <label for="contact-email-address" data-i18n="emailAddress"
@@ -88,10 +100,13 @@
                 name="emailAddress"
                 type="email"
                 autocomplete="email"
+                required
               />
             </div>
             <div class="floating-field">
-              <label for="contact-country-code" data-i18n="countryCode">Código de país</label>
+              <label for="contact-country-code" data-i18n="countryCode"
+                >Código de país</label
+              >
               <input
                 id="contact-country-code"
                 type="tel"
@@ -103,7 +118,9 @@
               />
             </div>
             <div class="floating-field">
-              <label for="contact-number" data-i18n="contactNumber">Número de contacto</label>
+              <label for="contact-number" data-i18n="contactNumber"
+                >Número de contacto</label
+              >
               <input
                 id="contact-number"
                 type="tel"
@@ -119,7 +136,9 @@
               <input id="contact-city" name="city" />
             </div>
             <div class="floating-field">
-              <label for="contact-state-province" data-i18n="stateProvince">Estado/Provincia</label>
+              <label for="contact-state-province" data-i18n="stateProvince"
+                >Estado/Provincia</label
+              >
               <input id="contact-state-province" name="stateProvince" />
             </div>
             <div class="floating-field">
@@ -161,8 +180,15 @@
             </div>
           </div>
           <div class="floating-field floating-field-textarea">
-            <label for="contact-message" data-i18n="messageLabel">Mensaje</label>
-            <textarea id="contact-message" name="message"></textarea>
+            <label for="contact-message" data-i18n="messageLabel"
+              >Mensaje</label
+            >
+            <textarea
+              id="contact-message"
+              name="message"
+              minlength="8"
+              required
+            ></textarea>
           </div>
           <h3 data-i18n="inquiryAboutTitle">
             Cuéntanos tus expectativas sobre la experiencia, el conocimiento y
@@ -198,7 +224,9 @@
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddSkillEntry">Agregar habilidad</label>
+                  <label data-i18n="placeholderAddSkillEntry"
+                    >Agregar habilidad</label
+                  >
                   <input
                     data-i18n-placeholder="placeholderAddSkillEntry"
                     name="skills[]"
@@ -233,7 +261,9 @@
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddAreaInterestEntry">Agregar área de interés</label>
+                  <label data-i18n="placeholderAddAreaInterestEntry"
+                    >Agregar área de interés</label
+                  >
                   <input
                     data-i18n-placeholder="placeholderAddAreaInterestEntry"
                     name="areasOfInterest[]"
@@ -270,7 +300,9 @@
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddExperienceEntry">Agregar nivel de experiencia</label>
+                  <label data-i18n="placeholderAddExperienceEntry"
+                    >Agregar nivel de experiencia</label
+                  >
                   <input
                     data-i18n-placeholder="placeholderAddExperienceEntry"
                     name="experienceLevels[]"
@@ -305,7 +337,9 @@
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddEducationEntry">Agregar educación</label>
+                  <label data-i18n="placeholderAddEducationEntry"
+                    >Agregar educación</label
+                  >
                   <input
                     data-i18n-placeholder="placeholderAddEducationEntry"
                     name="education[]"
@@ -340,7 +374,9 @@
               </div>
               <div class="entry-list" data-repeat-list>
                 <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddLanguageEntry">Agregar idioma</label>
+                  <label data-i18n="placeholderAddLanguageEntry"
+                    >Agregar idioma</label
+                  >
                   <input
                     data-i18n-placeholder="placeholderAddLanguageEntry"
                     name="languages[]"
@@ -357,11 +393,17 @@
               Limpiar formulario
             </button>
           </div>
+          <small
+            class="security-form-note"
+            data-contact-status
+            aria-live="polite"
+          ></small>
         </form>
       </div>
     </main>
     <script src="./assets/footer.js"></script>
     <script src="./contact/tiny-ml.js"></script>
+    <script src="./contact/repo-worker.js"></script>
     <script src="./assets/main.js"></script>
   </body>
 </html>

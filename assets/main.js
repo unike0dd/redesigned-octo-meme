@@ -2,7 +2,7 @@
   const SECURITY_HEADERS = {
     "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
     "Content-Security-Policy":
-      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services https://contact-api.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services https://contact-api.gabo.services https://contacto.gabo.services; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';",
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services https://contacto.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services https://contacto.gabo.services; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';",
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
     "X-XSS-Protection": "0",
@@ -248,7 +248,10 @@
 
   function flagHoneypotSessionBlocked() {
     try {
-      window.sessionStorage?.setItem(TINY_ML_HONEYPOT_SESSION_BLOCK_KEY, "true");
+      window.sessionStorage?.setItem(
+        TINY_ML_HONEYPOT_SESSION_BLOCK_KEY,
+        "true",
+      );
     } catch (error) {
       document.documentElement.dataset.tinyMlSessionBlocked = "true";
     }
@@ -261,12 +264,12 @@
     form.removeAttribute("data-integrity-sha256");
     form.dataset.tinyMlSession = "blocked";
 
-    Array.from(form.querySelectorAll("input, textarea, select, button")).forEach(
-      (field) => {
-        field.disabled = true;
-        markFieldState(field, false);
-      },
-    );
+    Array.from(
+      form.querySelectorAll("input, textarea, select, button"),
+    ).forEach((field) => {
+      field.disabled = true;
+      markFieldState(field, false);
+    });
 
     if (statusNode) {
       statusNode.textContent =
@@ -474,7 +477,9 @@
           return;
         }
 
-        const usesSecureGateway = form.matches('[data-secure-gateway="careers"]');
+        const usesSecureGateway = form.matches(
+          '[data-secure-gateway="careers"]',
+        );
         if (!usesSecureGateway) {
           const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
           form.setAttribute("data-integrity-sha256", fingerprint);
@@ -485,7 +490,10 @@
         try {
           await forwardSanitizedPayload(form, result, message);
         } catch (error) {
-          form.setAttribute("data-gateway-error", String(error?.message || error));
+          form.setAttribute(
+            "data-gateway-error",
+            String(error?.message || error),
+          );
           if (message) {
             message.textContent =
               "TinyML passed, but the secure gateway is unavailable. Please try again.";
@@ -654,7 +662,9 @@
 
     const form = controls[0].form;
     if (form) {
-      form.addEventListener("reset", () => window.setTimeout(updateValueState, 0));
+      form.addEventListener("reset", () =>
+        window.setTimeout(updateValueState, 0),
+      );
     }
 
     field.dataset.floatingFieldReady = "true";

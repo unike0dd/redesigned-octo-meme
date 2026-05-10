@@ -1,21 +1,24 @@
 /**
  * contact/tiny-ml.js
  *
- * Repo browser TinyML-style security helper.
- * This file does NOT send the request by itself.
- *
- * Used by:
- * contact/repo-worker.js
+ * Browser-side Contact TinyML/CySec guard.
+ * It collects the Contact form fields, cleans and sanitizes text, removes
+ * malicious/programming-code patterns, scores residual risk, and creates the
+ * post-sanitizer SHA-256 integrity proof required by contacto.gabo.services.
  */
 
 (function () {
   "use strict";
 
   const CONFIG = Object.freeze({
+    apiPath: "/api/contact",
+    expectedSource: "contact.html",
     maxFieldLength: 5000,
     maxRiskScore: 55,
-    sessionBlockKey: "gabo_contact_blocked_v1",
-    honeypotSelector: "[data-tinyml-honeypot='true']"
+    maxTotalRiskScore: 110,
+    sessionBlockKey: "gabo_contact_cysec_blocked_v1",
+    honeypotSelector: "[data-tinyml-honeypot='true']",
+    frameworks: ["OWASP ASVS", "CISA CPG", "NIST CSF", "PCI DSS 4.0", "CySec"],
   });
 
   const RISK_PATTERNS = [
@@ -39,319 +42,187 @@
     /\bdrop\s+table\b/i,
     /\binsert\s+into\b/i,
     /\bdelete\s+from\b/i,
+    /\bupdate\s+[a-z0-9_]+\s+set\b/i,
+    /\balter\s+table\b/i,
+    /\btruncate\s+table\b/i,
     /\.\.\//,
     /\$\{/,
     /\{\{/,
-    /<%/
+    /<%/,
+    /```[\s\S]*?```/,
+    /\bimport\s+.+\s+from\b/i,
+    /\brequire\s*\(/i,
+    /\bfetch\s*\(/i,
+    /\bXMLHttpRequest\b/i,
+    /\bprocess\.env\b/i,
   ];
 
-  window.GaboContactTinyML = {
+  window.GaboContactTinyML = Object.freeze({
     scanForm,
+    sanitizeObject,
     sanitizeText,
     cleanText,
-    riskScore,
+    scoreRisk,
     createSession,
     createId,
+    createIntegrityProof,
     sha256Hex,
     stableSerialize,
     honeypotFilled,
     markSessionBlocked,
     isSessionBlocked,
     blockForm,
-    clearInvalidFields
-  };
+    clearInvalidFields,
+    frameworks: CONFIG.frameworks.slice(),
+  });
 
-  /**
-   * @param {HTMLFormElement} form
-   * @returns {{
-   *   ok: boolean,
-   *   fields: Record<string, any>,
-   *   riskScore: number,
-   *   report: Array<{
-   *     key: string,
-   *     riskScore: number,
-   *     rawLength: number,
-   *     cleanLength: number,
-   *     reasons: string[]
-   *   }>
-   * }}
-   */
   function scanForm(form) {
-    const fields = {};
+    const rawFields = collectFormFields(form);
+    const fields = sanitizeObject(rawFields);
     const report = [];
-    let totalRisk = 0;
-    let ok = true;
+    let totalRiskScore = 0;
+    let maxFieldRiskScore = 0;
 
-    const controls = Array.from(
-      form.querySelectorAll("input, textarea, select")
-    ).filter((control) => {
-      if (!(control instanceof HTMLInputElement) &&
-          !(control instanceof HTMLTextAreaElement) &&
-          !(control instanceof HTMLSelectElement)) {
-        return false;
-      }
+    for (const key of Object.keys(rawFields).sort()) {
+      const rawValue = valueToText(rawFields[key]);
+      const cleanValue = valueToText(fields[key]);
+      const rawRisk = scoreRisk(rawValue);
+      const cleanRisk = scoreRisk(cleanValue);
+      const fieldRiskScore = Math.max(rawRisk.score, cleanRisk.score);
+      const removedCharacters = Math.max(
+        rawValue.length - cleanValue.length,
+        0,
+      );
 
-      if (control.disabled) return false;
-      if (control.matches(CONFIG.honeypotSelector)) return false;
-      if (control instanceof HTMLInputElement && control.type === "submit") return false;
-      if (control instanceof HTMLInputElement && control.type === "button") return false;
-      if (control instanceof HTMLInputElement && control.type === "reset") return false;
-      if (control instanceof HTMLInputElement && control.type === "file") return false;
-
-      return true;
-    });
-
-    controls.forEach((control, index) => {
-      const key = getFieldKey(control, index);
-      const rawValue = getControlValue(control);
-      const cleanValue = sanitizeText(rawValue);
-      const rawRisk = riskScore(rawValue);
-      const cleanRisk = riskScore(cleanValue);
-      const fieldRisk = Math.max(rawRisk.score, cleanRisk.score);
-
-      totalRisk += fieldRisk;
-
-      if (fieldRisk > CONFIG.maxRiskScore) {
-        ok = false;
-        control.setAttribute("aria-invalid", "true");
-      } else {
-        control.removeAttribute("aria-invalid");
-      }
-
-      setControlValue(control, cleanValue);
-      addFieldValue(fields, key, cleanValue);
+      totalRiskScore += fieldRiskScore;
+      maxFieldRiskScore = Math.max(maxFieldRiskScore, fieldRiskScore);
 
       report.push({
         key,
-        riskScore: fieldRisk,
-        rawLength: String(rawValue || "").length,
-        cleanLength: String(cleanValue || "").length,
-        reasons: unique(rawRisk.reasons.concat(cleanRisk.reasons))
+        riskScore: fieldRiskScore,
+        rawRiskScore: rawRisk.score,
+        residualRiskScore: cleanRisk.score,
+        rawLength: rawValue.length,
+        cleanLength: cleanValue.length,
+        removedCharacters,
+        reasons: unique(rawRisk.reasons.concat(cleanRisk.reasons)),
+        blocked: fieldRiskScore > CONFIG.maxRiskScore,
       });
-    });
-
-    if (totalRisk > CONFIG.maxRiskScore * 2) {
-      ok = false;
     }
+
+    const residual = scoreRisk(stableSerialize(fields));
+    const ok =
+      maxFieldRiskScore <= CONFIG.maxRiskScore &&
+      totalRiskScore <= CONFIG.maxTotalRiskScore &&
+      residual.score <= CONFIG.maxRiskScore;
+
+    markInvalidFields(form, report);
 
     return {
       ok,
-      fields: sortObject(canonicalizeFields(fields)),
-      riskScore: totalRisk,
-      report
+      sanitized: true,
+      fields: sortObject(fields),
+      rawFields: sortObject(rawFields),
+      riskScore: totalRiskScore,
+      residualRiskScore: residual.score,
+      report,
+      cySec: buildCySecReport(ok, totalRiskScore, residual.score, report),
     };
   }
 
-  /**
-   * @param {Record<string, any>} fields
-   * @returns {Record<string, any>}
-   */
-  function canonicalizeFields(fields) {
-    const output = Object.assign({}, fields);
+  async function createIntegrityProof(options) {
+    const base = {
+      route: CONFIG.apiPath,
+      origin: String(options.origin || ""),
+      source: CONFIG.expectedSource,
+      sessionId: String(options.sessionId || ""),
+      nonce: String(options.nonce || ""),
+      fields: sortObject(options.fields || {}),
+    };
 
-    assignCanonical(output, "fullName", [
-      "fullName",
-      "fullname",
-      "full_name",
-      "name",
-      "yourName",
-      "contactName",
-      "customerName",
-      "nombre"
-    ]);
+    const serialized = stableSerialize(base);
+    const sha256 = await sha256Hex(serialized);
 
-    assignCanonical(output, "emailAddress", [
-      "emailAddress",
-      "email",
-      "email_address",
-      "mail",
-      "correo",
-      "correoElectronico"
-    ]);
-
-    assignCanonical(output, "contactNumber", [
-      "contactNumber",
-      "phone",
-      "telephone",
-      "tel",
-      "mobile",
-      "telefono",
-      "number"
-    ]);
-
-    assignCanonical(output, "countryCode", [
-      "countryCode",
-      "country_code",
-      "phoneCountryCode",
-      "codigoPais"
-    ]);
-
-    assignCanonical(output, "city", [
-      "city",
-      "ciudad"
-    ]);
-
-    assignCanonical(output, "stateProvince", [
-      "stateProvince",
-      "state",
-      "province",
-      "provincia"
-    ]);
-
-    assignCanonical(output, "spaceSuiteApt", [
-      "spaceSuiteApt",
-      "suite",
-      "apt",
-      "apartment",
-      "unit"
-    ]);
-
-    assignCanonical(output, "countryZipCode", [
-      "countryZipCode",
-      "zip",
-      "zipcode",
-      "postalCode",
-      "codigoPostal"
-    ]);
-
-    assignCanonical(output, "bestContactDate", [
-      "bestContactDate",
-      "contactDate",
-      "date"
-    ]);
-
-    assignCanonical(output, "bestContactTime", [
-      "bestContactTime",
-      "contactTime",
-      "time"
-    ]);
-
-    assignCanonical(output, "inquiryAbout", [
-      "inquiryAbout",
-      "subject",
-      "service",
-      "topic",
-      "reason",
-      "asunto"
-    ]);
-
-    assignCanonical(output, "message", [
-      "message",
-      "comments",
-      "comment",
-      "notes",
-      "details",
-      "inquiry",
-      "mensaje"
-    ]);
-
-    return output;
+    return {
+      algorithm: "SHA-256",
+      sha256,
+      base: "route|origin|source|sessionId|nonce|fields",
+      sanitizedBeforeHash: true,
+      cySecVerifiedBeforeHash: true,
+      serialized,
+    };
   }
 
-  /**
-   * @param {Record<string, any>} object
-   * @param {string} canonicalKey
-   * @param {string[]} aliases
-   * @returns {void}
-   */
-  function assignCanonical(object, canonicalKey, aliases) {
-    if (object[canonicalKey]) return;
+  function collectFormFields(form) {
+    const fields = {};
+    const controls = Array.from(
+      form.querySelectorAll("input, textarea, select"),
+    );
 
-    for (const alias of aliases) {
-      const value = findByAlias(object, alias);
+    controls.forEach((control, index) => {
+      if (!isSubmittableControl(control)) return;
 
-      if (value) {
-        object[canonicalKey] = value;
-        return;
-      }
+      const key = getFieldKey(control, index);
+      const value = getControlValue(control);
+
+      addFieldValue(fields, key, value);
+    });
+
+    return fields;
+  }
+
+  function isSubmittableControl(control) {
+    if (
+      !(control instanceof HTMLInputElement) &&
+      !(control instanceof HTMLTextAreaElement) &&
+      !(control instanceof HTMLSelectElement)
+    ) {
+      return false;
     }
-  }
 
-  /**
-   * @param {Record<string, any>} object
-   * @param {string} alias
-   * @returns {string}
-   */
-  function findByAlias(object, alias) {
-    const wanted = normalizeAlias(alias);
+    if (control.disabled) return false;
+    if (control.matches(CONFIG.honeypotSelector)) return false;
 
-    for (const [key, value] of Object.entries(object)) {
-      if (normalizeAlias(key) === wanted && value) {
-        return valueToText(value);
+    if (control instanceof HTMLInputElement) {
+      if (["submit", "button", "reset", "file"].includes(control.type))
+        return false;
+      if (
+        (control.type === "checkbox" || control.type === "radio") &&
+        !control.checked
+      ) {
+        return false;
       }
     }
 
-    return "";
+    return true;
   }
 
-  /**
-   * @param {any} value
-   * @returns {string}
-   */
-  function normalizeAlias(value) {
-    return String(value || "")
-      .toLowerCase()
-      .replace(/[^a-z0-9]/g, "");
-  }
-
-  /**
-   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} control
-   * @param {number} index
-   * @returns {string}
-   */
-  function getFieldKey(control, index) {
-    const raw =
-      control.getAttribute("name") ||
-      control.getAttribute("aria-label") ||
-      control.getAttribute("id") ||
-      `field_${index + 1}`;
-
-    return String(raw)
-      .normalize("NFKC")
-      .replace(/[^a-zA-Z0-9_.:-]/g, "")
-      .slice(0, 80);
-  }
-
-  /**
-   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} control
-   * @returns {string}
-   */
   function getControlValue(control) {
     if (control instanceof HTMLInputElement && control.type === "checkbox") {
-      return control.checked ? control.value || "yes" : "";
+      return control.value || "checked";
     }
 
     if (control instanceof HTMLInputElement && control.type === "radio") {
-      return control.checked ? control.value || "" : "";
+      return control.checked ? control.value || "selected" : "";
     }
 
     if (control instanceof HTMLSelectElement && control.multiple) {
-      return Array.from(control.selectedOptions)
-        .map((option) => option.value || option.textContent || "")
-        .join(", ");
+      return Array.from(control.selectedOptions).map(
+        (option) => option.value || option.textContent || "",
+      );
     }
 
     return control.value || "";
   }
 
-  /**
-   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} control
-   * @param {string} value
-   * @returns {void}
-   */
-  function setControlValue(control, value) {
-    if (control instanceof HTMLInputElement && control.type === "checkbox") return;
-    if (control instanceof HTMLInputElement && control.type === "radio") return;
-
-    control.value = value;
+  function getFieldKey(control, index) {
+    return (
+      cleanKey(
+        control.getAttribute("name") || control.id || `field_${index}`,
+      ) || `field_${index}`
+    );
   }
 
-  /**
-   * @param {Record<string, any>} fields
-   * @param {string} key
-   * @param {string} value
-   * @returns {void}
-   */
   function addFieldValue(fields, key, value) {
     if (!key) return;
 
@@ -368,30 +239,44 @@
     fields[key] = [fields[key], value];
   }
 
-  /**
-   * @param {any} value
-   * @returns {string}
-   */
-  function valueToText(value) {
+  function sanitizeObject(value, depth = 0) {
+    if (depth > 8) return "";
+    if (value === null || value === undefined) return "";
+
+    if (typeof value === "string") return sanitizeText(value);
+    if (typeof value === "number") return Number.isFinite(value) ? value : "";
+    if (typeof value === "boolean") return value;
+
     if (Array.isArray(value)) {
-      return value.map(valueToText).filter(Boolean).join(", ");
+      return value.slice(0, 50).map((item) => sanitizeObject(item, depth + 1));
     }
 
     if (isPlainObject(value)) {
-      return stableSerialize(value);
+      const out = {};
+
+      for (const [key, item] of Object.entries(value)) {
+        const safeKey = cleanKey(key);
+
+        if (!safeKey) continue;
+        if (["__proto__", "prototype", "constructor"].includes(safeKey))
+          continue;
+
+        out[safeKey] = sanitizeObject(item, depth + 1);
+      }
+
+      return sortObject(out);
     }
 
-    return cleanText(value || "");
+    return "";
   }
 
-  /**
-   * @param {any} value
-   * @returns {string}
-   */
   function sanitizeText(value) {
     return cleanText(value, CONFIG.maxFieldLength)
       .replace(/```[\s\S]*?```/g, " ")
-      .replace(/<\s*\/?\s*(script|style|iframe|object|embed|svg|math|form|template|link|meta)[^>]*>/gi, " ")
+      .replace(
+        /<\s*\/?\s*(script|style|iframe|object|embed|svg|math|form|template|link|meta)[^>]*>/gi,
+        " ",
+      )
       .replace(/\bon[a-z]{3,}\s*=/gi, " ")
       .replace(/\b(javascript|vbscript)\s*:/gi, " ")
       .replace(/\bdata\s*:\s*text\/html/gi, " ")
@@ -402,17 +287,26 @@
       .replace(/\bnew\s+Function\b/gi, " ")
       .replace(/\bconstructor\b/gi, " ")
       .replace(/\b__proto__\b/gi, " ")
+      .replace(/\bprototype\b/gi, " ")
+      .replace(/\bselect\s+\*\s+from\b/gi, " ")
+      .replace(/\bunion\s+select\b/gi, " ")
+      .replace(/\bdrop\s+table\b/gi, " ")
+      .replace(/\binsert\s+into\b/gi, " ")
+      .replace(/\bdelete\s+from\b/gi, " ")
+      .replace(/\bupdate\s+[a-z0-9_]+\s+set\b/gi, " ")
+      .replace(/\balter\s+table\b/gi, " ")
+      .replace(/\btruncate\s+table\b/gi, " ")
+      .replace(/\bimport\s+.+\s+from\b/gi, " ")
+      .replace(/\brequire\s*\(/gi, " ")
+      .replace(/\bfetch\s*\(/gi, " ")
+      .replace(/\bXMLHttpRequest\b/gi, " ")
+      .replace(/\bprocess\.env\b/gi, " ")
       .replace(/[<>`{}[\];]/g, " ")
       .replace(/\s+/g, " ")
       .trim()
       .slice(0, CONFIG.maxFieldLength);
   }
 
-  /**
-   * @param {any} value
-   * @param {number} [maxLength]
-   * @returns {string}
-   */
   function cleanText(value, maxLength) {
     const limit =
       typeof maxLength === "number" && Number.isFinite(maxLength)
@@ -428,126 +322,132 @@
       .slice(0, limit);
   }
 
-  /**
-   * @param {any} value
-   * @returns {{ score: number, reasons: string[] }}
-   */
-  function riskScore(value) {
-    const text = String(value || "");
+  function cleanKey(value) {
+    return String(value || "")
+      .normalize("NFKC")
+      .replace(/[^a-zA-Z0-9_.:-]/g, "")
+      .slice(0, 80);
+  }
+
+  function scoreRisk(text) {
+    const source = String(text || "");
     let score = 0;
     const reasons = [];
 
     for (const pattern of RISK_PATTERNS) {
-      if (pattern.test(text)) {
+      if (pattern.test(source)) {
         score += 18;
-        reasons.push(String(pattern));
+        reasons.push("malicious_or_programming_pattern");
       }
     }
 
-    const links = (text.match(/https?:\/\//gi) || []).length;
-
+    const links = (source.match(/https?:\/\//gi) || []).length;
     if (links > 3) {
       score += 18;
       reasons.push("too_many_links");
     }
 
-    const codeDensity = (text.match(/[{}()[\];=<>`]/g) || []).length;
-
+    const codeDensity = (source.match(/[{}()[\];=<>`]/g) || []).length;
     if (codeDensity > 40) {
       score += 18;
       reasons.push("high_code_density");
     }
 
+    const base64Like = (source.match(/[A-Za-z0-9+/=]{120,}/g) || []).length;
+    if (base64Like > 0) {
+      score += 18;
+      reasons.push("encoded_payload_pattern");
+    }
+
     return {
       score,
-      reasons: unique(reasons)
+      reasons: unique(reasons),
     };
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @returns {boolean}
-   */
-  function honeypotFilled(form) {
-    const honeypots = Array.from(form.querySelectorAll(CONFIG.honeypotSelector));
-
-    return honeypots.some((field) => {
-      if (!(field instanceof HTMLInputElement) &&
-          !(field instanceof HTMLTextAreaElement)) {
-        return false;
-      }
-
-      return String(field.value || "").trim().length > 0;
-    });
+  function buildCySecReport(ok, riskScore, residualRiskScore, report) {
+    return {
+      ok,
+      sanitized: true,
+      checkedProgrammingCode: true,
+      checkedMaliciousCode: true,
+      integrityRequiredAfterSanitizer: true,
+      riskScore,
+      residualRiskScore,
+      frameworks: CONFIG.frameworks.slice(),
+      controls: {
+        owaspAsvs: [
+          "V5 input validation",
+          "V8 data protection",
+          "V14 configuration",
+        ],
+        cisaCpg: ["Input validation", "secure-by-design", "least privilege"],
+        nistCsf: ["Protect", "Detect", "Respond"],
+        pciDss40: [
+          "Req. 6 secure development",
+          "Req. 10 auditability",
+          "Req. 11 testing",
+        ],
+      },
+      blockedFields: report
+        .filter((entry) => entry.blocked)
+        .map((entry) => entry.key),
+    };
   }
 
-  /**
-   * @returns {{ sessionId: string, nonce: string, issuedAt: string }}
-   */
+  function markInvalidFields(form, report) {
+    const blocked = new Set(
+      report.filter((entry) => entry.blocked).map((entry) => entry.key),
+    );
+
+    Array.from(form.querySelectorAll("input, textarea, select")).forEach(
+      (control, index) => {
+        if (!isSubmittableControl(control)) return;
+
+        const key = getFieldKey(control, index);
+
+        if (blocked.has(key)) {
+          control.setAttribute("aria-invalid", "true");
+        } else {
+          control.removeAttribute("aria-invalid");
+        }
+      },
+    );
+  }
+
   function createSession() {
     return {
-      sessionId: createId("sess"),
-      nonce: createNonce(),
-      issuedAt: new Date().toISOString()
+      sessionId: createId("contact-session"),
+      nonce: createId("contact-nonce"),
+      issuedAt: new Date().toISOString(),
     };
   }
 
-  /**
-   * @param {string} prefix
-   * @returns {string}
-   */
   function createId(prefix) {
-    if (window.crypto && crypto.randomUUID) {
-      return `${prefix}:${crypto.randomUUID()}`;
-    }
+    const bytes = new Uint8Array(16);
+    window.crypto.getRandomValues(bytes);
 
-    return `${prefix}:${Date.now().toString(36)}:${Math.random().toString(36).slice(2)}`;
+    const token = Array.from(bytes)
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+
+    return `${prefix}-${token}`;
   }
 
-  /**
-   * @returns {string}
-   */
-  function createNonce() {
-    if (window.crypto && crypto.getRandomValues) {
-      const bytes = new Uint8Array(32);
-      crypto.getRandomValues(bytes);
-
-      return Array.from(bytes)
-        .map((byte) => byte.toString(16).padStart(2, "0"))
-        .join("");
-    }
-
-    return `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}${Math.random()
-      .toString(36)
-      .slice(2)}`;
-  }
-
-  /**
-   * @param {string} text
-   * @returns {Promise<string>}
-   */
   async function sha256Hex(text) {
-    if (!window.crypto || !crypto.subtle) {
-      throw new Error("Secure browser crypto is required.");
-    }
-
-    const data = new TextEncoder().encode(text);
-    const digest = await crypto.subtle.digest("SHA-256", data);
+    const data = new TextEncoder().encode(String(text || ""));
+    const digest = await window.crypto.subtle.digest("SHA-256", data);
 
     return Array.from(new Uint8Array(digest))
       .map((byte) => byte.toString(16).padStart(2, "0"))
       .join("");
   }
 
-  /**
-   * @param {any} value
-   * @returns {string}
-   */
   function stableSerialize(value) {
     if (value === null || value === undefined) return "null";
-
     if (typeof value === "string") return JSON.stringify(value);
-    if (typeof value === "number" || typeof value === "boolean") return JSON.stringify(value);
+    if (typeof value === "number" || typeof value === "boolean")
+      return JSON.stringify(value);
 
     if (Array.isArray(value)) {
       return `[${value.map(stableSerialize).join(",")}]`;
@@ -563,10 +463,68 @@
     return JSON.stringify(String(value));
   }
 
-  /**
-   * @param {Record<string, any>} object
-   * @returns {Record<string, any>}
-   */
+  function honeypotFilled(form) {
+    return Array.from(form.querySelectorAll(CONFIG.honeypotSelector)).some(
+      (field) => String(field.value || "").trim(),
+    );
+  }
+
+  function markSessionBlocked() {
+    try {
+      window.sessionStorage.setItem(CONFIG.sessionBlockKey, "true");
+    } catch {
+      document.documentElement.dataset.contactCysecBlocked = "true";
+    }
+  }
+
+  function isSessionBlocked() {
+    try {
+      return window.sessionStorage.getItem(CONFIG.sessionBlockKey) === "true";
+    } catch {
+      return document.documentElement.dataset.contactCysecBlocked === "true";
+    }
+  }
+
+  function blockForm(form, message) {
+    markSessionBlocked();
+    form.reset();
+    form.dataset.contactBlocked = "true";
+
+    Array.from(
+      form.querySelectorAll("input, textarea, select, button"),
+    ).forEach((field) => {
+      field.disabled = true;
+      field.setAttribute("aria-invalid", "true");
+    });
+
+    const status = form.querySelector("[data-contact-status]");
+    if (status) {
+      status.textContent =
+        message || "This contact session was blocked by Contact CySec.";
+      status.dataset.contactStatus = "error";
+      status.setAttribute("role", "alert");
+    }
+  }
+
+  function clearInvalidFields(form) {
+    Array.from(form.querySelectorAll("[aria-invalid='true']")).forEach(
+      (field) => {
+        field.removeAttribute("aria-invalid");
+      },
+    );
+  }
+
+  function valueToText(value) {
+    if (Array.isArray(value))
+      return value.map(valueToText).filter(Boolean).join(", ");
+    if (isPlainObject(value)) return stableSerialize(value);
+    return cleanText(value || "");
+  }
+
+  function isPlainObject(value) {
+    return Object.prototype.toString.call(value) === "[object Object]";
+  }
+
   function sortObject(object) {
     const out = {};
 
@@ -579,79 +537,7 @@
     return out;
   }
 
-  /**
-   * @param {string[]} items
-   * @returns {string[]}
-   */
-  function unique(items) {
-    return Array.from(new Set(items.filter(Boolean)));
-  }
-
-  /**
-   * @param {any} value
-   * @returns {boolean}
-   */
-  function isPlainObject(value) {
-    return Object.prototype.toString.call(value) === "[object Object]";
-  }
-
-  /**
-   * @returns {boolean}
-   */
-  function markSessionBlocked() {
-    try {
-      sessionStorage.setItem(CONFIG.sessionBlockKey, String(Date.now()));
-      return true;
-    } catch {
-      return false;
-    }
-  }
-
-  /**
-   * @returns {boolean}
-   */
-  function isSessionBlocked() {
-    try {
-      return Boolean(sessionStorage.getItem(CONFIG.sessionBlockKey));
-    } catch {
-      return false;
-    }
-  }
-
-  /**
-   * @param {HTMLFormElement} form
-   * @param {string} message
-   * @returns {void}
-   */
-  function blockForm(form, message) {
-    form.reset();
-
-    Array.from(form.querySelectorAll("input, textarea, select, button")).forEach((control) => {
-      if (control instanceof HTMLInputElement ||
-          control instanceof HTMLTextAreaElement ||
-          control instanceof HTMLSelectElement ||
-          control instanceof HTMLButtonElement) {
-        control.disabled = true;
-        control.setAttribute("aria-invalid", "true");
-      }
-    });
-
-    const status = form.querySelector("[data-contact-status]");
-
-    if (status) {
-      status.textContent = message;
-      status.setAttribute("data-status-type", "error");
-      status.setAttribute("role", "alert");
-    }
-  }
-
-  /**
-   * @param {HTMLFormElement} form
-   * @returns {void}
-   */
-  function clearInvalidFields(form) {
-    Array.from(form.querySelectorAll("[aria-invalid]")).forEach((field) => {
-      field.removeAttribute("aria-invalid");
-    });
+  function unique(values) {
+    return Array.from(new Set(values.filter(Boolean)));
   }
 })();

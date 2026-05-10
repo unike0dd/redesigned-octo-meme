@@ -1,14 +1,9 @@
 /**
  * contact/repo-worker.js
  *
- * Repo browser bridge for the contact form.
- * This is NOT the Cloudflare Worker.
- *
- * Sends cleaned contact payloads to:
+ * Repo-side browser communication bridge for Contact.
+ * Flow: Contact submit -> repo TinyML/CySec -> this bridge -> CF Worker
  * https://contacto.gabo.services/api/contact
- *
- * Requires:
- * contact/tiny-ml.js
  */
 
 (function () {
@@ -17,14 +12,12 @@
   const CONFIG = Object.freeze({
     gatewayUrl: "https://contacto.gabo.services/api/contact",
     route: "/api/contact",
-
     expectedAssetId: "redesigned-octo-meme-contact",
     expectedRepoId: "CONTACTO",
     expectedSource: "contact.html",
     headerPolicy: "contacto-repo-contact-v1",
-
     formSelector: 'form[data-contact-gateway="true"]',
-    statusSelector: "[data-contact-status]"
+    statusSelector: "[data-contact-status]",
   });
 
   if (document.readyState === "loading") {
@@ -33,89 +26,102 @@
     init();
   }
 
-  /**
-   * @returns {void}
-   */
   function init() {
-    const forms = document.querySelectorAll(CONFIG.formSelector);
-
-    forms.forEach((node) => {
+    document.querySelectorAll(CONFIG.formSelector).forEach((node) => {
       if (!(node instanceof HTMLFormElement)) return;
+      if (node.dataset.repoContactReady === "true") return;
 
-      const form = node;
-
-      if (form.dataset.repoContactReady === "true") return;
-
-      form.dataset.repoContactReady = "true";
+      node.dataset.repoContactReady = "true";
 
       const tiny = getTiny();
 
       if (!tiny) {
-        setStatus(form, "Contact security module did not load.", "error");
+        setStatus(
+          node,
+          "Contact CySec module did not load. Please refresh before sending.",
+          "error",
+        );
         return;
       }
 
       if (tiny.isSessionBlocked()) {
-        tiny.blockForm(form, "This contact session was blocked for security protection.");
+        tiny.blockForm(
+          node,
+          "This contact session was blocked for security protection.",
+        );
         return;
       }
 
-      form.addEventListener("submit", handleSubmit);
+      node.addEventListener("submit", handleSubmit);
     });
   }
 
-  /**
-   * @param {SubmitEvent} event
-   * @returns {Promise<void>}
-   */
   async function handleSubmit(event) {
     event.preventDefault();
 
     const form = event.currentTarget;
-
-    if (!(form instanceof HTMLFormElement)) {
-      return;
-    }
+    if (!(form instanceof HTMLFormElement)) return;
 
     const tiny = getTiny();
     const submitButton = findSubmitButton(form);
 
     try {
       setBusy(form, submitButton, true);
-      setStatus(form, "Checking your message securely...", "info");
+      setStatus(
+        form,
+        "Scanning and sanitizing your message with Contact CySec...",
+        "info",
+      );
 
       if (!tiny) {
-        throw new Error("Contact security module is unavailable.");
+        throw new Error("Contact CySec module is unavailable.");
+      }
+
+      if (!form.reportValidity()) {
+        setStatus(
+          form,
+          "Please complete the required Contact fields before sending.",
+          "error",
+        );
+        return;
       }
 
       if (tiny.honeypotFilled(form)) {
         tiny.markSessionBlocked();
-        tiny.blockForm(form, "This contact session was blocked by bot protection.");
+        tiny.blockForm(
+          form,
+          "This contact session was blocked by bot protection.",
+        );
         return;
       }
 
       const scan = tiny.scanForm(form);
 
       if (!scan.ok) {
-        setStatus(form, "Security blocked suspicious or programming-code-like content.", "error");
+        setStatus(
+          form,
+          "Contact CySec blocked suspicious or programming-code-like content. Please revise and try again.",
+          "error",
+        );
         return;
       }
 
       const session = tiny.createSession();
-
-      const integrityBase = {
-        route: CONFIG.route,
+      const integrity = await tiny.createIntegrityProof({
         origin: window.location.origin,
-        source: CONFIG.expectedSource,
         sessionId: session.sessionId,
         nonce: session.nonce,
-        fields: scan.fields
-      };
+        fields: scan.fields,
+      });
 
-      const clientSha256 = await tiny.sha256Hex(tiny.stableSerialize(integrityBase));
+      setStatus(
+        form,
+        "Integrity verified after sanitization. Sending securely...",
+        "info",
+      );
 
       const payload = {
-        schema: "gabo.contact.repo-browser.v1",
+        schema: "gabo.contact.repo-browser.v2",
         formType: "contact",
         route: CONFIG.route,
         requestId: tiny.createId("contact"),
@@ -125,33 +131,47 @@
           origin: window.location.origin,
           host: window.location.host,
           pageUrl: window.location.href,
-          path: window.location.pathname
+          path: window.location.pathname,
+          title: document.title || "Contact",
         },
 
         repo: {
           id: CONFIG.expectedRepoId,
           assetId: CONFIG.expectedAssetId,
-          source: CONFIG.expectedSource
+          source: CONFIG.expectedSource,
         },
 
         fields: scan.fields,
 
-        scan: {
-          ok: scan.ok,
-          riskScore: scan.riskScore,
-          report: scan.report
+        antiBot: {
+          website: "",
+          companyWebsite: "",
         },
 
+        scan: {
+          ok: scan.ok,
+          sanitized: scan.sanitized,
+          riskScore: scan.riskScore,
+          residualRiskScore: scan.residualRiskScore,
+          report: scan.report,
+        },
+
+        cySec: scan.cySec,
+        frameworks: tiny.frameworks,
         clientSession: session,
 
         clientIntegrity: {
-          algorithm: "SHA-256",
-          sha256: clientSha256,
-          base: "route|origin|source|sessionId|nonce|fields"
-        }
+          algorithm: integrity.algorithm,
+          sha256: integrity.sha256,
+          base: integrity.base,
+          sanitizedBeforeHash: integrity.sanitizedBeforeHash,
+          cySecVerifiedBeforeHash: integrity.cySecVerifiedBeforeHash,
+        },
       };
 
-      const response = await fetch(CONFIG.gatewayUrl, {
+      const endpoint =
+        form.dataset.upstreamPath || form.action || CONFIG.gatewayUrl;
+      const response = await fetch(endpoint, {
         method: "POST",
         mode: "cors",
         credentials: "omit",
@@ -159,18 +179,18 @@
         redirect: "error",
         referrerPolicy: "no-referrer",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json; charset=utf-8",
           "X-Gabo-Origin": window.location.origin,
           "X-Gabo-Source": CONFIG.expectedSource,
           "X-Ops-Asset-Id": CONFIG.expectedAssetId,
           "X-Gabo-Repo-Id": CONFIG.expectedRepoId,
           "X-Gabo-Session-Id": session.sessionId,
           "X-Gabo-Nonce": session.nonce,
-          "X-Gabo-Integrity-SHA256": clientSha256,
+          "X-Gabo-Integrity-SHA256": integrity.sha256,
           "X-Gabo-Header-Policy": CONFIG.headerPolicy,
-          "X-Gabo-Client": "contact/repo-worker.js"
+          "X-Gabo-Client": "contact/repo-worker.js",
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
       const data = await safeJson(response);
@@ -179,43 +199,38 @@
         throw new Error(data.message || data.code || "Contact handoff failed.");
       }
 
-      setStatus(form, data.message || "Your message was received securely.", "success");
+      setStatus(
+        form,
+        data.message || "Your message was received securely.",
+        "success",
+      );
       form.reset();
       tiny.clearInvalidFields(form);
     } catch (error) {
-      setStatus(form, getErrorMessage(error) || "Contact handoff failed.", "error");
+      setStatus(
+        form,
+        getErrorMessage(error) || "Contact handoff failed.",
+        "error",
+      );
     } finally {
       setBusy(form, submitButton, false);
     }
   }
 
-  /**
-   * @returns {any}
-   */
   function getTiny() {
     return window.GaboContactTinyML || null;
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @returns {HTMLButtonElement | HTMLInputElement | null}
-   */
   function findSubmitButton(form) {
-    const found = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
-
-    if (found instanceof HTMLButtonElement || found instanceof HTMLInputElement) {
-      return found;
-    }
-
-    return null;
+    const found = form.querySelector(
+      'button[type="submit"], input[type="submit"], button:not([type])',
+    );
+    return found instanceof HTMLButtonElement ||
+      found instanceof HTMLInputElement
+      ? found
+      : null;
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @param {HTMLButtonElement | HTMLInputElement | null} button
-   * @param {boolean} busy
-   * @returns {void}
-   */
   function setBusy(form, button, busy) {
     form.dataset.contactBusy = busy ? "true" : "false";
 
@@ -225,18 +240,12 @@
     }
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @param {string} message
-   * @param {"info" | "success" | "error"} type
-   * @returns {void}
-   */
   function setStatus(form, message, type) {
     const status = form.querySelector(CONFIG.statusSelector);
 
     if (status) {
       status.textContent = message;
-      status.setAttribute("data-status-type", type || "info");
+      status.dataset.contactStatus = type || "info";
       status.setAttribute("role", type === "error" ? "alert" : "status");
       status.setAttribute("aria-live", "polite");
       return;
@@ -249,36 +258,22 @@
     }
   }
 
-  /**
-   * @param {Response} response
-   * @returns {Promise<any>}
-   */
   async function safeJson(response) {
     try {
       return await response.json();
     } catch {
       return {
         ok: false,
-        message: "Invalid contact gateway response."
+        message: "Invalid contact gateway response.",
       };
     }
   }
 
-  /**
-   * @param {unknown} error
-   * @returns {string}
-   */
   function getErrorMessage(error) {
     if (!error) return "";
-
-    if (typeof error === "string") {
-      return error;
-    }
-
-    if (typeof error === "object" && "message" in error) {
+    if (typeof error === "string") return error;
+    if (typeof error === "object" && "message" in error)
       return String(error.message || "");
-    }
-
     return String(error);
   }
 })();
