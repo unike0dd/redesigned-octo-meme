@@ -1,252 +1,322 @@
 /**
  * contact/repo-worker.js
  *
- * Browser-side contact relay for the contact form.
- * Sends cleaned contact payloads to the public contact API.
- *
- * Requires:
- * contact/tiny-ml.js
+ * Browser-side contact relay for secure contact intake.
  */
 
 (function () {
   "use strict";
 
-  const CONFIG = Object.freeze({
-    endpointUrl: "https://contacto.gabo.services/api/contact",
+  const CONTACT_CONFIG = Object.freeze({
+    endpoint: "https://contacto.gabo.services/api/contact",
     route: "/api/contact",
 
-    expectedAssetId: "redesigned-octo-meme-contact",
-    expectedRepoId: "CONTACTO",
-    expectedSource: "contact.html",
+    repoId: "CONTACTO",
+    assetId: "redesigned-octo-meme-contact",
+    source: "contact.html",
     headerPolicy: "contacto-repo-contact-v1",
 
-    formSelector: 'form[data-contact-endpoint="true"]',
-    statusSelector: "[data-contact-status]"
+    formSelectors: [
+      "form[data-contact-form]",
+      "#contact-form",
+      "form.contact-form",
+      "form[action*='contact']"
+    ],
+
+    statusSelectors: [
+      "[data-contact-status]",
+      "#contact-status",
+      ".contact-status"
+    ],
+
+    submitLockMs: 1200
   });
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init, { once: true });
-  } else {
-    init();
-  }
+  let lastSubmitAt = 0;
 
-  /**
-   * @returns {void}
-   */
-  function init() {
-    const forms = document.querySelectorAll(CONFIG.formSelector);
-
-    forms.forEach((node) => {
-      if (!(node instanceof HTMLFormElement)) return;
-
-      const form = node;
-
-      if (form.dataset.repoContactReady === "true") return;
-
-      form.dataset.repoContactReady = "true";
-
-      const tiny = getTiny();
-
-      if (!tiny) {
-        setStatus(form, "The secure contact intake could not start. Please try again later.", "error");
-        return;
-      }
-
-      if (tiny.isSessionBlocked()) {
-        tiny.blockForm(form, "This contact session was rejected. Please refresh and try again later.");
-        return;
-      }
-
-      form.addEventListener("submit", handleSubmit);
-    });
-  }
-
-  /**
-   * @param {SubmitEvent} event
-   * @returns {Promise<void>}
-   */
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const form = event.currentTarget;
-
-    if (!(form instanceof HTMLFormElement)) {
+  function ready(callback) {
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", callback);
       return;
     }
 
-    const tiny = getTiny();
-    const submitButton = findSubmitButton(form);
+    callback();
+  }
 
-    try {
-      setBusy(form, submitButton, true);
-      setStatus(form, "Checking your message securely...", "info");
-
-      if (!tiny) {
-        throw new Error("The secure contact intake could not start.");
-      }
-
-      if (tiny.honeypotFilled(form)) {
-        tiny.markSessionBlocked();
-        tiny.blockForm(form, "This contact session was rejected. Please refresh and try again later.");
-        return;
-      }
-
-      const scan = tiny.scanForm(form);
-
-      if (!scan.ok) {
-        setStatus(form, "Your message could not be accepted. Please revise it and try again.", "error");
-        return;
-      }
-
-      const session = tiny.createSession();
-
-      const integrityBase = {
-        route: CONFIG.route,
-        origin: window.location.origin,
-        source: CONFIG.expectedSource,
-        sessionId: session.sessionId,
-        nonce: session.nonce,
-        fields: scan.fields
-      };
-
-      const clientSha256 = await tiny.sha256Hex(tiny.stableSerialize(integrityBase));
-
-      const payload = {
-        schema: "gabo.contact.repo-browser.v1",
-        formType: "contact",
-        route: CONFIG.route,
-        requestId: tiny.createId("contact"),
-        timestamp: new Date().toISOString(),
-
-        site: {
-          origin: window.location.origin,
-          host: window.location.host,
-          pageUrl: window.location.href,
-          path: window.location.pathname
-        },
-
-        repo: {
-          id: CONFIG.expectedRepoId,
-          assetId: CONFIG.expectedAssetId,
-          source: CONFIG.expectedSource
-        },
-
-        fields: scan.fields,
-
-        scan: {
-          ok: scan.ok,
-          riskScore: scan.riskScore,
-          report: scan.report
-        },
-
-        clientSession: session,
-
-        clientIntegrity: {
-          algorithm: "SHA-256",
-          sha256: clientSha256,
-          base: "route|origin|source|sessionId|nonce|fields"
-        }
-      };
-
-      const response = await fetch(CONFIG.endpointUrl, {
-        method: "POST",
-        mode: "cors",
-        credentials: "omit",
-        cache: "no-store",
-        redirect: "error",
-        referrerPolicy: "no-referrer",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Gabo-Origin": window.location.origin,
-          "X-Gabo-Source": CONFIG.expectedSource,
-          "X-Ops-Asset-Id": CONFIG.expectedAssetId,
-          "X-Gabo-Repo-Id": CONFIG.expectedRepoId,
-          "X-Gabo-Session-Id": session.sessionId,
-          "X-Gabo-Nonce": session.nonce,
-          "X-Gabo-Integrity-SHA256": clientSha256,
-          "X-Gabo-Header-Policy": CONFIG.headerPolicy,
-          "X-Gabo-Client": "contact/repo-worker.js"
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await safeJson(response);
-
-      if (!response.ok || (data && data.ok === false)) {
-        throw new Error("Your message could not be sent. Please try again later.");
-      }
-
-      setStatus(form, "Thank you. Your message was received securely.", "success");
-      form.reset();
-      tiny.clearInvalidFields(form);
-    } catch {
-      setStatus(form, "Your message could not be sent. Please try again later.", "error");
-    } finally {
-      setBusy(form, submitButton, false);
+  function getTinyML() {
+    if (!window.GaboContactTinyML) {
+      throw new Error("Contact protection module unavailable.");
     }
+
+    return window.GaboContactTinyML;
   }
 
-  /**
-   * @returns {any}
-   */
-  function getTiny() {
-    return window.GaboContactTinyML || null;
-  }
+  function findForm() {
+    for (const selector of CONTACT_CONFIG.formSelectors) {
+      const form = document.querySelector(selector);
 
-  /**
-   * @param {HTMLFormElement} form
-   * @returns {HTMLButtonElement | HTMLInputElement | null}
-   */
-  function findSubmitButton(form) {
-    const found = form.querySelector('button[type="submit"], input[type="submit"], button:not([type])');
-
-    if (found instanceof HTMLButtonElement || found instanceof HTMLInputElement) {
-      return found;
+      if (form) return form;
     }
 
     return null;
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @param {HTMLButtonElement | HTMLInputElement | null} button
-   * @param {boolean} busy
-   * @returns {void}
-   */
-  function setBusy(form, button, busy) {
-    form.dataset.contactBusy = busy ? "true" : "false";
+  function findStatusNode(form) {
+    if (form) {
+      const local = form.querySelector("[data-contact-status]");
 
-    if (button) {
-      button.disabled = busy;
-      button.setAttribute("aria-busy", busy ? "true" : "false");
+      if (local) return local;
     }
+
+    for (const selector of CONTACT_CONFIG.statusSelectors) {
+      const node = document.querySelector(selector);
+
+      if (node) return node;
+    }
+
+    return null;
   }
 
-  /**
-   * @param {HTMLFormElement} form
-   * @param {string} message
-   * @param {"info" | "success" | "error"} type
-   * @returns {void}
-   */
-  function setStatus(form, message, type) {
-    const status = form.querySelector(CONFIG.statusSelector);
+  function setStatus(node, type, message) {
+    if (!node) return;
 
-    if (status) {
-      status.textContent = message;
-      status.setAttribute("data-status-type", type || "info");
-      status.setAttribute("role", type === "error" ? "alert" : "status");
-      status.setAttribute("aria-live", "polite");
+    node.textContent = message;
+    node.setAttribute("data-status", type);
+    node.setAttribute("data-status-type", type);
+    node.setAttribute("role", type === "error" ? "alert" : "status");
+    node.setAttribute("aria-live", "polite");
+  }
+
+  function getFieldName(field) {
+    return field.getAttribute("name") || field.getAttribute("id") || "";
+  }
+
+  function collectFormFields(form) {
+    const fields = {};
+    const elements = Array.from(form.elements || []);
+
+    elements.forEach(function (field) {
+      const name = getFieldName(field);
+
+      if (!name) return;
+      if (field.disabled) return;
+
+      const type = String(field.type || "").toLowerCase();
+
+      if (type === "submit" || type === "button" || type === "reset" || type === "file") {
+        return;
+      }
+
+      if ((type === "checkbox" || type === "radio") && !field.checked) {
+        return;
+      }
+
+      if (fields[name]) {
+        if (!Array.isArray(fields[name])) {
+          fields[name] = [fields[name]];
+        }
+
+        fields[name].push(field.value || "");
+        return;
+      }
+
+      fields[name] = field.value || "";
+    });
+
+    return fields;
+  }
+
+  function checkHoneypot(fields) {
+    const keys = [
+      "website",
+      "website_url",
+      "companyWebsite",
+      "company_website",
+      "url",
+      "homepage",
+      "businessUrl"
+    ];
+
+    return keys.some(function (key) {
+      return String(fields[key] || "").trim().length > 0;
+    });
+  }
+
+  function validateRequiredContact(fields) {
+    const fullName = readAlias(fields, ["fullName", "fullname", "full_name", "name", "yourName", "nombre"]);
+    const email = readAlias(fields, ["emailAddress", "email", "email_address", "mail", "correo"]);
+    const message = readAlias(fields, ["message", "comments", "comment", "notes", "details", "mensaje"]);
+
+    if (!fullName || String(fullName).length < 2) {
+      return "Please enter your full name.";
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || ""))) {
+      return "Please enter a valid email address.";
+    }
+
+    if (!message || String(message).length < 8) {
+      return "Please enter a message.";
+    }
+
+    return "";
+  }
+
+  function readAlias(fields, aliases) {
+    for (const alias of aliases) {
+      const wanted = normalizeAlias(alias);
+
+      for (const key of Object.keys(fields)) {
+        if (normalizeAlias(key) === wanted) {
+          return fields[key];
+        }
+      }
+    }
+
+    return "";
+  }
+
+  function normalizeAlias(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+  function buildSiteInfo() {
+    return {
+      pageUrl: window.location.href,
+      path: window.location.pathname,
+      title: document.title || ""
+    };
+  }
+
+  function lockSubmitButton(form, locked) {
+    const buttons = Array.from(form.querySelectorAll("button[type='submit'], input[type='submit']"));
+
+    buttons.forEach(function (button) {
+      button.disabled = Boolean(locked);
+      button.setAttribute("aria-busy", locked ? "true" : "false");
+    });
+  }
+
+  async function submitContact(form, statusNode) {
+    const now = Date.now();
+
+    if (now - lastSubmitAt < CONTACT_CONFIG.submitLockMs) {
       return;
     }
 
-    void message;
+    lastSubmitAt = now;
+
+    const tiny = getTinyML();
+    const rawFields = collectFormFields(form);
+
+    if (checkHoneypot(rawFields)) {
+      setStatus(statusNode, "error", "Your message could not be submitted.");
+      return;
+    }
+
+    const fields = tiny.sanitizeObject(rawFields);
+    const risk = tiny.scoreRisk(JSON.stringify(rawFields) + "\n" + tiny.stableSerialize(fields));
+
+    if (risk.blocked) {
+      setStatus(statusNode, "error", "Your message could not be submitted securely.");
+      return;
+    }
+
+    const validationMessage = validateRequiredContact(fields);
+
+    if (validationMessage) {
+      setStatus(statusNode, "error", validationMessage);
+      return;
+    }
+
+    const sessionId = tiny.makeToken("contact-session");
+    const nonce = tiny.makeToken("contact-nonce");
+    const issuedAt = new Date().toISOString();
+
+    const integrityPayload = {
+      route: CONTACT_CONFIG.route,
+      origin: window.location.origin,
+      source: CONTACT_CONFIG.source,
+      sessionId: sessionId,
+      nonce: nonce,
+      fields: fields
+    };
+
+    const sha256 = await tiny.sha256Hex(tiny.stableSerialize(integrityPayload));
+
+    const payload = {
+      schema: "gabo.contact.repo.v2",
+      repo: {
+        id: CONTACT_CONFIG.repoId,
+        assetId: CONTACT_CONFIG.assetId,
+        source: CONTACT_CONFIG.source
+      },
+      fields: fields,
+      clientIntegrity: {
+        sha256: sha256,
+        calculatedAfterSanitizer: true
+      },
+      clientSession: {
+        sessionId: sessionId,
+        nonce: nonce,
+        issuedAt: issuedAt
+      },
+      site: buildSiteInfo(),
+      antiBot: {
+        website: rawFields.website || rawFields.website_url || "",
+        companyWebsite: rawFields.companyWebsite || rawFields.company_website || ""
+      },
+      clientSecurity: {
+        sanitizedBeforeSend: true,
+        localRiskScore: risk.score,
+        localRiskReasons: risk.reasons
+      }
+    };
+
+    lockSubmitButton(form, true);
+    setStatus(statusNode, "pending", "Sending your message securely...");
+
+    try {
+      const response = await fetch(CONTACT_CONFIG.endpoint, {
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        cache: "no-store",
+        referrerPolicy: "no-referrer",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Gabo-Origin": window.location.origin,
+          "X-Gabo-Source": CONTACT_CONFIG.source,
+          "X-Ops-Asset-Id": CONTACT_CONFIG.assetId,
+          "X-Gabo-Repo-Id": CONTACT_CONFIG.repoId,
+          "X-Gabo-Session-Id": sessionId,
+          "X-Gabo-Nonce": nonce,
+          "X-Gabo-Integrity-SHA256": sha256,
+          "X-Gabo-Header-Policy": CONTACT_CONFIG.headerPolicy,
+          "X-Gabo-Client": "repo-contact-v2"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await safeReadJson(response);
+
+      if (!response.ok || !result || result.ok !== true) {
+        setStatus(statusNode, "error", "Your message could not be submitted securely.");
+        return;
+      }
+
+      form.reset();
+      setStatus(statusNode, "success", "Your message was received securely.");
+    } catch {
+      setStatus(statusNode, "error", "Your message could not be submitted right now.");
+    } finally {
+      lockSubmitButton(form, false);
+    }
   }
 
-  /**
-   * @param {Response} response
-   * @returns {Promise<any>}
-   */
-  async function safeJson(response) {
+  async function safeReadJson(response) {
     try {
       return await response.json();
     } catch {
@@ -254,4 +324,19 @@
     }
   }
 
+  ready(function () {
+    const form = findForm();
+
+    if (!form) return;
+
+    const statusNode = findStatusNode(form);
+
+    form.setAttribute("novalidate", "novalidate");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      submitContact(form, statusNode);
+    });
+  });
 })();
