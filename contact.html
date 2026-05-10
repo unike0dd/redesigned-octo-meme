@@ -51,7 +51,29 @@
           Ponte en contacto para soporte, incorporación, proyectos y
           oportunidades de colaboración.
         </p>
-        <form id="contact-request-form">
+        <form
+          id="contact-form"
+          action="https://contacto.gabo.services/api/contact"
+          data-contact-endpoint-url="https://contacto.gabo.services/api/contact"
+          data-asset-id="redesigned-octo-meme-contact"
+          data-repo-id="CONTACTO"
+          method="post"
+          data-contact-endpoint="true"
+          data-contact-form
+          data-page-tinyml="contact"
+          data-source-path="contact.html"
+          data-asset-source="github-pages-static-contact-form"
+        >
+          <div class="form-trap" aria-hidden="true">
+            <label for="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
           <div class="form-grid">
             <div class="floating-field">
               <label for="contact-full-name" data-i18n="fullName">Nombre completo</label>
@@ -328,6 +350,7 @@
               </div>
             </div>
           </div>
+          <p id="contact-status" class="form-status" data-contact-status role="status" aria-live="polite"></p>
           <div class="form-actions">
             <button class="btn primary" type="button" data-i18n="contactButtonLabel">
               Enviar</button
