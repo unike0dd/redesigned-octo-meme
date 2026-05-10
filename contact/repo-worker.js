@@ -172,7 +172,7 @@
 
       const data = await safeJson(response);
 
-      if (!response.ok || !data.ok) {
+      if (!response.ok || (data && data.ok === false)) {
         throw new Error("Your message could not be sent. Please try again later.");
       }
 
@@ -250,10 +250,7 @@
     try {
       return await response.json();
     } catch {
-      return {
-        ok: false,
-        message: "The contact endpoint response could not be accepted."
-      };
+      return null;
     }
   }
 
