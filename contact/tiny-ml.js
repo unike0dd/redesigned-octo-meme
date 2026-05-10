@@ -1,597 +1,657 @@
+/**
+ * contact/tiny-ml.js
+ *
+ * Repo browser TinyML-style security helper.
+ * This file does NOT send the request by itself.
+ *
+ * Used by:
+ * contact/repo-worker.js
+ */
+
 (function () {
   "use strict";
 
-  const FORM_SELECTOR = 'form[data-contact-gateway="true"]';
+  const CONFIG = Object.freeze({
+    maxFieldLength: 5000,
+    maxRiskScore: 55,
+    sessionBlockKey: "gabo_contact_blocked_v1",
+    honeypotSelector: "[data-tinyml-honeypot='true']"
+  });
 
-  const DEFAULT_REPO_ENDPOINT = "https://contact-api.gabo.services/api/contact";
-  const LEGACY_REPO_ENDPOINT_PATH = "/api/contact";
-  const DEFAULT_ASSET_ID = "redesigned-octo-meme-contact";
-  const DEFAULT_REPO_ID = "CONTACTO";
-  const DEFAULT_SOURCE = "contact.html";
-
-  const BLOCK_KEY = "gabo-contact-tinyml-blocked";
-  const MAX_FIELD_CHARS = 5000;
-  const MAX_BODY_CHARS = 18000;
-  const MAX_RISK_SCORE = 55;
-
-  const BLOCK_PATTERNS = [
-    "javascript:",
-    "vbscript:",
-    "data:text/html",
-    "<script",
-    "</script",
-    "<style",
-    "</style",
-    "<iframe",
-    "<object",
-    "<embed",
-    "<svg",
-    "<math",
-    "<form",
-    "<template",
-    "srcdoc=",
-    "onerror=",
-    "onload=",
-    "onclick=",
-    "onmouseover=",
-    "document.",
-    "window.",
-    "document.cookie",
-    "localstorage",
-    "sessionstorage",
-    "eval(",
-    "new function",
-    "function(",
-    "constructor",
-    "__proto__",
-    "prototype",
-    "globalthis",
-    "process.",
-    "require(",
-    "import ",
-    "export ",
-    "select * from",
-    "union select",
-    "drop table",
-    "insert into",
-    "delete from",
-    "../",
-    "${",
-    "{{",
-    "}}",
-    "<%",
-    "%>"
+  const RISK_PATTERNS = [
+    /<\s*script/i,
+    /<\s*\/\s*script/i,
+    /javascript\s*:/i,
+    /vbscript\s*:/i,
+    /data\s*:\s*text\/html/i,
+    /<\s*(iframe|object|embed|svg|math|form|template|style|link|meta)/i,
+    /\bon[a-z]{3,}\s*=/i,
+    /\bdocument\s*\.\s*cookie\b/i,
+    /\blocalStorage\b/i,
+    /\bsessionStorage\b/i,
+    /\beval\s*\(/i,
+    /\bnew\s+Function\b/i,
+    /\bconstructor\b/i,
+    /\b__proto__\b/i,
+    /\bprototype\b/i,
+    /\bselect\s+\*\s+from\b/i,
+    /\bunion\s+select\b/i,
+    /\bdrop\s+table\b/i,
+    /\binsert\s+into\b/i,
+    /\bdelete\s+from\b/i,
+    /\.\.\//,
+    /\$\{/,
+    /\{\{/,
+    /<%/
   ];
 
-  function text(value) {
-    return String(value ?? "");
-  }
+  window.GaboContactTinyML = {
+    scanForm,
+    sanitizeText,
+    cleanText,
+    riskScore,
+    createSession,
+    createId,
+    sha256Hex,
+    stableSerialize,
+    honeypotFilled,
+    markSessionBlocked,
+    isSessionBlocked,
+    blockForm,
+    clearInvalidFields
+  };
 
-  function nowIso() {
-    return new Date().toISOString();
-  }
-
-  function cleanText(value) {
-    return text(value)
-      .normalize("NFKC")
-      .replace(/\u0000/g, "")
-      .replace(/[\u0001-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, " ")
-      .replace(/[<>]/g, "")
-      .replace(/\s+/g, " ")
-      .trim();
-  }
-
-  function sanitizeText(value) {
-    return text(value)
-      .normalize("NFKC")
-      .replace(/\u0000/g, "")
-      .replace(/```[\s\S]*?```/g, " ")
-      .replace(/~~~[\s\S]*?~~~/g, " ")
-      .replace(/`[^`]{1,500}`/g, " ")
-      .replace(/<\s*(script|style|iframe|object|embed|svg|math|form|template)\b[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, " ")
-      .replace(/<\s*(script|style|iframe|object|embed|svg|math|form|template|meta|link|base)\b[^>]*>/gi, " ")
-      .replace(/<\/?[^>]+>/g, " ")
-      .replace(/\bon\w+\s*=\s*["'][\s\S]*?["']/gi, " ")
-      .replace(/\bon\w+\s*=\s*[^\s>]+/gi, " ")
-      .replace(/\bjavascript\s*:/gi, " ")
-      .replace(/\bvbscript\s*:/gi, " ")
-      .replace(/\bdata\s*:\s*text\/html\b/gi, " ")
-      .replace(/\beval\s*\(/gi, " ")
-      .replace(/\bnew\s+Function\b/gi, " ")
-      .replace(/\bsetTimeout\s*\(/gi, " ")
-      .replace(/\bsetInterval\s*\(/gi, " ")
-      .replace(/\bdocument\.(cookie|write|location)\b/gi, " ")
-      .replace(/\bwindow\.(location|open)\b/gi, " ")
-      .replace(/\b(import|export|function|class|const|let|var|return|await|async|fetch|XMLHttpRequest|localStorage|sessionStorage)\b/gi, " ")
-      .replace(/[{}()[\];=<>$\\|]/g, " ")
-      .replace(/[\u0001-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim()
-      .slice(0, MAX_FIELD_CHARS);
-  }
-
-  function riskScore(value) {
-    const lower = text(value).toLowerCase();
-    const flags = [];
-    let score = 0;
-
-    for (const pattern of BLOCK_PATTERNS) {
-      if (lower.includes(pattern)) {
-        flags.push(pattern);
-        score += 20;
-      }
-    }
-
-    if (lower.length < 30 && lower.length > 0) {
-      flags.push("short_payload");
-      score += 10;
-    }
-
-    if ((lower.match(/https?:\/\//g) || []).length > 8) {
-      flags.push("excessive_links");
-      score += 15;
-    }
-
-    return {
-      ok: score <= MAX_RISK_SCORE,
-      score,
-      flags: Array.from(new Set(flags))
-    };
-  }
-
-  function getFieldKey(field, index) {
-    return cleanText(
-      field.getAttribute("name") ||
-      field.getAttribute("aria-label") ||
-      field.id ||
-      `field_${index + 1}`
-    ).replace(/\s+/g, "_");
-  }
-
-  function isHoneypot(field) {
-    return !!field && !!field.matches && field.matches('[data-tinyml-honeypot="true"]');
-  }
-
-  function ensureStatus(form) {
-    let status = form.querySelector(".security-form-note");
-
-    if (!status) {
-      status = document.createElement("small");
-      status.className = "security-form-note";
-      status.setAttribute("aria-live", "polite");
-      form.appendChild(status);
-    }
-
-    return status;
-  }
-
-  function blockSession(form, status, message) {
-    try {
-      sessionStorage.setItem(BLOCK_KEY, "true");
-    } catch {
-      document.documentElement.dataset.contactTinymlBlocked = "true";
-    }
-
-    form.reset();
-    form.dataset.tinymlBlocked = "true";
-
-    Array.from(form.querySelectorAll("input, textarea, select, button")).forEach(function (field) {
-      field.disabled = true;
-      field.setAttribute("aria-invalid", "true");
-    });
-
-    status.textContent = message || "Contact TinyML blocked this session.";
-  }
-
-  function sessionIsBlocked() {
-    try {
-      return sessionStorage.getItem(BLOCK_KEY) === "true";
-    } catch {
-      return document.documentElement.dataset.contactTinymlBlocked === "true";
-    }
-  }
-
-  function addValue(target, key, value) {
-    if (!key) return;
-
-    const cleanKey = key.replace(/\[\]$/, "");
-    const cleanValue = sanitizeText(value);
-
-    if (key.endsWith("[]")) {
-      if (!Array.isArray(target[cleanKey])) target[cleanKey] = [];
-      if (cleanValue) target[cleanKey].push(cleanValue);
-      return;
-    }
-
-    if (target[cleanKey] === undefined) {
-      target[cleanKey] = cleanValue;
-      return;
-    }
-
-    if (!Array.isArray(target[cleanKey])) {
-      target[cleanKey] = [target[cleanKey]].filter(Boolean);
-    }
-
-    if (cleanValue) target[cleanKey].push(cleanValue);
-  }
-
+  /**
+   * @param {HTMLFormElement} form
+   * @returns {{
+   *   ok: boolean,
+   *   fields: Record<string, any>,
+   *   riskScore: number,
+   *   report: Array<{
+   *     key: string,
+   *     riskScore: number,
+   *     rawLength: number,
+   *     cleanLength: number,
+   *     reasons: string[]
+   *   }>
+   * }}
+   */
   function scanForm(form) {
-    const fields = Array.from(form.querySelectorAll("input, textarea, select")).filter(function (field) {
-      return !field.disabled && !isHoneypot(field);
+    const fields = {};
+    const report = [];
+    let totalRisk = 0;
+    let ok = true;
+
+    const controls = Array.from(
+      form.querySelectorAll("input, textarea, select")
+    ).filter((control) => {
+      if (!(control instanceof HTMLInputElement) &&
+          !(control instanceof HTMLTextAreaElement) &&
+          !(control instanceof HTMLSelectElement)) {
+        return false;
+      }
+
+      if (control.disabled) return false;
+      if (control.matches(CONFIG.honeypotSelector)) return false;
+      if (control instanceof HTMLInputElement && control.type === "submit") return false;
+      if (control instanceof HTMLInputElement && control.type === "button") return false;
+      if (control instanceof HTMLInputElement && control.type === "reset") return false;
+      if (control instanceof HTMLInputElement && control.type === "file") return false;
+
+      return true;
     });
 
-    const rawFields = {};
-    const cleanedFields = {};
-    const report = [];
-    let blocked = false;
+    controls.forEach((control, index) => {
+      const key = getFieldKey(control, index);
+      const rawValue = getControlValue(control);
+      const cleanValue = sanitizeText(rawValue);
+      const rawRisk = riskScore(rawValue);
+      const cleanRisk = riskScore(cleanValue);
+      const fieldRisk = Math.max(rawRisk.score, cleanRisk.score);
 
-    fields.forEach(function (field, index) {
-      const key = getFieldKey(field, index);
-      const raw = text(field.value);
-      const cleaned = sanitizeText(raw);
-      const rawRisk = riskScore(raw);
-      const cleanRisk = riskScore(cleaned);
+      totalRisk += fieldRisk;
 
-      rawFields[key] = raw;
-      addValue(cleanedFields, key, cleaned);
+      if (fieldRisk > CONFIG.maxRiskScore) {
+        ok = false;
+        control.setAttribute("aria-invalid", "true");
+      } else {
+        control.removeAttribute("aria-invalid");
+      }
 
-      field.value = cleaned;
-      field.setAttribute("aria-invalid", String(!cleanRisk.ok));
-
-      if (!rawRisk.ok || !cleanRisk.ok) blocked = true;
+      setControlValue(control, cleanValue);
+      addFieldValue(fields, key, cleanValue);
 
       report.push({
         key,
-        raw_risk_score: rawRisk.score,
-        raw_flags: rawRisk.flags,
-        sanitized_risk_score: cleanRisk.score,
-        sanitized_flags: cleanRisk.flags,
-        removed_characters: Math.max(raw.length - cleaned.length, 0)
+        riskScore: fieldRisk,
+        rawLength: String(rawValue || "").length,
+        cleanLength: String(cleanValue || "").length,
+        reasons: unique(rawRisk.reasons.concat(cleanRisk.reasons))
       });
     });
 
+    if (totalRisk > CONFIG.maxRiskScore * 2) {
+      ok = false;
+    }
+
     return {
-      rawFields,
-      cleanedFields,
-      report,
-      blocked
+      ok,
+      fields: sortObject(canonicalizeFields(fields)),
+      riskScore: totalRisk,
+      report
     };
   }
 
-  function createSession() {
-    const sessionId =
-      (crypto && crypto.randomUUID && crypto.randomUUID()) ||
-      `contact-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  /**
+   * @param {Record<string, any>} fields
+   * @returns {Record<string, any>}
+   */
+  function canonicalizeFields(fields) {
+    const output = Object.assign({}, fields);
 
-    const bytes = new Uint8Array(32);
+    assignCanonical(output, "fullName", [
+      "fullName",
+      "fullname",
+      "full_name",
+      "name",
+      "yourName",
+      "contactName",
+      "customerName",
+      "nombre"
+    ]);
 
-    if (crypto && crypto.getRandomValues) {
-      crypto.getRandomValues(bytes);
-    } else {
-      for (let i = 0; i < bytes.length; i++) {
-        bytes[i] = Math.floor(Math.random() * 256);
+    assignCanonical(output, "emailAddress", [
+      "emailAddress",
+      "email",
+      "email_address",
+      "mail",
+      "correo",
+      "correoElectronico"
+    ]);
+
+    assignCanonical(output, "contactNumber", [
+      "contactNumber",
+      "phone",
+      "telephone",
+      "tel",
+      "mobile",
+      "telefono",
+      "number"
+    ]);
+
+    assignCanonical(output, "countryCode", [
+      "countryCode",
+      "country_code",
+      "phoneCountryCode",
+      "codigoPais"
+    ]);
+
+    assignCanonical(output, "city", [
+      "city",
+      "ciudad"
+    ]);
+
+    assignCanonical(output, "stateProvince", [
+      "stateProvince",
+      "state",
+      "province",
+      "provincia"
+    ]);
+
+    assignCanonical(output, "spaceSuiteApt", [
+      "spaceSuiteApt",
+      "suite",
+      "apt",
+      "apartment",
+      "unit"
+    ]);
+
+    assignCanonical(output, "countryZipCode", [
+      "countryZipCode",
+      "zip",
+      "zipcode",
+      "postalCode",
+      "codigoPostal"
+    ]);
+
+    assignCanonical(output, "bestContactDate", [
+      "bestContactDate",
+      "contactDate",
+      "date"
+    ]);
+
+    assignCanonical(output, "bestContactTime", [
+      "bestContactTime",
+      "contactTime",
+      "time"
+    ]);
+
+    assignCanonical(output, "inquiryAbout", [
+      "inquiryAbout",
+      "subject",
+      "service",
+      "topic",
+      "reason",
+      "asunto"
+    ]);
+
+    assignCanonical(output, "message", [
+      "message",
+      "comments",
+      "comment",
+      "notes",
+      "details",
+      "inquiry",
+      "mensaje"
+    ]);
+
+    return output;
+  }
+
+  /**
+   * @param {Record<string, any>} object
+   * @param {string} canonicalKey
+   * @param {string[]} aliases
+   * @returns {void}
+   */
+  function assignCanonical(object, canonicalKey, aliases) {
+    if (object[canonicalKey]) return;
+
+    for (const alias of aliases) {
+      const value = findByAlias(object, alias);
+
+      if (value) {
+        object[canonicalKey] = value;
+        return;
       }
     }
-
-    const nonce = Array.from(bytes)
-      .map(function (byte) {
-        return byte.toString(16).padStart(2, "0");
-      })
-      .join("");
-
-    return {
-      sessionId,
-      nonce,
-      issuedAt: nowIso()
-    };
   }
 
-  function stableStringify(value) {
-    if (value === null || typeof value !== "object") return JSON.stringify(value);
+  /**
+   * @param {Record<string, any>} object
+   * @param {string} alias
+   * @returns {string}
+   */
+  function findByAlias(object, alias) {
+    const wanted = normalizeAlias(alias);
 
-    if (Array.isArray(value)) {
-      return "[" + value.map(stableStringify).join(",") + "]";
-    }
-
-    return (
-      "{" +
-      Object.keys(value)
-        .sort()
-        .map(function (key) {
-          return JSON.stringify(key) + ":" + stableStringify(value[key]);
-        })
-        .join(",") +
-      "}"
-    );
-  }
-
-  async function sha256Hex(value) {
-    if (!crypto || !crypto.subtle || !TextEncoder) return "";
-
-    const digest = await crypto.subtle.digest(
-      "SHA-256",
-      new TextEncoder().encode(String(value || ""))
-    );
-
-    return Array.from(new Uint8Array(digest))
-      .map(function (byte) {
-        return byte.toString(16).padStart(2, "0");
-      })
-      .join("");
-  }
-
-  function pick(source, keys) {
-    for (const key of keys) {
-      const value = source[key];
-
-      if (Array.isArray(value)) {
-        const joined = value.map(cleanText).filter(Boolean).join(", ");
-        if (joined) return joined;
-      }
-
-      if (value !== undefined && value !== null) {
-        const clean = cleanText(value);
-        if (clean) return clean;
+    for (const [key, value] of Object.entries(object)) {
+      if (normalizeAlias(key) === wanted && value) {
+        return valueToText(value);
       }
     }
 
     return "";
   }
 
-  function pickList(source, keys) {
-    for (const key of keys) {
-      const value = source[key];
+  /**
+   * @param {any} value
+   * @returns {string}
+   */
+  function normalizeAlias(value) {
+    return String(value || "")
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "");
+  }
 
-      if (Array.isArray(value)) {
-        return value.map(cleanText).filter(Boolean).slice(0, 100);
-      }
+  /**
+   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} control
+   * @param {number} index
+   * @returns {string}
+   */
+  function getFieldKey(control, index) {
+    const raw =
+      control.getAttribute("name") ||
+      control.getAttribute("aria-label") ||
+      control.getAttribute("id") ||
+      `field_${index + 1}`;
 
-      if (value !== undefined && value !== null) {
-        const clean = cleanText(value);
-        if (clean) return [clean];
-      }
+    return String(raw)
+      .normalize("NFKC")
+      .replace(/[^a-zA-Z0-9_.:-]/g, "")
+      .slice(0, 80);
+  }
+
+  /**
+   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} control
+   * @returns {string}
+   */
+  function getControlValue(control) {
+    if (control instanceof HTMLInputElement && control.type === "checkbox") {
+      return control.checked ? control.value || "yes" : "";
     }
 
-    return [];
-  }
-
-  function buildPayload(form, config, session, scan, clientSha256) {
-    const cleaned = scan.cleanedFields;
-
-    return {
-      formType: "contact",
-      route: "contact",
-      site: "Gabriel Services",
-      repo: "redesigned-octo-meme",
-      request_id:
-        (crypto && crypto.randomUUID && crypto.randomUUID()) ||
-        `contact-${Date.now()}-${Math.random().toString(16).slice(2)}`,
-      submittedAt: nowIso(),
-      pageUrl: location.href,
-      source: location.pathname || "/contact.html",
-
-      fields: {
-        fullName: pick(cleaned, ["fullName", "full_name", "name"]),
-        emailAddress: pick(cleaned, ["emailAddress", "email", "email_address"]),
-        countryCode: pick(cleaned, ["countryCode", "country_code"]),
-        contactNumber: pick(cleaned, ["contactNumber", "phone", "contact_number"]),
-        city: pick(cleaned, ["city"]),
-        stateProvince: pick(cleaned, ["stateProvince", "state", "province", "state_province"]),
-        spaceSuiteApt: pick(cleaned, ["spaceSuiteApt", "suite", "apt", "apartment", "space_suite_apt"]),
-        countryZipCode: pick(cleaned, ["countryZipCode", "zipCode", "postalCode", "country_zip_code"]),
-        bestContactDate: pick(cleaned, ["bestContactDate", "best_contact_date"]),
-        bestContactTime: pick(cleaned, ["bestContactTime", "best_contact_time"]),
-        inquiryAbout: pick(cleaned, ["inquiryAbout", "subject", "topic", "contactInterest"]),
-        message: pick(cleaned, ["message", "comments", "details"])
-      },
-
-      lists: {
-        skills: pickList(cleaned, ["skills", "skills[]"]),
-        areasOfInterest: pickList(cleaned, ["areasOfInterest", "areaOfInterest", "areaOfInterest[]", "interests"]),
-        experienceLevels: pickList(cleaned, ["experienceLevels", "experienceLevel", "experienceLevel[]", "experience"]),
-        education: pickList(cleaned, ["education", "education[]"]),
-        languages: pickList(cleaned, ["languages", "languages[]"])
-      },
-
-      rawFields: cleaned,
-
-      clientSession: {
-        id: session.sessionId,
-        nonce: session.nonce,
-        issuedAt: session.issuedAt
-      },
-
-      clientIntegrity: {
-        checked: true,
-        checked_at: nowIso(),
-        sha256: clientSha256,
-        report: scan.report
-      },
-
-      security: {
-        lane: "contact",
-        browser_tinyml: "passed",
-        origin: location.origin,
-        repo_id: config.repoId,
-        asset_id: config.assetId
-      }
-    };
-  }
-
-  function normalizeRepoEndpoint(value) {
-    if (!value || value === DEFAULT_REPO_ENDPOINT) return DEFAULT_REPO_ENDPOINT;
-
-    try {
-      const url = new URL(value, location.origin);
-
-      if (url.origin === location.origin && url.pathname === LEGACY_REPO_ENDPOINT_PATH) {
-        return DEFAULT_REPO_ENDPOINT;
-      }
-    } catch {
-      return DEFAULT_REPO_ENDPOINT;
+    if (control instanceof HTMLInputElement && control.type === "radio") {
+      return control.checked ? control.value || "" : "";
     }
 
-    return DEFAULT_REPO_ENDPOINT;
+    if (control instanceof HTMLSelectElement && control.multiple) {
+      return Array.from(control.selectedOptions)
+        .map((option) => option.value || option.textContent || "")
+        .join(", ");
+    }
+
+    return control.value || "";
   }
 
-  function getConfig(form) {
-    return {
-      endpoint: normalizeRepoEndpoint(
-        form.getAttribute("data-upstream-path") ||
-        form.getAttribute("action") ||
-        DEFAULT_REPO_ENDPOINT
-      ),
+  /**
+   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} control
+   * @param {string} value
+   * @returns {void}
+   */
+  function setControlValue(control, value) {
+    if (control instanceof HTMLInputElement && control.type === "checkbox") return;
+    if (control instanceof HTMLInputElement && control.type === "radio") return;
 
-      assetId:
-        form.getAttribute("data-ops-asset-id") ||
-        form.getAttribute("data-asset-id") ||
-        DEFAULT_ASSET_ID,
-
-      repoId:
-        form.getAttribute("data-gabo-repo-id") ||
-        form.getAttribute("data-repo-id") ||
-        DEFAULT_REPO_ID,
-
-      source:
-        form.getAttribute("data-source-path") ||
-        DEFAULT_SOURCE
-    };
+    control.value = value;
   }
 
-  async function submitForm(form, status, scan) {
-    const config = getConfig(form);
-    const session = createSession();
+  /**
+   * @param {Record<string, any>} fields
+   * @param {string} key
+   * @param {string} value
+   * @returns {void}
+   */
+  function addFieldValue(fields, key, value) {
+    if (!key) return;
 
-    const clientHashBase = {
-      route: "contact",
-      origin: location.origin,
-      source: location.pathname || "/contact.html",
-      session_id: session.sessionId,
-      nonce: session.nonce,
-      cleanedFields: scan.cleanedFields
-    };
-
-    const clientSha256 = await sha256Hex(stableStringify(clientHashBase));
-    const payload = buildPayload(form, config, session, scan, clientSha256);
-
-    if (stableStringify(payload).length > MAX_BODY_CHARS) {
-      status.textContent = "Contact TinyML blocked the form because the payload is too large.";
+    if (fields[key] === undefined) {
+      fields[key] = value;
       return;
     }
 
-    const response = await fetch(config.endpoint, {
-      method: "POST",
-      mode: "cors",
-      credentials: "omit",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Gabo-Origin": location.origin,
-        "X-Gabo-Source": config.source,
-        "X-Ops-Asset-Id": config.assetId,
-        "X-Gabo-Repo-Id": config.repoId,
-        "X-Gabo-Session-Id": session.sessionId,
-        "X-Gabo-Nonce": session.nonce,
-        "X-Gabo-Integrity-SHA256": clientSha256
-      },
-      body: JSON.stringify(payload)
+    if (Array.isArray(fields[key])) {
+      fields[key].push(value);
+      return;
+    }
+
+    fields[key] = [fields[key], value];
+  }
+
+  /**
+   * @param {any} value
+   * @returns {string}
+   */
+  function valueToText(value) {
+    if (Array.isArray(value)) {
+      return value.map(valueToText).filter(Boolean).join(", ");
+    }
+
+    if (isPlainObject(value)) {
+      return stableSerialize(value);
+    }
+
+    return cleanText(value || "");
+  }
+
+  /**
+   * @param {any} value
+   * @returns {string}
+   */
+  function sanitizeText(value) {
+    return cleanText(value, CONFIG.maxFieldLength)
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/<\s*\/?\s*(script|style|iframe|object|embed|svg|math|form|template|link|meta)[^>]*>/gi, " ")
+      .replace(/\bon[a-z]{3,}\s*=/gi, " ")
+      .replace(/\b(javascript|vbscript)\s*:/gi, " ")
+      .replace(/\bdata\s*:\s*text\/html/gi, " ")
+      .replace(/\bdocument\s*\.\s*cookie\b/gi, " ")
+      .replace(/\blocalStorage\b/gi, " ")
+      .replace(/\bsessionStorage\b/gi, " ")
+      .replace(/\beval\s*\(/gi, " ")
+      .replace(/\bnew\s+Function\b/gi, " ")
+      .replace(/\bconstructor\b/gi, " ")
+      .replace(/\b__proto__\b/gi, " ")
+      .replace(/[<>`{}[\];]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, CONFIG.maxFieldLength);
+  }
+
+  /**
+   * @param {any} value
+   * @param {number} [maxLength]
+   * @returns {string}
+   */
+  function cleanText(value, maxLength) {
+    const limit =
+      typeof maxLength === "number" && Number.isFinite(maxLength)
+        ? maxLength
+        : CONFIG.maxFieldLength;
+
+    return String(value || "")
+      .normalize("NFKC")
+      .replace(/[\u0000-\u001F\u007F]/g, " ")
+      .replace(/[<>]/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, limit);
+  }
+
+  /**
+   * @param {any} value
+   * @returns {{ score: number, reasons: string[] }}
+   */
+  function riskScore(value) {
+    const text = String(value || "");
+    let score = 0;
+    const reasons = [];
+
+    for (const pattern of RISK_PATTERNS) {
+      if (pattern.test(text)) {
+        score += 18;
+        reasons.push(String(pattern));
+      }
+    }
+
+    const links = (text.match(/https?:\/\//gi) || []).length;
+
+    if (links > 3) {
+      score += 18;
+      reasons.push("too_many_links");
+    }
+
+    const codeDensity = (text.match(/[{}()[\];=<>`]/g) || []).length;
+
+    if (codeDensity > 40) {
+      score += 18;
+      reasons.push("high_code_density");
+    }
+
+    return {
+      score,
+      reasons: unique(reasons)
+    };
+  }
+
+  /**
+   * @param {HTMLFormElement} form
+   * @returns {boolean}
+   */
+  function honeypotFilled(form) {
+    const honeypots = Array.from(form.querySelectorAll(CONFIG.honeypotSelector));
+
+    return honeypots.some((field) => {
+      if (!(field instanceof HTMLInputElement) &&
+          !(field instanceof HTMLTextAreaElement)) {
+        return false;
+      }
+
+      return String(field.value || "").trim().length > 0;
     });
+  }
 
-    const responseText = await response.text();
-    let responseJson = null;
+  /**
+   * @returns {{ sessionId: string, nonce: string, issuedAt: string }}
+   */
+  function createSession() {
+    return {
+      sessionId: createId("sess"),
+      nonce: createNonce(),
+      issuedAt: new Date().toISOString()
+    };
+  }
 
+  /**
+   * @param {string} prefix
+   * @returns {string}
+   */
+  function createId(prefix) {
+    if (window.crypto && crypto.randomUUID) {
+      return `${prefix}:${crypto.randomUUID()}`;
+    }
+
+    return `${prefix}:${Date.now().toString(36)}:${Math.random().toString(36).slice(2)}`;
+  }
+
+  /**
+   * @returns {string}
+   */
+  function createNonce() {
+    if (window.crypto && crypto.getRandomValues) {
+      const bytes = new Uint8Array(32);
+      crypto.getRandomValues(bytes);
+
+      return Array.from(bytes)
+        .map((byte) => byte.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    return `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}${Math.random()
+      .toString(36)
+      .slice(2)}`;
+  }
+
+  /**
+   * @param {string} text
+   * @returns {Promise<string>}
+   */
+  async function sha256Hex(text) {
+    if (!window.crypto || !crypto.subtle) {
+      throw new Error("Secure browser crypto is required.");
+    }
+
+    const data = new TextEncoder().encode(text);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+
+    return Array.from(new Uint8Array(digest))
+      .map((byte) => byte.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  /**
+   * @param {any} value
+   * @returns {string}
+   */
+  function stableSerialize(value) {
+    if (value === null || value === undefined) return "null";
+
+    if (typeof value === "string") return JSON.stringify(value);
+    if (typeof value === "number" || typeof value === "boolean") return JSON.stringify(value);
+
+    if (Array.isArray(value)) {
+      return `[${value.map(stableSerialize).join(",")}]`;
+    }
+
+    if (isPlainObject(value)) {
+      return `{${Object.keys(value)
+        .sort()
+        .map((key) => `${JSON.stringify(key)}:${stableSerialize(value[key])}`)
+        .join(",")}}`;
+    }
+
+    return JSON.stringify(String(value));
+  }
+
+  /**
+   * @param {Record<string, any>} object
+   * @returns {Record<string, any>}
+   */
+  function sortObject(object) {
+    const out = {};
+
+    Object.keys(object)
+      .sort()
+      .forEach((key) => {
+        out[key] = object[key];
+      });
+
+    return out;
+  }
+
+  /**
+   * @param {string[]} items
+   * @returns {string[]}
+   */
+  function unique(items) {
+    return Array.from(new Set(items.filter(Boolean)));
+  }
+
+  /**
+   * @param {any} value
+   * @returns {boolean}
+   */
+  function isPlainObject(value) {
+    return Object.prototype.toString.call(value) === "[object Object]";
+  }
+
+  /**
+   * @returns {boolean}
+   */
+  function markSessionBlocked() {
     try {
-      responseJson = JSON.parse(responseText);
+      sessionStorage.setItem(CONFIG.sessionBlockKey, String(Date.now()));
+      return true;
     } catch {
-      responseJson = null;
+      return false;
     }
+  }
 
-    if (!response.ok || !responseJson || responseJson.ok !== true) {
-      throw new Error(
-        responseJson && responseJson.message
-          ? responseJson.message
-          : `Contact API Gateway Worker rejected: ${response.status}`
-      );
+  /**
+   * @returns {boolean}
+   */
+  function isSessionBlocked() {
+    try {
+      return Boolean(sessionStorage.getItem(CONFIG.sessionBlockKey));
+    } catch {
+      return false;
     }
+  }
 
-    status.textContent =
-      responseJson.message ||
-      "Contact TinyML passed and the Contact API Gateway Worker accepted the handoff.";
-
+  /**
+   * @param {HTMLFormElement} form
+   * @param {string} message
+   * @returns {void}
+   */
+  function blockForm(form, message) {
     form.reset();
-  }
 
-  function initForm(form) {
-    if (form.dataset.contactTinymlReady === "true") return;
-    form.dataset.contactTinymlReady = "true";
+    Array.from(form.querySelectorAll("input, textarea, select, button")).forEach((control) => {
+      if (control instanceof HTMLInputElement ||
+          control instanceof HTMLTextAreaElement ||
+          control instanceof HTMLSelectElement ||
+          control instanceof HTMLButtonElement) {
+        control.disabled = true;
+        control.setAttribute("aria-invalid", "true");
+      }
+    });
 
-    const status = ensureStatus(form);
+    const status = form.querySelector("[data-contact-status]");
 
-    if (sessionIsBlocked()) {
-      blockSession(form, status, "Contact TinyML session is blocked.");
-      return;
+    if (status) {
+      status.textContent = message;
+      status.setAttribute("data-status-type", "error");
+      status.setAttribute("role", "alert");
     }
-
-    Array.from(form.querySelectorAll('[data-tinyml-honeypot="true"]')).forEach(function (field) {
-      field.addEventListener("input", function () {
-        if (String(field.value || "").trim()) {
-          blockSession(form, status, "Contact TinyML closed this session after bot-trap activity.");
-        }
-      });
-    });
-
-    form.addEventListener("submit", async function (event) {
-      event.preventDefault();
-
-      const honeypot = Array.from(form.querySelectorAll('[data-tinyml-honeypot="true"]')).find(function (field) {
-        return String(field.value || "").trim();
-      });
-
-      if (honeypot) {
-        blockSession(form, status, "Contact TinyML closed this session after bot-trap activity.");
-        return;
-      }
-
-      const submitter = event.submitter;
-
-      if (submitter && "disabled" in submitter) {
-        submitter.disabled = true;
-      }
-
-      try {
-        const scan = scanForm(form);
-
-        if (scan.blocked) {
-          status.textContent = "Contact TinyML blocked malicious or programming-code-like content.";
-          return;
-        }
-
-        status.textContent = "Contact TinyML cleaned the form. Sending to the Contact API Gateway Worker.";
-
-        await submitForm(form, status, scan);
-      } catch (error) {
-        form.dataset.contactError = String(error && error.message ? error.message : error);
-        status.textContent = "Contact TinyML passed, but the Contact API Gateway Worker handoff failed.";
-      } finally {
-        if (submitter && "disabled" in submitter) {
-          submitter.disabled = false;
-        }
-      }
-    });
   }
 
-  function init() {
-    document.querySelectorAll(FORM_SELECTOR).forEach(initForm);
-  }
-
-  window.GaboContactTinyML = {
-    sanitizeText,
-    riskScore,
-    stableStringify
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
+  /**
+   * @param {HTMLFormElement} form
+   * @returns {void}
+   */
+  function clearInvalidFields(form) {
+    Array.from(form.querySelectorAll("[aria-invalid]")).forEach((field) => {
+      field.removeAttribute("aria-invalid");
+    });
   }
 })();
