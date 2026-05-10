@@ -571,7 +571,7 @@
       ],
       "answer": "The Contact page lets visitors reach Gabriel Services for support, onboarding, projects, and partnership opportunities. The form asks for full name, email, country code, contact number, city, state/province, space/suite/apartment, country zip code, best time to contact, and message. It also asks visitors to describe expectations for the Remote Assistant expertise, knowledge, and abilities, including aptitude, skills, experience, education, areas of interest, and languages.",
       "leadGenerationPrompt": "When a visitor is ready to connect, collect full name, email, phone/country code, location, best contact time, message, service interest, and any assistant-skill details.",
-      "recommendedCta": "Visit Contact, complete the form, and submit when ready."
+      "recommendedCta": "Visit Contact and review the form fields."
     },
     {
       "id": "contact-es",
@@ -594,7 +594,7 @@
       ],
       "answer": "La página de Contacto permite comunicarse con Gabriel Services para soporte, incorporación, proyectos y oportunidades de colaboración. El formulario solicita nombre completo, correo electrónico, código de país, número de contacto, ciudad, estado/provincia, espacio/suite/apartamento, código postal del país, mejor hora de contacto y mensaje. También pide describir expectativas sobre la experiencia, el conocimiento y las habilidades del Asistente Remoto, incluyendo aptitud, habilidades, experiencia, educación, área de interés e idiomas.",
       "leadGenerationPrompt": "Cuando un visitante está listo para conectar, recopila nombre completo, correo, teléfono/código de país, ubicación, mejor hora de contacto, mensaje, interés de servicio y detalles de habilidades si aplica.",
-      "recommendedCta": "Visita Contacto, completa el formulario y envíalo cuando esté listo."
+      "recommendedCta": "Visita Contacto y revisa los campos del formulario."
     },
     {
       "id": "careers-en",

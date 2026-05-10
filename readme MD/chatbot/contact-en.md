@@ -20,4 +20,4 @@ The Contact page lets visitors reach Gabriel Services for support, onboarding, p
 
 When a visitor wants to contact Gabriel Services, gather name, email, phone, location, best contact time, service interest, project needs, and any Remote Assistant expectation details.
 
-Suggested CTA: visit Contact, complete the form, and submit when ready.
+Suggested CTA: visit Contact and review the form fields.

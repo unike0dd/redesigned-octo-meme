@@ -1,6 +1,6 @@
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services https://contact-api.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services https://contact-api.gabo.services https://contacto.gabo.services; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://gabo.services https://www.gabo.services https://demo.gabo.services; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 0
@@ -43,13 +43,6 @@
 /careers/*
   Cache-Control: public, max-age=31536000, immutable
   X-Content-Type-Options: nosniff
-
-/api/contact
-  Cache-Control: no-store, max-age=0
-  Access-Control-Allow-Origin: https://www.gabo.services
-  Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST
-  Access-Control-Allow-Headers: Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Ops-Asset-Id, X-Gabo-Repo-Id, X-Gabo-Session-Id, X-Gabo-Nonce, X-Gabo-Integrity-SHA256
-  Vary: Origin
 
 /api/careers
   Cache-Control: no-store, max-age=0

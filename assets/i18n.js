@@ -217,7 +217,7 @@
       placeholderAddProjectEntry: "Add project entry",
       placeholderAddEducationEntry: "Add education entry",
       submitApplication: "Submit Application",
-      submitContact: "Submit",
+      contactButtonLabel: "Send",
       clearForm: "Clear Form",
 
       careersTitle: "Careers",
@@ -901,7 +901,7 @@
       placeholderAddProjectEntry: "Agregar proyecto",
       placeholderAddEducationEntry: "Agregar educación",
       submitApplication: "Enviar solicitud",
-      submitContact: "Enviar",
+      contactButtonLabel: "Enviar",
       clearForm: "Limpiar formulario",
 
       careersTitle: "Carreras",
