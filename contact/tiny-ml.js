@@ -11,7 +11,7 @@
   const MAX_FIELD_LENGTH = 5000;
   const MAX_RISK_SCORE = 55;
   const MAX_TOTAL_RISK_SCORE = MAX_RISK_SCORE * 2;
-  const HONEYPOT_SELECTOR = "[data-tinyml-honeypot='true'], .form-trap input, .form-trap textarea";
+  const HONEYPOT_SELECTOR = "[data-tinyml-honeypot='true']";
   const SESSION_BLOCK_KEY = "gabo_contact_blocked_v1";
 
   const RISK_PATTERNS = [
