@@ -1,11 +1,8 @@
 /**
  * contact/repo-worker.js
  *
- * Repo browser bridge for the contact form.
- * This is NOT the Cloudflare Worker.
- *
- * Sends cleaned contact payloads to:
- * https://contacto.gabo.services/api/contact
+ * Browser-side contact relay for the contact form.
+ * Sends cleaned contact payloads to the public contact API.
  *
  * Requires:
  * contact/tiny-ml.js
@@ -15,7 +12,7 @@
   "use strict";
 
   const CONFIG = Object.freeze({
-    gatewayUrl: "https://contacto.gabo.services/api/contact",
+    endpointUrl: "https://contacto.gabo.services/api/contact",
     route: "/api/contact",
 
     expectedAssetId: "redesigned-octo-meme-contact",
@@ -23,7 +20,7 @@
     expectedSource: "contact.html",
     headerPolicy: "contacto-repo-contact-v1",
 
-    formSelector: 'form[data-contact-gateway="true"]',
+    formSelector: 'form[data-contact-endpoint="true"]',
     statusSelector: "[data-contact-status]"
   });
 
@@ -51,12 +48,12 @@
       const tiny = getTiny();
 
       if (!tiny) {
-        setStatus(form, "Contact security module did not load.", "error");
+        setStatus(form, "The secure contact intake could not start. Please try again later.", "error");
         return;
       }
 
       if (tiny.isSessionBlocked()) {
-        tiny.blockForm(form, "This contact session was blocked for security protection.");
+        tiny.blockForm(form, "This contact session was rejected. Please refresh and try again later.");
         return;
       }
 
@@ -85,19 +82,19 @@
       setStatus(form, "Checking your message securely...", "info");
 
       if (!tiny) {
-        throw new Error("Contact security module is unavailable.");
+        throw new Error("The secure contact intake could not start.");
       }
 
       if (tiny.honeypotFilled(form)) {
         tiny.markSessionBlocked();
-        tiny.blockForm(form, "This contact session was blocked by bot protection.");
+        tiny.blockForm(form, "This contact session was rejected. Please refresh and try again later.");
         return;
       }
 
       const scan = tiny.scanForm(form);
 
       if (!scan.ok) {
-        setStatus(form, "Security blocked suspicious or programming-code-like content.", "error");
+        setStatus(form, "Your message could not be accepted. Please revise it and try again.", "error");
         return;
       }
 
@@ -151,7 +148,7 @@
         }
       };
 
-      const response = await fetch(CONFIG.gatewayUrl, {
+      const response = await fetch(CONFIG.endpointUrl, {
         method: "POST",
         mode: "cors",
         credentials: "omit",
@@ -176,14 +173,14 @@
       const data = await safeJson(response);
 
       if (!response.ok || !data.ok) {
-        throw new Error(data.message || data.code || "Contact handoff failed.");
+        throw new Error("Your message could not be sent. Please try again later.");
       }
 
-      setStatus(form, data.message || "Your message was received securely.", "success");
+      setStatus(form, "Thank you. Your message was received securely.", "success");
       form.reset();
       tiny.clearInvalidFields(form);
-    } catch (error) {
-      setStatus(form, getErrorMessage(error) || "Contact handoff failed.", "error");
+    } catch {
+      setStatus(form, "Your message could not be sent. Please try again later.", "error");
     } finally {
       setBusy(form, submitButton, false);
     }
@@ -242,11 +239,7 @@
       return;
     }
 
-    if (type === "error") {
-      console.warn(message);
-    } else {
-      console.info(message);
-    }
+    void message;
   }
 
   /**
@@ -259,26 +252,9 @@
     } catch {
       return {
         ok: false,
-        message: "Invalid contact gateway response."
+        message: "The contact endpoint response could not be accepted."
       };
     }
   }
 
-  /**
-   * @param {unknown} error
-   * @returns {string}
-   */
-  function getErrorMessage(error) {
-    if (!error) return "";
-
-    if (typeof error === "string") {
-      return error;
-    }
-
-    if (typeof error === "object" && "message" in error) {
-      return String(error.message || "");
-    }
-
-    return String(error);
-  }
 })();

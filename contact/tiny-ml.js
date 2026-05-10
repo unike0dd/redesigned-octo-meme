@@ -31,9 +31,14 @@
     /\bsessionStorage\b/i,
     /\beval\s*\(/i,
     /\bnew\s+Function\b/i,
+    /\bFunction\s*\(/i,
     /\bconstructor\b/i,
     /\b__proto__\b/i,
     /\bprototype\b/i,
+    /\bimport\s*\(/i,
+    /\brequire\s*\(/i,
+    /\bfetch\s*\(/i,
+    /\bXMLHttpRequest\b/i,
     /\bselect\s+\*\s+from\b/i,
     /\bunion\s+select\b/i,
     /\bdrop\s+table\b/i,
@@ -42,7 +47,9 @@
     /\.\.\//,
     /\$\{/,
     /\{\{/,
-    /<%/
+    /<%/,
+    /=>/,
+    /\b(?:const|let|var)\s+[a-z_$][\w$]*\s*=/i
   ];
 
   window.GaboContactTinyML = {
@@ -389,20 +396,29 @@
    * @returns {string}
    */
   function sanitizeText(value) {
-    return cleanText(value, CONFIG.maxFieldLength)
+    return String(value || "")
+      .normalize("NFKC")
+      .replace(/[\u0000-\u001F\u007F]/g, " ")
+      .slice(0, CONFIG.maxFieldLength)
       .replace(/```[\s\S]*?```/g, " ")
+      .replace(/<\s*(script|style|iframe|svg|object|embed|template|meta|link|math|form)\b[^>]*>[\s\S]*?<\s*\/\s*\1\s*>/gi, " ")
       .replace(/<\s*\/?\s*(script|style|iframe|object|embed|svg|math|form|template|link|meta)[^>]*>/gi, " ")
+      .replace(/\s+on[a-z]{3,}\s*=\s*("[^"]*"|'[^']*'|[^\s>]*)/gi, " ")
       .replace(/\bon[a-z]{3,}\s*=/gi, " ")
       .replace(/\b(javascript|vbscript)\s*:/gi, " ")
-      .replace(/\bdata\s*:\s*text\/html/gi, " ")
+      .replace(/\bdata\s*:\s*text\/html[^\s)]*/gi, " ")
       .replace(/\bdocument\s*\.\s*cookie\b/gi, " ")
       .replace(/\blocalStorage\b/gi, " ")
       .replace(/\bsessionStorage\b/gi, " ")
-      .replace(/\beval\s*\(/gi, " ")
+      .replace(/\beval\s*\([^)]*\)/gi, " ")
       .replace(/\bnew\s+Function\b/gi, " ")
-      .replace(/\bconstructor\b/gi, " ")
-      .replace(/\b__proto__\b/gi, " ")
-      .replace(/[<>`{}[\];]/g, " ")
+      .replace(/\bFunction\s*\([^)]*\)/gi, " ")
+      .replace(/\b(?:constructor|__proto__|prototype)\b/gi, " ")
+      .replace(/\b(?:import|require|fetch)\s*\([^)]*\)/gi, " ")
+      .replace(/\bXMLHttpRequest\b/gi, " ")
+      .replace(/\b(?:const|let|var)\s+[a-z_$][\w$]*\s*=/gi, " ")
+      .replace(/(?:=>|\$\{|\{\{|<%|%>|\.\.\/)/g, " ")
+      .replace(/[<>`{}[\]\;|\\]/g, " ")
       .replace(/\s+/g, " ")
       .trim()
       .slice(0, CONFIG.maxFieldLength);
