@@ -100,6 +100,7 @@
 
       if (!name) return;
       if (field.disabled) return;
+      if (field.matches && field.matches("[data-tinyml-honeypot='true']")) return;
 
       const type = String(field.type || "").toLowerCase();
 
@@ -119,6 +120,22 @@
         fields[name].push(field.value || "");
         return;
       }
+
+      fields[name] = field.value || "";
+    });
+
+    return fields;
+  }
+
+  function collectAllFormFields(form) {
+    const fields = {};
+    const elements = Array.from(form.elements || []);
+
+    elements.forEach(function (field) {
+      const name = getFieldName(field);
+
+      if (!name) return;
+      if (field.disabled) return;
 
       fields[name] = field.value || "";
     });
@@ -209,17 +226,29 @@
     lastSubmitAt = now;
 
     const tiny = getTinyML();
-    const rawFields = collectFormFields(form);
 
-    if (checkHoneypot(rawFields)) {
-      setStatus(statusNode, "error", "Your message could not be submitted.");
+    if (tiny.isSessionBlocked && tiny.isSessionBlocked()) {
+      tiny.blockForm(form, "This contact session has been blocked.");
       return;
     }
 
-    const fields = tiny.sanitizeObject(rawFields);
-    const risk = tiny.scoreRisk(JSON.stringify(rawFields) + "\n" + tiny.stableSerialize(fields));
+    const honeypotTripped = tiny.honeypotFilled(form) || checkHoneypot(collectAllFormFields(form));
 
-    if (risk.blocked) {
+    if (honeypotTripped) {
+      if (tiny.markSessionBlocked) tiny.markSessionBlocked();
+      tiny.blockForm(form, "Your message could not be submitted.");
+      return;
+    }
+
+    tiny.clearInvalidFields(form);
+
+    const cySecScan = tiny.scanForm(form);
+    const rawFields = collectFormFields(form);
+    const fields = tiny.sanitizeObject(cySecScan.fields || rawFields);
+    const risk = tiny.scoreRisk(JSON.stringify(rawFields) + "\n" + tiny.stableSerialize(fields));
+    const integrityRisk = tiny.scoreRisk(tiny.stableSerialize(fields));
+
+    if (!cySecScan.ok || risk.blocked || integrityRisk.blocked) {
       setStatus(statusNode, "error", "Your message could not be submitted securely.");
       return;
     }
@@ -269,9 +298,19 @@
         companyWebsite: rawFields.companyWebsite || rawFields.company_website || ""
       },
       clientSecurity: {
+        tinyML: "browser-rules-v2",
+        cySec: "sanitize-scan-integrity-v1",
         sanitizedBeforeSend: true,
+        maliciousCodeRemovedBeforeSend: true,
+        programmingCodeRemovedBeforeSend: true,
+        integrityCalculatedAfterSanitizer: true,
+        integrityCalculatedAfterCySecScan: true,
         localRiskScore: risk.score,
-        localRiskReasons: risk.reasons
+        localRiskReasons: risk.reasons,
+        sanitizedRiskScore: integrityRisk.score,
+        sanitizedRiskReasons: integrityRisk.reasons,
+        cySecRiskScore: cySecScan.riskScore,
+        cySecReport: cySecScan.report
       }
     };
 

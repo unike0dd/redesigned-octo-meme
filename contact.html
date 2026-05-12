@@ -72,6 +72,7 @@
               type="text"
               tabindex="-1"
               autocomplete="off"
+              data-tinyml-honeypot="true"
             />
           </div>
           <div class="form-grid">
@@ -352,7 +353,7 @@
           </div>
           <p id="contact-status" class="form-status" data-contact-status role="status" aria-live="polite"></p>
           <div class="form-actions">
-            <button class="btn primary" type="button" data-i18n="contactButtonLabel">
+            <button class="btn primary" type="submit" data-i18n="contactButtonLabel">
               Enviar</button
             ><button class="btn ghost" type="reset" data-i18n="clearForm">
               Limpiar formulario
@@ -363,5 +364,7 @@
     </main>
     <script src="./assets/footer.js"></script>
     <script src="./assets/main.js"></script>
+    <script src="./contact/tiny-ml.js"></script>
+    <script src="./contact/repo-worker.js"></script>
   </body>
 </html>
