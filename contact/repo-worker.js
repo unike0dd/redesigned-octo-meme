@@ -255,7 +255,7 @@
     const tiny = getTinyML();
 
     if (tiny.isSessionBlocked && tiny.isSessionBlocked()) {
-      tiny.blockForm(form, t("contactSessionBlocked"));
+      tiny.blockForm(form, "This contact session has been blocked.");
       return;
     }
 
@@ -263,7 +263,7 @@
 
     if (honeypotTripped) {
       if (tiny.markSessionBlocked) tiny.markSessionBlocked();
-      tiny.blockForm(form, t("contactSubmitBlockedGeneric"));
+      tiny.blockForm(form, "Your message could not be submitted.");
       return;
     }
 
@@ -276,7 +276,7 @@
     const integrityRisk = tiny.scoreRisk(tiny.stableSerialize(fields));
 
     if (!cySecScan.ok || risk.blocked || integrityRisk.blocked) {
-      setStatus(statusNode, "error", t("contactSubmitBlockedSecure"));
+      setStatus(statusNode, "error", "Your message could not be submitted securely.");
       return;
     }
 
@@ -400,7 +400,7 @@
     form.setAttribute("novalidate", "novalidate");
 
     if (window.GaboContactTinyML && window.GaboContactTinyML.isSessionBlocked()) {
-      window.GaboContactTinyML.blockForm(form, t("contactSessionBlocked"));
+      window.GaboContactTinyML.blockForm(form, "This contact session has been blocked.");
       return;
     }
 
