@@ -178,6 +178,19 @@
       aboutLevel2List5: "Resolution ownership after escalation",
 
       contactTitle: "Contact",
+      contactMetaDescription:
+        "Contact Gabriel Services for support, onboarding, projects, and partnership opportunities.",
+      honeypotWebsiteLabel: "Website",
+      contactProtectionUnavailable: "Contact protection module unavailable.",
+      contactFullNameRequired: "Please enter your full name.",
+      contactEmailRequired: "Please enter a valid email address.",
+      contactMessageRequired: "Please enter a message.",
+      contactSessionBlocked: "This contact session has been blocked.",
+      contactSubmitBlockedGeneric: "Your message could not be submitted.",
+      contactSubmitBlockedSecure: "Your message could not be submitted securely.",
+      contactSubmitPending: "Sending your message securely...",
+      contactSubmitSuccess: "Your message was received securely.",
+      contactSubmitUnavailable: "Your message could not be submitted right now.",
       contactIntro:
         "Get in touch for support, onboarding, projects, and partnership opportunities.",
       fullName: "Full Name",
@@ -861,6 +874,19 @@
       aboutLevel2List5: "Responsabilidad de resolución después de la escalada",
 
       contactTitle: "Contacto",
+      contactMetaDescription:
+        "Contacta a Gabriel Services para soporte, incorporación, proyectos y oportunidades de colaboración.",
+      honeypotWebsiteLabel: "Sitio web",
+      contactProtectionUnavailable: "El módulo de protección de contacto no está disponible.",
+      contactFullNameRequired: "Ingresa tu nombre completo.",
+      contactEmailRequired: "Ingresa una dirección de correo electrónico válida.",
+      contactMessageRequired: "Ingresa un mensaje.",
+      contactSessionBlocked: "Esta sesión de contacto ha sido bloqueada.",
+      contactSubmitBlockedGeneric: "No se pudo enviar tu mensaje.",
+      contactSubmitBlockedSecure: "No se pudo enviar tu mensaje de forma segura.",
+      contactSubmitPending: "Enviando tu mensaje de forma segura...",
+      contactSubmitSuccess: "Tu mensaje se recibió de forma segura.",
+      contactSubmitUnavailable: "No se pudo enviar tu mensaje en este momento.",
       contactIntro:
         "Ponte en contacto para soporte, incorporación, proyectos y oportunidades de colaboración.",
       fullName: "Nombre completo",
@@ -1480,6 +1506,12 @@
       document.querySelectorAll("[data-i18n-content]").forEach((el) => {
         const key = el.getAttribute("data-i18n-content");
         el.setAttribute("content", this.t(key));
+      });
+
+      // Apply to data-i18n-data-field-name for contact/security field labels
+      document.querySelectorAll("[data-i18n-data-field-name]").forEach((el) => {
+        const key = el.getAttribute("data-i18n-data-field-name");
+        el.setAttribute("data-field-name", this.t(key));
       });
 
       // Apply to data-i18n-html (for content with HTML tags)

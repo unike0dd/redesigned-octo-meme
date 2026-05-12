@@ -43,9 +43,17 @@
     callback();
   }
 
+  function t(key) {
+    if (window.I18N && typeof window.I18N.t === "function") {
+      return window.I18N.t(key);
+    }
+
+    return key;
+  }
+
   function getTinyML() {
     if (!window.GaboContactTinyML) {
-      throw new Error("Contact protection module unavailable.");
+      throw new Error(t("contactProtectionUnavailable"));
     }
 
     return window.GaboContactTinyML;
@@ -165,15 +173,15 @@
     const message = readAlias(fields, ["message", "comments", "comment", "notes", "details", "mensaje"]);
 
     if (!fullName || String(fullName).length < 2) {
-      return "Please enter your full name.";
+      return t("contactFullNameRequired");
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || ""))) {
-      return "Please enter a valid email address.";
+      return t("contactEmailRequired");
     }
 
     if (!message || String(message).length < 8) {
-      return "Please enter a message.";
+      return t("contactMessageRequired");
     }
 
     return "";
@@ -334,7 +342,7 @@
     };
 
     lockSubmitButton(form, true);
-    setStatus(statusNode, "pending", "Sending your message securely...");
+    setStatus(statusNode, "pending", t("contactSubmitPending"));
 
     try {
       const response = await fetch(CONTACT_CONFIG.endpoint, {
@@ -361,14 +369,14 @@
       const result = await safeReadJson(response);
 
       if (!response.ok || !result || result.ok !== true) {
-        setStatus(statusNode, "error", "Your message could not be submitted securely.");
+        setStatus(statusNode, "error", t("contactSubmitBlockedSecure"));
         return;
       }
 
       form.reset();
-      setStatus(statusNode, "success", "Your message was received securely.");
+      setStatus(statusNode, "success", t("contactSubmitSuccess"));
     } catch {
-      setStatus(statusNode, "error", "Your message could not be submitted right now.");
+      setStatus(statusNode, "error", t("contactSubmitUnavailable"));
     } finally {
       lockSubmitButton(form, false);
     }
