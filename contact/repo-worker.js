@@ -100,6 +100,7 @@
 
       if (!name) return;
       if (field.disabled) return;
+      if (field.matches && field.matches("[data-tinyml-honeypot='true']")) return;
 
       const type = String(field.type || "").toLowerCase();
 
@@ -119,6 +120,22 @@
         fields[name].push(field.value || "");
         return;
       }
+
+      fields[name] = field.value || "";
+    });
+
+    return fields;
+  }
+
+  function collectAllFormFields(form) {
+    const fields = {};
+    const elements = Array.from(form.elements || []);
+
+    elements.forEach(function (field) {
+      const name = getFieldName(field);
+
+      if (!name) return;
+      if (field.disabled) return;
 
       fields[name] = field.value || "";
     });
@@ -190,11 +207,30 @@
     };
   }
 
-  function lockSubmitButton(form, locked) {
-    const buttons = Array.from(form.querySelectorAll("button[type='submit'], input[type='submit']"));
+  function getSubmitControls(form) {
+    return Array.from(
+      form.querySelectorAll("button[type='submit'], input[type='submit'], button[data-contact-submit]")
+    );
+  }
 
-    buttons.forEach(function (button) {
+  function activateSubmitControls(form) {
+    getSubmitControls(form).forEach(function (button) {
+      if (button instanceof HTMLButtonElement && button.type !== "submit") {
+        button.type = "submit";
+      }
+
+      button.disabled = false;
+      button.removeAttribute("disabled");
+      button.setAttribute("aria-disabled", "false");
+      button.setAttribute("aria-busy", "false");
+      button.setAttribute("data-contact-submit-ready", "true");
+    });
+  }
+
+  function lockSubmitButton(form, locked) {
+    getSubmitControls(form).forEach(function (button) {
       button.disabled = Boolean(locked);
+      button.setAttribute("aria-disabled", locked ? "true" : "false");
       button.setAttribute("aria-busy", locked ? "true" : "false");
     });
   }
@@ -209,17 +245,29 @@
     lastSubmitAt = now;
 
     const tiny = getTinyML();
-    const rawFields = collectFormFields(form);
 
-    if (checkHoneypot(rawFields)) {
-      setStatus(statusNode, "error", "Your message could not be submitted.");
+    if (tiny.isSessionBlocked && tiny.isSessionBlocked()) {
+      tiny.blockForm(form, "This contact session has been blocked.");
       return;
     }
 
-    const fields = tiny.sanitizeObject(rawFields);
-    const risk = tiny.scoreRisk(JSON.stringify(rawFields) + "\n" + tiny.stableSerialize(fields));
+    const honeypotTripped = tiny.honeypotFilled(form) || checkHoneypot(collectAllFormFields(form));
 
-    if (risk.blocked) {
+    if (honeypotTripped) {
+      if (tiny.markSessionBlocked) tiny.markSessionBlocked();
+      tiny.blockForm(form, "Your message could not be submitted.");
+      return;
+    }
+
+    tiny.clearInvalidFields(form);
+
+    const cySecScan = tiny.scanForm(form);
+    const rawFields = collectFormFields(form);
+    const fields = tiny.sanitizeObject(cySecScan.fields || rawFields);
+    const risk = tiny.scoreRisk(JSON.stringify(rawFields) + "\n" + tiny.stableSerialize(fields));
+    const integrityRisk = tiny.scoreRisk(tiny.stableSerialize(fields));
+
+    if (!cySecScan.ok || risk.blocked || integrityRisk.blocked) {
       setStatus(statusNode, "error", "Your message could not be submitted securely.");
       return;
     }
@@ -269,9 +317,19 @@
         companyWebsite: rawFields.companyWebsite || rawFields.company_website || ""
       },
       clientSecurity: {
+        tinyML: "browser-rules-v2",
+        cySec: "sanitize-scan-integrity-v1",
         sanitizedBeforeSend: true,
+        maliciousCodeRemovedBeforeSend: true,
+        programmingCodeRemovedBeforeSend: true,
+        integrityCalculatedAfterSanitizer: true,
+        integrityCalculatedAfterCySecScan: true,
         localRiskScore: risk.score,
-        localRiskReasons: risk.reasons
+        localRiskReasons: risk.reasons,
+        sanitizedRiskScore: integrityRisk.score,
+        sanitizedRiskReasons: integrityRisk.reasons,
+        cySecRiskScore: cySecScan.riskScore,
+        cySecReport: cySecScan.report
       }
     };
 
@@ -332,6 +390,19 @@
     const statusNode = findStatusNode(form);
 
     form.setAttribute("novalidate", "novalidate");
+
+    if (window.GaboContactTinyML && window.GaboContactTinyML.isSessionBlocked()) {
+      window.GaboContactTinyML.blockForm(form, "This contact session has been blocked.");
+      return;
+    }
+
+    activateSubmitControls(form);
+
+    window.addEventListener("pageshow", function () {
+      if (!window.GaboContactTinyML || !window.GaboContactTinyML.isSessionBlocked()) {
+        activateSubmitControls(form);
+      }
+    });
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
