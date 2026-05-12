@@ -207,11 +207,30 @@
     };
   }
 
-  function lockSubmitButton(form, locked) {
-    const buttons = Array.from(form.querySelectorAll("button[type='submit'], input[type='submit']"));
+  function getSubmitControls(form) {
+    return Array.from(
+      form.querySelectorAll("button[type='submit'], input[type='submit'], button[data-contact-submit]")
+    );
+  }
 
-    buttons.forEach(function (button) {
+  function activateSubmitControls(form) {
+    getSubmitControls(form).forEach(function (button) {
+      if (button instanceof HTMLButtonElement && button.type !== "submit") {
+        button.type = "submit";
+      }
+
+      button.disabled = false;
+      button.removeAttribute("disabled");
+      button.setAttribute("aria-disabled", "false");
+      button.setAttribute("aria-busy", "false");
+      button.setAttribute("data-contact-submit-ready", "true");
+    });
+  }
+
+  function lockSubmitButton(form, locked) {
+    getSubmitControls(form).forEach(function (button) {
       button.disabled = Boolean(locked);
+      button.setAttribute("aria-disabled", locked ? "true" : "false");
       button.setAttribute("aria-busy", locked ? "true" : "false");
     });
   }
@@ -371,6 +390,19 @@
     const statusNode = findStatusNode(form);
 
     form.setAttribute("novalidate", "novalidate");
+
+    if (window.GaboContactTinyML && window.GaboContactTinyML.isSessionBlocked()) {
+      window.GaboContactTinyML.blockForm(form, "This contact session has been blocked.");
+      return;
+    }
+
+    activateSubmitControls(form);
+
+    window.addEventListener("pageshow", function () {
+      if (!window.GaboContactTinyML || !window.GaboContactTinyML.isSessionBlocked()) {
+        activateSubmitControls(form);
+      }
+    });
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
