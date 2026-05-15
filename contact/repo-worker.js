@@ -458,8 +458,7 @@
       source: PUBLIC_CONTACT_CONTRACT.source,
       sessionId: session.sessionId,
       nonce: session.nonce,
-      fields,
-      contactRuntime
+      fields
     };
 
     const sha256 = await tiny.calculateIntegrity(integrityPayload);
