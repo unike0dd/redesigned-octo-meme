@@ -24,9 +24,9 @@ Back Office Administrativo aporta estructura y confiabilidad a las operaciones i
 - Coordinación de correos electrónicos y comunicaciones para equipos internos.
 - Seguimiento con proveedores, control de facturas y soporte de reportes.
 
-### Cómo funciona este servicio
+### Resumen del servicio
 
-Gabriel Services trabaja de cerca con el equipo del cliente para comprender procesos, capturar acciones prioritarias y mantener cada tarea alineada con el calendario del negocio.
+Gabriel Services trabaja de cerca con el equipo del cliente para comprender necesidades administrativas, confirmar prioridades y mantener cada tarea alineada con el calendario del negocio.
 
 - Responsabilidad clara para tareas recurrentes y elementos de seguimiento.
 - Flujos de tareas documentados y seguimiento del progreso.
@@ -61,7 +61,7 @@ Estas habilidades ayudan a los equipos de back office a reducir la fricción ope
 Cuando un visitante pregunte por ayuda, precios, disponibilidad, capacitación o soporte de implementación, solicita:
 
 - Nombre de contacto y método de contacto preferido.
-- Procesos administrativos o necesidades de aprendizaje que requieren apoyo.
+- Necesidades administrativas o temas de aprendizaje que requieren apoyo.
 - Prioridades de calendario, documentos, proveedores, facturas, reportes o comunicación interna.
 - Puntos de fricción actuales, traspasos entre responsables y ritmo operativo deseado.
 

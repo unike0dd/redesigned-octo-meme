@@ -2,8 +2,8 @@
   "repository": "chatbot/gabo-io-only",
   "audience": "gabo io chatbot retrieval only",
   "purpose": "Bilingual English and Spanish customer experience and lead-generation responses for Gabriel Services website visitors, grounded in repository website content.",
-  "accessPolicy": "The /readme MD/chatbot directory is dedicated to gabo io ONLY. Content should be retrieved by the chatbot, repo sync worker, and Cloudflare Chatbot Worker for grounded answers and should not be presented as a public navigation section.",
-  "updated": "2026-05-08",
+  "accessPolicy": "The /readme MD/chatbot directory is dedicated to gabo io ONLY. Content is reserved for grounded English and Spanish website answers and should not be presented as a public navigation section.",
+  "updated": "2026-05-15",
   "sourceOfTruth": {
     "repoContent": "Repository Services pages, Learning pages, and assets/i18n.js EN/ES copy",
     "contentDirectory": "/readme MD/chatbot/",
@@ -11,30 +11,6 @@
       "en",
       "es"
     ]
-  },
-  "workerSync": {
-    "repoWorker": "/chatbot/repo-content-sync-worker.js",
-    "chatbotWorkerEndpoint": "/api/ops-online-chat",
-    "handoffPurpose": "Keep the Cloudflare Chatbot Worker updated with current EN and ES repository-grounded index content plus service/learning Markdown briefs for CX, lead generation, and end-user interaction grounding.",
-    "serviceLearningBriefs": [
-      "readme MD/chatbot/logistics-operations-learning-en.md",
-      "readme MD/chatbot/logistics-operations-learning-es.md",
-      "readme MD/chatbot/customer-relations-learning-en.md",
-      "readme MD/chatbot/customer-relations-learning-es.md",
-      "readme MD/chatbot/administrative-backoffice-en.md",
-      "readme MD/chatbot/administrative-backoffice-es.md",
-      "readme MD/chatbot/it-support-en.md",
-      "readme MD/chatbot/it-support-es.md"
-    ],
-    "interactionEndpoint": "/chat",
-    "firstTouch": "chatbot-browser-tiny-ml",
-    "handoffOrder": [
-      "chatbot-browser-tiny-ml",
-      "gabo-io-repo-content-sync-worker",
-      "gabo-io-cf-tiny-worker",
-      "gabo-io-cloudflare-chatbot-worker"
-    ],
-    "cfTinyWorkerEnv": "CF_CHATBOT_TINY_WORKER_URL or CF_TINY_WORKER_URL"
   },
   "entries": [
     {
@@ -50,7 +26,7 @@
         "modern businesses",
         "logistics customer relations administrative it support"
       ],
-      "answer": "Gabriel Services provides reliable day-to-day execution and operational support for modern businesses. The site highlights logistics, customer relations, administrative back office, and IT support so teams can stay focused on growth while Gabriel Services handles coordination, operations management, customer satisfaction workflows, and PC or desk support.",
+      "answer": "Gabriel Services provides reliable day-to-day delivery and operational support for modern businesses. The site highlights logistics, customer relations, administrative back office, and IT support so teams can stay focused on growth while Gabriel Services handles coordination, operations management, customer satisfaction workflows, and PC or desk support.",
       "leadGenerationPrompt": "If you want help reducing daily operational friction, I can collect your name, email, service area, operating challenge, and best time to contact you for follow-up.",
       "recommendedCta": "Use Book a consultation or See service coverage to start from the homepage."
     },
@@ -67,7 +43,7 @@
         "negocios modernos",
         "logística relaciones con clientes administración soporte de ti"
       ],
-      "answer": "Gabriel Services ofrece ejecución diaria confiable y soporte operativo para empresas modernas. El sitio destaca logística, relaciones con clientes, back office administrativo y soporte de TI para que los equipos se enfoquen en crecer mientras Gabriel Services gestiona coordinación, operaciones, satisfacción del cliente y soporte de PC o mesa de ayuda.",
+      "answer": "Gabriel Services ofrece entrega diaria confiable y soporte operativo para empresas modernas. El sitio destaca logística, relaciones con clientes, back office administrativo y soporte de TI para que los equipos se enfoquen en crecer mientras Gabriel Services gestiona coordinación, operaciones, satisfacción del cliente y soporte de PC o mesa de ayuda.",
       "leadGenerationPrompt": "Si quieres reducir fricción operativa diaria, puedo recopilar tu nombre, correo, área de servicio, reto operativo y mejor hora de contacto para seguimiento.",
       "recommendedCta": "Usa Reservar una consulta o Ver cobertura de servicios desde la página de inicio."
     },
@@ -85,7 +61,7 @@
         "productivity",
         "consistency"
       ],
-      "answer": "Gabriel Services is an operational support partner focused on daily execution across logistics operations, administrative back office, customer operations, and IT support. The approach is built on consistency, transparent communication, practical execution, productivity, operational consistency, lower administrative burden, quality execution, and cost-conscious delivery without enterprise overhead or contracts.",
+      "answer": "Gabriel Services is an operational support partner focused on daily delivery across logistics operations, administrative back office, customer operations, and IT support. The approach is built on consistency, transparent communication, practical delivery, productivity, operational consistency, lower administrative burden, quality delivery, and cost-conscious delivery without enterprise overhead or contracts.",
       "leadGenerationPrompt": "If you are evaluating fit, I can collect your business need, current pain points, preferred service area, and contact details so Gabriel Services can recommend the right support path.",
       "recommendedCta": "Visit About to understand the operating model, then Contact to request support."
     },
@@ -105,7 +81,7 @@
         "productividad",
         "consistencia"
       ],
-      "answer": "Gabriel Services es un socio de soporte operativo enfocado en la ejecución diaria en logística, back office administrativo, operaciones con clientes y soporte de TI. El enfoque se basa en consistencia, comunicación transparente, ejecución práctica, productividad, consistencia operativa, menor carga administrativa, ejecución de calidad y entrega consciente del costo sin sobrecarga empresarial ni contratos.",
+      "answer": "Gabriel Services es un socio de soporte operativo enfocado en la entrega diaria en logística, back office administrativo, operaciones con clientes y soporte de TI. El enfoque se basa en consistencia, comunicación transparente, entrega práctica, productividad, consistencia operativa, menor carga administrativa, entrega de calidad y entrega consciente del costo sin sobrecarga empresarial ni contratos.",
       "leadGenerationPrompt": "Si estás evaluando si encaja con tu empresa, puedo recopilar tu necesidad, puntos de fricción, área de servicio preferida y datos de contacto para que Gabriel Services recomiende el camino adecuado.",
       "recommendedCta": "Visita Acerca de para entender el modelo operativo y luego Contacto para solicitar apoyo."
     },
@@ -125,7 +101,7 @@
         "engagement options"
       ],
       "answer": "Gabriel Services delivers professional operational support across four core areas: Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support. Each service is designed to reduce friction, improve consistency, and free the client team to focus on higher-value work.",
-      "leadGenerationPrompt": "If you are comparing services, I can collect the service area, urgency, current process gaps, expected volume, and contact information so Gabriel Services can follow up.",
+      "leadGenerationPrompt": "If you are comparing services, I can collect the service area, urgency, current workflow gaps, expected volume, and contact information so Gabriel Services can follow up.",
       "recommendedCta": "Open Services Overview to compare all service areas or choose a specific service page."
     },
     {
@@ -145,7 +121,7 @@
         "opciones de contratación"
       ],
       "answer": "Gabriel Services ofrece soporte operativo profesional en cuatro áreas: Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Cada servicio está diseñado para reducir fricción, mejorar consistencia y liberar al equipo del cliente para enfocarse en trabajo de mayor valor.",
-      "leadGenerationPrompt": "Si estás comparando servicios, puedo recopilar el área de servicio, urgencia, brechas del proceso actual, volumen esperado e información de contacto para seguimiento.",
+      "leadGenerationPrompt": "Si estás comparando servicios, puedo recopilar el área de servicio, urgencia, brechas del ritmo actual, volumen esperado e información de contacto para seguimiento.",
       "recommendedCta": "Abre Descripción general de servicios para comparar áreas o elige una página de servicio específica."
     },
     {
@@ -267,7 +243,7 @@
         "first contact resolution",
         "communication management"
       ],
-      "answer": "Customer Relations combines service support and learning guidance. The service covers customer communication, escalation management, follow-up workflows, ticket follow-up, resolution tracking, satisfaction check-ins, feedback support, billing clarification, first-contact resolution support, status communication, standardized responses, escalation protocols, and clear handoffs. The learning path teaches customer communication practices, escalation flows, fast issue resolution, consistent follow-up, satisfaction processes, ticket resolution control, feedback measurement, and timely communication.",
+      "answer": "Customer Relations combines service support and learning guidance. The service covers customer communication, escalation management, follow-up workflows, ticket follow-up, resolution tracking, satisfaction check-ins, feedback support, billing clarification, first-contact resolution support, status communication, standardized responses, escalation protocols, and clear handoffs. The learning path teaches customer communication practices, escalation flows, fast issue resolution, consistent follow-up, satisfaction workflows, ticket resolution control, feedback measurement, and timely communication.",
       "leadGenerationPrompt": "If customer communication needs support, I can collect inquiry volume, escalation issues, response expectations, satisfaction goals, and contact details.",
       "recommendedCta": "Visit Customer Relations Operations, Customer Relations Learning, or Contact to request service support or training.",
       "sourceUrls": [
@@ -294,7 +270,7 @@
         "resolución en primer contacto",
         "comunicación con clientes"
       ],
-      "answer": "Relaciones con Clientes combina soporte de servicio y guía de aprendizaje. El servicio cubre comunicación con clientes, gestión de escalaciones, flujos de seguimiento, seguimiento de tickets, control de resolución, revisiones de satisfacción, soporte de retroalimentación, aclaración de facturación, resolución en primer contacto, comunicación de estado, respuestas estandarizadas, protocolos de escalación y traspasos claros. La ruta de aprendizaje enseña prácticas de comunicación, flujos de escalación, resolución rápida, seguimiento consistente, procesos de satisfacción, control de resolución de tickets, medición de retroalimentación y comunicación oportuna.",
+      "answer": "Relaciones con Clientes combina soporte de servicio y guía de aprendizaje. El servicio cubre comunicación con clientes, gestión de escalaciones, flujos de seguimiento, seguimiento de tickets, control de resolución, revisiones de satisfacción, soporte de retroalimentación, aclaración de facturación, resolución en primer contacto, comunicación de estado, respuestas estandarizadas, protocolos de escalación y traspasos claros. La ruta de aprendizaje enseña prácticas de comunicación, flujos de escalación, resolución rápida, seguimiento consistente, necesidades de satisfacción, control de resolución de tickets, medición de retroalimentación y comunicación oportuna.",
       "leadGenerationPrompt": "Si la comunicación con clientes necesita apoyo, puedo recopilar volumen de consultas, problemas de escalación, expectativas de respuesta, metas de satisfacción y datos de contacto.",
       "recommendedCta": "Visita Operaciones de Relaciones con Clientes, Aprendizaje de Relaciones con Clientes o Contacto para solicitar servicio o capacitación.",
       "sourceUrls": [
@@ -371,8 +347,8 @@
         "dispatch coordination",
         "service and learning"
       ],
-      "answer": "This learning path helps logistics teams understand workflows and handoffs, learn shipment tracking and exception-management practices, and create repeatable communication processes for carriers and suppliers. Topics include dispatch coordination, operational planning, visibility standards for air, ocean, and ground shipments, follow-up management, and escalation control.",
-      "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
+      "answer": "This learning path helps logistics teams understand workflows and handoffs, learn shipment tracking and exception-management practices, and create repeatable communication workflows for carriers and suppliers. Topics include dispatch coordination, operational planning, visibility standards for air, ocean, and ground shipments, follow-up management, and escalation control.",
+      "leadGenerationPrompt": "If your team needs training or workflow enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
       "recommendedCta": "Visit Logistics Operations Learning or Learning to compare paths.",
       "sourceUrls": [
         "/services/logistics-operations.html",
@@ -397,8 +373,8 @@
         "coordinación de despachos",
         "service and learning"
       ],
-      "answer": "Esta ruta ayuda a equipos de logística a entender flujos de trabajo y traspasos, aprender prácticas de seguimiento de envíos y gestión de excepciones, y crear procesos repetibles de comunicación con transportistas y proveedores. Incluye coordinación de despachos, planificación operativa, estándares de visibilidad para envíos aéreos, marítimos y terrestres, gestión de seguimiento y control de escalaciones.",
-      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
+      "answer": "Esta ruta ayuda a equipos de logística a entender flujos de trabajo y traspasos, aprender prácticas de seguimiento de envíos y gestión de excepciones, y crear necesidades repetibles de comunicación con transportistas y proveedores. Incluye coordinación de despachos, planificación operativa, estándares de visibilidad para envíos aéreos, marítimos y terrestres, gestión de seguimiento y control de escalaciones.",
+      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de necesidades, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
       "recommendedCta": "Visita Aprendizaje de Operaciones Logísticas o Aprendizaje para comparar rutas.",
       "sourceUrls": [
         "/services/logistics-operations.html",
@@ -422,7 +398,7 @@
         "service and learning"
       ],
       "answer": "This learning path supports administrative teams with practical operating discipline for documentation, scheduling, record upkeep, internal communication, vendor coordination, reporting, and task tracking so back-office work stays consistent and visible.",
-      "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
+      "leadGenerationPrompt": "If your team needs training or workflow enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
       "recommendedCta": "Visit Administrative Back Office Learning or Learning to compare paths.",
       "sourceUrls": [
         "/services/administrative-backoffice.html",
@@ -448,7 +424,7 @@
         "service and learning"
       ],
       "answer": "Esta ruta apoya a equipos administrativos con disciplina operativa práctica para documentación, programación, mantenimiento de registros, comunicación interna, coordinación con proveedores, reportes y seguimiento de tareas para que el trabajo de back office sea consistente y visible.",
-      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
+      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de necesidades, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
       "recommendedCta": "Visita Aprendizaje de Back Office Administrativo o Aprendizaje para comparar rutas.",
       "sourceUrls": [
         "/services/administrative-backoffice.html",
@@ -471,7 +447,7 @@
         "communication"
       ],
       "answer": "This learning path teaches customer communication, escalation handling, reliable service rhythm, ticket follow-up, resolution control, satisfaction measurement, feedback practices, and timely communication so teams convert customer interactions into dependable outcomes.",
-      "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
+      "leadGenerationPrompt": "If your team needs training or workflow enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
       "recommendedCta": "Visit Customer Relations Learning or Learning to compare paths.",
       "sourceUrls": [
         "/services/customer-relations.html",
@@ -495,8 +471,8 @@
         "comunicación",
         "service and learning"
       ],
-      "answer": "Esta ruta enseña comunicación con clientes, manejo de escalaciones, ritmo de servicio confiable, seguimiento de tickets, control de resolución, medición de satisfacción, prácticas de retroalimentación y comunicación oportuna para convertir interacciones en resultados confiables.",
-      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
+      "answer": "Esta ruta enseña comunicación con clientes, manejo de escalaciones, ritmo de servicio confiable, seguimiento de tickets, control de resolución, medición de satisfacción, prácticas de retroalimentación y comunicación oportuna para convertir interprioridades en resultados confiables.",
+      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de necesidades, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
       "recommendedCta": "Visita Aprendizaje de Relaciones con Clientes o Aprendizaje para comparar rutas.",
       "sourceUrls": [
         "/services/customer-relations.html",
@@ -520,7 +496,7 @@
         "service and learning"
       ],
       "answer": "This learning path helps support teams structure help desk intake, ticket creation, basic troubleshooting, user assistance, account access support, escalation coordination, incident workflow, system support, and resolution ownership.",
-      "leadGenerationPrompt": "If your team needs training or process enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
+      "leadGenerationPrompt": "If your team needs training or workflow enablement, I can collect the target team, current workflow gaps, learning goals, timeline, and contact details.",
       "recommendedCta": "Visit IT Support Learning or Learning to compare paths.",
       "sourceUrls": [
         "/services/it-support.html",
@@ -545,7 +521,7 @@
         "service and learning"
       ],
       "answer": "Esta ruta ayuda a equipos de soporte a estructurar la recepción de mesa de ayuda, creación de tickets, solución básica de problemas, asistencia a usuarios, soporte de acceso a cuentas, coordinación de escalaciones, flujo de incidentes, soporte de sistemas y responsabilidad de resolución.",
-      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de procesos, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
+      "leadGenerationPrompt": "Si tu equipo necesita capacitación o habilitación de necesidades, puedo recopilar equipo objetivo, brechas actuales, metas de aprendizaje, cronograma y datos de contacto.",
       "recommendedCta": "Visita Aprendizaje de Soporte de TI o Aprendizaje para comparar rutas.",
       "sourceUrls": [
         "/services/it-support.html",
@@ -658,7 +634,7 @@
         "children",
         "privacy contact"
       ],
-      "answer": "Gabriel Services is committed to protecting privacy. The policy covers contact information, service details, communications, secure payment processing, technical data, cookies, legal bases under GDPR, no sale of personal data, and EU/EEA rights such as access, rectification, erasure, restriction, portability, objection, and complaints to a local authority.",
+      "answer": "Gabriel Services is committed to protecting privacy. The policy covers contact information, service details, communications, secure payment workflowing, technical data, cookies, legal bases under GDPR, no sale of personal data, and EU/EEA rights such as access, rectification, erasure, restriction, portability, objection, and complaints to a local authority.",
       "leadGenerationPrompt": "If this question is about operational compliance, privacy-aware CX, or governance workflows, I can collect the topic, business need, and contact details for follow-up.",
       "recommendedCta": "Visit Privacy and GDPR or Contact for questions."
     },
@@ -763,5 +739,22 @@
       "leadGenerationPrompt": "Si esta consulta trata sobre cumplimiento operativo, CX con privacidad o flujos de gobernanza, puedo recopilar el tema, necesidad del negocio y datos de contacto para seguimiento.",
       "recommendedCta": "Visita Términos y Condiciones o Contacto para preguntas."
     }
-  ]
+  ],
+  "contentUse": {
+    "purpose": "Keep approved English and Spanish answer content aligned with the service and learning Markdown briefs for CX, lead generation, and visitor support.",
+    "serviceLearningBriefs": [
+      "readme MD/chatbot/logistics-operations-learning-en.md",
+      "readme MD/chatbot/logistics-operations-learning-es.md",
+      "readme MD/chatbot/customer-relations-learning-en.md",
+      "readme MD/chatbot/customer-relations-learning-es.md",
+      "readme MD/chatbot/administrative-backoffice-en.md",
+      "readme MD/chatbot/administrative-backoffice-es.md",
+      "readme MD/chatbot/it-support-en.md",
+      "readme MD/chatbot/it-support-es.md"
+    ],
+    "languages": [
+      "en",
+      "es"
+    ]
+  }
 }

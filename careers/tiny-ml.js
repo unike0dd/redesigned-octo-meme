@@ -6,7 +6,7 @@
  *
  * No fetch here.
  * No secrets here.
- * No Cloudflare private details here.
+ * No private platform details here.
  */
 
 (function () {

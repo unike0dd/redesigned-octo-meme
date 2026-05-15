@@ -44,7 +44,7 @@ Aprendizaje de Relaciones con Clientes enseña a los equipos a gestionar comunic
 
 - Dominar mejores prácticas de comunicación para equipos que tratan directamente con clientes.
 - Comprender flujos de escalación y resolución rápida de problemas.
-- Desarrollar un proceso consistente de seguimiento y satisfacción.
+- Crear un ritmo consistente de seguimiento y satisfacción.
 
 ### Temas clave
 
@@ -54,7 +54,7 @@ Aprendizaje de Relaciones con Clientes enseña a los equipos a gestionar comunic
 
 ### Aplicación práctica
 
-Estas prácticas ayudan a los equipos a convertir las interacciones con clientes en resultados confiables y traspasos más claros entre operaciones.
+Estas prácticas ayudan a los equipos a convertir cada contacto con clientes en resultados confiables y traspasos más claros entre áreas.
 
 ## Guía para generación de leads
 

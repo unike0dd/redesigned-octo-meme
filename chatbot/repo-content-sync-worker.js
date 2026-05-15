@@ -282,7 +282,7 @@ async function buildSyncPayload(index, request, env) {
     languages,
     entryCount: entries.length,
     purpose:
-      "Keep the Cloudflare Chatbot Worker current with repository-grounded EN and ES CX and lead-generation content.",
+      "Keep the approved chatbot content service current with repository-grounded EN and ES CX and lead-generation content.",
     index,
     serviceLearningBriefs,
     interactionBridge: {
@@ -294,10 +294,10 @@ async function buildSyncPayload(index, request, env) {
         "chatbot-browser-tiny-ml",
         "gabo-io-repo-content-sync-worker",
         "gabo-io-cf-tiny-worker",
-        "gabo-io-cloudflare-chatbot-worker",
+        "gabo-io-approved-chatbot-service",
       ],
       purpose:
-        "Forward sanitized chatbot/end-user interactions to the Cloudflare Chatbot Worker with repo-grounded service and learning Markdown context.",
+        "Forward sanitized chatbot/end-user interactions to the approved chatbot content service with repo-grounded service and learning Markdown context.",
       domains: SERVICE_LEARNING_BRIEFS.map(({ domain, serviceUrl, learningUrl }) => ({
         domain,
         serviceUrl,
@@ -392,11 +392,11 @@ async function forwardChatInteraction(request, env) {
         "chatbot-browser-tiny-ml",
         "gabo-io-repo-content-sync-worker",
         "gabo-io-cf-tiny-worker",
-        "gabo-io-cloudflare-chatbot-worker",
+        "gabo-io-approved-chatbot-service",
       ],
       current: "gabo-io-repo-content-sync-worker",
-      next: cfTinyWorkerUrl ? "gabo-io-cf-tiny-worker" : "gabo-io-cloudflare-chatbot-worker",
-      final: "gabo-io-cloudflare-chatbot-worker",
+      next: cfTinyWorkerUrl ? "gabo-io-cf-tiny-worker" : "gabo-io-approved-chatbot-service",
+      final: "gabo-io-approved-chatbot-service",
     },
     retrieval: {
       ...(body.retrieval || {}),
@@ -474,7 +474,7 @@ async function handleRequest(request, env) {
         "chatbot-browser-tiny-ml",
         "gabo-io-repo-content-sync-worker",
         "gabo-io-cf-tiny-worker",
-        "gabo-io-cloudflare-chatbot-worker",
+        "gabo-io-approved-chatbot-service",
       ],
       serviceLearningBriefs: SERVICE_LEARNING_BRIEFS.map(({ domain, serviceUrl, learningUrl, briefs }) => ({
         domain,
