@@ -2,7 +2,7 @@
   const SECURITY_HEADERS = {
     "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
     "Content-Security-Policy":
-      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services https://contacto.gabo.services https://careers.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://gabo.services https://www.gabo.services https://contacto.gabo.services https://careers.gabo.services; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';",
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://contacto.gabo.services https://careers.gabo.services https://chatbot.gabo.services; connect-src 'self' https://contacto.gabo.services https://careers.gabo.services https://chatbot.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data:; frame-src 'none'; worker-src 'self'; media-src 'self';",
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
     "X-XSS-Protection": "0",
@@ -14,10 +14,6 @@
     "X-Permitted-Cross-Domain-Policies": "none",
     "X-DNS-Prefetch-Control": "off",
     "X-Download-Options": "noopen",
-    "Access-Control-Allow-Origin": "https://www.gabo.services",
-    "Access-Control-Allow-Methods": "GET, HEAD, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    Vary: "Origin",
   };
 
   const CLIENT_SECURITY_POLICIES = {

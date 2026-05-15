@@ -584,26 +584,9 @@ async function handleRequest(request, env) {
   if (request.method === "GET" && ["/", "/health"].includes(url.pathname)) {
     return jsonResponse({
       ok: true,
-      worker: "repo-content-gateway",
-      contentDirectory: DEFAULT_CONTENT_DIRECTORY,
+      gateway: "gabo-services-chatbot-gateway",
+      publicDomain: "https://chatbot.gabo.services",
       configured: Boolean(env.REPO_RAW_BASE),
-      contentIndexUrl: getHealthIndexUrl(env),
-      chatbotWorkerUrl: getChatbotWorkerUrl(request, env),
-      edgeTinyGateUrl: getEdgeTinyGateUrl(request, env),
-      firstTouch: "browser-safety-gate",
-      handoffOrder: [
-        "browser-safety-gate",
-        "repo-content-gateway",
-        "edge-safety-gate",
-        "approved-chatbot-service",
-      ],
-      serviceLearningBriefs: SERVICE_LEARNING_BRIEFS.map(({ domain, serviceUrl, learningUrl, briefs }) => ({
-        domain,
-        serviceUrl,
-        learningUrl,
-        markdownPaths: briefs,
-      })),
-      endpoints: ["GET /health", "GET /briefs", "GET /manifest", "POST /sync", "POST /chat", `POST ${DEFAULT_CHATBOT_WORKER_PATH}`],
     });
   }
 
