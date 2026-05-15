@@ -338,7 +338,7 @@
       <div id="gabo-chatbot-panel" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
         <div id="gabo-chatbot-header">
           <span>gabo io</span>
-          <button id="gabo-chatbot-close" type="button" aria-label="Close chatbot">×</button>
+          <button id="gabo-chatbot-close" type="button" aria-label="Close chatbot">Close ×</button>
         </div>
         <div id="gabo-chat-log" aria-live="polite"></div>
         <div id="gabo-chatbot-form-container">
@@ -376,7 +376,6 @@
     let typedCharacterCount = 0;
     let typingIntervalTotal = 0;
     let typingIntervalSamples = 0;
-
     chatPanel.hidden = true;
 
     const addChatMessage = (text, type) => {
@@ -389,6 +388,7 @@
     };
 
     const setChatOpen = (open, returnFocus = true) => {
+      isChatOpen = open;
       container.classList.toggle("open", open);
       chatPanel.classList.toggle("open", open);
       chatPanel.hidden = !open;
@@ -441,6 +441,7 @@
       addChatMessage(getLocalizedText("blocked"), "gabo-bot");
       chatInput.value = "";
       chatHoneypot.value = "";
+      resetTypingTelemetry();
       chatInput.disabled = true;
       chatSend.disabled = true;
       chatForm.reset();
@@ -459,6 +460,8 @@
 
       const trimmed = inspected.sanitized;
       if (!trimmed) return;
+      const requestId = chatRequestSequence + 1;
+      chatRequestSequence = requestId;
 
       if (["exit", "quit"].includes(trimmed.toLowerCase())) {
         exitChatSession();
@@ -528,13 +531,17 @@
         if (!response.ok) throw new Error("Request failed");
 
         const data = await response.json();
+        if (!isChatOpen || requestId !== chatRequestSequence) return;
         botMessage.textContent = data && data.reply ? data.reply : grounded.reply;
       } catch (error) {
+        if (!isChatOpen || requestId !== chatRequestSequence) return;
         botMessage.textContent = grounded.reply;
       } finally {
-        chatSend.disabled = false;
-        chatInput.disabled = false;
-        chatInput.focus();
+        if (isChatOpen && requestId === chatRequestSequence) {
+          chatSend.disabled = false;
+          chatInput.disabled = false;
+          chatInput.focus();
+        }
       }
     };
 

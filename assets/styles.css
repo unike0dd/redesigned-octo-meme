@@ -1091,11 +1091,14 @@ textarea {
 }
 
 #gabo-chatbot-close {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
   line-height: 1;
+  padding: 0.4rem 0.6rem;
   cursor: pointer;
 }
 
