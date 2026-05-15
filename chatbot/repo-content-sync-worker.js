@@ -2,6 +2,8 @@ const DEFAULT_CONTENT_INDEX_PATH = "chatbot/gabo-io-content-index.json";
 const DEFAULT_CONTENT_DIRECTORY = "/readme MD/chatbot/";
 const DEFAULT_CHATBOT_WORKER_PATH = "/api/ops-online-chat";
 const MAX_SANITIZED_MESSAGE_LENGTH = 220;
+const MIN_TYPING_INTERVAL_MS = 45;
+const MIN_WORD_LIKE_RATIO = 0.62;
 
 const SERVICE_LEARNING_BRIEFS = [
   {
@@ -90,8 +92,8 @@ function getHealthIndexUrl(env) {
 }
 
 function getChatbotWorkerUrl(request, env) {
-  if (env.CF_CHATBOT_WORKER_URL) return env.CF_CHATBOT_WORKER_URL;
-  return new URL(DEFAULT_CHATBOT_WORKER_PATH, request.url).toString();
+  const configured = getEnvValue(env, "EDGE_CHATBOT_SERVICE_URL", "APPROVED_CHATBOT_SERVICE_URL", "LEGACY_CHATBOT_SERVICE_URL");
+  return configured ? new URL(configured, request.url).toString() : new URL(DEFAULT_CHATBOT_WORKER_PATH, request.url).toString();
 }
 
 function getEnvValue(env, ...keys) {
@@ -102,8 +104,8 @@ function getEnvValue(env, ...keys) {
   return "";
 }
 
-function getCfTinyWorkerUrl(request, env) {
-  const configured = getEnvValue(env, "CF_CHATBOT_TINY_WORKER_URL", "CF_TINY_WORKER_URL");
+function getEdgeTinyGateUrl(request, env) {
+  const configured = getEnvValue(env, "EDGE_TINY_GATE_URL", "EDGE_CHATBOT_TINY_GATE_URL", "LEGACY_CHATBOT_TINY_GATE_URL", "LEGACY_TINY_GATE_URL");
   return configured ? new URL(configured, request.url).toString() : "";
 }
 
@@ -170,7 +172,44 @@ function tinyMlSanitizeMessage(value) {
     .replace(/\b(?:function|class|const|let|var|import|export|module\.exports|require|async|await|return)\b/gi, " ")
     .replace(/\b(?:union\s+select|select\s+.+\s+from|insert\s+into|drop\s+table|delete\s+from|or\s+1\s*=\s*1)\b/gi, " ")
     .replace(/(?:--|\/\*|\*\/)/g, " ")
+    .replace(/[^\p{L}\p{N}\s.,?!¿¡'’"()\-:/]/gu, " ")
     .slice(0, MAX_SANITIZED_MESSAGE_LENGTH));
+}
+
+function classifyTinyMlInteraction(value) {
+  const sanitized = squeezeWhitespace(value);
+  const letters = (sanitized.match(/[\p{L}]/gu) || []).length;
+  const wordTokens = sanitized.match(/[\p{L}\p{N}][\p{L}\p{N}'’\-]*/gu) || [];
+  const allowedCharacters = (sanitized.match(/[\p{L}\p{N}\s.,?!¿¡'’"()\-:/]/gu) || []).length;
+  const wordLikeRatio = sanitized.length ? allowedCharacters / sanitized.length : 0;
+  const hasQuestion = /[?¿]/.test(sanitized) || /\b(?:what|when|where|why|how|can|could|would|do|does|is|are|cu[aá]l|qu[eé]|c[oó]mo|d[oó]nde|cu[aá]ndo|puede|puedo|tienen?)\b/i.test(sanitized);
+  const hasRequest = /\b(?:help|need|want|request|quote|consult|contact|price|pricing|available|service|support|schedule|demo|ayuda|necesito|quiero|solicito|cotizaci[oó]n|consulta|contacto|precio|servicio|soporte|disponible)\b/i.test(sanitized);
+
+  return {
+    accepted: letters > 0 && wordTokens.length > 0 && wordLikeRatio >= MIN_WORD_LIKE_RATIO,
+    category: hasQuestion ? "question" : hasRequest ? "request" : wordTokens.length <= 5 ? "query" : "words",
+    wordCount: wordTokens.length,
+    wordLikeRatio: Number(wordLikeRatio.toFixed(2)),
+  };
+}
+
+function inspectTypingPace(body = {}, sanitized = "") {
+  const telemetry = body.typingPace || body.typingTelemetry || {};
+  const characterCount = Math.max(0, Number(telemetry.characterCount) || 0);
+  const durationMs = Math.max(0, Number(telemetry.durationMs) || 0);
+  const averageIntervalMs = Math.max(0, Number(telemetry.averageIntervalMs) || 0);
+  const sanitizedLength = String(sanitized || "").length;
+  const tooFast = sanitizedLength >= 4 && (characterCount < Math.min(3, sanitizedLength)
+    || durationMs < Math.min(650, sanitizedLength * MIN_TYPING_INTERVAL_MS)
+    || averageIntervalMs < MIN_TYPING_INTERVAL_MS);
+
+  return {
+    accepted: !tooFast,
+    characterCount,
+    durationMs,
+    averageIntervalMs,
+    minimumAverageIntervalMs: MIN_TYPING_INTERVAL_MS,
+  };
 }
 
 function inspectTinyMlInteraction(body = {}) {
@@ -178,9 +217,15 @@ function inspectTinyMlInteraction(body = {}) {
   const originalRisk = tinyMlScanRisk(original);
   const sanitized = tinyMlSanitizeMessage(original);
   const residualRisk = tinyMlScanRisk(sanitized);
+  const classification = classifyTinyMlInteraction(sanitized);
+  const typingPace = inspectTypingPace(body, sanitized);
+  const honeypotValue = squeezeWhitespace(body.website || body.companyWebsite || body.honeypot || body.hp || "");
   const removedCharacters = Math.max(0, original.length - sanitized.length);
   const removedRatio = original.length ? removedCharacters / original.length : 0;
-  const blocked = !sanitized
+  const blocked = Boolean(honeypotValue)
+    || !sanitized
+    || !classification.accepted
+    || !typingPace.accepted
     || residualRisk.riskScore >= 7
     || residualRisk.matches.length > 0
     || originalRisk.riskScore >= 18
@@ -188,7 +233,10 @@ function inspectTinyMlInteraction(body = {}) {
 
   return {
     blocked,
+    reason: blocked ? (honeypotValue ? "honeypot" : !typingPace.accepted ? "typing-pace" : !classification.accepted ? "non-conversational" : "tinyml-risk") : "clean",
     sanitized,
+    classification,
+    typingPace,
     report: {
       original: originalRisk,
       residual: residualRisk,
@@ -202,9 +250,8 @@ async function fetchRepoAsset(url, accept) {
   const response = await fetch(url, {
     headers: {
       Accept: accept,
-      "User-Agent": "gabo-io-repo-content-sync-worker",
+      "User-Agent": "repo-content-gateway",
     },
-    cf: { cacheTtl: 0, cacheEverything: false },
   });
 
   if (!response.ok) {
@@ -222,6 +269,67 @@ async function fetchJson(url) {
 async function fetchText(url) {
   const response = await fetchRepoAsset(url, "text/markdown, text/plain");
   return response.text();
+}
+
+
+function normalize(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function uniqueTerms(value) {
+  return Array.from(new Set(normalize(value).split(" ").filter((term) => term.length > 2)));
+}
+
+function scoreEntryScope(entry, message) {
+  const normalizedMessage = normalize(message);
+  const terms = uniqueTerms(message);
+  const intents = Array.isArray(entry.intents) ? entry.intents : [];
+  const searchable = normalize([
+    entry.title,
+    entry.sourceUrl,
+    entry.answer,
+    entry.leadGenerationPrompt,
+    entry.recommendedCta,
+    intents.join(" "),
+  ].filter(Boolean).join(" "));
+
+  let score = 0;
+  intents.forEach((intent) => {
+    const normalizedIntent = normalize(intent);
+    if (!normalizedIntent) return;
+    if (normalizedMessage === normalizedIntent) score += 1;
+    if (normalizedMessage.includes(normalizedIntent)) score += 0.7;
+    if (searchable.includes(normalizedIntent) && normalizedMessage.includes(normalizedIntent.split(" ")[0])) score += 0.2;
+  });
+  score += Math.min(0.5, terms.filter((term) => searchable.includes(term)).length * 0.08);
+  return score;
+}
+
+function findRepoGroundedScope(entries, message, lang) {
+  const localized = entries.filter((entry) => entry.language === lang);
+  const pool = localized.length ? localized : entries;
+  const ranked = pool
+    .map((entry) => ({ entry, score: scoreEntryScope(entry, message) }))
+    .filter((candidate) => candidate.score > 0)
+    .sort((a, b) => b.score - a.score);
+  const best = ranked[0];
+
+  return {
+    accepted: Boolean(best && best.score >= 0.28),
+    confidence: best ? Math.min(0.99, Number(best.score.toFixed(2))) : 0,
+    matches: ranked.slice(0, 3).map((candidate) => ({
+      id: candidate.entry.id,
+      title: candidate.entry.title,
+      sourceUrl: candidate.entry.sourceUrl,
+      confidence: Math.min(0.99, Number(candidate.score.toFixed(2))),
+    })),
+  };
 }
 
 function summarizeEntry(entry) {
@@ -288,13 +396,13 @@ async function buildSyncPayload(index, request, env) {
     interactionBridge: {
       endpoint: "/chat",
       chatbotWorkerUrl: getChatbotWorkerUrl(request, env),
-      cfTinyWorkerUrl: getCfTinyWorkerUrl(request, env),
-      firstTouch: "chatbot-browser-tiny-ml",
+      edgeTinyGateUrl: getEdgeTinyGateUrl(request, env),
+      firstTouch: "browser-safety-gate",
       handoffOrder: [
-        "chatbot-browser-tiny-ml",
-        "gabo-io-repo-content-sync-worker",
-        "gabo-io-cf-tiny-worker",
-        "gabo-io-approved-chatbot-service",
+        "browser-safety-gate",
+        "repo-content-gateway",
+        "edge-safety-gate",
+        "approved-chatbot-service",
       ],
       purpose:
         "Forward sanitized chatbot/end-user interactions to the approved chatbot content service with repo-grounded service and learning Markdown context.",
@@ -360,7 +468,7 @@ async function forwardChatInteraction(request, env) {
   if (tinyMl.blocked) {
     return jsonResponse({
       ok: false,
-      worker: "gabo-io-repo-content-sync-worker",
+      worker: "repo-content-gateway",
       error: "TinyML blocked the chatbot interaction before repository retrieval.",
       tinyMl,
     }, { status: 422 });
@@ -372,8 +480,20 @@ async function forwardChatInteraction(request, env) {
   ]);
   const entries = Array.isArray(index.entries) ? index.entries : [];
   const lang = body.lang || body.language || "en";
+  const repoScope = findRepoGroundedScope(entries, tinyMl.sanitized, lang);
+
+  if (!repoScope.accepted) {
+    return jsonResponse({
+      ok: false,
+      worker: "repo-content-gateway",
+      error: "The interaction is outside approved Gabriel Services website content.",
+      tinyMl,
+      repoScope,
+    }, { status: 422 });
+  }
+
   const chatbotWorkerUrl = getChatbotWorkerUrl(request, env);
-  const cfTinyWorkerUrl = getCfTinyWorkerUrl(request, env);
+  const edgeTinyGateUrl = getEdgeTinyGateUrl(request, env);
 
   const payload = {
     ...body,
@@ -382,21 +502,21 @@ async function forwardChatInteraction(request, env) {
     source: "gabriel-services-repo-worker",
     lang,
     tinyMl: {
-      firstTouch: "chatbot-browser-tiny-ml",
-      repoWorkerCheck: "gabo-io-repo-content-sync-worker-tinyml-v1",
+      firstTouch: "browser-safety-gate",
+      repoWorkerCheck: "repo-content-gateway-tinyml-v1",
       ...tinyMl,
     },
     handoff: {
       ...(body.handoff || {}),
       order: [
-        "chatbot-browser-tiny-ml",
-        "gabo-io-repo-content-sync-worker",
-        "gabo-io-cf-tiny-worker",
-        "gabo-io-approved-chatbot-service",
+        "browser-safety-gate",
+        "repo-content-gateway",
+        "edge-safety-gate",
+        "approved-chatbot-service",
       ],
-      current: "gabo-io-repo-content-sync-worker",
-      next: cfTinyWorkerUrl ? "gabo-io-cf-tiny-worker" : "gabo-io-approved-chatbot-service",
-      final: "gabo-io-approved-chatbot-service",
+      current: "repo-content-gateway",
+      next: edgeTinyGateUrl ? "edge-safety-gate" : "approved-chatbot-service",
+      final: "approved-chatbot-service",
     },
     retrieval: {
       ...(body.retrieval || {}),
@@ -405,17 +525,18 @@ async function forwardChatInteraction(request, env) {
       sourceOfTruth: "repo-services-learning-md-en-es",
       languages: Array.from(new Set(entries.map((entry) => entry.language).filter(Boolean))).sort(),
       serviceLearningBriefs,
+      scope: repoScope,
       entries: entries.map(summarizeEntry),
     },
   };
 
-  if (cfTinyWorkerUrl) {
-    const tinyResponse = await fetch(cfTinyWorkerUrl, {
+  if (edgeTinyGateUrl) {
+    const tinyResponse = await fetch(edgeTinyGateUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        "X-Gabo-Next-CF-Worker": chatbotWorkerUrl,
+        "X-Gabo-Next-Service": chatbotWorkerUrl,
         ...(env.CHATBOT_SYNC_TOKEN
           ? { Authorization: `Bearer ${env.CHATBOT_SYNC_TOKEN}` }
           : {}),
@@ -426,10 +547,10 @@ async function forwardChatInteraction(request, env) {
     if (!tinyResponse.ok) {
       return jsonResponse({
         ok: false,
-        worker: "gabo-io-repo-content-sync-worker",
-        error: "CF Tiny Worker rejected or failed the chatbot handoff.",
+        worker: "repo-content-gateway",
+        error: "Edge safety gate rejected or failed the chatbot handoff.",
         status: tinyResponse.status,
-        cfTinyWorkerResponse: (await tinyResponse.text()).slice(0, 2000),
+        edgeTinyGateResponse: (await tinyResponse.text()).slice(0, 2000),
       }, { status: 502 });
     }
   }
@@ -463,18 +584,18 @@ async function handleRequest(request, env) {
   if (request.method === "GET" && ["/", "/health"].includes(url.pathname)) {
     return jsonResponse({
       ok: true,
-      worker: "gabo-io-repo-content-sync-worker",
+      worker: "repo-content-gateway",
       contentDirectory: DEFAULT_CONTENT_DIRECTORY,
       configured: Boolean(env.REPO_RAW_BASE),
       contentIndexUrl: getHealthIndexUrl(env),
       chatbotWorkerUrl: getChatbotWorkerUrl(request, env),
-      cfTinyWorkerUrl: getCfTinyWorkerUrl(request, env),
-      firstTouch: "chatbot-browser-tiny-ml",
+      edgeTinyGateUrl: getEdgeTinyGateUrl(request, env),
+      firstTouch: "browser-safety-gate",
       handoffOrder: [
-        "chatbot-browser-tiny-ml",
-        "gabo-io-repo-content-sync-worker",
-        "gabo-io-cf-tiny-worker",
-        "gabo-io-approved-chatbot-service",
+        "browser-safety-gate",
+        "repo-content-gateway",
+        "edge-safety-gate",
+        "approved-chatbot-service",
       ],
       serviceLearningBriefs: SERVICE_LEARNING_BRIEFS.map(({ domain, serviceUrl, learningUrl, briefs }) => ({
         domain,
