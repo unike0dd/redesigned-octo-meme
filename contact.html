@@ -8,6 +8,7 @@
       content="Contacta a Gabriel Services para soporte, incorporación, proyectos y oportunidades de colaboración."
       data-i18n-content="contactMetaDescription"
     />
+    <link rel="canonical" href="https://www.gabo.services/contact.html" />
     <title data-i18n="contactTitle">Contacto</title>
     <link rel="stylesheet" href="./assets/styles.css" />
     <script src="./assets/theme.js"></script>
@@ -59,7 +60,7 @@
           data-contact-form="true"
           data-page-tinyml="contact"
           data-source-path="contact.html"
-          data-asset-source="github-pages-static-contact-form"
+          data-asset-source="gabo-services-static-contact-form"
         >
           <div class="form-trap" aria-hidden="true">
             <label for="website" data-i18n="honeypotWebsiteLabel">Sitio web</label>
@@ -75,7 +76,7 @@
           <div class="form-grid">
             <div class="floating-field">
               <label for="contact-full-name" data-i18n="fullName">Nombre completo</label>
-              <input id="contact-full-name" name="fullName" autocomplete="name" />
+              <input id="contact-full-name" name="fullName" autocomplete="name" required minlength="2" />
             </div>
             <div class="floating-field">
               <label for="contact-email-address" data-i18n="emailAddress"
@@ -86,6 +87,7 @@
                 name="emailAddress"
                 type="email"
                 autocomplete="email"
+                required
               />
             </div>
             <div class="floating-field">
@@ -162,7 +164,7 @@
           </div>
           <div class="floating-field floating-field-textarea">
             <label for="contact-message" data-i18n="messageLabel">Mensaje</label>
-            <textarea id="contact-message" name="message"></textarea>
+            <textarea id="contact-message" name="message" required minlength="8"></textarea>
           </div>
           <h3 data-i18n="inquiryAboutTitle">
             Cuéntanos tus expectativas sobre la experiencia, el conocimiento y

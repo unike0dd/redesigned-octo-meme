@@ -1,6 +1,6 @@
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://gabo.services https://www.gabo.services https://contacto.gabo.services https://careers.gabo.services; connect-src 'self' https://gabo.services https://www.gabo.services https://contacto.gabo.services https://careers.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self' https://static.cloudflareinsights.com https://challenges.cloudflare.com; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; frame-src 'self' https://challenges.cloudflare.com; worker-src 'self'; manifest-src 'self'; media-src 'self';
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://contacto.gabo.services https://careers.gabo.services https://chatbot.gabo.services; connect-src 'self' https://contacto.gabo.services https://careers.gabo.services https://chatbot.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data:; frame-src 'none'; worker-src 'self'; media-src 'self';
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 0
@@ -11,10 +11,6 @@
   X-Permitted-Cross-Domain-Policies: none
   X-DNS-Prefetch-Control: off
   X-Download-Options: noopen
-  Access-Control-Allow-Origin: https://www.gabo.services
-  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
-  Access-Control-Allow-Headers: Content-Type
-  Vary: Origin
 
 /*.html
   Cache-Control: no-store, max-age=0
@@ -24,29 +20,22 @@
   X-Content-Type-Options: nosniff
 
 /*.css
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300
 
 /*.js
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300
   X-Content-Type-Options: nosniff
 
 /assets/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300
 
 /preview/*
   X-Robots-Tag: noindex, nofollow, noarchive
 
 /contact/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300
   X-Content-Type-Options: nosniff
 
 /careers/*
-  Cache-Control: public, max-age=31536000, immutable
+  Cache-Control: public, max-age=300
   X-Content-Type-Options: nosniff
-
-/api/careers
-  Cache-Control: no-store, max-age=0
-  Access-Control-Allow-Origin: https://www.gabo.services
-  Access-Control-Allow-Methods: GET, HEAD, OPTIONS, POST
-  Access-Control-Allow-Headers: Content-Type, X-Gabo-Origin, X-Gabo-Source, X-Ops-Asset-Id, X-Gabo-Repo-Id, X-Gabo-Session-Id, X-Gabo-Nonce, X-Gabo-Integrity-SHA256, X-Gabo-Header-Policy, X-Gabo-Client
-  Vary: Origin
