@@ -44,7 +44,7 @@ Customer Relations Learning teaches teams how to manage customer communications,
 
 - Master communication best practices for customer-facing teams.
 - Understand escalation flows and fast issue-resolution practices.
-- Develop a consistent follow-up and satisfaction process.
+- Build a consistent follow-up and satisfaction rhythm.
 
 ### Key topics
 

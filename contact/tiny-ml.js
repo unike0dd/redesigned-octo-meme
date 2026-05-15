@@ -5,8 +5,8 @@
  * Cleans, scans, sanitizes, scores risk, checks honeypot state,
  * blocks bad sessions, and provides SHA-256 integrity helpers.
  *
- * This is not a Cloudflare Worker.
- * This file contains no private Worker binding details.
+ * This is a browser-side protection helper.
+ * This file contains no private platform binding details.
  */
 
 (function () {

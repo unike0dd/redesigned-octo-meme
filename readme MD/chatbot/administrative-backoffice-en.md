@@ -24,9 +24,9 @@ Administrative Back Office brings structure and reliability to internal operatio
 - Email and communication coordination for internal teams.
 - Vendor follow-up, invoice tracking, and reporting support.
 
-### How this service works
+### Service overview
 
-Gabriel Services partners closely with the client team to understand processes, capture priority actions, and keep each task aligned with the business schedule.
+Gabriel Services partners closely with the client team to understand administrative needs, confirm priorities, and keep each task aligned with the business schedule.
 
 - Clear ownership for recurring tasks and follow-up items.
 - Documented task flows and progress tracking.
@@ -61,7 +61,7 @@ These skills help back office teams reduce operational friction and support fast
 When a visitor asks for help, pricing, availability, training, or implementation support, ask for:
 
 - Contact name and preferred contact method.
-- Administrative processes or learning needs requiring support.
+- Administrative needs or learning topics requiring support.
 - Calendar, document, vendor, invoice, reporting, or internal communication priorities.
 - Current friction points, stakeholder handoffs, and desired operating rhythm.
 

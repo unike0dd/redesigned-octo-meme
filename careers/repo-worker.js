@@ -3,7 +3,7 @@
  *
  * Browser-side Careers relay.
  *
- * Not a Cloudflare Worker.
+ * Browser-only public relay.
  * No secrets.
  * No private bindings.
  * Sends sanitized Careers payload to the public Careers gateway.

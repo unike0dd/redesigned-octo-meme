@@ -3,8 +3,8 @@
  *
  * Browser-side repo contact relay.
  *
- * This is not a Cloudflare Worker.
- * This file does not contain private Worker binding details.
+ * This is a browser-only public relay.
+ * This file does not contain private platform binding details.
  * This file only prepares a sanitized public intake payload and sends it
  * to the configured public contact endpoint.
  */
