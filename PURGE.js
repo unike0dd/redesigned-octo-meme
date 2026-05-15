@@ -2,98 +2,48 @@
 /**
  * PURGE archive
  *
- * This script is intentionally disconnected from the website runtime. It keeps
- * redundant/non-functional code that was removed from active bundles so those
- * lines no longer execute, bind events, or depend on missing page triggers.
- *
- * Run with `node PURGE.js` to inspect the archived fragments. Do not
- * load this file from HTML pages or production workers.
+ * This is the single purge document for disconnected findings. It stores only
+ * neutral audit metadata so removed runtime fragments are not duplicated here
+ * and this archive does not retain source paths, URLs, or live references.
  */
 "use strict";
 
-const PURGED_FRAGMENTS = [
-  {
-    id: "assets-main-service-letter-scramble",
-    removedFrom: "assets/main.js",
+const PURGE_FINDINGS = Object.freeze([
+  Object.freeze({
+    id: "unused-letter-scramble-animation",
+    category: "untriggered-ui-animation",
     reason:
-      "Disconnected because no page declares data-scramble targets and the initializer was never called, leaving this animation without a trigger or runtime purpose.",
-    disconnected: true,
+      "Archived because no active page trigger exists for the animation target selector.",
+    action: "removed-from-runtime",
     archivedAt: "2026-05-09",
-    code: String.raw`  function activateServiceLetterScramble() {
-    const targets = document.querySelectorAll("[data-scramble]");
-    if (!targets.length) return;
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    sourceReferencesRemoved: true,
+  }),
+  Object.freeze({
+    id: "server-header-diagnostics-in-client-bundle",
+    category: "server-only-policy-metadata",
+    reason:
+      "Archived because browser code cannot apply server response headers or use server CORS metadata directly.",
+    action: "removed-from-runtime",
+    archivedAt: "2026-05-15",
+    sourceReferencesRemoved: true,
+  }),
+  Object.freeze({
+    id: "orphaned-generic-secure-form-runtime",
+    category: "superseded-form-security-runtime",
+    reason:
+      "Archived because page-specific protection relays own the active form triggers, leaving the generic runtime without an active path.",
+    action: "removed-from-runtime",
+    archivedAt: "2026-05-15",
+    sourceReferencesRemoved: true,
+  }),
+]);
 
-    function randomLetter() {
-      return alphabet[Math.floor(Math.random() * alphabet.length)];
-    }
-
-    function scrambleToText(node) {
-      const finalText = (
-        node.dataset.scramble ||
-        node.textContent ||
-        ""
-      ).trim();
-      if (!finalText) return;
-
-      let frame = 0;
-      const totalFrames = Math.max(20, finalText.replace(/\s/g, "").length * 3);
-      const interval = setInterval(() => {
-        const revealCount = Math.floor(
-          (frame / totalFrames) * finalText.length,
-        );
-        let output = "";
-        for (let i = 0; i < finalText.length; i += 1) {
-          const char = finalText[i];
-          if (char === " ") {
-            output += " ";
-          } else if (i < revealCount) {
-            output += char;
-          } else {
-            output += randomLetter();
-          }
-        }
-        node.textContent = output;
-        frame += 1;
-
-        if (frame > totalFrames) {
-          clearInterval(interval);
-          node.textContent = finalText;
-        }
-      }, 45);
-    }
-
-    targets.forEach((node, idx) => {
-      const delay = idx * 220;
-      const finalText = (
-        node.dataset.scramble ||
-        node.textContent ||
-        ""
-      ).trim();
-
-      node.textContent = finalText;
-      node.textContent = finalText.replace(/[A-Za-z]/g, () => randomLetter());
-      setTimeout(() => scrambleToText(node), delay);
-    });
-  }
-`,
-  },
-];
-
-function listPurgedFragments() {
-  return PURGED_FRAGMENTS.map(
-    ({ id, removedFrom, reason, disconnected, archivedAt }) => ({
-      id,
-      removedFrom,
-      reason,
-      disconnected,
-      archivedAt,
-    }),
-  );
+function listPurgeFindings() {
+  return PURGE_FINDINGS.map((finding) => ({ ...finding }));
 }
 
 if (require.main === module) {
-  process.stdout.write(`${JSON.stringify(listPurgedFragments(), null, 2)}\n`);
+  process.stdout.write(`${JSON.stringify(listPurgeFindings(), null, 2)}\n`);
 }
 
-module.exports = { PURGED_FRAGMENTS, listPurgedFragments };
+module.exports = { PURGE_FINDINGS, listPurgeFindings };
