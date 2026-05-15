@@ -1,0 +1,13 @@
+name = "gabo-io-repo-content-gateway"
+main = "repo-content-sync-worker.js"
+compatibility_date = "2026-05-15"
+workers_dev = true
+
+[vars]
+CONTENT_INDEX_PATH = "chatbot/gabo-io-content-index.json"
+REPO_RAW_BASE = "https://raw.githubusercontent.com/OWNER/REPOSITORY/BRANCH"
+EDGE_CHATBOT_SERVICE_URL = "https://example.com/api/approved-chatbot-service"
+EDGE_TINY_GATE_URL = ""
+
+[observability]
+enabled = true

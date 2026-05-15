@@ -10,6 +10,9 @@
   const SUPPORTED_CHAT_LANGUAGES = ["en", "es"];
   const MAX_SANITIZED_MESSAGE_LENGTH = 220;
   const CHATBOT_ASSET_ID = "gabo-io-repo-en-es-widget";
+  const MIN_TYPING_DURATION_MS = 650;
+  const MIN_TYPING_INTERVAL_MS = 45;
+  const MIN_WORD_LIKE_RATIO = 0.62;
 
   function getSiteBasePath() {
     const parts = window.location.pathname.split("/").filter(Boolean);
@@ -50,6 +53,7 @@
         welcome: "gabo io is online. How can we help?",
         inputPlaceholder: "Type your message...",
         send: "Send",
+        blocked: "This chat session was closed because the safety checks detected bot activity or unsafe input.",
       },
       es: {
         groundedPrefix: "Según el contenido del sitio web de Gabriel Services:",
@@ -58,6 +62,7 @@
         welcome: "gabo io está en línea. ¿Cómo podemos ayudar?",
         inputPlaceholder: "Escribe tu mensaje...",
         send: "Enviar",
+        blocked: "Esta sesión de chat se cerró porque los controles de seguridad detectaron actividad automatizada o entrada no segura.",
       },
     };
     return (copy[language] || copy.en)[key] || copy.en[key];
@@ -143,10 +148,48 @@
       .replace(/\b(?:function|class|const|let|var|import|export|module\.exports|require|async|await|return)\b/gi, " ")
       .replace(/\b(?:union\s+select|select\s+.+\s+from|insert\s+into|drop\s+table|delete\s+from|or\s+1\s*=\s*1)\b/gi, " ")
       .replace(/(?:--|\/\*|\*\/)/g, " ")
+      .replace(/[^\p{L}\p{N}\s.,?!¿¡'’"()\-:/]/gu, " ")
       .slice(0, MAX_SANITIZED_MESSAGE_LENGTH));
   }
 
-  function inspectTinyMlSubmission(message, honeypotValue) {
+  function classifyTinyMlInteraction(value) {
+    const sanitized = squeezeWhitespace(value);
+    const letters = (sanitized.match(/[\p{L}]/gu) || []).length;
+    const wordTokens = sanitized.match(/[\p{L}\p{N}][\p{L}\p{N}'’\-]*/gu) || [];
+    const allowedCharacters = (sanitized.match(/[\p{L}\p{N}\s.,?!¿¡'’"()\-:/]/gu) || []).length;
+    const wordLikeRatio = sanitized.length ? allowedCharacters / sanitized.length : 0;
+    const hasQuestion = /[?¿]/.test(sanitized) || /\b(?:what|when|where|why|how|can|could|would|do|does|is|are|cu[aá]l|qu[eé]|c[oó]mo|d[oó]nde|cu[aá]ndo|puede|puedo|tienen?)\b/i.test(sanitized);
+    const hasRequest = /\b(?:help|need|want|request|quote|consult|contact|price|pricing|available|service|support|schedule|demo|ayuda|necesito|quiero|solicito|cotizaci[oó]n|consulta|contacto|precio|servicio|soporte|disponible)\b/i.test(sanitized);
+
+    return {
+      accepted: letters > 0 && wordTokens.length > 0 && wordLikeRatio >= MIN_WORD_LIKE_RATIO,
+      category: hasQuestion ? "question" : hasRequest ? "request" : wordTokens.length <= 5 ? "query" : "words",
+      wordCount: wordTokens.length,
+      wordLikeRatio: Number(wordLikeRatio.toFixed(2)),
+    };
+  }
+
+  function inspectTypingPace(typingTelemetry, sanitized) {
+    const telemetry = typingTelemetry || {};
+    const characterCount = Math.max(0, Number(telemetry.characterCount) || 0);
+    const durationMs = Math.max(0, Number(telemetry.durationMs) || 0);
+    const averageIntervalMs = Math.max(0, Number(telemetry.averageIntervalMs) || 0);
+    const sanitizedLength = String(sanitized || "").length;
+    const enoughTypingSignal = characterCount >= Math.min(3, sanitizedLength) && durationMs > 0;
+    const tooFast = sanitizedLength >= 4 && (!enoughTypingSignal
+      || durationMs < Math.min(MIN_TYPING_DURATION_MS, sanitizedLength * MIN_TYPING_INTERVAL_MS)
+      || averageIntervalMs < MIN_TYPING_INTERVAL_MS);
+
+    return {
+      accepted: !tooFast,
+      characterCount,
+      durationMs,
+      averageIntervalMs,
+      minimumAverageIntervalMs: MIN_TYPING_INTERVAL_MS,
+    };
+  }
+
+  function inspectTinyMlSubmission(message, honeypotValue, typingTelemetry) {
     if (squeezeWhitespace(honeypotValue)) {
       return { blocked: true, reason: "honeypot", sanitized: "", risk: { riskScore: 99, matches: ["honeypot"] } };
     }
@@ -155,9 +198,13 @@
     const originalRisk = tinyMlScanRisk(original);
     const sanitized = tinyMlSanitizeMessage(original);
     const residualRisk = tinyMlScanRisk(sanitized);
+    const classification = classifyTinyMlInteraction(sanitized);
+    const typingPace = inspectTypingPace(typingTelemetry, sanitized);
     const removedCharacters = Math.max(0, original.length - sanitized.length);
     const removedRatio = original.length ? removedCharacters / original.length : 0;
     const blocked = !sanitized
+      || !classification.accepted
+      || !typingPace.accepted
       || residualRisk.riskScore >= 7
       || residualRisk.matches.length > 0
       || originalRisk.riskScore >= 18
@@ -165,8 +212,10 @@
 
     return {
       blocked,
-      reason: blocked ? "tinyml-risk" : "clean",
+      reason: blocked ? (!typingPace.accepted ? "typing-pace" : !classification.accepted ? "non-conversational" : "tinyml-risk") : "clean",
       sanitized,
+      classification,
+      typingPace,
       risk: {
         original: originalRisk,
         residual: residualRisk,
@@ -289,7 +338,7 @@
       <div id="gabo-chatbot-panel" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
         <div id="gabo-chatbot-header">
           <span>gabo io</span>
-          <button id="gabo-chatbot-close" type="button" aria-label="Close chatbot">×</button>
+          <button id="gabo-chatbot-close" type="button" aria-label="Close chatbot">Close ×</button>
         </div>
         <div id="gabo-chat-log" aria-live="polite"></div>
         <div id="gabo-chatbot-form-container">
@@ -322,6 +371,13 @@
 
     let hasWelcomed = false;
     let sessionBlocked = false;
+    let typingStartedAt = 0;
+    let lastInputAt = 0;
+    let typedCharacterCount = 0;
+    let typingIntervalTotal = 0;
+    let typingIntervalSamples = 0;
+    let isChatOpen = false;
+    let chatRequestSequence = 0;
 
     chatPanel.hidden = true;
 
@@ -335,6 +391,7 @@
     };
 
     const setChatOpen = (open, returnFocus = true) => {
+      isChatOpen = open;
       container.classList.toggle("open", open);
       chatPanel.classList.toggle("open", open);
       chatPanel.hidden = !open;
@@ -354,20 +411,48 @@
       }
     };
 
-    const blockChatSession = () => {
-      sessionBlocked = true;
+    const resetTypingTelemetry = () => {
+      typingStartedAt = 0;
+      lastInputAt = 0;
+      typedCharacterCount = 0;
+      typingIntervalTotal = 0;
+      typingIntervalSamples = 0;
+    };
+
+    const getTypingTelemetry = () => ({
+      characterCount: typedCharacterCount,
+      durationMs: typingStartedAt ? Math.max(0, Date.now() - typingStartedAt) : 0,
+      averageIntervalMs: typingIntervalSamples ? typingIntervalTotal / typingIntervalSamples : 0,
+    });
+
+    const exitChatbot = (returnFocus = true) => {
+      chatRequestSequence += 1;
       chatInput.value = "";
       chatHoneypot.value = "";
+      chatForm.reset();
+      if (!sessionBlocked) {
+        chatInput.disabled = false;
+        chatSend.disabled = false;
+      }
+      resetTypingTelemetry();
+      setChatOpen(false, returnFocus);
+    };
+
+    const blockChatSession = () => {
+      sessionBlocked = true;
+      addChatMessage(getLocalizedText("blocked"), "gabo-bot");
+      chatInput.value = "";
+      chatHoneypot.value = "";
+      resetTypingTelemetry();
       chatInput.disabled = true;
       chatSend.disabled = true;
-      chatForm.reset();
-      setChatOpen(false, false);
+      exitChatbot(false);
     };
 
     const sendChatMessage = async (message) => {
       if (sessionBlocked) return;
 
-      const inspected = inspectTinyMlSubmission(message, chatHoneypot.value);
+      const inspected = inspectTinyMlSubmission(message, chatHoneypot.value, getTypingTelemetry());
       if (inspected.blocked) {
         blockChatSession();
         return;
@@ -375,10 +460,11 @@
 
       const trimmed = inspected.sanitized;
       if (!trimmed) return;
+      const requestId = chatRequestSequence + 1;
+      chatRequestSequence = requestId;
 
       if (["exit", "quit"].includes(trimmed.toLowerCase())) {
-        chatInput.value = "";
-        setChatOpen(false);
+        exitChatbot();
         return;
       }
 
@@ -390,6 +476,7 @@
       addChatMessage(trimmed, "gabo-user");
       chatInput.value = "";
       chatHoneypot.value = "";
+      resetTypingTelemetry();
       const botMessage = addChatMessage("…", "gabo-bot");
       chatSend.disabled = true;
       chatInput.disabled = true;
@@ -400,6 +487,16 @@
         matches: [],
       }));
 
+      if (!isChatOpen || requestId !== chatRequestSequence) return;
+
+      if (!grounded.confidence || !grounded.matches.length) {
+        botMessage.textContent = grounded.reply;
+        chatSend.disabled = false;
+        chatInput.disabled = false;
+        chatInput.focus();
+        return;
+      }
+
       try {
         const response = await fetch(REPO_WORKER_INTERACTION_ENDPOINT, {
           method: "POST",
@@ -409,15 +506,17 @@
             lang: getChatLanguage(),
             handoff: {
               order: [
-                "chatbot-browser-tiny-ml",
-                "gabo-io-repo-content-sync-worker",
-                "gabo-io-cf-tiny-worker",
-                "gabo-io-cloudflare-chatbot-worker",
+                "browser-safety-gate",
+                "repo-content-gateway",
+                "edge-safety-gate",
+                "approved-chatbot-service",
               ],
-              current: "chatbot-browser-tiny-ml",
-              next: "gabo-io-repo-content-sync-worker",
-              final: "gabo-io-cloudflare-chatbot-worker",
+              current: "browser-safety-gate",
+              next: "repo-content-gateway",
+              final: "approved-chatbot-service",
             },
+            typingPace: inspected.typingPace,
+            interactionCategory: inspected.classification.category,
             retrieval: {
               contentDirectory: "/readme MD/chatbot/",
               contentIndexUrl: getChatbotContentUrl(),
@@ -434,28 +533,53 @@
         if (!response.ok) throw new Error("Request failed");
 
         const data = await response.json();
+        if (!isChatOpen || requestId !== chatRequestSequence) return;
         botMessage.textContent = data && data.reply ? data.reply : grounded.reply;
       } catch (error) {
+        if (!isChatOpen || requestId !== chatRequestSequence) return;
         botMessage.textContent = grounded.reply;
       } finally {
-        chatSend.disabled = false;
-        chatInput.disabled = false;
-        chatInput.focus();
+        if (isChatOpen && requestId === chatRequestSequence) {
+          chatSend.disabled = false;
+          chatInput.disabled = false;
+          chatInput.focus();
+        }
       }
     };
 
-    fab.addEventListener("click", () => setChatOpen(!container.classList.contains("open")));
-    closeButton.addEventListener("click", () => setChatOpen(false));
+    fab.addEventListener("click", () => {
+      if (container.classList.contains("open")) {
+        exitChatbot();
+        return;
+      }
+      setChatOpen(true);
+    });
+    closeButton.addEventListener("click", () => exitChatbot());
     container.addEventListener("click", (event) => {
       if (event.target === container) {
-        setChatOpen(false);
+        exitChatbot();
       }
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && container.classList.contains("open")) {
-        setChatOpen(false);
+        exitChatbot();
       }
     });
+    chatInput.addEventListener("input", () => {
+      const now = Date.now();
+      if (chatHoneypot.value) {
+        blockChatSession();
+        return;
+      }
+      if (!typingStartedAt) typingStartedAt = now;
+      if (lastInputAt) {
+        typingIntervalTotal += now - lastInputAt;
+        typingIntervalSamples += 1;
+      }
+      lastInputAt = now;
+      typedCharacterCount = Math.max(typedCharacterCount, chatInput.value.length);
+    });
+    chatHoneypot.addEventListener("input", blockChatSession);
     chatForm.addEventListener("submit", (event) => {
       event.preventDefault();
       sendChatMessage(chatInput.value);

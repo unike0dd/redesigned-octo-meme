@@ -1049,15 +1049,17 @@ textarea {
 
 #gabo-chatbot-container {
   position: fixed;
-  bottom: 90px;
-  right: 15px;
+  inset: 0;
   z-index: 9998;
   display: none;
-  width: 300px;
-  height: min(540px, calc(100svh - 110px));
-  max-height: min(540px, calc(100vh - 110px));
+  width: auto;
+  height: auto;
+  max-height: none;
   align-items: flex-end;
   justify-content: flex-end;
+  padding: 0 15px 90px 0;
+  background: rgba(13, 31, 52, 0.38);
+  backdrop-filter: blur(2px);
 }
 
 #gabo-chatbot-container.open {
@@ -1065,8 +1067,8 @@ textarea {
 }
 
 #gabo-chatbot-panel {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: min(540px, calc(100svh - 110px));
   max-height: 100%;
   background: #251541;
   border: 2px solid #ff3bdb;
@@ -1090,11 +1092,14 @@ textarea {
 }
 
 #gabo-chatbot-close {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
   line-height: 1;
+  padding: 0.4rem 0.6rem;
   cursor: pointer;
 }
 
@@ -1190,8 +1195,10 @@ textarea {
   }
 
   #gabo-chatbot-container {
-    bottom: calc(20px + 68px + 7px);
-    right: 5vw;
+    padding: 0 5vw calc(20px + 68px + 7px) 5vw;
+  }
+
+  #gabo-chatbot-panel {
     width: 90vw;
     height: 85svh;
     max-height: 85vh;
