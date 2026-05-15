@@ -422,12 +422,25 @@
       averageIntervalMs: typingIntervalSamples ? typingIntervalTotal / typingIntervalSamples : 0,
     });
 
+    const exitChatSession = (returnFocus = true) => {
+      chatInput.value = "";
+      chatHoneypot.value = "";
+      chatForm.reset();
+      chatLog.textContent = "";
+      hasWelcomed = false;
+      resetTypingTelemetry();
+      if (!sessionBlocked) {
+        chatInput.disabled = false;
+        chatSend.disabled = false;
+      }
+      setChatOpen(false, returnFocus);
+    };
+
     const blockChatSession = () => {
       sessionBlocked = true;
       addChatMessage(getLocalizedText("blocked"), "gabo-bot");
       chatInput.value = "";
       chatHoneypot.value = "";
-      resetTypingTelemetry();
       chatInput.disabled = true;
       chatSend.disabled = true;
       chatForm.reset();
@@ -448,9 +461,7 @@
       if (!trimmed) return;
 
       if (["exit", "quit"].includes(trimmed.toLowerCase())) {
-        chatInput.value = "";
-        resetTypingTelemetry();
-        setChatOpen(false);
+        exitChatSession();
         return;
       }
 
@@ -528,15 +539,16 @@
     };
 
     fab.addEventListener("click", () => setChatOpen(!container.classList.contains("open")));
-    closeButton.addEventListener("click", () => setChatOpen(false));
+    closeButton.addEventListener("click", () => exitChatSession());
     container.addEventListener("click", (event) => {
       if (event.target === container) {
-        setChatOpen(false);
+        exitChatSession();
       }
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && container.classList.contains("open")) {
-        setChatOpen(false);
+        event.preventDefault();
+        exitChatSession();
       }
     });
     chatInput.addEventListener("input", () => {
