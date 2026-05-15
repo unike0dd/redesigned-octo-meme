@@ -376,9 +376,6 @@
     let typedCharacterCount = 0;
     let typingIntervalTotal = 0;
     let typingIntervalSamples = 0;
-    let isChatOpen = false;
-    let chatRequestSequence = 0;
-
     chatPanel.hidden = true;
 
     const addChatMessage = (text, type) => {
@@ -425,16 +422,17 @@
       averageIntervalMs: typingIntervalSamples ? typingIntervalTotal / typingIntervalSamples : 0,
     });
 
-    const exitChatbot = (returnFocus = true) => {
-      chatRequestSequence += 1;
+    const exitChatSession = (returnFocus = true) => {
       chatInput.value = "";
       chatHoneypot.value = "";
       chatForm.reset();
+      chatLog.textContent = "";
+      hasWelcomed = false;
+      resetTypingTelemetry();
       if (!sessionBlocked) {
         chatInput.disabled = false;
         chatSend.disabled = false;
       }
-      resetTypingTelemetry();
       setChatOpen(false, returnFocus);
     };
 
@@ -446,7 +444,9 @@
       resetTypingTelemetry();
       chatInput.disabled = true;
       chatSend.disabled = true;
-      exitChatbot(false);
+      chatForm.reset();
+      resetTypingTelemetry();
+      setChatOpen(false, false);
     };
 
     const sendChatMessage = async (message) => {
@@ -464,7 +464,7 @@
       chatRequestSequence = requestId;
 
       if (["exit", "quit"].includes(trimmed.toLowerCase())) {
-        exitChatbot();
+        exitChatSession();
         return;
       }
 
@@ -486,8 +486,6 @@
         confidence: 0,
         matches: [],
       }));
-
-      if (!isChatOpen || requestId !== chatRequestSequence) return;
 
       if (!grounded.confidence || !grounded.matches.length) {
         botMessage.textContent = grounded.reply;
@@ -547,22 +545,17 @@
       }
     };
 
-    fab.addEventListener("click", () => {
-      if (container.classList.contains("open")) {
-        exitChatbot();
-        return;
-      }
-      setChatOpen(true);
-    });
-    closeButton.addEventListener("click", () => exitChatbot());
+    fab.addEventListener("click", () => setChatOpen(!container.classList.contains("open")));
+    closeButton.addEventListener("click", () => exitChatSession());
     container.addEventListener("click", (event) => {
       if (event.target === container) {
-        exitChatbot();
+        exitChatSession();
       }
     });
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && container.classList.contains("open")) {
-        exitChatbot();
+        event.preventDefault();
+        exitChatSession();
       }
     });
     chatInput.addEventListener("input", () => {
