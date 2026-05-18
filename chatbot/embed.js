@@ -191,9 +191,10 @@
         #gabo-io-backdrop.open{display:block}
         #gabo-io-panel{position:fixed;right:16px;bottom:84px;width:300px;height:540px;background:#251541;border:2px solid #ff3bdb;border-radius:18px;box-shadow:0 8px 32px #0006;display:none;flex-direction:column;overflow:hidden;z-index:9998}
         #gabo-io-panel.open{display:flex}
-        #gabo-io-toggle{display:inline-flex;align-items:center;justify-content:center;gap:.35rem;min-width:88px;height:64px;padding:0 18px;background:#12bdf0;color:#03122b;border:1px solid rgba(255,255,255,.55);border-radius:999px;cursor:pointer;box-shadow:0 10px 24px rgba(16,35,63,.35);font-weight:700}
+        #gabo-io-toggle{display:inline-flex;align-items:center;justify-content:center;width:96px;height:96px;padding:8px;background:#fff;border:4px solid #ff5a00;border-radius:999px;cursor:pointer;box-shadow:0 14px 26px rgba(16,35,63,.28)}
+        #gabo-io-toggle .inner{display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;background:#12bdf0;color:#03122b;border-radius:999px;font-weight:800;letter-spacing:.01em;text-transform:lowercase;font-size:1rem;line-height:1}
         #gabo-io-toggle .label{position:static;opacity:1;pointer-events:auto;width:auto;height:auto;overflow:visible;white-space:nowrap}
-        #gabo-io-toggle .fa-chatbot{font-size:1rem}
+        #gabo-io-toggle .fa-chatbot{display:none}
         .h{padding:.85rem 1rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;text-align:center;font-weight:700;display:flex;justify-content:space-between;align-items:center}
         #gabo-io-close{background:transparent;border:none;color:#fff;font-size:1rem;line-height:1;cursor:pointer;padding:.2rem .4rem;border-radius:6px}
         #gabo-io-close:hover{background:rgba(255,255,255,.18)}
@@ -203,7 +204,7 @@
         .f{padding:.6rem;background:#220f3a;display:flex;gap:.5rem}.f input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff22;border-radius:8px;padding:.55rem}.f button{background:#ff3bdb;color:#fff;border:none;border-radius:8px;padding:.55rem .8rem}
         @media (max-width:480px){#gabo-io-widget{right:12px;bottom:12px}#gabo-io-panel{right:12px;bottom:84px;width:min(92vw,300px);height:72vh}}
       </style>
-      <button id="gabo-io-toggle" aria-label="Open gabo io chatbot"><i class="fas fa-chatbot" aria-hidden="true"></i><span class="label">gabo io</span></button>
+      <button id="gabo-io-toggle" aria-label="Open gabo io chatbot"><span class="inner"><span class="label">gabo io</span></span></button>
       <div id="gabo-io-backdrop" aria-hidden="true"></div>
       <div id="gabo-io-panel" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
         <div class="h"><span>gabo io</span><button id="gabo-io-close" type="button" aria-label="Close chatbot">✕</button></div>
