@@ -177,18 +177,25 @@
     root.innerHTML = `
       <style>
         #gabo-io-widget{position:fixed;right:16px;bottom:16px;z-index:9999;font-family:Segoe UI,Arial,sans-serif}
-        #gabo-io-panel{width:320px;height:520px;background:#251541;border:2px solid #ff3bdb;border-radius:16px;box-shadow:0 8px 32px #0006;display:none;flex-direction:column;overflow:hidden}
+        #gabo-io-backdrop{position:fixed;inset:0;background:rgba(10,6,20,.62);backdrop-filter:blur(2px);display:none;z-index:9997}
+        #gabo-io-backdrop.open{display:block}
+        #gabo-io-panel{position:fixed;right:16px;bottom:84px;width:300px;height:540px;background:#251541;border:2px solid #ff3bdb;border-radius:18px;box-shadow:0 8px 32px #0006;display:none;flex-direction:column;overflow:hidden;z-index:9998}
         #gabo-io-panel.open{display:flex}
-        #gabo-io-toggle{background:#ff3bdb;color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer}
-        .h{padding:.8rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;text-align:center;font-weight:700}
+        #gabo-io-toggle{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;width:58px;height:58px;background:#ff3bdb;color:#fff;border:none;border-radius:999px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.32)}
+        #gabo-io-toggle .label{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;overflow:hidden}
+        #gabo-io-toggle .fa-chatbot{font-size:1.2rem}
+        .h{padding:.85rem 1rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;text-align:center;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+        #gabo-io-close{background:transparent;border:none;color:#fff;font-size:1rem;line-height:1;cursor:pointer;padding:.2rem .4rem;border-radius:6px}
+        #gabo-io-close:hover{background:rgba(255,255,255,.18)}
         .l{flex:1;overflow:auto;padding:.8rem;background:#1b0e2d;color:#fff}
         .m{margin:.4rem 0;padding:.5rem .65rem;border-radius:12px;max-width:90%}
         .u{margin-left:auto;background:#00c4ff;color:#000}.b{background:#321b53}
         .f{padding:.6rem;background:#220f3a;display:flex;gap:.5rem}.f input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff22;border-radius:8px;padding:.55rem}.f button{background:#ff3bdb;color:#fff;border:none;border-radius:8px;padding:.55rem .8rem}
       </style>
-      <button id="gabo-io-toggle" aria-label="Open gabo io">gabo io</button>
-      <div id="gabo-io-panel" role="dialog" aria-modal="false" aria-label="gabo io chatbot">
-        <div class="h">gabo io</div>
+      <button id="gabo-io-toggle" aria-label="Open gabo io chatbot"><i class="fas fa-chatbot" aria-hidden="true"></i><span class="label">Open gabo io chatbot</span></button>
+      <div id="gabo-io-backdrop" aria-hidden="true"></div>
+      <div id="gabo-io-panel" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
+        <div class="h"><span>gabo io</span><button id="gabo-io-close" type="button" aria-label="Close chatbot">✕</button></div>
         <div id="gabo-io-log" class="l" aria-live="polite"></div>
         <form id="gabo-io-form" class="f" autocomplete="off">
           <input id="gabo-io-honeypot" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;opacity:0" />
@@ -204,6 +211,8 @@
     await syncPageToWiki();
     const toggle = document.querySelector("#gabo-io-toggle");
     const panel = document.querySelector("#gabo-io-panel");
+    const backdrop = document.querySelector("#gabo-io-backdrop");
+    const closeBtn = document.querySelector("#gabo-io-close");
     const form = document.querySelector("#gabo-io-form");
     const input = document.querySelector("#gabo-io-input");
     const honey = document.querySelector("#gabo-io-honeypot");
@@ -221,7 +230,27 @@
     const history = loadHistory();
     history.forEach((x) => add(x.text, x.type));
 
-    toggle.addEventListener("click", () => panel.classList.toggle("open"));
+    function openPanel() {
+      panel.classList.add("open");
+      backdrop.classList.add("open");
+      toggle.setAttribute("aria-expanded", "true");
+      input.focus();
+    }
+
+    function closePanel() {
+      panel.classList.remove("open");
+      backdrop.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.focus();
+    }
+
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.addEventListener("click", () => (panel.classList.contains("open") ? closePanel() : openPanel()));
+    closeBtn.addEventListener("click", closePanel);
+    backdrop.addEventListener("click", closePanel);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && panel.classList.contains("open")) closePanel();
+    });
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
