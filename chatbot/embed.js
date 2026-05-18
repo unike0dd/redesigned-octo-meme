@@ -9,7 +9,9 @@
     blockReasonKey: "gabo_io_tinyml_reason_v1",
     maxHistory: 60,
     maxLength: 256,
-    maxRiskScore: 60
+    maxRiskScore: 60,
+    wikiPath: "/chatbot/wiki.json",
+    wikiCacheKey: "gabo_io_wiki_cache_v1"
   });
 
   const RISK_PATTERNS = Object.freeze([
@@ -84,6 +86,58 @@
     return sha256(canonical);
   }
 
+
+
+  function saveWiki(wiki) {
+    try { localStorage.setItem(CONFIG.wikiCacheKey, JSON.stringify(wiki)); } catch {}
+  }
+
+  function loadWikiFromCache() {
+    try { return JSON.parse(localStorage.getItem(CONFIG.wikiCacheKey) || "null"); } catch { return null; }
+  }
+
+  async function loadWiki() {
+    const cached = loadWikiFromCache();
+    try {
+      const res = await fetch(CONFIG.wikiPath, { cache: "no-store" });
+      if (!res.ok) return cached;
+      const wiki = await res.json();
+      saveWiki(wiki);
+      return wiki;
+    } catch {
+      return cached;
+    }
+  }
+
+  function scoreText(query, candidate) {
+    const q = sanitizeMessage(query).toLowerCase();
+    const c = sanitizeMessage(candidate).toLowerCase();
+    if (!q || !c) return 0;
+    return q.split(" ").filter(Boolean).reduce((acc, token) => acc + (c.includes(token) ? 1 : 0), 0);
+  }
+
+  function lookupWikiAnswer(wiki, query) {
+    if (!wiki) return "";
+    const lang = document.documentElement.lang === "es" ? "es" : "en";
+    const dict = (wiki.languages && wiki.languages[lang]) || {};
+    const pageDigests = Array.isArray(wiki.pages) ? wiki.pages.map((p) => p.digest || "") : [];
+
+    let best = { text: "", score: 0 };
+    for (const value of Object.values(dict)) {
+      const s = scoreText(query, value);
+      if (s > best.score) best = { text: String(value), score: s };
+    }
+    for (const text of pageDigests) {
+      const s = scoreText(query, text);
+      if (s > best.score) best = { text: String(text).slice(0, 260), score: s };
+    }
+
+    if (best.score <= 0) return "";
+    const cta = lang === "es"
+      ? " ¿Deseas que te contactemos para una consulta y opciones de soporte?"
+      : " Would you like us to contact you for a consultation and support options?";
+    return sanitizeMessage(best.text).slice(0, 220) + cta;
+  }
   function buildWidget() {
     if (document.querySelector("#gabo-io-widget")) return;
     const root = document.createElement("div");
@@ -113,7 +167,7 @@
     document.body.appendChild(root);
   }
 
-  function boot() {
+  async function boot() {
     buildWidget();
     const toggle = document.querySelector("#gabo-io-toggle");
     const panel = document.querySelector("#gabo-io-panel");
@@ -129,6 +183,8 @@
       log.appendChild(d);
       log.scrollTop = log.scrollHeight;
     }
+
+    const wiki = await loadWiki();
 
     const history = loadHistory();
     history.forEach((x) => add(x.text, x.type));
@@ -153,7 +209,9 @@
       const payload = { chatbot: CONFIG.chatbotName, message: userText, lang: "en" };
       const integrity = await computeIntegrity(payload);
 
-      let botText = "";
+      let botText = lookupWikiAnswer(wiki, userText);
+
+      if (!botText) {
       try {
         const res = await fetch(CONFIG.endpoint, {
           method: "POST",
@@ -164,6 +222,7 @@
         botText = sanitizeMessage(data && data.reply ? data.reply : "No reply.");
       } catch {
         botText = sanitizeMessage(`${CONFIG.chatbotName}: I received your message securely.`);
+      }
       }
 
       if (scanRisk(botText).blocked) {
