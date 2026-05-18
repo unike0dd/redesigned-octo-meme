@@ -1,8 +1,0 @@
-name = "gabo-io-chat-worker"
-main = "worker.js"
-compatibility_date = "2026-05-18"
-
-[vars]
-CHATBOT_NAME = "gabo io"
-TINY_ML_MODE = "enabled"
-API_ROUTE = "/api/gabo-io-chat"
