@@ -7,11 +7,11 @@
     historyKey: "gabo_io_chat_history_v1",
     blockedKey: "gabo_io_tinyml_blocked_v1",
     blockReasonKey: "gabo_io_tinyml_reason_v1",
+    wikiKey: "gabo_io_chat_wiki_v1",
     maxHistory: 60,
     maxLength: 256,
     maxRiskScore: 60,
-    wikiPath: "/chatbot/wiki.json",
-    wikiCacheKey: "gabo_io_wiki_cache_v1"
+    maxWikiCharsPerLang: 8000
   });
 
   const RISK_PATTERNS = Object.freeze([
@@ -66,15 +66,78 @@
   }
 
   function loadHistory() {
-    try {
-      return JSON.parse(localStorage.getItem(CONFIG.historyKey) || "[]");
-    } catch { return []; }
+    try { return JSON.parse(localStorage.getItem(CONFIG.historyKey) || "[]"); }
+    catch { return []; }
   }
 
-  async function sha256(input) {
+  function loadWiki() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(CONFIG.wikiKey) || '{"pages":{}}');
+      if (!raw.pages || typeof raw.pages !== "object") raw.pages = {};
+      return raw;
+    } catch {
+      return { pages: {} };
+    }
+  }
+
+  function saveWiki(wiki) {
+    localStorage.setItem(CONFIG.wikiKey, JSON.stringify(wiki));
+  }
+
+  function collectReadableText() {
+    const selectors = "h1,h2,h3,h4,p,li,a,button,label,summary,figcaption,td,th";
+    const nodes = Array.from(document.querySelectorAll(selectors));
+    const parts = [];
+    for (const node of nodes) {
+      if (!node || !node.textContent) continue;
+      if (node.closest("script,style,noscript")) continue;
+      const text = cleanText(node.textContent, 400);
+      if (!text || text.length < 2) continue;
+      parts.push(text);
+    }
+    return Array.from(new Set(parts)).join(" ").slice(0, CONFIG.maxWikiCharsPerLang);
+  }
+
+  async function hashText(input) {
     const data = new TextEncoder().encode(String(input || ""));
     const hash = await crypto.subtle.digest("SHA-256", data);
     return Array.from(new Uint8Array(hash)).map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function buildWikiEntryForLanguage(lang) {
+    const i18n = window.I18N;
+    if (!i18n || typeof i18n.setLanguage !== "function") return { lang, text: collectReadableText() };
+
+    const previous = i18n.currentLanguage;
+    if (previous !== lang) i18n.setLanguage(lang);
+    const text = collectReadableText();
+    if (previous !== lang) i18n.setLanguage(previous);
+
+    return { lang, text };
+  }
+
+  async function syncPageToWiki() {
+    const en = await buildWikiEntryForLanguage("en");
+    const es = await buildWikiEntryForLanguage("es");
+    const signature = await hashText(`${location.pathname}|${en.text}|${es.text}`);
+
+    const wiki = loadWiki();
+    const existing = wiki.pages[location.pathname];
+    if (existing && existing.signature === signature) return;
+
+    wiki.pages[location.pathname] = {
+      path: location.pathname,
+      title: cleanText(document.title, 200),
+      updatedAt: new Date().toISOString(),
+      signature,
+      content: { en: en.text, es: es.text }
+    };
+
+    saveWiki(wiki);
+  }
+
+  async function sha256(input) {
+    return hashText(input);
   }
 
   async function computeIntegrity(payload) {
@@ -86,58 +149,27 @@
     return sha256(canonical);
   }
 
+  function wikiSnippet(query) {
+    const q = cleanText(query, 120).toLowerCase();
+    if (!q) return "";
+    const wiki = loadWiki();
+    const lang = (window.I18N && window.I18N.currentLanguage) || "en";
+    const hits = [];
 
-
-  function saveWiki(wiki) {
-    try { localStorage.setItem(CONFIG.wikiCacheKey, JSON.stringify(wiki)); } catch {}
-  }
-
-  function loadWikiFromCache() {
-    try { return JSON.parse(localStorage.getItem(CONFIG.wikiCacheKey) || "null"); } catch { return null; }
-  }
-
-  async function loadWiki() {
-    const cached = loadWikiFromCache();
-    try {
-      const res = await fetch(CONFIG.wikiPath, { cache: "no-store" });
-      if (!res.ok) return cached;
-      const wiki = await res.json();
-      saveWiki(wiki);
-      return wiki;
-    } catch {
-      return cached;
-    }
-  }
-
-  function scoreText(query, candidate) {
-    const q = sanitizeMessage(query).toLowerCase();
-    const c = sanitizeMessage(candidate).toLowerCase();
-    if (!q || !c) return 0;
-    return q.split(" ").filter(Boolean).reduce((acc, token) => acc + (c.includes(token) ? 1 : 0), 0);
-  }
-
-  function lookupWikiAnswer(wiki, query) {
-    if (!wiki) return "";
-    const lang = document.documentElement.lang === "es" ? "es" : "en";
-    const dict = (wiki.languages && wiki.languages[lang]) || {};
-    const pageDigests = Array.isArray(wiki.pages) ? wiki.pages.map((p) => p.digest || "") : [];
-
-    let best = { text: "", score: 0 };
-    for (const value of Object.values(dict)) {
-      const s = scoreText(query, value);
-      if (s > best.score) best = { text: String(value), score: s };
-    }
-    for (const text of pageDigests) {
-      const s = scoreText(query, text);
-      if (s > best.score) best = { text: String(text).slice(0, 260), score: s };
+    for (const page of Object.values(wiki.pages)) {
+      const blob = cleanText((page.content && (page.content[lang] || page.content.en || "")) || "", 12000);
+      if (!blob) continue;
+      if (blob.toLowerCase().includes(q)) {
+        hits.push({ path: page.path, text: blob });
+      }
+      if (hits.length >= 2) break;
     }
 
-    if (best.score <= 0) return "";
-    const cta = lang === "es"
-      ? " ¿Deseas que te contactemos para una consulta y opciones de soporte?"
-      : " Would you like us to contact you for a consultation and support options?";
-    return sanitizeMessage(best.text).slice(0, 220) + cta;
+    if (!hits.length) return "";
+    const summary = hits.map((h) => `${h.path}: ${h.text.slice(0, 260)}`).join(" | ");
+    return cleanText(`Website Wiki Context: ${summary}`, 700);
   }
+
   function buildWidget() {
     if (document.querySelector("#gabo-io-widget")) return;
     const root = document.createElement("div");
@@ -169,6 +201,7 @@
 
   async function boot() {
     buildWidget();
+    await syncPageToWiki();
     const toggle = document.querySelector("#gabo-io-toggle");
     const panel = document.querySelector("#gabo-io-panel");
     const form = document.querySelector("#gabo-io-form");
@@ -185,7 +218,6 @@
     }
 
     const wiki = await loadWiki();
-
     const history = loadHistory();
     history.forEach((x) => add(x.text, x.type));
 
@@ -199,7 +231,6 @@
       const rawUserText = String(input.value || "");
       const rawUserRisk = scanRisk(rawUserText);
       if (rawUserRisk.blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
-
       const userText = sanitizeMessage(rawUserText);
       if (!userText) return;
 
@@ -241,8 +272,15 @@
       updated.push({ type: "bot", text: botText, ts: Date.now() });
       saveHistory(updated);
     });
+
+    const observer = new MutationObserver(async () => {
+      observer.disconnect();
+      await syncPageToWiki();
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => { boot(); });
+  else { boot(); }
 })();
