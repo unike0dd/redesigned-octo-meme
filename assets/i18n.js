@@ -1558,6 +1558,7 @@
 
   // Global access
   window.I18N = I18N;
+  window.I18N_DB = translations;
 
   // Auto-initialize when DOM is ready
   if (document.readyState === "loading") {
