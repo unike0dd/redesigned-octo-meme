@@ -1,0 +1,3814 @@
+{
+  "version": "2026-05-18T20:07:21.241Z",
+  "source": "assets/i18n.js",
+  "languages": [
+    "en",
+    "es"
+  ],
+  "entries": {
+    "en": [
+      {
+        "key": "home",
+        "text": "Home"
+      },
+      {
+        "key": "about",
+        "text": "About"
+      },
+      {
+        "key": "careers",
+        "text": "Careers"
+      },
+      {
+        "key": "contact",
+        "text": "Contact"
+      },
+      {
+        "key": "learning",
+        "text": "Learning"
+      },
+      {
+        "key": "services",
+        "text": "Services"
+      },
+      {
+        "key": "brand",
+        "text": "Gabriel Services"
+      },
+      {
+        "key": "tagline",
+        "text": "Outsource, Delivered"
+      },
+      {
+        "key": "homePageTitle",
+        "text": "Gabriel Services | Outsource, Delivered"
+      },
+      {
+        "key": "aboutPageTitle",
+        "text": "About Gabriel Services"
+      },
+      {
+        "key": "careersPageTitle",
+        "text": "Careers | Gabriel Services"
+      },
+      {
+        "key": "servicesPageTitle",
+        "text": "Gabriel Services | Service Overview"
+      },
+      {
+        "key": "logisticsServicePageTitle",
+        "text": "Logistics Operations | Gabriel Services"
+      },
+      {
+        "key": "adminServicePageTitle",
+        "text": "Administrative Back Office | Gabriel Services"
+      },
+      {
+        "key": "customerServicePageTitle",
+        "text": "Customer Relations Operations | Gabriel Services"
+      },
+      {
+        "key": "itServicePageTitle",
+        "text": "IT Support | Gabriel Services"
+      },
+      {
+        "key": "company",
+        "text": "Company"
+      },
+      {
+        "key": "servicePagesLabel",
+        "text": "Service Pages"
+      },
+      {
+        "key": "supportLearning",
+        "text": "Support & Learning"
+      },
+      {
+        "key": "legal",
+        "text": "Legal"
+      },
+      {
+        "key": "termsConditions",
+        "text": "Terms & Conditions"
+      },
+      {
+        "key": "cookiesConsent",
+        "text": "Cookies Consent"
+      },
+      {
+        "key": "privacyGdpr",
+        "text": "Privacy & GDPR"
+      },
+      {
+        "key": "logisticsOps",
+        "text": "Logistics Operations"
+      },
+      {
+        "key": "adminBackOffice",
+        "text": "Administrative Back Office"
+      },
+      {
+        "key": "customerRelations",
+        "text": "Customer Relations Operations"
+      },
+      {
+        "key": "itSupport",
+        "text": "IT Support"
+      },
+      {
+        "key": "termsTitle",
+        "text": "Terms & Conditions"
+      },
+      {
+        "key": "cookiesTitle",
+        "text": "Cookies Consent Policy"
+      },
+      {
+        "key": "privacyTitle",
+        "text": "Privacy & GDPR"
+      },
+      {
+        "key": "lightTheme",
+        "text": "Light"
+      },
+      {
+        "key": "darkTheme",
+        "text": "Dark"
+      },
+      {
+        "key": "languageLabel",
+        "text": "Language"
+      },
+      {
+        "key": "languageSelector",
+        "text": "Language selector"
+      },
+      {
+        "key": "mobileNavigation",
+        "text": "Mobile Navigation"
+      },
+      {
+        "key": "switchToEnglish",
+        "text": "Switch to English"
+      },
+      {
+        "key": "switchToSpanish",
+        "text": "Switch to Spanish"
+      },
+      {
+        "key": "themeLabelText",
+        "text": "Theme"
+      },
+      {
+        "key": "copyright",
+        "text": "© 2026 Gabriel Services"
+      },
+      {
+        "key": "homeTagline",
+        "text": "Outsource, Delivered"
+      },
+      {
+        "key": "homeH1",
+        "text": "Reliable day-to-day execution, Outstanding operational support for modern businesses."
+      },
+      {
+        "key": "homeDescription",
+        "text": "Gabriel Services brings deep experience in coordination, operations management, customer satisfaction, and PC/desk support so your team can focus on growth while we execute the day-to-day.  We provide Logistics, Customer Relations, Administrative Back Office, and IT Support."
+      },
+      {
+        "key": "bookConsultation",
+        "text": "Book a consultation"
+      },
+      {
+        "key": "seeServiceCoverage",
+        "text": "See service coverage"
+      },
+      {
+        "key": "processeDriven",
+        "text": "Process-Driven Operations"
+      },
+      {
+        "key": "practicalTransparent",
+        "text": "Practical, transparent, responsive, and aligned to your operating rhythm."
+      },
+      {
+        "key": "serviceAreasBuilt",
+        "text": "Service areas built for daily execution"
+      },
+      {
+        "key": "logisticsDesc",
+        "text": "Dispatch and tracking continuity."
+      },
+      {
+        "key": "adminDesc",
+        "text": "Records, scheduling, and process upkeep."
+      },
+      {
+        "key": "customerRelDesc",
+        "text": "Communication, follow-up, and service rhythm."
+      },
+      {
+        "key": "itSupportDesc",
+        "text": "Ticket triage and day-to-day request handling."
+      },
+      {
+        "key": "exploreService",
+        "text": "Explore service"
+      },
+      {
+        "key": "sitemap",
+        "text": "Sitemap"
+      },
+      {
+        "key": "servicesOverview",
+        "text": "Services Overview"
+      },
+      {
+        "key": "serviceOverviewTitle",
+        "text": "Service Overview"
+      },
+      {
+        "key": "serviceOverviewIntro",
+        "text": "Gabriel Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most."
+      },
+      {
+        "key": "serviceOverviewLogisticsDesc",
+        "text": "Structured coordination, shipment tracking, and operational continuity for supply chain activity."
+      },
+      {
+        "key": "serviceOverviewAdminDesc",
+        "text": "Documentation, calendar management, reporting, and process discipline to keep your business running smoothly."
+      },
+      {
+        "key": "serviceOverviewCustomerDesc",
+        "text": "Customer communications, issue resolution, and follow-up workflows designed to improve satisfaction and retention."
+      },
+      {
+        "key": "serviceOverviewItDesc",
+        "text": "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity."
+      },
+      {
+        "key": "whyBusinessesTitle",
+        "text": "Why businesses work with Gabriel Services"
+      },
+      {
+        "key": "whyBusinessesText",
+        "text": "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations."
+      },
+      {
+        "key": "startSupportTitle",
+        "text": "Start with the support you need"
+      },
+      {
+        "key": "requestConsultation",
+        "text": "Request consultation"
+      },
+      {
+        "key": "viewEngagementOptions",
+        "text": "View engagement options"
+      },
+      {
+        "key": "aboutTitle",
+        "text": "About"
+      },
+      {
+        "key": "aboutIntro1",
+        "text": "Gabriel Services is an operational support partner focused on daily execution for modern businesses."
+      },
+      {
+        "key": "aboutIntro2",
+        "text": "We provide cross-functional support across logistics operations, administrative back office, customer operations, and IT support."
+      },
+      {
+        "key": "aboutIntro3",
+        "text": "Our approach is built on consistency, transparent communication, and practical execution."
+      },
+      {
+        "key": "aboutWhenIssuesTitle",
+        "text": "When opportunities are left unresolved"
+      },
+      {
+        "key": "aboutWhenIssuesText",
+        "text": "Small operational issues, when ignored, can quietly damage customer trust. Overlooked details slow growth, create missed opportunities, and eventually affect business stability."
+      },
+      {
+        "key": "aboutThatIsWhereText",
+        "text": "That is where we step in."
+      },
+      {
+        "key": "aboutDetailsHandledText",
+        "text": "We make sure no opportunity slips through the cracks. Every detail is handled so your business stays organized, responsive, and running smoothly."
+      },
+      {
+        "key": "aboutWhatWeHandleTitle",
+        "text": "What we handle"
+      },
+      {
+        "key": "aboutWhatWeHandleText",
+        "text": "We step in by handling the details and bringing structure to fragmented operations. We integrate into your workflows, align with your processes, and focus on execution so your team can stay focused on growth."
+      },
+      {
+        "key": "aboutApproachSimpleTitle",
+        "text": "Our approach is simple:"
+      },
+      {
+        "key": "aboutApproachItem1",
+        "text": "We improve productivity."
+      },
+      {
+        "key": "aboutApproachItem2",
+        "text": "We increase operational consistency."
+      },
+      {
+        "key": "aboutApproachItem3",
+        "text": "We deliver high-quality execution."
+      },
+      {
+        "key": "aboutApproachItem4",
+        "text": "We operate with practical and cost-conscious service delivery."
+      },
+      {
+        "key": "aboutApproachItem5",
+        "text": "We act as a reliable operational partner — plugging into your team and handling execution so you don't have to."
+      },
+      {
+        "key": "aboutResultTitle",
+        "text": "The result"
+      },
+      {
+        "key": "aboutResult1",
+        "text": "You get more done with less friction."
+      },
+      {
+        "key": "aboutResult2",
+        "text": "More clarity."
+      },
+      {
+        "key": "aboutResult3",
+        "text": "More time to focus on growth instead of putting out fires."
+      },
+      {
+        "key": "aboutResult4",
+        "text": "All at a cost that makes sense for growing businesses — no enterprise overhead and no contracts."
+      },
+      {
+        "key": "aboutSupportTitle",
+        "text": "What we support"
+      },
+      {
+        "key": "aboutSupportText",
+        "text": "We focus on four operational areas:"
+      },
+      {
+        "key": "aboutSupportArea1",
+        "text": "Logistics"
+      },
+      {
+        "key": "aboutSupportArea2",
+        "text": "Customer Relations"
+      },
+      {
+        "key": "aboutSupportArea3",
+        "text": "Administrative Back Office"
+      },
+      {
+        "key": "aboutSupportArea4",
+        "text": "IT Support (Level I and Level II)"
+      },
+      {
+        "key": "aboutOurServicesTitle",
+        "text": "Our Services"
+      },
+      {
+        "key": "aboutLogisticsOperationsTitle",
+        "text": "Logistics Operations"
+      },
+      {
+        "key": "aboutLogisticsOperationsText",
+        "text": "We help keep your logistics organized, visible, and moving:"
+      },
+      {
+        "key": "aboutLogisticsList1",
+        "text": "Dispatch coordination"
+      },
+      {
+        "key": "aboutLogisticsList2",
+        "text": "Shipment tracking (ocean, air, and ground)"
+      },
+      {
+        "key": "aboutLogisticsList3",
+        "text": "Customer communication and follow-ups"
+      },
+      {
+        "key": "aboutLogisticsList4",
+        "text": "Invoicing and billing support"
+      },
+      {
+        "key": "aboutLogisticsList5",
+        "text": "Documentation coordination"
+      },
+      {
+        "key": "aboutCustomerRelationsTitle",
+        "text": "Customer Relations"
+      },
+      {
+        "key": "aboutCustomerRelationsText",
+        "text": "We help maintain customer satisfaction and resolution flow:"
+      },
+      {
+        "key": "aboutCustomerRelationsList1",
+        "text": "Ticket follow-up and resolution tracking"
+      },
+      {
+        "key": "aboutCustomerRelationsList2",
+        "text": "Customer satisfaction follow-ups (CSAT support)"
+      },
+      {
+        "key": "aboutCustomerRelationsList3",
+        "text": "Billing clarification support"
+      },
+      {
+        "key": "aboutCustomerRelationsList4",
+        "text": "First contact resolution support"
+      },
+      {
+        "key": "aboutCustomerRelationsList5",
+        "text": "Customer communication management"
+      },
+      {
+        "key": "aboutAdminBackOfficeTitle",
+        "text": "Administrative Back Office"
+      },
+      {
+        "key": "aboutAdminBackOfficeText",
+        "text": "We support leadership and daily business operations:"
+      },
+      {
+        "key": "aboutAdminBackOfficeList1",
+        "text": "Executive administrative support"
+      },
+      {
+        "key": "aboutAdminBackOfficeList2",
+        "text": "Calendar and scheduling coordination"
+      },
+      {
+        "key": "aboutAdminBackOfficeList3",
+        "text": "Email and communication management"
+      },
+      {
+        "key": "aboutAdminBackOfficeList4",
+        "text": "Document organization and preparation"
+      },
+      {
+        "key": "aboutAdminBackOfficeList5",
+        "text": "Vendor coordination"
+      },
+      {
+        "key": "aboutAdminBackOfficeList6",
+        "text": "Internal operational support"
+      },
+      {
+        "key": "aboutAdminBackOfficeList7",
+        "text": "Travel planning and coordination"
+      },
+      {
+        "key": "aboutITSupportTitle",
+        "text": "IT Support (Level I & Level II)"
+      },
+      {
+        "key": "aboutITSupportText",
+        "text": "We provide structured technical support coverage:"
+      },
+      {
+        "key": "aboutLevel1Title",
+        "text": "Level I Support"
+      },
+      {
+        "key": "aboutLevel1List1",
+        "text": "Help desk intake and ticket creation"
+      },
+      {
+        "key": "aboutLevel1List2",
+        "text": "Basic troubleshooting"
+      },
+      {
+        "key": "aboutLevel1List3",
+        "text": "End-user support"
+      },
+      {
+        "key": "aboutLevel1List4",
+        "text": "Account access assistance"
+      },
+      {
+        "key": "aboutLevel1List5",
+        "text": "Escalation coordination"
+      },
+      {
+        "key": "aboutLevel2Title",
+        "text": "Level II Support"
+      },
+      {
+        "key": "aboutLevel2List1",
+        "text": "Advanced troubleshooting"
+      },
+      {
+        "key": "aboutLevel2List2",
+        "text": "Incident investigation"
+      },
+      {
+        "key": "aboutLevel2List3",
+        "text": "System and workflow support"
+      },
+      {
+        "key": "aboutLevel2List4",
+        "text": "Root cause analysis"
+      },
+      {
+        "key": "aboutLevel2List5",
+        "text": "Resolution ownership after escalation"
+      },
+      {
+        "key": "contactTitle",
+        "text": "Contact"
+      },
+      {
+        "key": "contactMetaDescription",
+        "text": "Contact Gabriel Services for support, onboarding, projects, and partnership opportunities."
+      },
+      {
+        "key": "honeypotWebsiteLabel",
+        "text": "Website"
+      },
+      {
+        "key": "contactProtectionUnavailable",
+        "text": "Contact protection module unavailable."
+      },
+      {
+        "key": "contactFullNameRequired",
+        "text": "Please enter your full name."
+      },
+      {
+        "key": "contactEmailRequired",
+        "text": "Please enter a valid email address."
+      },
+      {
+        "key": "contactMessageRequired",
+        "text": "Please enter a message."
+      },
+      {
+        "key": "contactSessionBlocked",
+        "text": "This contact session has been blocked."
+      },
+      {
+        "key": "contactSubmitBlockedGeneric",
+        "text": "Your message could not be submitted."
+      },
+      {
+        "key": "contactSubmitBlockedSecure",
+        "text": "Your message could not be submitted securely."
+      },
+      {
+        "key": "contactSubmitPending",
+        "text": "Sending your message securely..."
+      },
+      {
+        "key": "contactSubmitSuccess",
+        "text": "Your message was received securely."
+      },
+      {
+        "key": "contactSubmitUnavailable",
+        "text": "Your message could not be submitted right now."
+      },
+      {
+        "key": "contactIntro",
+        "text": "Get in touch for support, onboarding, projects, and partnership opportunities."
+      },
+      {
+        "key": "fullName",
+        "text": "Full Name"
+      },
+      {
+        "key": "emailAddress",
+        "text": "Email Address"
+      },
+      {
+        "key": "countryCode",
+        "text": "Country Code"
+      },
+      {
+        "key": "contactNumber",
+        "text": "Contact Number"
+      },
+      {
+        "key": "city",
+        "text": "City"
+      },
+      {
+        "key": "stateProvince",
+        "text": "State/Province"
+      },
+      {
+        "key": "spaceSuiteApt",
+        "text": "Space/Suite/Apt"
+      },
+      {
+        "key": "countryZipCode",
+        "text": "Country Zip Code"
+      },
+      {
+        "key": "bestContactTime",
+        "text": "Best Time to Contact You"
+      },
+      {
+        "key": "messageLabel",
+        "text": "Message"
+      },
+      {
+        "key": "inquiryAboutTitle",
+        "text": "Tell us your expectation about the Remote Assistant expertise, knowledge and abilities"
+      },
+      {
+        "key": "inquiryAboutHelper",
+        "text": "Aptitude, skills, experience, knowledge"
+      },
+      {
+        "key": "skillsLabel",
+        "text": "Skills"
+      },
+      {
+        "key": "languagesLabel",
+        "text": "Languages"
+      },
+      {
+        "key": "projectsLabel",
+        "text": "Projects"
+      },
+      {
+        "key": "educationLabel",
+        "text": "Education"
+      },
+      {
+        "key": "addSkill",
+        "text": "Add +"
+      },
+      {
+        "key": "removeSkill",
+        "text": "Remove -"
+      },
+      {
+        "key": "removeAll",
+        "text": "Remove All"
+      },
+      {
+        "key": "experienceLabel",
+        "text": "Experience"
+      },
+      {
+        "key": "experienceLevelLabel",
+        "text": "Experience Level"
+      },
+      {
+        "key": "placeholderAddExperienceEntry",
+        "text": "Add experience entry"
+      },
+      {
+        "key": "experienceLevelEntryLevel",
+        "text": "Entry Level"
+      },
+      {
+        "key": "experienceLevelJunior",
+        "text": "Junior"
+      },
+      {
+        "key": "experienceLevelIntermediate",
+        "text": "Intermediate"
+      },
+      {
+        "key": "experienceLevelAdvanced",
+        "text": "Advanced"
+      },
+      {
+        "key": "experienceLevelSenior",
+        "text": "Senior"
+      },
+      {
+        "key": "experienceLevelExpert",
+        "text": "Expert"
+      },
+      {
+        "key": "experienceLevelEngineer",
+        "text": "Engineer"
+      },
+      {
+        "key": "experienceLevelCLevel",
+        "text": "C Level"
+      },
+      {
+        "key": "placeholderAddLanguageEntry",
+        "text": "Add language entry"
+      },
+      {
+        "key": "placeholderAddSkillEntry",
+        "text": "Add skill entry"
+      },
+      {
+        "key": "placeholderAddAreaInterestEntry",
+        "text": "Add area of interest entry"
+      },
+      {
+        "key": "placeholderAddProjectEntry",
+        "text": "Add project entry"
+      },
+      {
+        "key": "placeholderAddEducationEntry",
+        "text": "Add education entry"
+      },
+      {
+        "key": "submitApplication",
+        "text": "Submit Application"
+      },
+      {
+        "key": "contactButtonLabel",
+        "text": "Send"
+      },
+      {
+        "key": "clearForm",
+        "text": "Clear Form"
+      },
+      {
+        "key": "careersTitle",
+        "text": "Careers"
+      },
+      {
+        "key": "careersIntro",
+        "text": "Apply to support operations, communication, and service delivery workflows across all service domains."
+      },
+      {
+        "key": "availabilityLabel",
+        "text": "Availability"
+      },
+      {
+        "key": "areaInterestLabel",
+        "text": "Area of Interest"
+      },
+      {
+        "key": "careersOptionLogistics",
+        "text": "Logistics"
+      },
+      {
+        "key": "careersOptionAdministration",
+        "text": "Administration"
+      },
+      {
+        "key": "careersOptionCustomerRelations",
+        "text": "Customer Relations"
+      },
+      {
+        "key": "careersOptionItSupport",
+        "text": "IT Support"
+      },
+      {
+        "key": "resumeLinkLabel",
+        "text": "Resume/Profile link"
+      },
+      {
+        "key": "educationLevelLabel",
+        "text": "Education Level"
+      },
+      {
+        "key": "educationOptionHighSchool",
+        "text": "High School"
+      },
+      {
+        "key": "educationOptionAssociate",
+        "text": "Associate"
+      },
+      {
+        "key": "educationOptionBachelor",
+        "text": "Bachelor"
+      },
+      {
+        "key": "educationOptionMaster",
+        "text": "Master"
+      },
+      {
+        "key": "educationOptionDoctorate",
+        "text": "Doctorate"
+      },
+      {
+        "key": "educationOptionCertified",
+        "text": "Certified"
+      },
+      {
+        "key": "bestContactDateLabel",
+        "text": "Best contact date"
+      },
+      {
+        "key": "bestContactTimeLabel",
+        "text": "Best contact time"
+      },
+      {
+        "key": "careerMessagePrompt",
+        "text": "Tell us about YOU"
+      },
+      {
+        "key": "learningTitle",
+        "text": "Learning"
+      },
+      {
+        "key": "learningIntro",
+        "text": "Guidance and practical service knowledge for English-first, workflow-oriented operations support."
+      },
+      {
+        "key": "trackLogisticsTitle",
+        "text": "Logistics Operations"
+      },
+      {
+        "key": "trackLogisticsText",
+        "text": "Learn coordination, tracking, and continuity essentials."
+      },
+      {
+        "key": "logisticsServiceTitle",
+        "text": "Logistics Operations"
+      },
+      {
+        "key": "logisticsServiceIntro",
+        "text": "Gabriel Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving."
+      },
+      {
+        "key": "logisticsServiceOfferTitle",
+        "text": "What We Offer"
+      },
+      {
+        "key": "logisticsServiceOffer1",
+        "text": "Dispatch coordination and carrier communication."
+      },
+      {
+        "key": "logisticsServiceOffer2",
+        "text": "Shipment tracking for air, ocean, and ground transport."
+      },
+      {
+        "key": "logisticsServiceOffer3",
+        "text": "Inventory status monitoring and exception management."
+      },
+      {
+        "key": "logisticsServiceOffer4",
+        "text": "Supplier and carrier follow-up to protect delivery timelines."
+      },
+      {
+        "key": "logisticsServiceWorkTitle",
+        "text": "How We Work"
+      },
+      {
+        "key": "logisticsServiceWorkIntro",
+        "text": "We integrate into your existing logistics ecosystem, align with operational milestones, and provide consistent execution every day."
+      },
+      {
+        "key": "logisticsServiceWork1",
+        "text": "Clear handoff practices and communication templates."
+      },
+      {
+        "key": "logisticsServiceWork2",
+        "text": "Regular status updates and early issue escalation."
+      },
+      {
+        "key": "logisticsServiceWork3",
+        "text": "Data-driven tracking with actionable next steps."
+      },
+      {
+        "key": "logisticsServiceWhyTitle",
+        "text": "Why Choose This Service"
+      },
+      {
+        "key": "logisticsServiceWhyText",
+        "text": "This service is ideal for businesses that need dependable logistics support without adding internal overhead. We help reduce delays, improve visibility, and keep your operations responsive."
+      },
+      {
+        "key": "backToServices",
+        "text": "Back to Services"
+      },
+      {
+        "key": "trackAdminTitle",
+        "text": "Administrative Back Office"
+      },
+      {
+        "key": "trackAdminText",
+        "text": "Learn documentation, reporting rhythm, and process upkeep."
+      },
+      {
+        "key": "adminLearningTitle",
+        "text": "Administrative Back Office Learning"
+      },
+      {
+        "key": "adminLearningIntro",
+        "text": "Training designed for operational support teams that manage internal systems, scheduling, documentation, and task workflows."
+      },
+      {
+        "key": "learningObjectivesTitle",
+        "text": "Learning Objectives"
+      },
+      {
+        "key": "adminLearningObjective1",
+        "text": "Develop reliable documentation and reporting habits"
+      },
+      {
+        "key": "adminLearningObjective2",
+        "text": "Improve task coordination across teams and stakeholders"
+      },
+      {
+        "key": "adminLearningObjective3",
+        "text": "Learn how to maintain consistent administrative workflows"
+      },
+      {
+        "key": "keyTopicsTitle",
+        "text": "Key Topics"
+      },
+      {
+        "key": "adminLearningTopic1",
+        "text": "Calendar and communication management"
+      },
+      {
+        "key": "adminLearningTopic2",
+        "text": "Document organization and version control"
+      },
+      {
+        "key": "adminLearningTopic3",
+        "text": "Vendor follow-up and service coordination"
+      },
+      {
+        "key": "practicalApplicationTitle",
+        "text": "Practical Application"
+      },
+      {
+        "key": "adminLearningApplication",
+        "text": "These skills help back office teams reduce operational friction and support faster decision-making across the business."
+      },
+      {
+        "key": "adminLearningPageTitle",
+        "text": "Administrative Back Office Learning | Gabriel Services"
+      },
+      {
+        "key": "adminLearningMetaDescription",
+        "text": "Learning track for Administrative Back Office: process discipline, reporting, and internal operations skills."
+      },
+      {
+        "key": "logisticsLearningPageTitle",
+        "text": "Logistics Operations Learning | Gabriel Services"
+      },
+      {
+        "key": "logisticsLearningMetaDescription",
+        "text": "Learning track for Logistics Operations: workflow coordination, tracking systems, and continuity skills."
+      },
+      {
+        "key": "logisticsLearningTitle",
+        "text": "Logistics Operations Learning"
+      },
+      {
+        "key": "logisticsLearningIntro",
+        "text": "A practical guide for logistics teams and operations professionals focused on continuity, tracking discipline, and process coordination."
+      },
+      {
+        "key": "logisticsLearningObjective1",
+        "text": "Understand core logistics workflows and handoff points"
+      },
+      {
+        "key": "logisticsLearningObjective2",
+        "text": "Learn best practices for shipment tracking and exception management"
+      },
+      {
+        "key": "logisticsLearningObjective3",
+        "text": "Create repeatable communication processes for carriers and suppliers"
+      },
+      {
+        "key": "logisticsLearningTopic1",
+        "text": "Dispatch coordination and operations planning"
+      },
+      {
+        "key": "logisticsLearningTopic2",
+        "text": "Visibility standards for air, ocean, and ground shipments"
+      },
+      {
+        "key": "logisticsLearningTopic3",
+        "text": "Follow-up management and escalation control"
+      },
+      {
+        "key": "logisticsLearningApplication",
+        "text": "This track is designed for people who need to turn logistics planning into predictable daily execution without adding operational burden."
+      },
+      {
+        "key": "customerLearningPageTitle",
+        "text": "Customer Relations Learning | Gabriel Services"
+      },
+      {
+        "key": "customerLearningMetaDescription",
+        "text": "Customer Relations learning track: communication best practices, escalation flows, and customer care skills."
+      },
+      {
+        "key": "customerLearningTitle",
+        "text": "Customer Relations Learning"
+      },
+      {
+        "key": "customerLearningIntro",
+        "text": "Learn how to manage customer communications, handle escalations, and maintain a reliable service rhythm in every customer interaction."
+      },
+      {
+        "key": "customerLearningObjective1",
+        "text": "Master communication best practices for customer-facing teams."
+      },
+      {
+        "key": "customerLearningObjective2",
+        "text": "Understand escalation flows and fast issue-resolution practices."
+      },
+      {
+        "key": "customerLearningObjective3",
+        "text": "Develop a consistent follow-up and satisfaction process."
+      },
+      {
+        "key": "customerLearningTopic1",
+        "text": "Ticket follow-up and resolution control."
+      },
+      {
+        "key": "customerLearningTopic2",
+        "text": "Customer satisfaction measurement and feedback."
+      },
+      {
+        "key": "customerLearningTopic3",
+        "text": "Clear and timely customer communication."
+      },
+      {
+        "key": "customerLearningApplication",
+        "text": "These practices help teams convert customer interactions into reliable outcomes and clearer handoffs across operations."
+      },
+      {
+        "key": "itLearningPageTitle",
+        "text": "IT Support Learning | Gabriel Services"
+      },
+      {
+        "key": "itLearningMetaDescription",
+        "text": "Learning track for IT Support: support workflows, ticket management, and user-centered IT operations."
+      },
+      {
+        "key": "itLearningTitle",
+        "text": "IT Support Learning"
+      },
+      {
+        "key": "itLearningIntro",
+        "text": "A practical learning track for IT support workflows, ticket handling, and user-facing technical operations."
+      },
+      {
+        "key": "itLearningObjective1",
+        "text": "Understand ticket lifecycle and user support workflows"
+      },
+      {
+        "key": "itLearningObjective2",
+        "text": "Learn effective technical communication and escalation practices"
+      },
+      {
+        "key": "itLearningObjective3",
+        "text": "Build measurable support habits for daily operations"
+      },
+      {
+        "key": "itLearningTopic1",
+        "text": "Help desk intake, categorization, and response planning"
+      },
+      {
+        "key": "itLearningTopic2",
+        "text": "Incident tracking and progress communication"
+      },
+      {
+        "key": "itLearningTopic3",
+        "text": "Support documentation and follow-up handoffs"
+      },
+      {
+        "key": "itLearningApplication",
+        "text": "This track is built for teams that need consistent technical support without losing focus on reliable user service delivery."
+      },
+      {
+        "key": "relatedLearningTitle",
+        "text": "Explore other learning tracks"
+      },
+      {
+        "key": "relatedLearningText",
+        "text": "Keep moving between the core learning tracks to compare skills, workflows, and practical applications."
+      },
+      {
+        "key": "relatedLearningAria",
+        "text": "Related learning tracks"
+      },
+      {
+        "key": "backToLearning",
+        "text": "Back to Learning"
+      },
+      {
+        "key": "adminBackOfficeServiceIntro",
+        "text": "Our back office services bring structure and reliability to your internal operations, helping reduce risk and maintain a consistent business rhythm."
+      },
+      {
+        "key": "adminBackOfficeHandleTitle",
+        "text": "What We Handle"
+      },
+      {
+        "key": "adminBackOfficeHandle1",
+        "text": "Executive administrative support and calendar management"
+      },
+      {
+        "key": "adminBackOfficeHandle2",
+        "text": "Document preparation, filing, and version control"
+      },
+      {
+        "key": "adminBackOfficeHandle3",
+        "text": "Email and communication coordination for internal teams"
+      },
+      {
+        "key": "adminBackOfficeHandle4",
+        "text": "Vendor follow-up, invoice tracking, and reporting support"
+      },
+      {
+        "key": "adminBackOfficeWorksTitle",
+        "text": "How This Service Works"
+      },
+      {
+        "key": "adminBackOfficeWorksText",
+        "text": "We partner closely with your team to understand processes, capture priority actions, and keep every task aligned with your business schedule."
+      },
+      {
+        "key": "adminBackOfficeWorksPoint1",
+        "text": "Clear ownership for recurring tasks and follow-up items"
+      },
+      {
+        "key": "adminBackOfficeWorksPoint2",
+        "text": "Documented task flows and progress tracking"
+      },
+      {
+        "key": "adminBackOfficeWorksPoint3",
+        "text": "Regular status updates to stakeholders and team leads"
+      },
+      {
+        "key": "adminBackOfficeMattersTitle",
+        "text": "Why It Matters"
+      },
+      {
+        "key": "adminBackOfficeMattersText",
+        "text": "Strong back office support helps businesses scale by removing administrative friction, improving consistency, and freeing your team to focus on higher-value work."
+      },
+      {
+        "key": "trackCustomerTitle",
+        "text": "Customer Operations"
+      },
+      {
+        "key": "trackCustomerText",
+        "text": "Learn follow-up flow, escalation continuity, and response rhythm."
+      },
+      {
+        "key": "customerRelationsServiceTitle",
+        "text": "Customer Relations Operations"
+      },
+      {
+        "key": "customerRelationsServiceIntro",
+        "text": "We support customer experience with consistent communication, escalation management, and follow-up workflows that keep every issue moving toward resolution."
+      },
+      {
+        "key": "customerRelationsServiceAreasTitle",
+        "text": "Core Service Areas"
+      },
+      {
+        "key": "customerRelationsServiceArea1",
+        "text": "Ticket follow-up and resolution tracking."
+      },
+      {
+        "key": "customerRelationsServiceArea2",
+        "text": "Customer satisfaction check-ins and feedback support."
+      },
+      {
+        "key": "customerRelationsServiceArea3",
+        "text": "Billing clarification and escalation assistance."
+      },
+      {
+        "key": "customerRelationsServiceArea4",
+        "text": "First-contact resolution support and status communication."
+      },
+      {
+        "key": "customerRelationsServiceHowTitle",
+        "text": "How We Support Customers"
+      },
+      {
+        "key": "customerRelationsServiceHowText",
+        "text": "Our team helps maintain trust by managing a consistent customer communication rhythm and resolving inquiries in a timely, accurate manner."
+      },
+      {
+        "key": "customerRelationsServiceHow1",
+        "text": "Standardized responses and escalation protocols."
+      },
+      {
+        "key": "customerRelationsServiceHow2",
+        "text": "Customer follow-up and satisfaction checks."
+      },
+      {
+        "key": "customerRelationsServiceHow3",
+        "text": "Clear handoffs between teams and delivery partners."
+      },
+      {
+        "key": "customerRelationsServiceWhyTitle",
+        "text": "Why This Matters"
+      },
+      {
+        "key": "customerRelationsServiceWhyText",
+        "text": "Strong customer relations operations reduce churn, improve brand perception, and ensure your customers always feel supported."
+      },
+      {
+        "key": "trackITTitle",
+        "text": "IT Support"
+      },
+      {
+        "key": "trackITText",
+        "text": "Learn triage basics, ticket communication, and request handling."
+      },
+      {
+        "key": "itSupportServiceIntro",
+        "text": "Gabriel Services provides dependable IT support for everyday technical needs, including ticket triage, end-user assistance, and operational system support."
+      },
+      {
+        "key": "serviceHighlightsTitle",
+        "text": "Service Highlights"
+      },
+      {
+        "key": "itSupportHighlight1",
+        "text": "Help desk intake and ticket creation"
+      },
+      {
+        "key": "itSupportHighlight2",
+        "text": "Basic troubleshooting and issue diagnosis"
+      },
+      {
+        "key": "itSupportHighlight3",
+        "text": "Account access and system support coordination"
+      },
+      {
+        "key": "itSupportHighlight4",
+        "text": "Escalation management to specialized teams when needed"
+      },
+      {
+        "key": "itSupportDeliveryTitle",
+        "text": "How We Deliver Support"
+      },
+      {
+        "key": "itSupportDeliveryText",
+        "text": "We maintain a structured support rhythm that follows incoming requests from first contact through resolution, with visibility and accountability at every step."
+      },
+      {
+        "key": "itSupportDeliveryPoint1",
+        "text": "Fast ticket intake and triage"
+      },
+      {
+        "key": "itSupportDeliveryPoint2",
+        "text": "Clear status updates and escalation pathways"
+      },
+      {
+        "key": "itSupportDeliveryPoint3",
+        "text": "Practical, user-focused communication"
+      },
+      {
+        "key": "whyItWorksTitle",
+        "text": "Why It Works"
+      },
+      {
+        "key": "itSupportWhyText",
+        "text": "The right IT support keeps your team productive, prevents small issues from becoming larger problems, and helps maintain reliable daily operations."
+      },
+      {
+        "key": "exploreTrack",
+        "text": "Explore track"
+      },
+      {
+        "key": "termsSection1Title",
+        "text": "1. Agreement to Terms"
+      },
+      {
+        "key": "termsSection1Text",
+        "text": "By accessing and using this website and the services provided by Gabriel Services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+      },
+      {
+        "key": "termsSection2Title",
+        "text": "2. Use License"
+      },
+      {
+        "key": "termsSection2Text",
+        "text": "Gabriel Services grants you a limited license to access and use the website and services for lawful purposes only. You agree not to:"
+      },
+      {
+        "key": "termsSection2List1",
+        "text": "Reproduce, duplicate, copy, or sell any portion of the website or services"
+      },
+      {
+        "key": "termsSection2List2",
+        "text": "Access the website for any unlawful or unauthorized purpose"
+      },
+      {
+        "key": "termsSection2List3",
+        "text": "Disrupt the normal flow of dialogue or otherwise disrupt the services"
+      },
+      {
+        "key": "termsSection2List4",
+        "text": "Attempt to gain unauthorized access to our systems or networks"
+      },
+      {
+        "key": "termsSection2List5",
+        "text": "Use automated systems or scripts to collect data without permission"
+      },
+      {
+        "key": "termsSection2List6",
+        "text": "Engage in any form of harassment or abusive behavior"
+      },
+      {
+        "key": "termsSection3Title",
+        "text": "3. Disclaimer of Warranties"
+      },
+      {
+        "key": "termsSection3Text",
+        "text": "The materials on Gabriel Services' website are provided on an 'as is' basis. Gabriel Services makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights."
+      },
+      {
+        "key": "termsSection4Title",
+        "text": "4. Limitations of Liability"
+      },
+      {
+        "key": "termsSection4Text",
+        "text": "In no event shall Gabriel Services or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Gabriel Services' website, even if Gabriel Services or an authorized representative has been notified orally or in writing of the possibility of such damage."
+      },
+      {
+        "key": "termsSection5Title",
+        "text": "5. Accuracy of Materials"
+      },
+      {
+        "key": "termsSection5Text",
+        "text": "The materials appearing on Gabriel Services' website could include technical, typographical, or photographic errors. Gabriel Services does not warrant that any of the materials on its website are accurate, complete, or current. Gabriel Services may make changes to the materials contained on its website at any time without notice."
+      },
+      {
+        "key": "termsSection6Title",
+        "text": "6. Links"
+      },
+      {
+        "key": "termsSection6Text",
+        "text": "Gabriel Services has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Gabriel Services of the site. Use of any such linked website is at the user's own risk."
+      },
+      {
+        "key": "termsSection7Title",
+        "text": "7. Modifications"
+      },
+      {
+        "key": "termsSection7Text",
+        "text": "Gabriel Services may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service."
+      },
+      {
+        "key": "termsSection8Title",
+        "text": "8. Governing Law"
+      },
+      {
+        "key": "termsSection8Text",
+        "text": "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Gabriel Services operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that location."
+      },
+      {
+        "key": "termsSection9Title",
+        "text": "9. Service Description"
+      },
+      {
+        "key": "termsSection9Text",
+        "text": "Gabriel Services provides operational support services including Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support. The specific services requested and agreed upon between Gabriel Services and the client are detailed in the service agreement."
+      },
+      {
+        "key": "termsSection10Title",
+        "text": "10. Payment Terms"
+      },
+      {
+        "key": "termsSection10Text",
+        "text": "Payment terms are as specified in the individual service agreement. Invoices are due upon receipt unless otherwise agreed in writing. Late payments may result in service suspension."
+      },
+      {
+        "key": "termsSection11Title",
+        "text": "11. Intellectual Property Rights"
+      },
+      {
+        "key": "termsSection11Text",
+        "text": "All content included on this website, such as text, graphics, logos, images, and software, is the property of Gabriel Services or its content suppliers and is protected by international copyright laws."
+      },
+      {
+        "key": "termsSection12Title",
+        "text": "12. Limitation of Service"
+      },
+      {
+        "key": "termsSection12Text",
+        "text": "Gabriel Services reserves the right to refuse service to anyone at its sole discretion. Gabriel Services also reserves the right to limit or terminate services, close accounts, and remove or edit content in our sole discretion."
+      },
+      {
+        "key": "termsSection13Title",
+        "text": "13. Contact for Legal Inquiries"
+      },
+      {
+        "key": "termsSection13Text",
+        "text": "If you have any questions about these Terms & Conditions, please contact us at the email or address provided on our Contact page."
+      },
+      {
+        "key": "termsLastUpdated",
+        "text": "Last Updated: May 5, 2026"
+      },
+      {
+        "key": "cookiesLastUpdated",
+        "text": "Last Updated: May 5, 2026"
+      },
+      {
+        "key": "cookiesSection1Title",
+        "text": "1. What Are Cookies?"
+      },
+      {
+        "key": "cookiesSection1Text",
+        "text": "Cookies are small data files containing a string of characters that are placed on your computer or mobile device when you visit our website. They allow us to recognize your browser or device, remember information about your preferences, and help personalize your experience on the Gabriel Services website."
+      },
+      {
+        "key": "cookiesSection2Title",
+        "text": "2. Types of Cookies We Use"
+      },
+      {
+        "key": "cookiesSection2EssentialTitle",
+        "text": "Essential Cookies"
+      },
+      {
+        "key": "cookiesSection2EssentialText",
+        "text": "These cookies are necessary for the website to function properly and cannot be disabled through our systems. They are used to:"
+      },
+      {
+        "key": "cookiesSection2EssentialList1",
+        "text": "Enable basic website functionality"
+      },
+      {
+        "key": "cookiesSection2EssentialList2",
+        "text": "Maintain security and prevent fraud"
+      },
+      {
+        "key": "cookiesSection2EssentialList3",
+        "text": "Preserve user preferences (language and theme selections)"
+      },
+      {
+        "key": "cookiesSection2PerformanceTitle",
+        "text": "Performance Cookies"
+      },
+      {
+        "key": "cookiesSection2PerformanceText",
+        "text": "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. They help us:"
+      },
+      {
+        "key": "cookiesSection2PerformanceList1",
+        "text": "Identify pages that are accessed most frequently"
+      },
+      {
+        "key": "cookiesSection2PerformanceList2",
+        "text": "Measure the effectiveness of advertising campaigns"
+      },
+      {
+        "key": "cookiesSection2PerformanceList3",
+        "text": "Understand user navigation patterns"
+      },
+      {
+        "key": "cookiesSection2FunctionalTitle",
+        "text": "Functional Cookies"
+      },
+      {
+        "key": "cookiesSection2FunctionalText",
+        "text": "These cookies enable enhanced functionality and personalization, including:"
+      },
+      {
+        "key": "cookiesSection2FunctionalList1",
+        "text": "Remembering your language preference"
+      },
+      {
+        "key": "cookiesSection2FunctionalList2",
+        "text": "Storing your theme preference"
+      },
+      {
+        "key": "cookiesSection2FunctionalList3",
+        "text": "Recording form data for convenience"
+      },
+      {
+        "key": "cookiesSection2AnalyticalTitle",
+        "text": "Analytical Cookies"
+      },
+      {
+        "key": "cookiesSection2AnalyticalText",
+        "text": "We use analytical cookies to understand how our website is used, including the duration of visits and the paths users take through the website. This helps us improve the design and functionality of our website."
+      },
+      {
+        "key": "cookiesSection3Title",
+        "text": "3. Browser Cache / Local Storage"
+      },
+      {
+        "key": "cookiesSection3Text",
+        "text": "To enhance user experience, we save your language and theme choices in your browser cache using localStorage, including:"
+      },
+      {
+        "key": "cookiesSection3List1",
+        "text": "Language preference (English or Spanish)"
+      },
+      {
+        "key": "cookiesSection3List2",
+        "text": "Theme preference (Light or Dark mode)"
+      },
+      {
+        "key": "cookiesSection3Text2",
+        "text": "This information is stored locally on your device and is not transmitted to our servers."
+      },
+      {
+        "key": "cookiesSection4Title",
+        "text": "4. Third-Party Cookies"
+      },
+      {
+        "key": "cookiesSection4Text",
+        "text": "Third-party cookies may be placed on your device by external service providers including:"
+      },
+      {
+        "key": "cookiesSection4List1",
+        "text": "Analytics providers"
+      },
+      {
+        "key": "cookiesSection4List2",
+        "text": "Advertising networks"
+      },
+      {
+        "key": "cookiesSection4List3",
+        "text": "Social media platforms"
+      },
+      {
+        "key": "cookiesSection4Text2",
+        "text": "We do not have control over third-party cookies. You can set your browser to refuse cookies or to alert you when cookies are being sent."
+      },
+      {
+        "key": "cookiesSection5Title",
+        "text": "5. How to Control Cookies"
+      },
+      {
+        "key": "cookiesSection5Text",
+        "text": "You have the right to choose whether to accept or reject cookies. Most web browsers allow you to:"
+      },
+      {
+        "key": "cookiesSection5List1",
+        "text": "View cookies that have been set on your device"
+      },
+      {
+        "key": "cookiesSection5List2",
+        "text": "Delete cookies from your device"
+      },
+      {
+        "key": "cookiesSection5List3",
+        "text": "Block future cookies from being set on your device"
+      },
+      {
+        "key": "cookiesSection5List4",
+        "text": "Set your browser to notify you when a cookie is about to be set"
+      },
+      {
+        "key": "cookiesSection5Text2",
+        "text": "If you choose to block or delete cookies, some features of our website may not work as intended."
+      },
+      {
+        "key": "cookiesSection6Title",
+        "text": "6. Google Analytics"
+      },
+      {
+        "key": "cookiesSection6Text",
+        "text": "We may use Google Analytics to collect information about your use of our website. Google Analytics collects information such as:"
+      },
+      {
+        "key": "cookiesSection6List1",
+        "text": "IP address"
+      },
+      {
+        "key": "cookiesSection6List2",
+        "text": "Device type"
+      },
+      {
+        "key": "cookiesSection6List3",
+        "text": "Browser type"
+      },
+      {
+        "key": "cookiesSection6List4",
+        "text": "Pages visited and time spent on each page"
+      },
+      {
+        "key": "cookiesSection6Text2",
+        "text": "The information is used to compile reports on website activity, which help us understand how our website is being used and to improve its design and functionality. Google Analytics does not identify individual users."
+      },
+      {
+        "key": "cookiesSection7Title",
+        "text": "7. Your Consent"
+      },
+      {
+        "key": "cookiesSection7Text",
+        "text": "By continuing to use our website after receiving this cookie notice, you consent to the use of cookies as described in this policy. If you do not consent to the use of cookies, you should disable cookies in your browser settings before continuing to use our website."
+      },
+      {
+        "key": "cookiesSection8Title",
+        "text": "8. Updates to This Policy"
+      },
+      {
+        "key": "cookiesSection8Text",
+        "text": "We may update this Cookies Consent Policy from time to time to reflect changes in technology, legislation, or other changes. We encourage you to review this policy periodically to stay informed about how we protect your privacy."
+      },
+      {
+        "key": "cookiesSection9Title",
+        "text": "9. Contact Us"
+      },
+      {
+        "key": "cookiesSection9Text",
+        "text": "If you have any questions about our Cookies Consent Policy or our use of cookies, please contact us through the Contact page on our website or via the contact information provided on our main website."
+      },
+      {
+        "key": "privacySection1Title",
+        "text": "1. Introduction"
+      },
+      {
+        "key": "privacySection1Text",
+        "text": "Gabriel Services (\"we,\" \"us,\" or \"Company\") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. Please read this policy carefully to understand our practices regarding your personal data."
+      },
+      {
+        "key": "privacySection2Title",
+        "text": "2. Information We Collect"
+      },
+      {
+        "key": "privacySection2DirectTitle",
+        "text": "Information You Provide Directly"
+      },
+      {
+        "key": "privacySection2DirectList1",
+        "text": "Contact Information: Name, email address, telephone number, and company name"
+      },
+      {
+        "key": "privacySection2DirectList2",
+        "text": "Service Information: Details about your business operations and service requirements"
+      },
+      {
+        "key": "privacySection2DirectList3",
+        "text": "Communication Records: Content of messages, emails, and support tickets"
+      },
+      {
+        "key": "privacySection2DirectList4",
+        "text": "Payment Information: Billing address and payment method details (processed securely)"
+      },
+      {
+        "key": "privacySection2AutoTitle",
+        "text": "Information Collected Automatically"
+      },
+      {
+        "key": "privacySection2AutoList1",
+        "text": "Device Information: IP address, browser type, operating system, and device identifiers"
+      },
+      {
+        "key": "privacySection2AutoList2",
+        "text": "Usage Data: Pages visited, time spent on pages, links clicked, and navigation patterns"
+      },
+      {
+        "key": "privacySection2AutoList3",
+        "text": "Cookies and Similar Technologies: Browser and local storage data for preferences"
+      },
+      {
+        "key": "privacySection2AutoList4",
+        "text": "Referral Information: How you accessed our website"
+      },
+      {
+        "key": "privacySection3Title",
+        "text": "3. How We Use Your Information"
+      },
+      {
+        "key": "privacySection3Text",
+        "text": "We use collected information for the following purposes:"
+      },
+      {
+        "key": "privacySection3List1",
+        "text": "Providing and managing services requested"
+      },
+      {
+        "key": "privacySection3List2",
+        "text": "Processing transactions and sending related information"
+      },
+      {
+        "key": "privacySection3List3",
+        "text": "Sending transactional and promotional emails"
+      },
+      {
+        "key": "privacySection3List4",
+        "text": "Responding to inquiries and providing customer support"
+      },
+      {
+        "key": "privacySection3List5",
+        "text": "Improving our website and services"
+      },
+      {
+        "key": "privacySection3List6",
+        "text": "Analyzing website usage patterns"
+      },
+      {
+        "key": "privacySection3List7",
+        "text": "Preventing fraud and ensuring security"
+      },
+      {
+        "key": "privacySection3List8",
+        "text": "Complying with legal obligations"
+      },
+      {
+        "key": "privacySection3List9",
+        "text": "Creating aggregate, de-identified data for analytics"
+      },
+      {
+        "key": "privacySection4Title",
+        "text": "4. Legal Basis for Processing (GDPR)"
+      },
+      {
+        "key": "privacySection4Text",
+        "text": "Under GDPR, we process personal data based on these lawful grounds:"
+      },
+      {
+        "key": "privacySection4List1",
+        "text": "Contractual Necessity: Processing necessary to perform our services with you"
+      },
+      {
+        "key": "privacySection4List2",
+        "text": "Legal Obligation: Processing required by law or regulation"
+      },
+      {
+        "key": "privacySection4List3",
+        "text": "Legitimate Interests: Processing necessary for our legitimate business interests"
+      },
+      {
+        "key": "privacySection4List4",
+        "text": "Consent: Processing based on your explicit consent"
+      },
+      {
+        "key": "privacySection5Title",
+        "text": "5. Data Retention"
+      },
+      {
+        "key": "privacySection5Text",
+        "text": "We retain personal data only as long as necessary for the purposes stated in this policy or as required by law. Retention periods vary depending on the type of data:"
+      },
+      {
+        "key": "privacySection5List1",
+        "text": "Contact information: Retained for the duration of the service relationship plus 7 years for accounting purposes"
+      },
+      {
+        "key": "privacySection5List2",
+        "text": "Website analytics data: Retained for up to 26 months"
+      },
+      {
+        "key": "privacySection5List3",
+        "text": "User preferences (language/theme): Stored locally on your device indefinitely until deleted"
+      },
+      {
+        "key": "privacySection6Title",
+        "text": "6. Data Sharing and Disclosure"
+      },
+      {
+        "key": "privacySection6Text",
+        "text": "We do not sell your personal data. We may share information with:"
+      },
+      {
+        "key": "privacySection6List1",
+        "text": "Service Providers: Third parties who assist in providing services (under data processing agreements)"
+      },
+      {
+        "key": "privacySection6List2",
+        "text": "Legal Authorities: When required by law or to protect rights and safety"
+      },
+      {
+        "key": "privacySection6List3",
+        "text": "Business Transfers: In the event of merger, acquisition, or sale of assets"
+      },
+      {
+        "key": "privacySection7Title",
+        "text": "7. Your Rights Under GDPR"
+      },
+      {
+        "key": "privacySection7Text",
+        "text": "If you are in the EU/EEA, you have the following rights:"
+      },
+      {
+        "key": "privacySection7List1",
+        "text": "Right to Access: Obtain a copy of the personal data we hold about you"
+      },
+      {
+        "key": "privacySection7List2",
+        "text": "Right to Rectification: Correct inaccurate or incomplete personal data"
+      },
+      {
+        "key": "privacySection7List3",
+        "text": "Right to Erasure (\"Right to be Forgotten\"): Request deletion of your personal data"
+      },
+      {
+        "key": "privacySection7List4",
+        "text": "Right to Restrict Processing: Limit how we process your data"
+      },
+      {
+        "key": "privacySection7List5",
+        "text": "Right to Data Portability: Receive your data in a portable format"
+      },
+      {
+        "key": "privacySection7List6",
+        "text": "Right to Object: Object to processing of your data"
+      },
+      {
+        "key": "privacySection7List7",
+        "text": "Right to Lodge a Complaint: File a complaint with your local data protection authority"
+      },
+      {
+        "key": "privacySection8Title",
+        "text": "8. Data Security"
+      },
+      {
+        "key": "privacySection8Text",
+        "text": "We implement appropriate technical and organizational security measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. These measures include:"
+      },
+      {
+        "key": "privacySection8List1",
+        "text": "SSL/TLS encryption for data in transit"
+      },
+      {
+        "key": "privacySection8List2",
+        "text": "Secure authentication protocols"
+      },
+      {
+        "key": "privacySection8List3",
+        "text": "Regular security audits and testing"
+      },
+      {
+        "key": "privacySection8List4",
+        "text": "Restricted access to personal data"
+      },
+      {
+        "key": "privacySection8List5",
+        "text": "Data protection training for staff"
+      },
+      {
+        "key": "privacySection8Text2",
+        "text": "While we strive to protect your information, no security system is impenetrable, and we cannot guarantee absolute security."
+      },
+      {
+        "key": "privacySection9Title",
+        "text": "9. International Data Transfers"
+      },
+      {
+        "key": "privacySection9Text",
+        "text": "If you access our website from outside the United States, your information may be transferred to, stored in, and processed in the United States or other countries. By providing information to us, you consent to such transfer. We ensure that international transfers are protected by appropriate safeguards, including Standard Contractual Clauses."
+      },
+      {
+        "key": "privacySection10Title",
+        "text": "10. Children's Privacy"
+      },
+      {
+        "key": "privacySection10Text",
+        "text": "Our services are not intended for individuals under 18 years of age. We do not knowingly collect personal data from children. If we become aware that we have collected personal data from a child without parental consent, we will delete such data immediately."
+      },
+      {
+        "key": "privacySection11Title",
+        "text": "11. Third-Party Links"
+      },
+      {
+        "key": "privacySection11Text",
+        "text": "Our website may contain links to third-party websites. We are not responsible for the privacy practices of third-party sites. We encourage you to review the privacy policies of any third-party site before providing your personal information."
+      },
+      {
+        "key": "privacySection12Title",
+        "text": "12. Exercising Your Rights"
+      },
+      {
+        "key": "privacySection12Text",
+        "text": "To exercise any of your privacy rights, please contact us using the information provided at the end of this policy. We will respond to your request within 30 days (or as required by applicable law). You may need to provide identification to verify your request."
+      },
+      {
+        "key": "privacySection13Title",
+        "text": "13. Data Protection Officer"
+      },
+      {
+        "key": "privacySection13Text",
+        "text": "If you have questions about our privacy practices or wish to exercise your rights under GDPR, you may contact our Data Protection Officer through the contact information provided on our Contact page."
+      },
+      {
+        "key": "privacySection14Title",
+        "text": "14. Updates to This Privacy Policy"
+      },
+      {
+        "key": "privacySection14Text",
+        "text": "We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. The \"Last Updated\" date at the bottom of this policy indicates when it was last revised. Continued use of our website following changes means you accept the updated policy."
+      },
+      {
+        "key": "privacySection15Title",
+        "text": "15. Contact Us"
+      },
+      {
+        "key": "privacySection15Text",
+        "text": "For privacy inquiries, GDPR requests, or to exercise your data rights, please contact us through our Contact page or using the contact information provided on the main website. We commit to addressing your concerns promptly."
+      },
+      {
+        "key": "privacyLastUpdated",
+        "text": "Last Updated: May 5, 2026"
+      }
+    ],
+    "es": [
+      {
+        "key": "home",
+        "text": "Inicio"
+      },
+      {
+        "key": "about",
+        "text": "Acerca de"
+      },
+      {
+        "key": "careers",
+        "text": "Carreras"
+      },
+      {
+        "key": "contact",
+        "text": "Contacto"
+      },
+      {
+        "key": "learning",
+        "text": "Aprendizaje"
+      },
+      {
+        "key": "services",
+        "text": "Servicios"
+      },
+      {
+        "key": "brand",
+        "text": "Gabriel Services"
+      },
+      {
+        "key": "tagline",
+        "text": "Tercerización, Entregada"
+      },
+      {
+        "key": "homePageTitle",
+        "text": "Gabriel Services | Tercerización, Entregada"
+      },
+      {
+        "key": "aboutPageTitle",
+        "text": "Acerca de Gabriel Services"
+      },
+      {
+        "key": "careersPageTitle",
+        "text": "Carreras | Gabriel Services"
+      },
+      {
+        "key": "servicesPageTitle",
+        "text": "Gabriel Services | Descripción General de Servicios"
+      },
+      {
+        "key": "logisticsServicePageTitle",
+        "text": "Operaciones Logísticas | Gabriel Services"
+      },
+      {
+        "key": "adminServicePageTitle",
+        "text": "Back Office Administrativo | Gabriel Services"
+      },
+      {
+        "key": "customerServicePageTitle",
+        "text": "Operaciones de Relaciones con Clientes | Gabriel Services"
+      },
+      {
+        "key": "itServicePageTitle",
+        "text": "Soporte de TI | Gabriel Services"
+      },
+      {
+        "key": "company",
+        "text": "Empresa"
+      },
+      {
+        "key": "servicePagesLabel",
+        "text": "Páginas de Servicios"
+      },
+      {
+        "key": "supportLearning",
+        "text": "Soporte y Aprendizaje"
+      },
+      {
+        "key": "legal",
+        "text": "Legal"
+      },
+      {
+        "key": "termsConditions",
+        "text": "Términos y Condiciones"
+      },
+      {
+        "key": "cookiesConsent",
+        "text": "Consentimiento de Cookies"
+      },
+      {
+        "key": "privacyGdpr",
+        "text": "Privacidad y RGPD"
+      },
+      {
+        "key": "logisticsOps",
+        "text": "Operaciones Logísticas"
+      },
+      {
+        "key": "adminBackOffice",
+        "text": "Back Office Administrativo"
+      },
+      {
+        "key": "customerRelations",
+        "text": "Operaciones de Relaciones con Clientes"
+      },
+      {
+        "key": "itSupport",
+        "text": "Soporte de TI"
+      },
+      {
+        "key": "termsTitle",
+        "text": "Términos y Condiciones"
+      },
+      {
+        "key": "cookiesTitle",
+        "text": "Política de consentimiento de cookies"
+      },
+      {
+        "key": "privacyTitle",
+        "text": "Privacidad y RGPD"
+      },
+      {
+        "key": "lightTheme",
+        "text": "Claro"
+      },
+      {
+        "key": "darkTheme",
+        "text": "Oscuro"
+      },
+      {
+        "key": "languageLabel",
+        "text": "Idioma"
+      },
+      {
+        "key": "languageSelector",
+        "text": "Selector de idioma"
+      },
+      {
+        "key": "mobileNavigation",
+        "text": "Navegación móvil"
+      },
+      {
+        "key": "switchToEnglish",
+        "text": "Cambiar a inglés"
+      },
+      {
+        "key": "switchToSpanish",
+        "text": "Cambiar a español"
+      },
+      {
+        "key": "themeLabelText",
+        "text": "Tema"
+      },
+      {
+        "key": "copyright",
+        "text": "© 2026 Gabriel Services"
+      },
+      {
+        "key": "homeTagline",
+        "text": "Tercerización, Entregada"
+      },
+      {
+        "key": "homeH1",
+        "text": "Ejecución confiable día a día, Soporte operativo excepcional para negocios modernos."
+      },
+      {
+        "key": "homeDescription",
+        "text": "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.  Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI."
+      },
+      {
+        "key": "bookConsultation",
+        "text": "Reservar una consulta"
+      },
+      {
+        "key": "seeServiceCoverage",
+        "text": "Ver cobertura de servicios"
+      },
+      {
+        "key": "processeDriven",
+        "text": "Operaciones Impulsadas por Procesos"
+      },
+      {
+        "key": "practicalTransparent",
+        "text": "Práctico, transparente, responsivo y alineado con su ritmo operativo."
+      },
+      {
+        "key": "serviceAreasBuilt",
+        "text": "Áreas de servicio construidas para ejecución diaria"
+      },
+      {
+        "key": "logisticsDesc",
+        "text": "Continuidad de despacho y seguimiento."
+      },
+      {
+        "key": "adminDesc",
+        "text": "Registros, programación y mantenimiento de procesos."
+      },
+      {
+        "key": "customerRelDesc",
+        "text": "Comunicación, seguimiento y ritmo de servicio."
+      },
+      {
+        "key": "itSupportDesc",
+        "text": "Triaje de tickets y manejo de solicitudes diarias."
+      },
+      {
+        "key": "exploreService",
+        "text": "Explorar servicio"
+      },
+      {
+        "key": "sitemap",
+        "text": "Mapa del sitio"
+      },
+      {
+        "key": "servicesOverview",
+        "text": "Descripción General de Servicios"
+      },
+      {
+        "key": "serviceOverviewTitle",
+        "text": "Descripción General de Servicios"
+      },
+      {
+        "key": "serviceOverviewIntro",
+        "text": "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante."
+      },
+      {
+        "key": "serviceOverviewLogisticsDesc",
+        "text": "Coordinación estructurada, seguimiento de envíos y continuidad operativa para actividades de la cadena de suministro."
+      },
+      {
+        "key": "serviceOverviewAdminDesc",
+        "text": "Documentación, gestión de calendarios, reportes y disciplina de procesos para mantener tu negocio funcionando sin problemas."
+      },
+      {
+        "key": "serviceOverviewCustomerDesc",
+        "text": "Comunicaciones con clientes, resolución de problemas y flujos de seguimiento diseñados para mejorar la satisfacción y la retención."
+      },
+      {
+        "key": "serviceOverviewItDesc",
+        "text": "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI."
+      },
+      {
+        "key": "whyBusinessesTitle",
+        "text": "Por qué las empresas trabajan con Gabriel Services"
+      },
+      {
+        "key": "whyBusinessesText",
+        "text": "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones."
+      },
+      {
+        "key": "startSupportTitle",
+        "text": "Comience con el apoyo que necesita"
+      },
+      {
+        "key": "requestConsultation",
+        "text": "Solicitar consulta"
+      },
+      {
+        "key": "viewEngagementOptions",
+        "text": "Ver opciones de compromiso"
+      },
+      {
+        "key": "aboutTitle",
+        "text": "Acerca de"
+      },
+      {
+        "key": "aboutIntro1",
+        "text": "Gabriel Services es un socio de soporte operativo enfocado en la ejecución diaria para negocios modernos."
+      },
+      {
+        "key": "aboutIntro2",
+        "text": "Ofrecemos soporte multifuncional en operaciones logísticas, back office administrativo, operaciones de atención al cliente y soporte de TI."
+      },
+      {
+        "key": "aboutIntro3",
+        "text": "Nuestro enfoque se basa en la consistencia, la comunicación transparente y la ejecución práctica."
+      },
+      {
+        "key": "aboutWhenIssuesTitle",
+        "text": "Cuando las oportunidades quedan sin resolver"
+      },
+      {
+        "key": "aboutWhenIssuesText",
+        "text": "Los pequeños problemas operativos, cuando se ignoran, pueden dañar silenciosamente la confianza del cliente. Los detalles pasados por alto ralentizan el crecimiento, crean oportunidades perdidas y eventualmente afectan la estabilidad del negocio."
+      },
+      {
+        "key": "aboutThatIsWhereText",
+        "text": "Ahí es donde intervenimos."
+      },
+      {
+        "key": "aboutDetailsHandledText",
+        "text": "Nos aseguramos de que ninguna oportunidad se escape. Cada detalle se maneja para que su negocio se mantenga organizado, receptivo y funcione sin contratiempos."
+      },
+      {
+        "key": "aboutWhatWeHandleTitle",
+        "text": "Lo que manejamos"
+      },
+      {
+        "key": "aboutWhatWeHandleText",
+        "text": "Intervenimos manejando los detalles y aportando estructura a operaciones fragmentadas. Nos integramos en sus flujos de trabajo, alineamos con sus procesos y nos enfocamos en la ejecución para que su equipo pueda centrarse en el crecimiento."
+      },
+      {
+        "key": "aboutApproachSimpleTitle",
+        "text": "Nuestro enfoque es simple:"
+      },
+      {
+        "key": "aboutApproachItem1",
+        "text": "Mejoramos la productividad."
+      },
+      {
+        "key": "aboutApproachItem2",
+        "text": "Aumentamos la consistencia operativa."
+      },
+      {
+        "key": "aboutApproachItem3",
+        "text": "Entregamos ejecución de alta calidad."
+      },
+      {
+        "key": "aboutApproachItem4",
+        "text": "Operamos con una entrega de servicio práctica y consciente de los costos."
+      },
+      {
+        "key": "aboutApproachItem5",
+        "text": "Actuamos como un socio operativo confiable: integrándonos a su equipo y manejando la ejecución para que usted no tenga que hacerlo."
+      },
+      {
+        "key": "aboutResultTitle",
+        "text": "El resultado"
+      },
+      {
+        "key": "aboutResult1",
+        "text": "Obtiene más con menos fricción."
+      },
+      {
+        "key": "aboutResult2",
+        "text": "Más claridad."
+      },
+      {
+        "key": "aboutResult3",
+        "text": "Más tiempo para centrarse en el crecimiento en lugar de apagar incendios."
+      },
+      {
+        "key": "aboutResult4",
+        "text": "Todo a un costo que tiene sentido para empresas en crecimiento: sin gastos generales empresariales y sin contratos."
+      },
+      {
+        "key": "aboutSupportTitle",
+        "text": "Lo que apoyamos"
+      },
+      {
+        "key": "aboutSupportText",
+        "text": "Nos enfocamos en cuatro áreas operativas:"
+      },
+      {
+        "key": "aboutSupportArea1",
+        "text": "Logística"
+      },
+      {
+        "key": "aboutSupportArea2",
+        "text": "Relaciones con Clientes"
+      },
+      {
+        "key": "aboutSupportArea3",
+        "text": "Back Office Administrativo"
+      },
+      {
+        "key": "aboutSupportArea4",
+        "text": "Soporte de TI (Nivel I y Nivel II)"
+      },
+      {
+        "key": "aboutOurServicesTitle",
+        "text": "Nuestros Servicios"
+      },
+      {
+        "key": "aboutLogisticsOperationsTitle",
+        "text": "Operaciones Logísticas"
+      },
+      {
+        "key": "aboutLogisticsOperationsText",
+        "text": "Ayudamos a mantener su logística organizada, visible y en movimiento:"
+      },
+      {
+        "key": "aboutLogisticsList1",
+        "text": "Coordinación de despacho"
+      },
+      {
+        "key": "aboutLogisticsList2",
+        "text": "Seguimiento de envíos (marítimo, aéreo y terrestre)"
+      },
+      {
+        "key": "aboutLogisticsList3",
+        "text": "Comunicación con clientes y seguimientos"
+      },
+      {
+        "key": "aboutLogisticsList4",
+        "text": "Soporte de facturación y cobro"
+      },
+      {
+        "key": "aboutLogisticsList5",
+        "text": "Coordinación de documentación"
+      },
+      {
+        "key": "aboutCustomerRelationsTitle",
+        "text": "Relaciones con Clientes"
+      },
+      {
+        "key": "aboutCustomerRelationsText",
+        "text": "Ayudamos a mantener la satisfacción del cliente y el flujo de resolución:"
+      },
+      {
+        "key": "aboutCustomerRelationsList1",
+        "text": "Seguimiento de tickets y resolución"
+      },
+      {
+        "key": "aboutCustomerRelationsList2",
+        "text": "Seguimientos de satisfacción del cliente (soporte CSAT)"
+      },
+      {
+        "key": "aboutCustomerRelationsList3",
+        "text": "Soporte de aclaración de facturación"
+      },
+      {
+        "key": "aboutCustomerRelationsList4",
+        "text": "Soporte de resolución en el primer contacto"
+      },
+      {
+        "key": "aboutCustomerRelationsList5",
+        "text": "Gestión de la comunicación con el cliente"
+      },
+      {
+        "key": "aboutAdminBackOfficeTitle",
+        "text": "Back Office Administrativo"
+      },
+      {
+        "key": "aboutAdminBackOfficeText",
+        "text": "Apoyamos el liderazgo y las operaciones diarias del negocio:"
+      },
+      {
+        "key": "aboutAdminBackOfficeList1",
+        "text": "Soporte administrativo ejecutivo"
+      },
+      {
+        "key": "aboutAdminBackOfficeList2",
+        "text": "Coordinación de calendario y programación"
+      },
+      {
+        "key": "aboutAdminBackOfficeList3",
+        "text": "Gestión de correo y comunicación"
+      },
+      {
+        "key": "aboutAdminBackOfficeList4",
+        "text": "Organización y preparación de documentos"
+      },
+      {
+        "key": "aboutAdminBackOfficeList5",
+        "text": "Coordinación de proveedores"
+      },
+      {
+        "key": "aboutAdminBackOfficeList6",
+        "text": "Soporte operativo interno"
+      },
+      {
+        "key": "aboutAdminBackOfficeList7",
+        "text": "Planificación y coordinación de viajes"
+      },
+      {
+        "key": "aboutITSupportTitle",
+        "text": "Soporte de TI (Nivel I y Nivel II)"
+      },
+      {
+        "key": "aboutITSupportText",
+        "text": "Ofrecemos cobertura técnica estructurada:"
+      },
+      {
+        "key": "aboutLevel1Title",
+        "text": "Soporte de Nivel I"
+      },
+      {
+        "key": "aboutLevel1List1",
+        "text": "Entrada de mesa de ayuda y creación de tickets"
+      },
+      {
+        "key": "aboutLevel1List2",
+        "text": "Solución básica de problemas"
+      },
+      {
+        "key": "aboutLevel1List3",
+        "text": "Soporte al usuario final"
+      },
+      {
+        "key": "aboutLevel1List4",
+        "text": "Asistencia con acceso a cuentas"
+      },
+      {
+        "key": "aboutLevel1List5",
+        "text": "Coordinación de escalamiento"
+      },
+      {
+        "key": "aboutLevel2Title",
+        "text": "Soporte de Nivel II"
+      },
+      {
+        "key": "aboutLevel2List1",
+        "text": "Solución avanzada de problemas"
+      },
+      {
+        "key": "aboutLevel2List2",
+        "text": "Investigación de incidentes"
+      },
+      {
+        "key": "aboutLevel2List3",
+        "text": "Soporte de sistemas y flujos de trabajo"
+      },
+      {
+        "key": "aboutLevel2List4",
+        "text": "Análisis de causa raíz"
+      },
+      {
+        "key": "aboutLevel2List5",
+        "text": "Responsabilidad de resolución después de la escalada"
+      },
+      {
+        "key": "contactTitle",
+        "text": "Contacto"
+      },
+      {
+        "key": "contactMetaDescription",
+        "text": "Contacta a Gabriel Services para soporte, incorporación, proyectos y oportunidades de colaboración."
+      },
+      {
+        "key": "honeypotWebsiteLabel",
+        "text": "Sitio web"
+      },
+      {
+        "key": "contactProtectionUnavailable",
+        "text": "El módulo de protección de contacto no está disponible."
+      },
+      {
+        "key": "contactFullNameRequired",
+        "text": "Ingresa tu nombre completo."
+      },
+      {
+        "key": "contactEmailRequired",
+        "text": "Ingresa una dirección de correo electrónico válida."
+      },
+      {
+        "key": "contactMessageRequired",
+        "text": "Ingresa un mensaje."
+      },
+      {
+        "key": "contactSessionBlocked",
+        "text": "Esta sesión de contacto ha sido bloqueada."
+      },
+      {
+        "key": "contactSubmitBlockedGeneric",
+        "text": "No se pudo enviar tu mensaje."
+      },
+      {
+        "key": "contactSubmitBlockedSecure",
+        "text": "No se pudo enviar tu mensaje de forma segura."
+      },
+      {
+        "key": "contactSubmitPending",
+        "text": "Enviando tu mensaje de forma segura..."
+      },
+      {
+        "key": "contactSubmitSuccess",
+        "text": "Tu mensaje se recibió de forma segura."
+      },
+      {
+        "key": "contactSubmitUnavailable",
+        "text": "No se pudo enviar tu mensaje en este momento."
+      },
+      {
+        "key": "contactIntro",
+        "text": "Ponte en contacto para soporte, incorporación, proyectos y oportunidades de colaboración."
+      },
+      {
+        "key": "fullName",
+        "text": "Nombre completo"
+      },
+      {
+        "key": "emailAddress",
+        "text": "Dirección de correo electrónico"
+      },
+      {
+        "key": "countryCode",
+        "text": "Código de país"
+      },
+      {
+        "key": "contactNumber",
+        "text": "Número de contacto"
+      },
+      {
+        "key": "city",
+        "text": "Ciudad"
+      },
+      {
+        "key": "stateProvince",
+        "text": "Estado/Provincia"
+      },
+      {
+        "key": "spaceSuiteApt",
+        "text": "Espacio/Suite/Apartamento"
+      },
+      {
+        "key": "countryZipCode",
+        "text": "Código postal del país"
+      },
+      {
+        "key": "bestContactTime",
+        "text": "Mejor hora para contactarte"
+      },
+      {
+        "key": "messageLabel",
+        "text": "Mensaje"
+      },
+      {
+        "key": "inquiryAboutTitle",
+        "text": "Cuéntanos tus expectativas sobre la experiencia, el conocimiento y las habilidades del Asistente Remoto"
+      },
+      {
+        "key": "inquiryAboutHelper",
+        "text": "Aptitud, habilidades, experiencia, conocimiento"
+      },
+      {
+        "key": "skillsLabel",
+        "text": "Habilidades"
+      },
+      {
+        "key": "languagesLabel",
+        "text": "Idiomas"
+      },
+      {
+        "key": "projectsLabel",
+        "text": "Proyectos"
+      },
+      {
+        "key": "educationLabel",
+        "text": "Educación"
+      },
+      {
+        "key": "addSkill",
+        "text": "Agregar +"
+      },
+      {
+        "key": "removeSkill",
+        "text": "Eliminar -"
+      },
+      {
+        "key": "removeAll",
+        "text": "Eliminar todo"
+      },
+      {
+        "key": "experienceLabel",
+        "text": "Experiencia"
+      },
+      {
+        "key": "experienceLevelLabel",
+        "text": "Nivel de experiencia"
+      },
+      {
+        "key": "placeholderAddExperienceEntry",
+        "text": "Agregar experiencia"
+      },
+      {
+        "key": "experienceLevelEntryLevel",
+        "text": "Nivel inicial"
+      },
+      {
+        "key": "experienceLevelJunior",
+        "text": "Junior"
+      },
+      {
+        "key": "experienceLevelIntermediate",
+        "text": "Intermedio"
+      },
+      {
+        "key": "experienceLevelAdvanced",
+        "text": "Avanzado"
+      },
+      {
+        "key": "experienceLevelSenior",
+        "text": "Senior"
+      },
+      {
+        "key": "experienceLevelExpert",
+        "text": "Experto"
+      },
+      {
+        "key": "experienceLevelEngineer",
+        "text": "Ingeniero"
+      },
+      {
+        "key": "experienceLevelCLevel",
+        "text": "Nivel C"
+      },
+      {
+        "key": "placeholderAddLanguageEntry",
+        "text": "Agregar idioma"
+      },
+      {
+        "key": "placeholderAddSkillEntry",
+        "text": "Agregar habilidad"
+      },
+      {
+        "key": "placeholderAddAreaInterestEntry",
+        "text": "Agregar área de interés"
+      },
+      {
+        "key": "placeholderAddProjectEntry",
+        "text": "Agregar proyecto"
+      },
+      {
+        "key": "placeholderAddEducationEntry",
+        "text": "Agregar educación"
+      },
+      {
+        "key": "submitApplication",
+        "text": "Enviar solicitud"
+      },
+      {
+        "key": "contactButtonLabel",
+        "text": "Enviar"
+      },
+      {
+        "key": "clearForm",
+        "text": "Limpiar formulario"
+      },
+      {
+        "key": "careersTitle",
+        "text": "Carreras"
+      },
+      {
+        "key": "careersIntro",
+        "text": "Postúlate para apoyar operaciones, comunicación y flujos de prestación de servicios en todas las áreas de servicio."
+      },
+      {
+        "key": "availabilityLabel",
+        "text": "Disponibilidad"
+      },
+      {
+        "key": "areaInterestLabel",
+        "text": "Área de interés"
+      },
+      {
+        "key": "careersOptionLogistics",
+        "text": "Logística"
+      },
+      {
+        "key": "careersOptionAdministration",
+        "text": "Administración"
+      },
+      {
+        "key": "careersOptionCustomerRelations",
+        "text": "Relaciones con Clientes"
+      },
+      {
+        "key": "careersOptionItSupport",
+        "text": "Soporte de TI"
+      },
+      {
+        "key": "resumeLinkLabel",
+        "text": "Enlace de currículum/perfil"
+      },
+      {
+        "key": "educationLevelLabel",
+        "text": "Nivel educativo"
+      },
+      {
+        "key": "educationOptionHighSchool",
+        "text": "Secundaria"
+      },
+      {
+        "key": "educationOptionAssociate",
+        "text": "Técnico/Superior"
+      },
+      {
+        "key": "educationOptionBachelor",
+        "text": "Licenciatura"
+      },
+      {
+        "key": "educationOptionMaster",
+        "text": "Maestría"
+      },
+      {
+        "key": "educationOptionDoctorate",
+        "text": "Doctorado"
+      },
+      {
+        "key": "educationOptionCertified",
+        "text": "Certificación"
+      },
+      {
+        "key": "bestContactDateLabel",
+        "text": "Mejor fecha de contacto"
+      },
+      {
+        "key": "bestContactTimeLabel",
+        "text": "Mejor hora de contacto"
+      },
+      {
+        "key": "careerMessagePrompt",
+        "text": "Cuéntanos sobre TI"
+      },
+      {
+        "key": "learningTitle",
+        "text": "Aprendizaje"
+      },
+      {
+        "key": "learningIntro",
+        "text": "Guía y conocimiento práctico de servicio para soporte operativo orientado a flujos de trabajo, con preferencia por el inglés."
+      },
+      {
+        "key": "trackLogisticsTitle",
+        "text": "Operaciones Logísticas"
+      },
+      {
+        "key": "trackLogisticsText",
+        "text": "Aprende los fundamentos de coordinación, seguimiento y continuidad."
+      },
+      {
+        "key": "logisticsServiceTitle",
+        "text": "Operaciones Logísticas"
+      },
+      {
+        "key": "logisticsServiceIntro",
+        "text": "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento."
+      },
+      {
+        "key": "logisticsServiceOfferTitle",
+        "text": "Lo que ofrecemos"
+      },
+      {
+        "key": "logisticsServiceOffer1",
+        "text": "Coordinación de despachos y comunicación con transportistas."
+      },
+      {
+        "key": "logisticsServiceOffer2",
+        "text": "Seguimiento de envíos por transporte aéreo, marítimo y terrestre."
+      },
+      {
+        "key": "logisticsServiceOffer3",
+        "text": "Monitoreo del estado del inventario y gestión de excepciones."
+      },
+      {
+        "key": "logisticsServiceOffer4",
+        "text": "Seguimiento con proveedores y transportistas para proteger los tiempos de entrega."
+      },
+      {
+        "key": "logisticsServiceWorkTitle",
+        "text": "Cómo trabajamos"
+      },
+      {
+        "key": "logisticsServiceWorkIntro",
+        "text": "Nos integramos a tu ecosistema logístico existente, nos alineamos con los hitos operativos y proporcionamos una ejecución constante todos los días."
+      },
+      {
+        "key": "logisticsServiceWork1",
+        "text": "Prácticas claras de traspaso y plantillas de comunicación."
+      },
+      {
+        "key": "logisticsServiceWork2",
+        "text": "Actualizaciones periódicas de estado y escalación temprana de problemas."
+      },
+      {
+        "key": "logisticsServiceWork3",
+        "text": "Seguimiento basado en datos con próximos pasos accionables."
+      },
+      {
+        "key": "logisticsServiceWhyTitle",
+        "text": "Por qué elegir este servicio"
+      },
+      {
+        "key": "logisticsServiceWhyText",
+        "text": "Este servicio es ideal para negocios que necesitan soporte logístico confiable sin aumentar la carga interna. Ayudamos a reducir retrasos, mejorar la visibilidad y mantener tus operaciones receptivas."
+      },
+      {
+        "key": "backToServices",
+        "text": "Volver a Servicios"
+      },
+      {
+        "key": "trackAdminTitle",
+        "text": "Back Office Administrativo"
+      },
+      {
+        "key": "trackAdminText",
+        "text": "Aprende documentación, ritmo de reportes y mantenimiento de procesos."
+      },
+      {
+        "key": "adminLearningTitle",
+        "text": "Aprendizaje de Administración Back Office"
+      },
+      {
+        "key": "adminLearningIntro",
+        "text": "Capacitación diseñada para equipos de soporte operativo que gestionan sistemas internos, programación, documentación y flujos de trabajo de tareas."
+      },
+      {
+        "key": "learningObjectivesTitle",
+        "text": "Objetivos de aprendizaje"
+      },
+      {
+        "key": "adminLearningObjective1",
+        "text": "Desarrollar hábitos confiables de documentación y reportes."
+      },
+      {
+        "key": "adminLearningObjective2",
+        "text": "Mejorar la coordinación de tareas entre equipos y partes interesadas."
+      },
+      {
+        "key": "adminLearningObjective3",
+        "text": "Aprender cómo mantener flujos administrativos consistentes."
+      },
+      {
+        "key": "keyTopicsTitle",
+        "text": "Temas clave"
+      },
+      {
+        "key": "adminLearningTopic1",
+        "text": "Gestión de calendario y comunicación."
+      },
+      {
+        "key": "adminLearningTopic2",
+        "text": "Organización de documentos y control de versiones."
+      },
+      {
+        "key": "adminLearningTopic3",
+        "text": "Seguimiento con proveedores y coordinación de servicios."
+      },
+      {
+        "key": "practicalApplicationTitle",
+        "text": "Aplicación práctica"
+      },
+      {
+        "key": "adminLearningApplication",
+        "text": "Estas habilidades ayudan a los equipos de back office a reducir la fricción operativa y apoyar una toma de decisiones más rápida en todo el negocio."
+      },
+      {
+        "key": "adminLearningPageTitle",
+        "text": "Aprendizaje de Administración Back Office | Gabriel Services"
+      },
+      {
+        "key": "adminLearningMetaDescription",
+        "text": "Ruta de aprendizaje para Administración Back Office: disciplina de procesos, reportes y habilidades de operaciones internas."
+      },
+      {
+        "key": "logisticsLearningPageTitle",
+        "text": "Aprendizaje de Operaciones Logísticas | Gabriel Services"
+      },
+      {
+        "key": "logisticsLearningMetaDescription",
+        "text": "Ruta de aprendizaje para Operaciones Logísticas: coordinación de flujos de trabajo, sistemas de seguimiento y habilidades de continuidad."
+      },
+      {
+        "key": "logisticsLearningTitle",
+        "text": "Aprendizaje de Operaciones Logísticas"
+      },
+      {
+        "key": "logisticsLearningIntro",
+        "text": "Guía práctica para equipos de logística y profesionales de operaciones, enfocada en la continuidad, la disciplina de seguimiento y la coordinación de procesos."
+      },
+      {
+        "key": "logisticsLearningObjective1",
+        "text": "Comprender los principales flujos de trabajo logísticos y los puntos de traspaso"
+      },
+      {
+        "key": "logisticsLearningObjective2",
+        "text": "Aprender mejores prácticas para el seguimiento de envíos y la gestión de excepciones"
+      },
+      {
+        "key": "logisticsLearningObjective3",
+        "text": "Crear procesos de comunicación repetibles para transportistas y proveedores"
+      },
+      {
+        "key": "logisticsLearningTopic1",
+        "text": "Coordinación de despachos y planificación operativa"
+      },
+      {
+        "key": "logisticsLearningTopic2",
+        "text": "Estándares de visibilidad para envíos aéreos, marítimos y terrestres"
+      },
+      {
+        "key": "logisticsLearningTopic3",
+        "text": "Gestión de seguimientos y control de escalaciones"
+      },
+      {
+        "key": "logisticsLearningApplication",
+        "text": "Esta ruta está diseñada para personas que necesitan convertir la planificación logística en una ejecución diaria predecible, sin agregar carga operativa."
+      },
+      {
+        "key": "customerLearningPageTitle",
+        "text": "Aprendizaje de Relaciones con Clientes | Gabriel Services"
+      },
+      {
+        "key": "customerLearningMetaDescription",
+        "text": "Aprendizaje de Relaciones con Clientes: mejores prácticas de comunicación, flujos de escalación y habilidades de atención al cliente."
+      },
+      {
+        "key": "customerLearningTitle",
+        "text": "Aprendizaje de Relaciones con Clientes"
+      },
+      {
+        "key": "customerLearningIntro",
+        "text": "Aprende cómo gestionar comunicaciones con clientes, manejar escalaciones y mantener un ritmo de servicio confiable en cada interacción con el cliente."
+      },
+      {
+        "key": "customerLearningObjective1",
+        "text": "Dominar mejores prácticas de comunicación para equipos que tratan directamente con clientes."
+      },
+      {
+        "key": "customerLearningObjective2",
+        "text": "Comprender flujos de escalación y resolución rápida de problemas."
+      },
+      {
+        "key": "customerLearningObjective3",
+        "text": "Desarrollar un proceso consistente de seguimiento y satisfacción."
+      },
+      {
+        "key": "customerLearningTopic1",
+        "text": "Seguimiento de tickets y control de resolución."
+      },
+      {
+        "key": "customerLearningTopic2",
+        "text": "Medición de satisfacción y retroalimentación del cliente."
+      },
+      {
+        "key": "customerLearningTopic3",
+        "text": "Comunicación clara y oportuna con el cliente."
+      },
+      {
+        "key": "customerLearningApplication",
+        "text": "Estas prácticas ayudan a los equipos a convertir las interacciones con clientes en resultados confiables y traspasos más claros entre operaciones."
+      },
+      {
+        "key": "itLearningPageTitle",
+        "text": "Aprendizaje de Soporte de TI | Gabriel Services"
+      },
+      {
+        "key": "itLearningMetaDescription",
+        "text": "Ruta de aprendizaje de Soporte de TI: flujos de soporte, gestión de tickets y operaciones de TI centradas en usuarios."
+      },
+      {
+        "key": "itLearningTitle",
+        "text": "Aprendizaje de Soporte de TI"
+      },
+      {
+        "key": "itLearningIntro",
+        "text": "Ruta práctica de aprendizaje para flujos de soporte de TI, manejo de tickets y operaciones técnicas orientadas al usuario."
+      },
+      {
+        "key": "itLearningObjective1",
+        "text": "Comprender el ciclo de vida de tickets y los flujos de soporte a usuarios"
+      },
+      {
+        "key": "itLearningObjective2",
+        "text": "Aprender prácticas efectivas de comunicación técnica y escalación"
+      },
+      {
+        "key": "itLearningObjective3",
+        "text": "Crear hábitos medibles de soporte para operaciones diarias"
+      },
+      {
+        "key": "itLearningTopic1",
+        "text": "Recepción de mesa de ayuda, categorización y planificación de respuesta"
+      },
+      {
+        "key": "itLearningTopic2",
+        "text": "Seguimiento de incidentes y comunicación de progreso"
+      },
+      {
+        "key": "itLearningTopic3",
+        "text": "Documentación de soporte y traspasos de seguimiento"
+      },
+      {
+        "key": "itLearningApplication",
+        "text": "Esta ruta está creada para equipos que necesitan soporte técnico constante sin perder el enfoque en una entrega confiable de servicio al usuario."
+      },
+      {
+        "key": "relatedLearningTitle",
+        "text": "Explorar otras rutas de aprendizaje"
+      },
+      {
+        "key": "relatedLearningText",
+        "text": "Continúa navegando entre las rutas principales para comparar habilidades, flujos de trabajo y aplicaciones prácticas."
+      },
+      {
+        "key": "relatedLearningAria",
+        "text": "Rutas de aprendizaje relacionadas"
+      },
+      {
+        "key": "backToLearning",
+        "text": "Volver a Aprendizaje"
+      },
+      {
+        "key": "adminBackOfficeServiceIntro",
+        "text": "Nuestros servicios de back office aportan estructura y confiabilidad a tus operaciones internas, ayudando a reducir riesgos y mantener un ritmo empresarial constante."
+      },
+      {
+        "key": "adminBackOfficeHandleTitle",
+        "text": "Lo que gestionamos"
+      },
+      {
+        "key": "adminBackOfficeHandle1",
+        "text": "Soporte administrativo ejecutivo y gestión de calendario."
+      },
+      {
+        "key": "adminBackOfficeHandle2",
+        "text": "Preparación de documentos, archivo y control de versiones."
+      },
+      {
+        "key": "adminBackOfficeHandle3",
+        "text": "Coordinación de correos electrónicos y comunicaciones para equipos internos."
+      },
+      {
+        "key": "adminBackOfficeHandle4",
+        "text": "Seguimiento con proveedores, control de facturas y soporte de reportes."
+      },
+      {
+        "key": "adminBackOfficeWorksTitle",
+        "text": "Cómo funciona este servicio"
+      },
+      {
+        "key": "adminBackOfficeWorksText",
+        "text": "Trabajamos de cerca con tu equipo para comprender los procesos, capturar acciones prioritarias y mantener cada tarea alineada con el calendario de tu negocio."
+      },
+      {
+        "key": "adminBackOfficeWorksPoint1",
+        "text": "Responsabilidad clara para tareas recurrentes y elementos de seguimiento."
+      },
+      {
+        "key": "adminBackOfficeWorksPoint2",
+        "text": "Flujos de tareas documentados y seguimiento del progreso."
+      },
+      {
+        "key": "adminBackOfficeWorksPoint3",
+        "text": "Actualizaciones periódicas de estado para partes interesadas y líderes de equipo."
+      },
+      {
+        "key": "adminBackOfficeMattersTitle",
+        "text": "Por qué importa"
+      },
+      {
+        "key": "adminBackOfficeMattersText",
+        "text": "Un sólido soporte de back office ayuda a las empresas a escalar al eliminar fricción administrativa, mejorar la consistencia y liberar a tu equipo para enfocarse en trabajos de mayor valor."
+      },
+      {
+        "key": "trackCustomerTitle",
+        "text": "Operaciones de Clientes"
+      },
+      {
+        "key": "trackCustomerText",
+        "text": "Aprende flujo de seguimiento, continuidad de escalaciones y ritmo de respuesta."
+      },
+      {
+        "key": "customerRelationsServiceTitle",
+        "text": "Operaciones de Relaciones con Clientes"
+      },
+      {
+        "key": "customerRelationsServiceIntro",
+        "text": "Apoyamos la experiencia del cliente con comunicación constante, gestión de escalaciones y flujos de seguimiento que mantienen cada situación avanzando hacia su resolución."
+      },
+      {
+        "key": "customerRelationsServiceAreasTitle",
+        "text": "Áreas principales del servicio"
+      },
+      {
+        "key": "customerRelationsServiceArea1",
+        "text": "Seguimiento de tickets y control de resolución."
+      },
+      {
+        "key": "customerRelationsServiceArea2",
+        "text": "Revisiones de satisfacción del cliente y soporte de retroalimentación."
+      },
+      {
+        "key": "customerRelationsServiceArea3",
+        "text": "Aclaración de facturación y asistencia en escalaciones."
+      },
+      {
+        "key": "customerRelationsServiceArea4",
+        "text": "Soporte de resolución en el primer contacto y comunicación de estado."
+      },
+      {
+        "key": "customerRelationsServiceHowTitle",
+        "text": "Cómo apoyamos a los clientes"
+      },
+      {
+        "key": "customerRelationsServiceHowText",
+        "text": "Nuestro equipo ayuda a mantener la confianza gestionando un ritmo constante de comunicación con el cliente y resolviendo consultas de manera oportuna y precisa."
+      },
+      {
+        "key": "customerRelationsServiceHow1",
+        "text": "Respuestas estandarizadas y protocolos de escalación."
+      },
+      {
+        "key": "customerRelationsServiceHow2",
+        "text": "Seguimiento al cliente y revisiones de satisfacción."
+      },
+      {
+        "key": "customerRelationsServiceHow3",
+        "text": "Traspasos claros entre equipos y socios de entrega."
+      },
+      {
+        "key": "customerRelationsServiceWhyTitle",
+        "text": "Por qué esto importa"
+      },
+      {
+        "key": "customerRelationsServiceWhyText",
+        "text": "Las operaciones sólidas de relaciones con clientes reducen la pérdida de clientes, mejoran la percepción de la marca y garantizan que tus clientes siempre se sientan apoyados."
+      },
+      {
+        "key": "trackITTitle",
+        "text": "Soporte de TI"
+      },
+      {
+        "key": "trackITText",
+        "text": "Aprende fundamentos de clasificación, comunicación de tickets y manejo de solicitudes."
+      },
+      {
+        "key": "itSupportServiceIntro",
+        "text": "Gabriel Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos."
+      },
+      {
+        "key": "serviceHighlightsTitle",
+        "text": "Aspectos destacados del servicio"
+      },
+      {
+        "key": "itSupportHighlight1",
+        "text": "Recepción de solicitudes de mesa de ayuda y creación de tickets."
+      },
+      {
+        "key": "itSupportHighlight2",
+        "text": "Solución básica de problemas y diagnóstico de incidencias."
+      },
+      {
+        "key": "itSupportHighlight3",
+        "text": "Coordinación de acceso a cuentas y soporte de sistemas."
+      },
+      {
+        "key": "itSupportHighlight4",
+        "text": "Gestión de escalaciones a equipos especializados cuando sea necesario."
+      },
+      {
+        "key": "itSupportDeliveryTitle",
+        "text": "Cómo brindamos soporte"
+      },
+      {
+        "key": "itSupportDeliveryText",
+        "text": "Mantenemos un ritmo de soporte estructurado que da seguimiento a las solicitudes entrantes desde el primer contacto hasta la resolución, con visibilidad y responsabilidad en cada paso."
+      },
+      {
+        "key": "itSupportDeliveryPoint1",
+        "text": "Recepción y clasificación rápida de tickets."
+      },
+      {
+        "key": "itSupportDeliveryPoint2",
+        "text": "Actualizaciones claras de estado y rutas de escalación."
+      },
+      {
+        "key": "itSupportDeliveryPoint3",
+        "text": "Comunicación práctica y enfocada en el usuario."
+      },
+      {
+        "key": "whyItWorksTitle",
+        "text": "Por qué funciona"
+      },
+      {
+        "key": "itSupportWhyText",
+        "text": "El soporte de TI adecuado mantiene a tu equipo productivo, evita que los problemas pequeños se conviertan en situaciones mayores y ayuda a mantener operaciones diarias confiables."
+      },
+      {
+        "key": "exploreTrack",
+        "text": "Explorar módulo"
+      },
+      {
+        "key": "termsSection1Title",
+        "text": "1. Aceptación de los términos"
+      },
+      {
+        "key": "termsSection1Text",
+        "text": "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, aceptas y acuerdas quedar sujeto a los términos y disposiciones de este acuerdo. Si no aceptas cumplir con lo anterior, por favor no utilices este servicio."
+      },
+      {
+        "key": "termsSection2Title",
+        "text": "2. Licencia de uso"
+      },
+      {
+        "key": "termsSection2Text",
+        "text": "Gabriel Services te otorga una licencia limitada para acceder y usar el sitio web y los servicios únicamente con fines legales. Aceptas no:"
+      },
+      {
+        "key": "termsSection2List1",
+        "text": "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o de los servicios"
+      },
+      {
+        "key": "termsSection2List2",
+        "text": "Acceder al sitio web con cualquier fin ilícito o no autorizado"
+      },
+      {
+        "key": "termsSection2List3",
+        "text": "Interrumpir el flujo normal del diálogo o interrumpir de cualquier otra forma los servicios"
+      },
+      {
+        "key": "termsSection2List4",
+        "text": "Intentar obtener acceso no autorizado a nuestros sistemas o redes"
+      },
+      {
+        "key": "termsSection2List5",
+        "text": "Usar sistemas automatizados o scripts para recopilar datos sin permiso"
+      },
+      {
+        "key": "termsSection2List6",
+        "text": "Participar en cualquier forma de acoso o comportamiento abusivo"
+      },
+      {
+        "key": "termsSection3Title",
+        "text": "3. Descargo de garantías"
+      },
+      {
+        "key": "termsSection3Text",
+        "text": "Los materiales del sitio web de Gabriel Services se proporcionan ‘tal cual’. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, entre otras, las garantías o condiciones implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos."
+      },
+      {
+        "key": "termsSection4Title",
+        "text": "4. Limitaciones de responsabilidad"
+      },
+      {
+        "key": "termsSection4Text",
+        "text": "En ningún caso Gabriel Services o sus proveedores serán responsables por daños (incluidos, entre otros, daños por pérdida de datos o ganancias, o por interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales del sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito sobre la posibilidad de dicho daño."
+      },
+      {
+        "key": "termsSection5Title",
+        "text": "5. Exactitud de los materiales"
+      },
+      {
+        "key": "termsSection5Text",
+        "text": "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales de su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento y sin previo aviso."
+      },
+      {
+        "key": "termsSection6Title",
+        "text": "6. Enlaces"
+      },
+      {
+        "key": "termsSection6Text",
+        "text": "Gabriel Services no ha revisado todos los sitios enlazados a su sitio web y no es responsable del contenido de dichos sitios enlazados. La inclusión de cualquier enlace no implica respaldo por parte de Gabriel Services del sitio. El uso de cualquier sitio web enlazado es bajo el propio riesgo del usuario."
+      },
+      {
+        "key": "termsSection7Title",
+        "text": "7. Modificaciones"
+      },
+      {
+        "key": "termsSection7Text",
+        "text": "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento y sin previo aviso. Al usar este sitio web, aceptas quedar sujeto a la versión vigente de estos términos de servicio."
+      },
+      {
+        "key": "termsSection8Title",
+        "text": "8. Ley aplicable"
+      },
+      {
+        "key": "termsSection8Text",
+        "text": "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación."
+      },
+      {
+        "key": "termsSection9Title",
+        "text": "9. Descripción del servicio"
+      },
+      {
+        "key": "termsSection9Text",
+        "text": "Gabriel Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabriel Services y el cliente se detallan en el acuerdo de servicio."
+      },
+      {
+        "key": "termsSection10Title",
+        "text": "10. Términos de pago"
+      },
+      {
+        "key": "termsSection10Text",
+        "text": "Los términos de pago son los especificados en el acuerdo de servicio individual. Las facturas vencen al recibo, salvo que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio."
+      },
+      {
+        "key": "termsSection11Title",
+        "text": "11. Derechos de propiedad intelectual"
+      },
+      {
+        "key": "termsSection11Text",
+        "text": "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor."
+      },
+      {
+        "key": "termsSection12Title",
+        "text": "12. Limitación del servicio"
+      },
+      {
+        "key": "termsSection12Text",
+        "text": "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su exclusiva discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a nuestra exclusiva discreción."
+      },
+      {
+        "key": "termsSection13Title",
+        "text": "13. Contacto para consultas legales"
+      },
+      {
+        "key": "termsSection13Text",
+        "text": "Si tienes alguna pregunta sobre estos Términos y Condiciones, contáctanos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto."
+      },
+      {
+        "key": "termsLastUpdated",
+        "text": "Última actualización: 5 de mayo de 2026"
+      },
+      {
+        "key": "cookiesLastUpdated",
+        "text": "Última actualización: 5 de mayo de 2026"
+      },
+      {
+        "key": "cookiesSection1Title",
+        "text": "1. ¿Qué son las cookies?"
+      },
+      {
+        "key": "cookiesSection1Text",
+        "text": "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres y se colocan en tu computadora o dispositivo móvil cuando visitas nuestro sitio web. Nos permiten reconocer tu navegador o dispositivo, recordar información sobre tus preferencias y ayudar a personalizar tu experiencia en el sitio web de Gabriel Services."
+      },
+      {
+        "key": "cookiesSection2Title",
+        "text": "2. Tipos de cookies que usamos"
+      },
+      {
+        "key": "cookiesSection2EssentialTitle",
+        "text": "Cookies esenciales"
+      },
+      {
+        "key": "cookiesSection2EssentialText",
+        "text": "Estas cookies son necesarias para que el sitio web funcione correctamente y no pueden deshabilitarse a través de nuestros sistemas. Se utilizan para:"
+      },
+      {
+        "key": "cookiesSection2EssentialList1",
+        "text": "Habilitar la funcionalidad básica del sitio web"
+      },
+      {
+        "key": "cookiesSection2EssentialList2",
+        "text": "Mantener la seguridad y prevenir fraudes"
+      },
+      {
+        "key": "cookiesSection2EssentialList3",
+        "text": "Conservar las preferencias del usuario, como selección de idioma y tema visual"
+      },
+      {
+        "key": "cookiesSection2PerformanceTitle",
+        "text": "Cookies de rendimiento"
+      },
+      {
+        "key": "cookiesSection2PerformanceText",
+        "text": "Estas cookies nos ayudan a comprender cómo interactúan los visitantes con nuestro sitio web mediante la recopilación y el reporte de información de forma anónima. Nos ayudan a:"
+      },
+      {
+        "key": "cookiesSection2PerformanceList1",
+        "text": "Identificar las páginas a las que se accede con mayor frecuencia"
+      },
+      {
+        "key": "cookiesSection2PerformanceList2",
+        "text": "Medir la efectividad de las campañas publicitarias"
+      },
+      {
+        "key": "cookiesSection2PerformanceList3",
+        "text": "Comprender los patrones de navegación de los usuarios"
+      },
+      {
+        "key": "cookiesSection2FunctionalTitle",
+        "text": "Cookies funcionales"
+      },
+      {
+        "key": "cookiesSection2FunctionalText",
+        "text": "Estas cookies permiten una funcionalidad mejorada y personalización, incluyendo:"
+      },
+      {
+        "key": "cookiesSection2FunctionalList1",
+        "text": "Recordar tu preferencia de idioma"
+      },
+      {
+        "key": "cookiesSection2FunctionalList2",
+        "text": "Almacenar tu preferencia de tema visual"
+      },
+      {
+        "key": "cookiesSection2FunctionalList3",
+        "text": "Registrar datos de formularios para mayor comodidad"
+      },
+      {
+        "key": "cookiesSection2AnalyticalTitle",
+        "text": "Cookies analíticas"
+      },
+      {
+        "key": "cookiesSection2AnalyticalText",
+        "text": "Usamos cookies analíticas para comprender cómo se utiliza nuestro sitio web, incluida la duración de las visitas y las rutas que los usuarios siguen dentro del sitio web. Esto nos ayuda a mejorar el diseño y la funcionalidad de nuestro sitio web."
+      },
+      {
+        "key": "cookiesSection3Title",
+        "text": "3. Caché del navegador / almacenamiento local"
+      },
+      {
+        "key": "cookiesSection3Text",
+        "text": "Para mejorar la experiencia del usuario, guardamos tus elecciones de idioma y tema en la caché de tu navegador mediante localStorage, incluyendo:"
+      },
+      {
+        "key": "cookiesSection3List1",
+        "text": "Preferencia de idioma (inglés o español)"
+      },
+      {
+        "key": "cookiesSection3List2",
+        "text": "Preferencia de tema visual (modo claro u oscuro)"
+      },
+      {
+        "key": "cookiesSection3Text2",
+        "text": "Esta información se almacena localmente en tu dispositivo y no se transmite a nuestros servidores."
+      },
+      {
+        "key": "cookiesSection4Title",
+        "text": "4. Cookies de terceros"
+      },
+      {
+        "key": "cookiesSection4Text",
+        "text": "Las cookies de terceros pueden ser colocadas en tu dispositivo por proveedores de servicios externos, incluyendo:"
+      },
+      {
+        "key": "cookiesSection4List1",
+        "text": "Proveedores de análisis"
+      },
+      {
+        "key": "cookiesSection4List2",
+        "text": "Redes publicitarias"
+      },
+      {
+        "key": "cookiesSection4List3",
+        "text": "Plataformas de redes sociales"
+      },
+      {
+        "key": "cookiesSection4Text2",
+        "text": "No tenemos control sobre las cookies de terceros. Puedes configurar tu navegador para rechazar cookies o para avisarte cuando se estén enviando cookies."
+      },
+      {
+        "key": "cookiesSection5Title",
+        "text": "5. Cómo controlar las cookies"
+      },
+      {
+        "key": "cookiesSection5Text",
+        "text": "Tienes derecho a elegir si aceptas o rechazas las cookies. La mayoría de los navegadores web te permiten:"
+      },
+      {
+        "key": "cookiesSection5List1",
+        "text": "Ver las cookies que se han establecido en tu dispositivo"
+      },
+      {
+        "key": "cookiesSection5List2",
+        "text": "Eliminar cookies de tu dispositivo"
+      },
+      {
+        "key": "cookiesSection5List3",
+        "text": "Bloquear futuras cookies para que no se establezcan en tu dispositivo"
+      },
+      {
+        "key": "cookiesSection5List4",
+        "text": "Configurar tu navegador para que te notifique cuando una cookie esté a punto de establecerse"
+      },
+      {
+        "key": "cookiesSection5Text2",
+        "text": "Si eliges bloquear o eliminar cookies, es posible que algunas funciones de nuestro sitio web no funcionen como se esperaba."
+      },
+      {
+        "key": "cookiesSection6Title",
+        "text": "6. Google Analytics"
+      },
+      {
+        "key": "cookiesSection6Text",
+        "text": "Podemos usar Google Analytics para recopilar información sobre tu uso de nuestro sitio web. Google Analytics recopila información como:"
+      },
+      {
+        "key": "cookiesSection6List1",
+        "text": "Dirección IP"
+      },
+      {
+        "key": "cookiesSection6List2",
+        "text": "Tipo de dispositivo"
+      },
+      {
+        "key": "cookiesSection6List3",
+        "text": "Tipo de navegador"
+      },
+      {
+        "key": "cookiesSection6List4",
+        "text": "Páginas visitadas y tiempo invertido en cada página"
+      },
+      {
+        "key": "cookiesSection6Text2",
+        "text": "La información se utiliza para compilar informes sobre la actividad del sitio web, que nos ayudan a comprender cómo se está utilizando nuestro sitio web y a mejorar su diseño y funcionalidad. Google Analytics no identifica a usuarios individuales."
+      },
+      {
+        "key": "cookiesSection7Title",
+        "text": "7. Tu consentimiento"
+      },
+      {
+        "key": "cookiesSection7Text",
+        "text": "Al continuar usando nuestro sitio web después de recibir este aviso de cookies, aceptas el uso de cookies según lo descrito en esta política. Si no aceptas el uso de cookies, debes deshabilitarlas en la configuración de tu navegador antes de continuar usando nuestro sitio web."
+      },
+      {
+        "key": "cookiesSection8Title",
+        "text": "8. Actualizaciones de esta política"
+      },
+      {
+        "key": "cookiesSection8Text",
+        "text": "Podemos actualizar esta Política de consentimiento de cookies ocasionalmente para reflejar cambios en la tecnología, la legislación u otros cambios. Te recomendamos revisar esta política periódicamente para mantenerte informado sobre cómo protegemos tu privacidad."
+      },
+      {
+        "key": "cookiesSection9Title",
+        "text": "9. Contáctanos"
+      },
+      {
+        "key": "cookiesSection9Text",
+        "text": "Si tienes alguna pregunta sobre nuestra Política de consentimiento de cookies o nuestro uso de cookies, contáctanos a través de la página de Contacto en nuestro sitio web o mediante la información de contacto proporcionada en nuestro sitio web principal."
+      },
+      {
+        "key": "privacySection1Title",
+        "text": "1. Introducción"
+      },
+      {
+        "key": "privacySection1Text",
+        "text": "Gabriel Services (“nosotros”, “nos” o la “Compañía”) está comprometida con la protección de tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando visitas nuestro sitio web y utilizas nuestros servicios. Por favor, lee esta política cuidadosamente para comprender nuestras prácticas respecto a tus datos personales."
+      },
+      {
+        "key": "privacySection2Title",
+        "text": "2. Información que recopilamos"
+      },
+      {
+        "key": "privacySection2DirectTitle",
+        "text": "Información que proporcionas directamente"
+      },
+      {
+        "key": "privacySection2DirectList1",
+        "text": "Información de contacto: nombre, dirección de correo electrónico, número de teléfono y nombre de la empresa"
+      },
+      {
+        "key": "privacySection2DirectList2",
+        "text": "Información del servicio: detalles sobre las operaciones de tu negocio y los requisitos del servicio"
+      },
+      {
+        "key": "privacySection2DirectList3",
+        "text": "Registros de comunicación: contenido de mensajes, correos electrónicos y tickets de soporte"
+      },
+      {
+        "key": "privacySection2DirectList4",
+        "text": "Información de pago: dirección de facturación y detalles del método de pago, procesados de forma segura"
+      },
+      {
+        "key": "privacySection2AutoTitle",
+        "text": "Información recopilada automáticamente"
+      },
+      {
+        "key": "privacySection2AutoList1",
+        "text": "Información del dispositivo: dirección IP, tipo de navegador, sistema operativo e identificadores del dispositivo"
+      },
+      {
+        "key": "privacySection2AutoList2",
+        "text": "Datos de uso: páginas visitadas, tiempo invertido en las páginas, enlaces seleccionados y patrones de navegación"
+      },
+      {
+        "key": "privacySection2AutoList3",
+        "text": "Cookies y tecnologías similares: datos del navegador y almacenamiento local para preferencias"
+      },
+      {
+        "key": "privacySection2AutoList4",
+        "text": "Información de referencia: cómo accediste a nuestro sitio web"
+      },
+      {
+        "key": "privacySection3Title",
+        "text": "3. Cómo usamos tu información"
+      },
+      {
+        "key": "privacySection3Text",
+        "text": "Usamos la información recopilada para los siguientes fines:"
+      },
+      {
+        "key": "privacySection3List1",
+        "text": "Proporcionar y gestionar los servicios solicitados"
+      },
+      {
+        "key": "privacySection3List2",
+        "text": "Procesar transacciones y enviar información relacionada"
+      },
+      {
+        "key": "privacySection3List3",
+        "text": "Enviar correos electrónicos transaccionales y promocionales"
+      },
+      {
+        "key": "privacySection3List4",
+        "text": "Responder consultas y brindar soporte al cliente"
+      },
+      {
+        "key": "privacySection3List5",
+        "text": "Mejorar nuestro sitio web y nuestros servicios"
+      },
+      {
+        "key": "privacySection3List6",
+        "text": "Analizar patrones de uso del sitio web"
+      },
+      {
+        "key": "privacySection3List7",
+        "text": "Prevenir fraudes y garantizar la seguridad"
+      },
+      {
+        "key": "privacySection3List8",
+        "text": "Cumplir con obligaciones legales"
+      },
+      {
+        "key": "privacySection3List9",
+        "text": "Crear datos agregados y anonimizados para análisis"
+      },
+      {
+        "key": "privacySection4Title",
+        "text": "4. Base legal para el tratamiento de datos — RGPD"
+      },
+      {
+        "key": "privacySection4Text",
+        "text": "Según el RGPD, tratamos los datos personales con base en los siguientes fundamentos legales:"
+      },
+      {
+        "key": "privacySection4List1",
+        "text": "Necesidad contractual: tratamiento necesario para prestar nuestros servicios contigo"
+      },
+      {
+        "key": "privacySection4List2",
+        "text": "Obligación legal: tratamiento requerido por ley o regulación"
+      },
+      {
+        "key": "privacySection4List3",
+        "text": "Intereses legítimos: tratamiento necesario para nuestros intereses comerciales legítimos"
+      },
+      {
+        "key": "privacySection4List4",
+        "text": "Consentimiento: tratamiento basado en tu consentimiento explícito"
+      },
+      {
+        "key": "privacySection5Title",
+        "text": "5. Conservación de datos"
+      },
+      {
+        "key": "privacySection5Text",
+        "text": "Conservamos los datos personales únicamente durante el tiempo necesario para los fines indicados en esta política o según lo exija la ley. Los períodos de conservación varían según el tipo de dato:"
+      },
+      {
+        "key": "privacySection5List1",
+        "text": "Información de contacto: conservada durante la duración de la relación de servicio, más 7 años para fines contables"
+      },
+      {
+        "key": "privacySection5List2",
+        "text": "Datos de análisis del sitio web: conservados hasta por 26 meses"
+      },
+      {
+        "key": "privacySection5List3",
+        "text": "Preferencias del usuario, como idioma o tema visual: almacenadas localmente en tu dispositivo de forma indefinida hasta que sean eliminadas"
+      },
+      {
+        "key": "privacySection6Title",
+        "text": "6. Compartición y divulgación de datos"
+      },
+      {
+        "key": "privacySection6Text",
+        "text": "No vendemos tus datos personales. Podemos compartir información con:"
+      },
+      {
+        "key": "privacySection6List1",
+        "text": "Proveedores de servicios: terceros que ayudan a proporcionar servicios, bajo acuerdos de tratamiento de datos"
+      },
+      {
+        "key": "privacySection6List2",
+        "text": "Autoridades legales: cuando sea requerido por ley o para proteger derechos y seguridad"
+      },
+      {
+        "key": "privacySection6List3",
+        "text": "Transferencias comerciales: en caso de fusión, adquisición o venta de activos"
+      },
+      {
+        "key": "privacySection7Title",
+        "text": "7. Tus derechos bajo el RGPD"
+      },
+      {
+        "key": "privacySection7Text",
+        "text": "Si te encuentras en la Unión Europea o el Espacio Económico Europeo, tienes los siguientes derechos:"
+      },
+      {
+        "key": "privacySection7List1",
+        "text": "Derecho de acceso: obtener una copia de los datos personales que conservamos sobre ti"
+      },
+      {
+        "key": "privacySection7List2",
+        "text": "Derecho de rectificación: corregir datos personales inexactos o incompletos"
+      },
+      {
+        "key": "privacySection7List3",
+        "text": "Derecho de supresión, también conocido como “derecho al olvido”: solicitar la eliminación de tus datos personales"
+      },
+      {
+        "key": "privacySection7List4",
+        "text": "Derecho a restringir el tratamiento: limitar cómo tratamos tus datos"
+      },
+      {
+        "key": "privacySection7List5",
+        "text": "Derecho a la portabilidad de los datos: recibir tus datos en un formato portable"
+      },
+      {
+        "key": "privacySection7List6",
+        "text": "Derecho de oposición: oponerte al tratamiento de tus datos"
+      },
+      {
+        "key": "privacySection7List7",
+        "text": "Derecho a presentar una reclamación: presentar una queja ante tu autoridad local de protección de datos"
+      },
+      {
+        "key": "privacySection8Title",
+        "text": "8. Seguridad de los datos"
+      },
+      {
+        "key": "privacySection8Text",
+        "text": "Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger tus datos personales contra acceso no autorizado, alteración, divulgación o destrucción. Estas medidas incluyen:"
+      },
+      {
+        "key": "privacySection8List1",
+        "text": "Cifrado SSL/TLS para datos en tránsito"
+      },
+      {
+        "key": "privacySection8List2",
+        "text": "Protocolos de autenticación seguros"
+      },
+      {
+        "key": "privacySection8List3",
+        "text": "Auditorías y pruebas de seguridad periódicas"
+      },
+      {
+        "key": "privacySection8List4",
+        "text": "Acceso restringido a datos personales"
+      },
+      {
+        "key": "privacySection8List5",
+        "text": "Capacitación del personal en protección de datos"
+      },
+      {
+        "key": "privacySection8Text2",
+        "text": "Aunque nos esforzamos por proteger tu información, ningún sistema de seguridad es impenetrable y no podemos garantizar seguridad absoluta."
+      },
+      {
+        "key": "privacySection9Title",
+        "text": "9. Transferencias internacionales de datos"
+      },
+      {
+        "key": "privacySection9Text",
+        "text": "Si accedes a nuestro sitio web desde fuera de los Estados Unidos, tu información puede ser transferida, almacenada y procesada en los Estados Unidos u otros países. Al proporcionarnos información, aceptas dicha transferencia. Nos aseguramos de que las transferencias internacionales estén protegidas mediante garantías adecuadas, incluidas las Cláusulas Contractuales Tipo."
+      },
+      {
+        "key": "privacySection10Title",
+        "text": "10. Privacidad de menores"
+      },
+      {
+        "key": "privacySection10Text",
+        "text": "Nuestros servicios no están destinados a personas menores de 18 años. No recopilamos conscientemente datos personales de menores. Si llegamos a saber que hemos recopilado datos personales de un menor sin el consentimiento de sus padres o tutores, eliminaremos dichos datos de inmediato."
+      },
+      {
+        "key": "privacySection11Title",
+        "text": "11. Enlaces de terceros"
+      },
+      {
+        "key": "privacySection11Text",
+        "text": "Nuestro sitio web puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de sitios de terceros. Te recomendamos revisar las políticas de privacidad de cualquier sitio de terceros antes de proporcionar tu información personal."
+      },
+      {
+        "key": "privacySection12Title",
+        "text": "12. Ejercicio de tus derechos"
+      },
+      {
+        "key": "privacySection12Text",
+        "text": "Para ejercer cualquiera de tus derechos de privacidad, contáctanos utilizando la información proporcionada al final de esta política. Responderemos a tu solicitud dentro de un plazo de 30 días, o según lo exija la ley aplicable. Es posible que debas proporcionar identificación para verificar tu solicitud."
+      },
+      {
+        "key": "privacySection13Title",
+        "text": "13. Responsable de Protección de Datos"
+      },
+      {
+        "key": "privacySection13Text",
+        "text": "Si tienes preguntas sobre nuestras prácticas de privacidad o deseas ejercer tus derechos bajo el RGPD, puedes comunicarte con nuestro Responsable de Protección de Datos a través de la información de contacto proporcionada en nuestra página de Contacto."
+      },
+      {
+        "key": "privacySection14Title",
+        "text": "14. Actualizaciones de esta Política de Privacidad"
+      },
+      {
+        "key": "privacySection14Text",
+        "text": "Podemos actualizar esta Política de Privacidad ocasionalmente para reflejar cambios en nuestras prácticas, tecnología, requisitos legales u otros factores. La fecha de “Última actualización” al final de esta política indica cuándo fue revisada por última vez. El uso continuo de nuestro sitio web después de los cambios significa que aceptas la política actualizada."
+      },
+      {
+        "key": "privacySection15Title",
+        "text": "15. Contáctanos"
+      },
+      {
+        "key": "privacySection15Text",
+        "text": "Para consultas de privacidad, solicitudes relacionadas con el RGPD o para ejercer tus derechos sobre tus datos, contáctanos a través de nuestra página de Contacto o utilizando la información de contacto proporcionada en el sitio web principal. Nos comprometemos a atender tus inquietudes con prontitud."
+      },
+      {
+        "key": "privacyLastUpdated",
+        "text": "Última actualización: 5 de mayo de 2026"
+      }
+    ]
+  }
+}
