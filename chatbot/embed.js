@@ -170,8 +170,18 @@
     return cleanText(`Website Wiki Context: ${summary}`, 700);
   }
 
+  function ensureWidgetStylesheet() {
+    if (document.querySelector('link[data-gabo-embed-css="1"]')) return;
+    const cssLink = document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = "/chatbot/embed.css";
+    cssLink.setAttribute("data-gabo-embed-css", "1");
+    document.head.appendChild(cssLink);
+  }
+
   function buildWidget() {
     if (document.querySelector("#gabo-io-widget")) return;
+    ensureWidgetStylesheet();
     const root = document.createElement("div");
     root.id = "gabo-io-widget";
     root.innerHTML = `
