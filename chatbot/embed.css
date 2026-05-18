@@ -1,0 +1,13 @@
+#gabo-io-widget{position:fixed;right:16px;bottom:16px;z-index:9999;font-family:Segoe UI,Arial,sans-serif}
+#gabo-io-panel{width:320px;height:520px;background:#251541;border:2px solid #ff3bdb;border-radius:16px;box-shadow:0 8px 32px #0006;display:none;flex-direction:column;overflow:hidden}
+#gabo-io-panel.open{display:flex}
+#gabo-io-toggle{background:#ff3bdb;color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer}
+#gabo-io-panel .h{padding:.8rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;text-align:center;font-weight:700}
+#gabo-io-log{flex:1;overflow:auto;padding:.8rem;background:#1b0e2d;color:#fff}
+#gabo-io-log .m{margin:.4rem 0;padding:.5rem .65rem;border-radius:12px;max-width:90%}
+#gabo-io-log .u{margin-left:auto;background:#00c4ff;color:#000}
+#gabo-io-log .b{background:#321b53}
+#gabo-io-form{padding:.6rem;background:#220f3a;display:flex;gap:.5rem}
+#gabo-io-form input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff22;border-radius:8px;padding:.55rem}
+#gabo-io-form button{background:#ff3bdb;color:#fff;border:none;border-radius:8px;padding:.55rem .8rem}
+#gabo-io-honeypot{position:absolute;left:-10000px;width:1px;height:1px;opacity:0}
