@@ -11,7 +11,7 @@
     maxHistory: 60,
     maxLength: 256,
     maxRiskScore: 60,
-    maxWikiCharsPerLang: 12000
+    maxWikiCharsPerLang: 8000
   });
 
   const RISK_PATTERNS = Object.freeze([
@@ -202,7 +202,6 @@
   async function boot() {
     buildWidget();
     await syncPageToWiki();
-
     const toggle = document.querySelector("#gabo-io-toggle");
     const panel = document.querySelector("#gabo-io-panel");
     const form = document.querySelector("#gabo-io-form");
@@ -218,6 +217,7 @@
       log.scrollTop = log.scrollHeight;
     }
 
+    const wiki = await loadWiki();
     const history = loadHistory();
     history.forEach((x) => add(x.text, x.type));
 
@@ -228,9 +228,11 @@
       if (isBlocked()) { add("Session blocked by security policy.", "bot"); return; }
       if (String(honey.value || "").trim()) { setBlocked("honeypot_triggered"); add("Bot activity detected. Session blocked.", "bot"); return; }
 
-      const userText = sanitizeMessage(input.value);
+      const rawUserText = String(input.value || "");
+      const rawUserRisk = scanRisk(rawUserText);
+      if (rawUserRisk.blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
+      const userText = sanitizeMessage(rawUserText);
       if (!userText) return;
-      if (scanRisk(userText).blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
 
       add(userText, "user");
       const conversation = loadHistory();
@@ -239,11 +241,11 @@
       input.value = "";
 
       const payload = { chatbot: CONFIG.chatbotName, message: userText, lang: "en" };
-      const wikiContext = wikiSnippet(userText);
-      if (wikiContext) payload.wikiContext = wikiContext;
       const integrity = await computeIntegrity(payload);
 
-      let botText = "";
+      let botText = lookupWikiAnswer(wiki, userText);
+
+      if (!botText) {
       try {
         const res = await fetch(CONFIG.endpoint, {
           method: "POST",
@@ -251,14 +253,18 @@
           body: JSON.stringify({ ...payload, integrity })
         });
         const data = await res.json();
-        botText = sanitizeMessage(data && data.reply ? data.reply : "No reply.");
+        botText = String(data && data.reply ? data.reply : "No reply.");
       } catch {
-        botText = sanitizeMessage(`${CONFIG.chatbotName}: I received your message securely.`);
+        botText = `${CONFIG.chatbotName}: I received your message securely.`;
+      }
       }
 
-      if (scanRisk(botText).blocked) {
+      const rawBotRisk = scanRisk(botText);
+      if (rawBotRisk.blocked) {
         setBlocked("unsafe_bot_output_detected");
         botText = "Response blocked by Tiny ML policy.";
+      } else {
+        botText = sanitizeMessage(botText);
       }
 
       add(botText, "bot");
