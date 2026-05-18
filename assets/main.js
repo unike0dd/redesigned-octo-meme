@@ -2,7 +2,7 @@
   const SECURITY_HEADERS = {
     "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
     "Content-Security-Policy":
-      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self' https://contacto.gabo.services https://careers.gabo.services https://chatbot.gabo.services; connect-src 'self' https://contacto.gabo.services https://careers.gabo.services https://chatbot.gabo.services; upgrade-insecure-requests; block-all-mixed-content; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data:; frame-src 'none'; worker-src 'self'; media-src 'self';",
+      "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none';  upgrade-insecure-requests; block-all-mixed-content; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; font-src 'self' data:; frame-src 'none'; worker-src 'self'; media-src 'self';",
     "X-Frame-Options": "DENY",
     "X-Content-Type-Options": "nosniff",
     "X-XSS-Protection": "0",
@@ -497,21 +497,6 @@
     return parts[0] === repoName ? `/${repoName}` : "";
   }
 
-  function loadGaboChatbot() {
-    if (window.GaboChatbot?.init) {
-      window.GaboChatbot.init();
-      return;
-    }
-
-    if (document.querySelector('script[data-gabo-chatbot="true"]')) return;
-
-    const script = document.createElement("script");
-    script.src = `${getSiteBasePath()}/chatbot/gabo-io.js`;
-    script.defer = true;
-    script.dataset.gaboChatbot = "true";
-    document.body.appendChild(script);
-  }
-
   function initSecurityRuntime() {
     enforceClientSecurityPolicy();
     initRuntimeErrorDiagnostics();
@@ -828,7 +813,6 @@
     initScrollLazyLoad();
     initRoyalDarkPointerEffects();
     initSecureForms();
-    loadGaboChatbot();
   }
 
   if (document.readyState === "loading") {
