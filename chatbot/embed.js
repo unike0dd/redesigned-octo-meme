@@ -7,10 +7,11 @@
     historyKey: "gabo_io_chat_history_v1",
     blockedKey: "gabo_io_tinyml_blocked_v1",
     blockReasonKey: "gabo_io_tinyml_reason_v1",
+    wikiKey: "gabo_io_chat_wiki_v1",
     maxHistory: 60,
     maxLength: 256,
     maxRiskScore: 60,
-    wikiPath: "/chatbot/wiki.json"
+    maxWikiCharsPerLang: 8000
   });
 
   const RISK_PATTERNS = Object.freeze([
@@ -65,15 +66,78 @@
   }
 
   function loadHistory() {
-    try {
-      return JSON.parse(localStorage.getItem(CONFIG.historyKey) || "[]");
-    } catch { return []; }
+    try { return JSON.parse(localStorage.getItem(CONFIG.historyKey) || "[]"); }
+    catch { return []; }
   }
 
-  async function sha256(input) {
+  function loadWiki() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(CONFIG.wikiKey) || '{"pages":{}}');
+      if (!raw.pages || typeof raw.pages !== "object") raw.pages = {};
+      return raw;
+    } catch {
+      return { pages: {} };
+    }
+  }
+
+  function saveWiki(wiki) {
+    localStorage.setItem(CONFIG.wikiKey, JSON.stringify(wiki));
+  }
+
+  function collectReadableText() {
+    const selectors = "h1,h2,h3,h4,p,li,a,button,label,summary,figcaption,td,th";
+    const nodes = Array.from(document.querySelectorAll(selectors));
+    const parts = [];
+    for (const node of nodes) {
+      if (!node || !node.textContent) continue;
+      if (node.closest("script,style,noscript")) continue;
+      const text = cleanText(node.textContent, 400);
+      if (!text || text.length < 2) continue;
+      parts.push(text);
+    }
+    return Array.from(new Set(parts)).join(" ").slice(0, CONFIG.maxWikiCharsPerLang);
+  }
+
+  async function hashText(input) {
     const data = new TextEncoder().encode(String(input || ""));
     const hash = await crypto.subtle.digest("SHA-256", data);
     return Array.from(new Uint8Array(hash)).map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+
+  async function buildWikiEntryForLanguage(lang) {
+    const i18n = window.I18N;
+    if (!i18n || typeof i18n.setLanguage !== "function") return { lang, text: collectReadableText() };
+
+    const previous = i18n.currentLanguage;
+    if (previous !== lang) i18n.setLanguage(lang);
+    const text = collectReadableText();
+    if (previous !== lang) i18n.setLanguage(previous);
+
+    return { lang, text };
+  }
+
+  async function syncPageToWiki() {
+    const en = await buildWikiEntryForLanguage("en");
+    const es = await buildWikiEntryForLanguage("es");
+    const signature = await hashText(`${location.pathname}|${en.text}|${es.text}`);
+
+    const wiki = loadWiki();
+    const existing = wiki.pages[location.pathname];
+    if (existing && existing.signature === signature) return;
+
+    wiki.pages[location.pathname] = {
+      path: location.pathname,
+      title: cleanText(document.title, 200),
+      updatedAt: new Date().toISOString(),
+      signature,
+      content: { en: en.text, es: es.text }
+    };
+
+    saveWiki(wiki);
+  }
+
+  async function sha256(input) {
+    return hashText(input);
   }
 
   async function computeIntegrity(payload) {
@@ -85,35 +149,25 @@
     return sha256(canonical);
   }
 
+  function wikiSnippet(query) {
+    const q = cleanText(query, 120).toLowerCase();
+    if (!q) return "";
+    const wiki = loadWiki();
+    const lang = (window.I18N && window.I18N.currentLanguage) || "en";
+    const hits = [];
 
-
-  let WIKI = null;
-
-  async function loadWiki() {
-    if (WIKI) return WIKI;
-    try {
-      const response = await fetch(CONFIG.wikiPath, { cache: "no-cache" });
-      if (!response.ok) return null;
-      WIKI = await response.json();
-      return WIKI;
-    } catch {
-      return null;
+    for (const page of Object.values(wiki.pages)) {
+      const blob = cleanText((page.content && (page.content[lang] || page.content.en || "")) || "", 12000);
+      if (!blob) continue;
+      if (blob.toLowerCase().includes(q)) {
+        hits.push({ path: page.path, text: blob });
+      }
+      if (hits.length >= 2) break;
     }
-  }
 
-  function searchWiki(text, lang) {
-    if (!WIKI || !WIKI.entries) return [];
-    const value = sanitizeMessage(text).toLowerCase();
-    if (!value) return [];
-    const tokens = Array.from(new Set(value.split(/\s+/).filter((t) => t.length > 2))).slice(0, 8);
-    const corpus = (WIKI.entries[lang] || []).concat(WIKI.entries.en || []);
-    const scored = corpus.map((item) => {
-      const body = String(item.text || "").toLowerCase();
-      let score = 0;
-      tokens.forEach((token) => { if (body.includes(token)) score += 1; });
-      return { item, score };
-    }).filter((x) => x.score > 0).sort((a,b) => b.score-a.score).slice(0, 4);
-    return scored.map((x) => ({ key: x.item.key, text: x.item.text }));
+    if (!hits.length) return "";
+    const summary = hits.map((h) => `${h.path}: ${h.text.slice(0, 260)}`).join(" | ");
+    return cleanText(`Website Wiki Context: ${summary}`, 700);
   }
 
   function buildWidget() {
@@ -145,16 +199,15 @@
     document.body.appendChild(root);
   }
 
-  function boot() {
+  async function boot() {
     buildWidget();
+    await syncPageToWiki();
     const toggle = document.querySelector("#gabo-io-toggle");
     const panel = document.querySelector("#gabo-io-panel");
     const form = document.querySelector("#gabo-io-form");
     const input = document.querySelector("#gabo-io-input");
     const honey = document.querySelector("#gabo-io-honeypot");
     const log = document.querySelector("#gabo-io-log");
-    const pageLang = (document.documentElement.getAttribute("lang") || "en").toLowerCase().startsWith("es") ? "es" : "en";
-    loadWiki();
 
     function add(text, type) {
       const d = document.createElement("div");
@@ -164,6 +217,7 @@
       log.scrollTop = log.scrollHeight;
     }
 
+    const wiki = await loadWiki();
     const history = loadHistory();
     history.forEach((x) => add(x.text, x.type));
 
@@ -174,9 +228,11 @@
       if (isBlocked()) { add("Session blocked by security policy.", "bot"); return; }
       if (String(honey.value || "").trim()) { setBlocked("honeypot_triggered"); add("Bot activity detected. Session blocked.", "bot"); return; }
 
-      const userText = sanitizeMessage(input.value);
+      const rawUserText = String(input.value || "");
+      const rawUserRisk = scanRisk(rawUserText);
+      if (rawUserRisk.blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
+      const userText = sanitizeMessage(rawUserText);
       if (!userText) return;
-      if (scanRisk(userText).blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
 
       add(userText, "user");
       const conversation = loadHistory();
@@ -184,11 +240,12 @@
       saveHistory(conversation);
       input.value = "";
 
-      const wikiContext = searchWiki(userText, pageLang);
-      const payload = { chatbot: CONFIG.chatbotName, message: userText, lang: pageLang, wikiContext };
+      const payload = { chatbot: CONFIG.chatbotName, message: userText, lang: "en" };
       const integrity = await computeIntegrity(payload);
 
-      let botText = "";
+      let botText = lookupWikiAnswer(wiki, userText);
+
+      if (!botText) {
       try {
         const res = await fetch(CONFIG.endpoint, {
           method: "POST",
@@ -196,15 +253,18 @@
           body: JSON.stringify({ ...payload, integrity })
         });
         const data = await res.json();
-        botText = sanitizeMessage(data && data.reply ? data.reply : "No reply.");
+        botText = String(data && data.reply ? data.reply : "No reply.");
       } catch {
-        const wikiHelp = wikiContext.length ? wikiContext.map((x) => x.text).join(" | ") : "I received your message securely.";
-        botText = sanitizeMessage(`${CONFIG.chatbotName}: ${wikiHelp}`);
+        botText = `${CONFIG.chatbotName}: I received your message securely.`;
+      }
       }
 
-      if (scanRisk(botText).blocked) {
+      const rawBotRisk = scanRisk(botText);
+      if (rawBotRisk.blocked) {
         setBlocked("unsafe_bot_output_detected");
         botText = "Response blocked by Tiny ML policy.";
+      } else {
+        botText = sanitizeMessage(botText);
       }
 
       add(botText, "bot");
@@ -212,8 +272,15 @@
       updated.push({ type: "bot", text: botText, ts: Date.now() });
       saveHistory(updated);
     });
+
+    const observer = new MutationObserver(async () => {
+      observer.disconnect();
+      await syncPageToWiki();
+      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    });
+    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => { boot(); });
+  else { boot(); }
 })();
