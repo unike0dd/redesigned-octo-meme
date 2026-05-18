@@ -6,7 +6,6 @@ Use a provider-neutral, subdomain-separated Gabo Services API Gateway model:
 www.gabo.services              = website
 contacto.gabo.services         = Contact security gateway
 careers.gabo.services          = Careers security gateway
-future chatbot.gabo.services   = Chatbot security gateway
 ```
 
 ## Phase 1 — Clean public security picture only
@@ -29,15 +28,10 @@ future chatbot.gabo.services   = Chatbot security gateway
 - Gateway health responses should stay minimal and avoid exposing internal routing details.
 - Gateway failures should return safe user-facing messages without exposing private implementation details.
 
-## Phase 4 — Chatbot gateway preparation
-
-- Reserve `https://chatbot.gabo.services` as the public Chatbot security gateway.
-- Keep the Chatbot gateway separated from Contact and Careers so it can be maintained, rate-limited, and blocked independently.
-
 ## What should not be done
 
 - Do not add `package.json`.
 - Do not add a web app manifest file.
 - Do not add YAML deployment files.
-- Do not collapse Contact, Careers, and Chatbot into one browser-facing API route.
+- Do not collapse Contact and Careers into one browser-facing API route.
 - Do not expose private gateway implementation details in browser code, metadata, or public health responses.
