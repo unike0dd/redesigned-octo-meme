@@ -196,9 +196,12 @@
       if (isBlocked()) { add("Session blocked by security policy.", "bot"); return; }
       if (String(honey.value || "").trim()) { setBlocked("honeypot_triggered"); add("Bot activity detected. Session blocked.", "bot"); return; }
 
-      const userText = sanitizeMessage(input.value);
+      const rawUserText = String(input.value || "");
+      const rawUserRisk = scanRisk(rawUserText);
+      if (rawUserRisk.blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
+
+      const userText = sanitizeMessage(rawUserText);
       if (!userText) return;
-      if (scanRisk(userText).blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
 
       add(userText, "user");
       const conversation = loadHistory();
@@ -219,15 +222,18 @@
           body: JSON.stringify({ ...payload, integrity })
         });
         const data = await res.json();
-        botText = sanitizeMessage(data && data.reply ? data.reply : "No reply.");
+        botText = String(data && data.reply ? data.reply : "No reply.");
       } catch {
-        botText = sanitizeMessage(`${CONFIG.chatbotName}: I received your message securely.`);
+        botText = `${CONFIG.chatbotName}: I received your message securely.`;
       }
       }
 
-      if (scanRisk(botText).blocked) {
+      const rawBotRisk = scanRisk(botText);
+      if (rawBotRisk.blocked) {
         setBlocked("unsafe_bot_output_detected");
         botText = "Response blocked by Tiny ML policy.";
+      } else {
+        botText = sanitizeMessage(botText);
       }
 
       add(botText, "bot");
