@@ -152,6 +152,11 @@
 
       <div id="chatbot-form-container">
         <form id="chatbot-input-row" autocomplete="off">
+          <div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+            <label for="chatbot-website">Website</label>
+            <input id="chatbot-website" name="website" type="text" autocomplete="off" tabindex="-1" aria-hidden="true" />
+          </div>
+
           <input id="chatbot-input" type="text" placeholder="Type your message..." required maxlength="256" />
 
           <button id="chatbot-send" type="submit" aria-label="Send message">Send</button>

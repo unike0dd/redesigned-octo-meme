@@ -4,6 +4,7 @@
   const log = document.querySelector("#chat-log");
   const form = document.querySelector("#chatbot-input-row");
   const input = document.querySelector("#chatbot-input");
+  const honeypot = document.querySelector("#chatbot-website");
   const sendBtn = document.querySelector("#chatbot-send");
 
   const API_URL = "/api/gabo-io-chat";
@@ -19,13 +20,28 @@
 
   async function sendMessage(message) {
     const ml = window.GaboIoTinyML;
-    const sanitized = ml ? ml.sanitizeMessage(message) : String(message || "").trim();
+    if (!ml) {
+      addMsg("Security module not loaded.", "bot");
+      return;
+    }
 
+    if (ml.isSessionBlocked()) {
+      addMsg("Session blocked by CyberSec policy.", "bot");
+      return;
+    }
+
+    const honey = ml.checkHoneypot(honeypot ? honeypot.value : "");
+    if (honey.blocked) {
+      addMsg("Bot activity detected. Session blocked.", "bot");
+      return;
+    }
+
+    const sanitized = ml.sanitizeMessage(message);
     if (!sanitized) return;
 
-    const risk = ml ? ml.scanRisk(sanitized) : { blocked: false };
+    const risk = ml.scanRisk(sanitized);
     if (risk.blocked) {
-      addMsg("Message blocked by Tiny ML safety rules.", "bot");
+      addMsg("Message blocked by Tiny ML + CyberSec rules.", "bot");
       return;
     }
 
@@ -38,16 +54,16 @@
     input.disabled = true;
 
     try {
+      const payload = { chatbot: "gabo io", message: sanitized, lang: "en" };
+      const integrity = await ml.integrityAfterCySec(payload);
+
       const response = await fetch(API_URL, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "X-Gabo-Integrity-SHA256": integrity
         },
-        body: JSON.stringify({
-          chatbot: "gabo io",
-          message: sanitized,
-          lang: "en"
-        })
+        body: JSON.stringify({ ...payload, integrity })
       });
 
       if (!response.ok) {
@@ -55,7 +71,6 @@
       }
 
       const data = await response.json();
-
       botDiv.textContent = data && data.reply ? data.reply : "No reply.";
     } catch (error) {
       botDiv.textContent = "Error: can't reach gabo io.";
