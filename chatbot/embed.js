@@ -14,6 +14,14 @@
     maxWikiCharsPerLang: 8000
   });
 
+  function resolveSelfEndpoint(path) {
+    const url = new URL(String(path || ""), window.location.origin);
+    if (url.origin !== window.location.origin) {
+      throw new Error("Chatbot endpoint must be same-origin.");
+    }
+    return url.pathname + url.search;
+  }
+
   const RISK_PATTERNS = Object.freeze([
     /<\s*script/i, /<\s*\/\s*script/i, /javascript\s*:/i, /vbscript\s*:/i,
     /\bon[a-z]{3,}\s*=/i, /\beval\s*\(/i, /\bnew\s+Function\b/i, /\bFunction\s*\(/i,
@@ -269,9 +277,13 @@
 
       if (!botText) {
       try {
-        const res = await fetch(CONFIG.endpoint, {
+        const res = await fetch(resolveSelfEndpoint(CONFIG.endpoint), {
           method: "POST",
           headers: { "Content-Type": "application/json", "X-Gabo-Integrity-SHA256": integrity },
+          mode: "same-origin",
+          credentials: "same-origin",
+          referrerPolicy: "strict-origin",
+          cache: "no-store",
           body: JSON.stringify({ ...payload, integrity })
         });
         const data = await res.json();
