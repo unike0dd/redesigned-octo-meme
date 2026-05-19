@@ -3,3 +3,8 @@ node_modules/
 gh-pages/
 .vscode/
 .idea/
+.dev.vars
+.dev.vars.*
+.env
+.env.*
+*.local

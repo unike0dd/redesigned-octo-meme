@@ -10,7 +10,7 @@
     return new URL(fileName, EMBED_SCRIPT_URL).href;
   }
 
-  const CONFIG = Object.freeze({
+    const CONFIG = Object.freeze({
     chatbotName: "gabo io",
     endpoint: "/api/gabo-io-chat",
     historyKey: "gabo_io_chat_history_v1",
@@ -23,10 +23,10 @@
     maxWikiCharsPerLang: 8000
   });
 
-  function resolveSelfEndpoint(path) {
+  function resolveChatEndpoint(path) {
     const url = new URL(String(path || ""), window.location.origin);
     if (url.origin !== window.location.origin) {
-      throw new Error("Chatbot endpoint must be same-origin.");
+      throw new Error("Chatbot endpoint rejected by client policy.");
     }
     return url.pathname + url.search;
   }
@@ -161,7 +161,9 @@
     const canonical = JSON.stringify({
       chatbot: CONFIG.chatbotName,
       message: sanitizeMessage(payload.message),
-      lang: cleanText(payload.lang || "en", 8)
+      lang: cleanText(payload.lang || "en", 8),
+      wikiContext: cleanText(payload.wikiContext || "", CONFIG.maxWikiCharsPerLang),
+      sessionId: cleanText(payload.sessionId || "", 160)
     });
     return sha256(canonical);
   }
@@ -306,16 +308,40 @@
       saveHistory(conversation);
       input.value = "";
 
-      const payload = { chatbot: CONFIG.chatbotName, message: userText, lang: "en" };
+      const lang = (window.I18N && window.I18N.currentLanguage === "es") ? "es" : "en";
+      const sessionId =
+        sessionStorage.getItem("gabo_io_session_id") ||
+        crypto.randomUUID();
+
+      sessionStorage.setItem("gabo_io_session_id", sessionId);
+
+      const wikiContext = wikiSnippet(userText);
+
+      const payload = {
+        chatbot: CONFIG.chatbotName,
+        message: userText,
+        lang,
+        wikiContext,
+        page: location.pathname,
+        sessionId,
+        honeypot: String(honey.value || "")
+      };
+
       const integrity = await computeIntegrity(payload);
 
       let botText = lookupWikiAnswer(wiki, userText);
 
       if (!botText) {
       try {
-        const res = await fetch(resolveSelfEndpoint(CONFIG.endpoint), {
+        const res = await fetch(resolveChatEndpoint(CONFIG.endpoint), {
           method: "POST",
-          headers: { "Content-Type": "application/json", "X-Gabo-Integrity-SHA256": integrity },
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "X-Gabo-Integrity-SHA256": integrity,
+            "X-Gabo-Client": "gabo-io",
+            "X-Gabo-Session-Id": sessionId
+          },
           mode: "same-origin",
           credentials: "same-origin",
           referrerPolicy: "strict-origin",

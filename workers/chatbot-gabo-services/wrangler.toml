@@ -1,0 +1,23 @@
+name = "chatbot-gabo-services"
+main = "src/index.js"
+compatibility_date = "2026-05-18"
+workers_dev = false
+
+[[routes]]
+pattern = "chatbot.gabo.services/*"
+zone_name = "gabo.services"
+
+[vars]
+PUBLIC_WORKER_ORIGIN = "https://chatbot.gabo.services"
+ALLOWED_ORIGINS_JSON = "[\"https://www.gabo.services\",\"https://gabo.services\"]"
+ALLOWED_METHODS_JSON = "[\"POST\",\"OPTIONS\"]"
+ALLOWED_HEADERS_JSON = "[\"content-type\",\"accept\",\"x-gabo-integrity-sha256\",\"x-gabo-client\",\"x-gabo-session-id\"]"
+EXPOSE_HEADERS_JSON = "[\"x-gabo-chatbot-gateway\",\"x-gabo-integrity-verified\"]"
+MAX_BODY_CHARS = "24000"
+MAX_MESSAGE_CHARS = "1200"
+MAX_WIKI_CHARS = "8000"
+MAX_RISK_SCORE = "60"
+
+[[services]]
+binding = "graymatter"
+service = "graymatter"
