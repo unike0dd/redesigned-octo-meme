@@ -85,7 +85,6 @@ export default {
 
     let body;
     try { body = JSON.parse(raw); } catch { return responseJson(request, env, 400, { ok: false, error: "invalid_json" }); }
-
     const message = safeText(body && body.message, maxMessage);
     const honeypot = safeText((body && (body.honeypot || body.website)) || "", 300);
     const integrity = safeText(body && body.integrity, 128);
