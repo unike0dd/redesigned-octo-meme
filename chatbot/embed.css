@@ -18,7 +18,11 @@
 #gabo-io-form input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff22;border-radius:8px;padding:.55rem}
 #gabo-io-form button{background:#ff3bdb;color:#fff;border:none;border-radius:8px;padding:.55rem .8rem}
 #gabo-io-honeypot{position:absolute;left:-10000px;width:1px;height:1px;opacity:0}
-@media (max-width:480px){
+@media (max-width:1023px){
   #gabo-io-widget{right:10px;bottom:20px}
-  #gabo-io-panel{right:10px;bottom:84px;width:min(92vw,300px);height:72vh}
+  #gabo-io-panel{right:10px;bottom:84px;width:95vw;max-width:95vw;height:90vh}
+}
+
+@media (min-width:1024px){
+  #gabo-io-panel{right:10px;top:45px;bottom:auto}
 }
