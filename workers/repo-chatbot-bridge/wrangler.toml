@@ -1,0 +1,23 @@
+name = "repo-chatbot-bridge"
+main = "src/index.js"
+compatibility_date = "2026-05-18"
+workers_dev = false
+
+[[routes]]
+pattern = "gabo.services/api/gabo-io-chat"
+zone_name = "gabo.services"
+
+[[routes]]
+pattern = "www.gabo.services/api/gabo-io-chat"
+zone_name = "gabo.services"
+
+[vars]
+PUBLIC_SITE_ORIGIN = "https://www.gabo.services"
+PUBLIC_SITE_ORIGIN_ALT = "https://gabo.services"
+CHATBOT_GATEWAY_ORIGIN = "https://chatbot.gabo.services"
+CHATBOT_GATEWAY_CHAT_PATH = "/api/chat"
+CHATBOT_CLIENT_NAME = "gabo-io"
+MAX_BODY_CHARS = "24000"
+MAX_MESSAGE_CHARS = "1200"
+MAX_WIKI_CHARS = "8000"
+MAX_RISK_SCORE = "60"
