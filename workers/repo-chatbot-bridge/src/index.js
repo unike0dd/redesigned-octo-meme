@@ -19,18 +19,13 @@ function safeText(value, max = 1200) {
   return String(value || "").normalize("NFKC").replace(/[\u0000-\u001F\u007F]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
 }
 
-function parseJsonArray(input, fallback = []) {
-  try {
-    const parsed = JSON.parse(String(input || ""));
-    if (Array.isArray(parsed)) return parsed;
-  } catch {}
-  return fallback;
-}
-
 function allowedOrigins(env) {
   const fallback = [safeText(env.PUBLIC_SITE_ORIGIN, 300), safeText(env.PUBLIC_SITE_ORIGIN_ALT, 300)].filter(Boolean);
-  const fromEnv = parseJsonArray(env.ALLOWED_ORIGINS_JSON, fallback).map((x) => safeText(x, 300)).filter(Boolean);
-  return new Set(fromEnv);
+  try {
+    const parsed = JSON.parse(String(env.ALLOWED_ORIGINS_JSON || ""));
+    if (Array.isArray(parsed) && parsed.length) return new Set(parsed.map((v) => safeText(v, 300)).filter(Boolean));
+  } catch {}
+  return new Set(fallback);
 }
 
 function cors(request, env) {
@@ -41,10 +36,16 @@ function cors(request, env) {
     headers.set("Access-Control-Allow-Origin", origin);
     headers.set("Vary", "Origin");
   }
-  const methods = parseJsonArray(env.ALLOWED_METHODS_JSON, ["POST", "OPTIONS"]).map((x) => safeText(x, 20).toUpperCase()).filter(Boolean);
-  const allowHeaders = parseJsonArray(env.ALLOWED_HEADERS_JSON, ["content-type", "accept", "x-gabo-integrity-sha256", "x-gabo-client", "x-gabo-session-id"]).map((x) => safeText(x, 80).toLowerCase()).filter(Boolean);
-  headers.set("Access-Control-Allow-Methods", methods.join(", ") || "POST, OPTIONS");
-  headers.set("Access-Control-Allow-Headers", allowHeaders.join(", ") || "content-type, accept, x-gabo-integrity-sha256, x-gabo-client, x-gabo-session-id");
+    const methods = (() => {
+    try { const p = JSON.parse(String(env.ALLOWED_METHODS_JSON || "")); if (Array.isArray(p) && p.length) return p.map((x) => safeText(x, 20).toUpperCase()).join(", "); } catch {}
+    return "POST, OPTIONS";
+  })();
+  const allowHeaders = (() => {
+    try { const p = JSON.parse(String(env.ALLOWED_HEADERS_JSON || "")); if (Array.isArray(p) && p.length) return p.map((x) => safeText(x, 60).toLowerCase()).join(", "); } catch {}
+    return "content-type, accept, x-gabo-integrity-sha256, x-gabo-client, x-gabo-session-id";
+  })();
+  headers.set("Access-Control-Allow-Methods", methods);
+  headers.set("Access-Control-Allow-Headers", allowHeaders);
   headers.set("Access-Control-Max-Age", "86400");
   return headers;
 }
@@ -84,7 +85,6 @@ export default {
 
     let body;
     try { body = JSON.parse(raw); } catch { return responseJson(request, env, 400, { ok: false, error: "invalid_json" }); }
-
     const message = safeText(body && body.message, maxMessage);
     const honeypot = safeText((body && (body.honeypot || body.website)) || "", 300);
     const integrity = safeText(body && body.integrity, 128);
