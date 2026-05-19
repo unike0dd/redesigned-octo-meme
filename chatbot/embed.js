@@ -1,6 +1,15 @@
 (function () {
   "use strict";
 
+  const EMBED_SCRIPT_URL =
+    document.currentScript && document.currentScript.src
+      ? document.currentScript.src
+      : new URL("./chatbot/embed.js", window.location.href).href;
+
+  function embedAssetUrl(fileName) {
+    return new URL(fileName, EMBED_SCRIPT_URL).href;
+  }
+
   const CONFIG = Object.freeze({
     chatbotName: "gabo io",
     endpoint: "/api/gabo-io-chat",
@@ -182,7 +191,7 @@
     if (document.querySelector('link[data-gabo-embed-css="1"]')) return;
     const cssLink = document.createElement("link");
     cssLink.rel = "stylesheet";
-    cssLink.href = "/chatbot/embed.css";
+    cssLink.href = embedAssetUrl("embed.css");
     cssLink.setAttribute("data-gabo-embed-css", "1");
     document.head.appendChild(cssLink);
   }
@@ -252,6 +261,33 @@
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && panel.classList.contains("open")) closePanel();
     });
+
+    function lookupWikiAnswer(wiki, query) {
+      const q = cleanText(query, 120).toLowerCase();
+      if (!q || !wiki || !wiki.pages) return "";
+
+      const lang = (window.I18N && window.I18N.currentLanguage) || "en";
+
+      for (const page of Object.values(wiki.pages)) {
+        const text = cleanText(
+          (page.content && (page.content[lang] || page.content.en || "")) || "",
+          12000
+        );
+
+        if (!text) continue;
+
+        const lower = text.toLowerCase();
+        const index = lower.indexOf(q);
+
+        if (index >= 0) {
+          const start = Math.max(index - 120, 0);
+          const end = Math.min(index + 360, text.length);
+          return `${CONFIG.chatbotName}: ${text.slice(start, end)}`;
+        }
+      }
+
+      return "";
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
