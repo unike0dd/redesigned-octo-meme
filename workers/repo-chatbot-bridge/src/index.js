@@ -21,16 +21,11 @@ function safeText(value, max = 1200) {
 
 function allowedOrigins(env) {
   const fallback = [safeText(env.PUBLIC_SITE_ORIGIN, 300), safeText(env.PUBLIC_SITE_ORIGIN_ALT, 300)].filter(Boolean);
-  return new Set(parseJsonArray(env.ALLOWED_ORIGINS_JSON, fallback).map((x) => x.toLowerCase()));
-}
-
-
-function parseJsonArray(text, fallback) {
   try {
-    const value = JSON.parse(String(text || ""));
-    if (Array.isArray(value) && value.length) return value.map((v) => safeText(v, 300).toLowerCase()).filter(Boolean);
+    const parsed = JSON.parse(String(env.ALLOWED_ORIGINS_JSON || ""));
+    if (Array.isArray(parsed) && parsed.length) return new Set(parsed.map((v) => safeText(v, 300)).filter(Boolean));
   } catch {}
-  return fallback;
+  return new Set(fallback);
 }
 
 function cors(request, env) {
@@ -41,9 +36,15 @@ function cors(request, env) {
     headers.set("Access-Control-Allow-Origin", origin);
     headers.set("Vary", "Origin");
   }
-  const allowMethods = parseJsonArray(env.ALLOWED_METHODS_JSON, ["post", "options"]).map((x) => x.toUpperCase()).join(", ");
-  const allowHeaders = parseJsonArray(env.ALLOWED_HEADERS_JSON, ["content-type", "accept", "x-gabo-integrity-sha256", "x-gabo-client", "x-gabo-session-id"]).join(", ");
-  headers.set("Access-Control-Allow-Methods", allowMethods);
+    const methods = (() => {
+    try { const p = JSON.parse(String(env.ALLOWED_METHODS_JSON || "")); if (Array.isArray(p) && p.length) return p.map((x) => safeText(x, 20).toUpperCase()).join(", "); } catch {}
+    return "POST, OPTIONS";
+  })();
+  const allowHeaders = (() => {
+    try { const p = JSON.parse(String(env.ALLOWED_HEADERS_JSON || "")); if (Array.isArray(p) && p.length) return p.map((x) => safeText(x, 60).toLowerCase()).join(", "); } catch {}
+    return "content-type, accept, x-gabo-integrity-sha256, x-gabo-client, x-gabo-session-id";
+  })();
+  headers.set("Access-Control-Allow-Methods", methods);
   headers.set("Access-Control-Allow-Headers", allowHeaders);
   headers.set("Access-Control-Max-Age", "86400");
   return headers;
@@ -72,7 +73,7 @@ export default {
     const origin = safeText(request.headers.get("Origin"), 300);
     const allowed = allowedOrigins(env);
     if (!origin) return responseJson(request, env, 403, { ok: false, error: "origin_required" });
-    if (!allowed.has(origin.toLowerCase())) return responseJson(request, env, 403, { ok: false, error: "origin_not_allowed" });
+    if (!allowed.has(origin)) return responseJson(request, env, 403, { ok: false, error: "origin_not_allowed" });
 
     const raw = await request.text().catch(() => "");
     const maxBody = Number(env.MAX_BODY_CHARS || 24000);
@@ -84,7 +85,6 @@ export default {
 
     let body;
     try { body = JSON.parse(raw); } catch { return responseJson(request, env, 400, { ok: false, error: "invalid_json" }); }
-
     const message = safeText(body && body.message, maxMessage);
     const honeypot = safeText((body && (body.honeypot || body.website)) || "", 300);
     const integrity = safeText(body && body.integrity, 128);
