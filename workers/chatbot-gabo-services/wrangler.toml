@@ -9,7 +9,10 @@ zone_name = "gabo.services"
 
 [vars]
 PUBLIC_WORKER_ORIGIN = "https://chatbot.gabo.services"
-ALLOWED_ORIGINS_JSON = "[\"https://www.gabo.services\",\"https://gabo.services\",\"https://unike0dd.github.io\"]"
+ALLOWED_ORIGINS_JSON = "[\"https://www.gabo.services\",\"https://gabo.services\"]"
+ALLOWED_METHODS_JSON = "[\"POST\",\"OPTIONS\"]"
+ALLOWED_HEADERS_JSON = "[\"content-type\",\"accept\",\"x-gabo-integrity-sha256\",\"x-gabo-client\",\"x-gabo-session-id\"]"
+EXPOSE_HEADERS_JSON = "[\"x-gabo-chatbot-gateway\",\"x-gabo-integrity-verified\"]"
 MAX_BODY_CHARS = "24000"
 MAX_MESSAGE_CHARS = "1200"
 MAX_WIKI_CHARS = "8000"
