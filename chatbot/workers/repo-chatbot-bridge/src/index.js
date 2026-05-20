@@ -29,14 +29,30 @@ function cors(request, env) {
   })();
   const allowHeaders = (() => {
     const p = parseJsonArrayEnv(env, "ALLOWED_HEADERS_JSON", (x) => safeText(x, 60).toLowerCase()); if (p.length) return p.join(", ");
-    return "content-type, accept, x-gabo-integrity-sha256, x-gabo-client, x-gabo-session-id";
+    return "content-type, accept, x-gabo-integrity-sha256, x-gabo-client, x-gabo-session-id, x-gabo-repo-sync, x-ops-asset-id";
   })();
   headers.set("Access-Control-Allow-Methods", methods);
   headers.set("Access-Control-Allow-Headers", allowHeaders);
+  headers.set("Access-Control-Expose-Headers", "x-gabo-chatbot-gateway, x-gabo-integrity-verified, x-gabo-repo-sync-verified");
   headers.set("Access-Control-Max-Age", "86400");
   return headers;
 }
 
+
+
+const BLOCKED_BROWSER_HEADERS = new Set(["authorization","cookie","x-api-key","x-worker-secret","x-shared-secret","x-gabo-internal-secret","io-pro","io_pro","IO_PRO"].map((v) => v.toLowerCase()));
+
+function hasBlockedHeaders(request) {
+  for (const [key] of request.headers) {
+    if (BLOCKED_BROWSER_HEADERS.has(safeText(key, 120).toLowerCase())) return true;
+  }
+  return false;
+}
+
+function hasRequiredFields(body) {
+  const required = ["chatbot", "message", "lang", "wikiContext", "page", "sessionId", "honeypot", "leadContext", "integrity"];
+  return required.every((key) => Object.prototype.hasOwnProperty.call(body || {}, key));
+}
 
 function buildLeadContext(body, request) {
   const source = safeText((body && body.source) || request.headers.get("X-Gabo-Client") || "web", 80);
@@ -72,6 +88,7 @@ export default {
 
     const origin = safeText(request.headers.get("Origin"), 300);
     const allowed = allowedOrigins(env);
+    if (hasBlockedHeaders(request)) return responseJson(request, env, 403, { ok: false, error: "session_blocked" });
     if (!origin) return responseJson(request, env, 403, { ok: false, error: "origin_required" });
     if (!allowed.has(origin)) return responseJson(request, env, 403, { ok: false, error: "origin_not_allowed" });
 
@@ -85,6 +102,7 @@ export default {
 
     let body;
     try { body = JSON.parse(raw); } catch { return responseJson(request, env, 400, { ok: false, error: "invalid_json" }); }
+    if (!hasRequiredFields(body)) return responseJson(request, env, 400, { ok: false, error: "invalid_request" });
     const message = safeText(body && body.message, maxMessage);
     const honeypot = safeText((body && (body.honeypot || body.website)) || "", 300);
     const integrity = safeText(body && body.integrity, 128);
@@ -106,7 +124,9 @@ export default {
           "Accept": "application/json",
           "X-Gabo-Integrity-SHA256": safeText(request.headers.get("X-Gabo-Integrity-SHA256"), 128),
           "X-Gabo-Client": safeText(request.headers.get("X-Gabo-Client"), 64) || safeText(env.CHATBOT_CLIENT_NAME, 64),
-          "X-Gabo-Session-Id": safeText(request.headers.get("X-Gabo-Session-Id"), 160)
+          "X-Gabo-Session-Id": safeText(request.headers.get("X-Gabo-Session-Id"), 160),
+          "X-Gabo-Repo-Sync": safeText(request.headers.get("X-Gabo-Repo-Sync"), 64) || safeText(env.CHATBOT_REPO_SYNC, 64),
+          "X-Ops-Asset-Id": safeText(request.headers.get("X-Ops-Asset-Id"), 120) || safeText(env.CHATBOT_ASSET_ID, 120)
         },
         body: JSON.stringify({
           ...body,
@@ -126,6 +146,9 @@ export default {
 
     let data;
     try { data = await upstream.json(); } catch { data = { ok: false, error: "gateway_invalid_response" }; }
-    return responseJson(request, env, upstream.ok ? upstream.status : 502, data);
+    const status = upstream.ok ? upstream.status : 502;
+    const res = responseJson(request, env, status, data);
+    if (upstream.ok) res.headers.set("x-gabo-repo-sync-verified", "1");
+    return res;
   }
 };
