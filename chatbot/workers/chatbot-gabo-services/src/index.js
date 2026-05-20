@@ -1,3 +1,5 @@
+import { STANDARD_PERMISSIONS_POLICY, STANDARD_SECURITY_HEADERS, toStr, safeText, normalizeOrigin, parseJsonArrayEnv } from "../../shared-common.js";
+
 const ROUTES = Object.freeze({
   health: "/health",
   chat: "/api/chat",
@@ -10,9 +12,6 @@ const CHATBOT_NAME = "gabo io";
 const HEADER_INTEGRITY = "x-gabo-integrity-sha256";
 const HEADER_CLIENT = "x-gabo-client";
 const HEADER_SESSION = "x-gabo-session-id";
-
-const STANDARD_PERMISSIONS_POLICY =
-  "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), otp-credentials=(), payment=(), picture-in-picture=(), publickey-credentials-create=(), publickey-credentials-get=(self), screen-wake-lock=(), serial=(), speaker-selection=(), storage-access=(), usb=(), web-share=(), xr-spatial-tracking=()";
 
 const CSP =
   "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; " +
@@ -36,11 +35,8 @@ const RISK_SIGNATURES = Object.freeze([
   { label: "dense-code-punctuation", weight: 12, pattern: /[{}()[\];=<>|&$]{6,}/g }
 ]);
 
-function toStr(value) { return typeof value === "string" ? value : value == null ? "" : String(value); }
-function safeText(value, max = 1200) { return toStr(value).normalize("NFKC").replace(/[\u0000-\u001F\u007F]/g, " ").replace(/\s+/g, " ").trim().slice(0, max); }
-function normalizeOrigin(value) { const raw = safeText(value, 300); if (!raw || raw === "null") return ""; try { return new URL(raw).origin.toLowerCase(); } catch { return raw.replace(/\/$/, "").toLowerCase(); } }
-function loadAllowedOrigins(env) { const fallback = ["https://www.gabo.services", "https://gabo.services"]; try { const parsed = JSON.parse(toStr(env.ALLOWED_ORIGINS_JSON || "")); if (Array.isArray(parsed) && parsed.length) return new Set(parsed.map(normalizeOrigin).filter(Boolean)); } catch {} return new Set(fallback.map(normalizeOrigin)); }
-function securityHeaders(extra = {}) { const h = new Headers(extra); h.set("Content-Security-Policy", CSP); h.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload"); h.set("X-Content-Type-Options", "nosniff"); h.set("X-Frame-Options", "DENY"); h.set("Referrer-Policy", "strict-origin-when-cross-origin"); h.set("Cross-Origin-Opener-Policy", "same-origin"); h.set("Cross-Origin-Resource-Policy", "same-origin"); h.set("Cross-Origin-Embedder-Policy", "require-corp"); h.set("Permissions-Policy", STANDARD_PERMISSIONS_POLICY); h.set("X-Permitted-Cross-Domain-Policies", "none"); h.set("X-DNS-Prefetch-Control", "off"); h.set("X-Robots-Tag", "noindex, nofollow"); h.set("Cache-Control", "no-store, no-transform"); return h; }
+function loadAllowedOrigins(env) { const fallback = ["https://www.gabo.services", "https://gabo.services"]; const configured = parseJsonArrayEnv(env, "ALLOWED_ORIGINS_JSON", normalizeOrigin); if (configured.length) return new Set(configured); return new Set(fallback.map(normalizeOrigin)); }
+function securityHeaders(extra = {}) { const h = new Headers(extra); h.set("Content-Security-Policy", CSP); Object.entries(STANDARD_SECURITY_HEADERS).forEach(([key, value]) => h.set(key, value)); h.set("Cross-Origin-Embedder-Policy", "require-corp"); return h; }
 function corsHeaders(env, request) { const allowed = loadAllowedOrigins(env); const origin = normalizeOrigin(request.headers.get("Origin") || ""); const h = new Headers(); if (origin && allowed.has(origin)) h.set("Access-Control-Allow-Origin", origin); h.set("Vary", "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"); h.set("Access-Control-Allow-Methods", "POST, OPTIONS"); h.set("Access-Control-Allow-Headers", ["content-type", "accept", HEADER_INTEGRITY, HEADER_CLIENT, HEADER_SESSION].join(", ")); h.set("Access-Control-Expose-Headers", "x-gabo-chatbot-gateway, x-gabo-integrity-verified"); h.set("Access-Control-Max-Age", "600"); return h; }
 function json(env, request, status, body, extra = {}) { const h = securityHeaders(extra); corsHeaders(env, request).forEach((v, k) => h.set(k, v)); h.set("content-type", "application/json; charset=utf-8"); return new Response(JSON.stringify(body), { status, headers: h }); }
 function scanRisk(value) { const text = toStr(value); const reasons = []; let score = 0; for (const sig of RISK_SIGNATURES) { sig.pattern.lastIndex = 0; const matches = text.match(sig.pattern); if (!matches) continue; score += matches.length * sig.weight; reasons.push(sig.label); } const punctuation = text.replace(/[\w\s.,'"@:+/#?!-]/g, "").length; const density = text.length ? punctuation / text.length : 0; if (text.length > 24 && density > 0.22) { score += 10; reasons.push("punctuation-density"); } return { score, reasons: Array.from(new Set(reasons)) }; }
@@ -72,7 +68,7 @@ if (preRisk.score >= maxRisk || postRisk.score >= maxRisk || hasResidualDanger(c
 const serverCanonical = canonicalPayload({ chatbot: CHATBOT_NAME, message: cleanMessage, lang: cleanLang, wikiContext: cleanWiki, sessionId: rawSessionId });
 const serverIntegrity = await sha256Hex(serverCanonical); const clientIntegrity = safeText(body.integrity || request.headers.get(HEADER_INTEGRITY) || "", 128);
 if (!clientIntegrity || !timingSafeEq(clientIntegrity, serverIntegrity)) return json(env, request, 403, { ok: false, error: "integrity_failed" });
-const clean = { message: cleanMessage, wikiContext: cleanWiki, lang: cleanLang, sessionId: rawSessionId, page: safeText(body.page || "", 300), leadContext: { source: "gabo_io", origin } };
+const clean = { message: cleanMessage, wikiContext: cleanWiki, lang: cleanLang, sessionId: rawSessionId, page: safeText(body.page || "", 300), leadContext: { source: safeText((body.leadContext && body.leadContext.source) || "gabo_io", 80), campaign: safeText((body.leadContext && body.leadContext.campaign) || "", 120), intent: safeText((body.leadContext && body.leadContext.intent) || "", 120), origin, contact: { name: safeText(body.leadContext?.contact?.name || "", 120), email: safeText(body.leadContext?.contact?.email || "", 180).toLowerCase(), company: safeText(body.leadContext?.contact?.company || "", 160), role: safeText(body.leadContext?.contact?.role || "", 120), interest: safeText(body.leadContext?.contact?.interest || "", 200) } } };
 let upstream; try { upstream = await forwardToBinding(env, clean); } catch { return json(env, request, 502, { ok: false, error: "relay_unavailable" }); }
 if (!upstream.ok) return json(env, request, 502, { ok: false, error: "relay_error" });
 let data = {}; try { data = await upstream.json(); } catch { data = {}; }
