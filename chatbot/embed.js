@@ -12,7 +12,8 @@
 
   const CONFIG = Object.freeze({
     chatbotName: "gabo io",
-    endpoint: "https://chatbot.gabo.services/api/chat",
+    endpoint: "/api/gabo-io-chat",
+    fallbackEndpoint: "https://chatbot.gabo.services/api/chat",
     clientName: "gabo-io",
     repoSync: "io-pro-chatbot-v1",
     assetId: "redesigned-octo-meme-chatbot",
@@ -334,26 +335,33 @@
       integrity
     };
 
-    const response = await fetch(CONFIG.endpoint, {
-      method: "POST",
-      mode: "cors",
-      credentials: "omit",
-      referrerPolicy: "no-referrer",
-      cache: "no-store",
-      headers: buildRequestHeaders(integrity, payload.sessionId),
-      body: JSON.stringify(body)
-    });
+    const endpoints = [CONFIG.endpoint, CONFIG.fallbackEndpoint].filter(Boolean);
+    let lastError = null;
 
-    let data = {};
-    try {
-      data = await response.json();
-    } catch {}
+    for (const endpoint of endpoints) {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        mode: "cors",
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
+        cache: "no-store",
+        headers: buildRequestHeaders(integrity, payload.sessionId),
+        body: JSON.stringify(body)
+      });
 
-    if (!response.ok || !data || data.ok !== true) {
-      throw new Error("chatbot_gateway_rejected");
+      let data = {};
+      try {
+        data = await response.json();
+      } catch {}
+
+      if (response.ok && data && data.ok === true) {
+        return sanitize(data.reply || "No reply.", 1600);
+      }
+
+      lastError = new Error(`chatbot_gateway_rejected:${endpoint}:${response.status}`);
     }
 
-    return sanitize(data.reply || "No reply.", 1600);
+    throw lastError || new Error("chatbot_gateway_rejected");
   }
 
   function lookupWikiAnswer(wiki, query) {
