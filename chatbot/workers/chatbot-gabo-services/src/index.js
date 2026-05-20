@@ -11,7 +11,7 @@ const HEADER_ASSET_ID = "x-ops-asset-id";
 const CSP =
   "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; " +
   "script-src 'none'; style-src 'none'; img-src 'none'; font-src 'none'; media-src 'none'; frame-src 'none'; " +
-  "connect-src 'self' https://gabo.services https://www.gabo.services; worker-src 'none'; manifest-src 'none'; " +
+  "connect-src 'self' https://chatbot.gabo.services https://gabo.services https://www.gabo.services; worker-src 'none'; manifest-src 'none'; " +
   "upgrade-insecure-requests; block-all-mixed-content";
 
 const RISK_SIGNATURES = Object.freeze([
