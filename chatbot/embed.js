@@ -170,10 +170,6 @@
     saveWiki(wiki);
   }
 
-  async function sha256(input) {
-    return hashText(input);
-  }
-
   async function computeIntegrity(payload) {
     const canonical = JSON.stringify({
       chatbot: CONFIG.chatbotName,
@@ -182,7 +178,7 @@
       wikiContext: cleanText(payload.wikiContext || "", CONFIG.maxWikiCharsPerLang),
       sessionId: cleanText(payload.sessionId || "", 160)
     });
-    return sha256(canonical);
+    return hashText(canonical);
   }
 
   function wikiSnippet(query) {
