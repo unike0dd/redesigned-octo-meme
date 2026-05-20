@@ -12,7 +12,7 @@
 
     const CONFIG = Object.freeze({
     chatbotName: "gabo io",
-    endpoint: "/api/gabo-io-chat",
+    endpoint: "https://chatbot.gabo.services/api/chat",
     historyKey: "gabo_io_chat_history_v1",
     blockedKey: "gabo_io_security_blocked_v1",
     blockReasonKey: "gabo_io_security_reason_v1",
@@ -42,10 +42,7 @@
 
   function resolveChatEndpoint(path) {
     const url = new URL(String(path || ""), window.location.origin);
-    if (url.origin !== window.location.origin) {
-      throw new Error("Chatbot endpoint rejected by client policy.");
-    }
-    return url.pathname + url.search;
+    return url.toString();
   }
 
   const RISK_PATTERNS = Object.freeze([
@@ -360,11 +357,13 @@
             "Accept": "application/json",
             "X-Gabo-Integrity-SHA256": integrity,
             "X-Gabo-Client": "gabo-io",
-            "X-Gabo-Session-Id": sessionId
+            "X-Gabo-Session-Id": sessionId,
+            "X-Gabo-Repo-Sync": "io-pro-chatbot-v1",
+            "X-Ops-Asset-Id": "redesigned-octo-meme-chatbot"
           },
-          mode: "same-origin",
-          credentials: "same-origin",
-          referrerPolicy: "strict-origin",
+          mode: "cors",
+          credentials: "omit",
+          referrerPolicy: "no-referrer",
           cache: "no-store",
           body: JSON.stringify({ ...payload, integrity })
         });
