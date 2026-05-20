@@ -14,8 +14,8 @@
     chatbotName: "gabo io",
     endpoint: "/api/gabo-io-chat",
     historyKey: "gabo_io_chat_history_v1",
-    blockedKey: "gabo_io_tinyml_blocked_v1",
-    blockReasonKey: "gabo_io_tinyml_reason_v1",
+    blockedKey: "gabo_io_security_blocked_v1",
+    blockReasonKey: "gabo_io_security_reason_v1",
     wikiKey: "gabo_io_chat_wiki_v1",
     maxHistory: 60,
     maxLength: 256,
@@ -311,7 +311,7 @@
 
       const rawUserText = String(input.value || "");
       const rawUserRisk = scanRisk(rawUserText);
-      if (rawUserRisk.blocked) { add("Message blocked by Tiny ML policy.", "bot"); return; }
+      if (rawUserRisk.blocked) { add("Message blocked by security policy.", "bot"); return; }
       const userText = sanitizeMessage(rawUserText);
       if (!userText) return;
 
@@ -378,7 +378,7 @@
       const rawBotRisk = scanRisk(botText);
       if (rawBotRisk.blocked) {
         setBlocked("unsafe_bot_output_detected");
-        botText = "Response blocked by Tiny ML policy.";
+        botText = "Response blocked by security policy.";
       } else {
         botText = sanitizeMessage(botText);
       }
