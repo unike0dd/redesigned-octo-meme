@@ -104,6 +104,24 @@ function loadContract(env) {
   }
 }
 
+function allowedOriginsFromEnv(env) {
+  try {
+    const raw = safeText(env.ALLOWED_ORIGINS_JSON || "", 20000);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((x) => normalizeOrigin(x)).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
+function allowedOrigins(contract, env) {
+  const contractAllowed = Array.isArray(contract?.repo?.allowedOrigins) ? contract.repo.allowedOrigins : [];
+  const merged = [...contractAllowed, ...allowedOriginsFromEnv(env)].map((x) => normalizeOrigin(x)).filter(Boolean);
+  return new Set(merged);
+}
+
 function securityHeaders(extra = {}) { const h = new Headers(extra); h.set("Content-Security-Policy", CSP); Object.entries(STANDARD_SECURITY_HEADERS).forEach(([key, value]) => h.set(key, value)); h.set("Permissions-Policy", STANDARD_PERMISSIONS_POLICY); h.set("Cross-Origin-Embedder-Policy", "require-corp"); return h; }
 function corsHeaders(config, request) { const allowed = loadAllowedOrigins(config); const origin = normalizeOrigin(request.headers.get("Origin") || ""); const h = new Headers(); h.set("Vary", "Origin"); if (origin && allowed.has(origin)) h.set("Access-Control-Allow-Origin", origin); h.set("Access-Control-Allow-Methods", asArray(config?.cors?.allowedMethods, DEFAULT_SYNC_CONFIG.cors.allowedMethods).join(", ")); h.set("Access-Control-Allow-Headers", asArray(config?.cors?.allowedRequestHeaders, DEFAULT_SYNC_CONFIG.cors.allowedRequestHeaders).join(", ")); h.set("Access-Control-Expose-Headers", asArray(config?.cors?.exposedResponseHeaders, DEFAULT_SYNC_CONFIG.cors.exposedResponseHeaders).join(", ")); h.set("Access-Control-Max-Age", String(Number(config?.cors?.maxAgeSeconds || DEFAULT_SYNC_CONFIG.cors.maxAgeSeconds))); return h; }
 function json(config, request, status, body, extra = {}) { const h = securityHeaders(extra); corsHeaders(config, request).forEach((v, k) => h.set(k, v)); h.set("content-type", "application/json; charset=utf-8"); return new Response(JSON.stringify(body), { status, headers: h }); }
