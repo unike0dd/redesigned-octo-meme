@@ -1,30 +1,17 @@
+import { STANDARD_PERMISSIONS_POLICY, STANDARD_SECURITY_HEADERS, safeText, parseJsonArrayEnv } from "../../shared-common.js";
+
 const ROUTE_CHAT = "/api/gabo-io-chat";
 
-const SECURITY_HEADERS = {
+const SECURITY_HEADERS = Object.freeze({
   "Content-Security-Policy": "default-src 'none'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'none'; style-src 'none'; img-src 'none'; font-src 'none'; connect-src 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'; upgrade-insecure-requests; block-all-mixed-content",
-  "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
-  "X-Content-Type-Options": "nosniff",
-  "X-Frame-Options": "DENY",
-  "Referrer-Policy": "strict-origin-when-cross-origin",
-  "Cross-Origin-Opener-Policy": "same-origin",
-  "Cross-Origin-Resource-Policy": "same-origin",
-  "Permissions-Policy": "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), otp-credentials=(), payment=(), picture-in-picture=(), publickey-credentials-create=(), publickey-credentials-get=(self), screen-wake-lock=(), serial=(), speaker-selection=(), storage-access=(), usb=(), web-share=(), xr-spatial-tracking=()",
-  "X-Permitted-Cross-Domain-Policies": "none",
-  "X-DNS-Prefetch-Control": "off",
-  "X-Robots-Tag": "noindex, nofollow",
-  "Cache-Control": "no-store, no-transform"
-};
-
-function safeText(value, max = 1200) {
-  return String(value || "").normalize("NFKC").replace(/[\u0000-\u001F\u007F]/g, " ").replace(/\s+/g, " ").trim().slice(0, max);
-}
+  ...STANDARD_SECURITY_HEADERS,
+  "Permissions-Policy": STANDARD_PERMISSIONS_POLICY
+});
 
 function allowedOrigins(env) {
   const fallback = [safeText(env.PUBLIC_SITE_ORIGIN, 300), safeText(env.PUBLIC_SITE_ORIGIN_ALT, 300)].filter(Boolean);
-  try {
-    const parsed = JSON.parse(String(env.ALLOWED_ORIGINS_JSON || ""));
-    if (Array.isArray(parsed) && parsed.length) return new Set(parsed.map((v) => safeText(v, 300)).filter(Boolean));
-  } catch {}
+  const configured = parseJsonArrayEnv(env, "ALLOWED_ORIGINS_JSON", (value) => safeText(value, 300));
+  if (configured.length) return new Set(configured);
   return new Set(fallback);
 }
 
@@ -37,11 +24,11 @@ function cors(request, env) {
     headers.set("Vary", "Origin");
   }
     const methods = (() => {
-    try { const p = JSON.parse(String(env.ALLOWED_METHODS_JSON || "")); if (Array.isArray(p) && p.length) return p.map((x) => safeText(x, 20).toUpperCase()).join(", "); } catch {}
+    const p = parseJsonArrayEnv(env, "ALLOWED_METHODS_JSON", (x) => safeText(x, 20).toUpperCase()); if (p.length) return p.join(", ");
     return "POST, OPTIONS";
   })();
   const allowHeaders = (() => {
-    try { const p = JSON.parse(String(env.ALLOWED_HEADERS_JSON || "")); if (Array.isArray(p) && p.length) return p.map((x) => safeText(x, 60).toLowerCase()).join(", "); } catch {}
+    const p = parseJsonArrayEnv(env, "ALLOWED_HEADERS_JSON", (x) => safeText(x, 60).toLowerCase()); if (p.length) return p.join(", ");
     return "content-type, accept, x-gabo-integrity-sha256, x-gabo-client, x-gabo-session-id";
   })();
   headers.set("Access-Control-Allow-Methods", methods);

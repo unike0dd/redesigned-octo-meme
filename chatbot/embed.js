@@ -23,6 +23,23 @@
     maxWikiCharsPerLang: 8000
   });
 
+
+  const LEAD_INTENT_PATTERNS = Object.freeze([
+    /\b(price|pricing|cost|quote|plan|plans|budget)\b/i,
+    /\b(book|booking|schedule|appointment|consult|demo|call)\b/i,
+    /\b(buy|purchase|order|subscribe|get started|start now)\b/i,
+    /\b(contact|email|phone|sales|talk to (a )?human|representative)\b/i
+  ]);
+
+  function detectLeadSignals(text) {
+    const value = cleanText(text || "", 300).toLowerCase();
+    if (!value) return { score: 0, intent: "general" };
+    let score = 0;
+    for (const pattern of LEAD_INTENT_PATTERNS) if (pattern.test(value)) score += 1;
+    const intent = score >= 2 ? "high" : score === 1 ? "medium" : "general";
+    return { score, intent };
+  }
+
   function resolveChatEndpoint(path) {
     const url = new URL(String(path || ""), window.location.origin);
     if (url.origin !== window.location.origin) {
@@ -317,6 +334,7 @@
 
       const wikiContext = wikiSnippet(userText);
 
+      const leadSignals = detectLeadSignals(userText);
       const payload = {
         chatbot: CONFIG.chatbotName,
         message: userText,
@@ -324,7 +342,13 @@
         wikiContext,
         page: location.pathname,
         sessionId,
-        honeypot: String(honey.value || "")
+        honeypot: String(honey.value || ""),
+        leadContext: {
+          intent: leadSignals.intent,
+          score: leadSignals.score,
+          pageTitle: cleanText(document.title, 200),
+          referrer: cleanText(document.referrer || "", 300)
+        }
       };
 
       const integrity = await computeIntegrity(payload);
