@@ -37,6 +37,19 @@ function cors(request, env) {
   return headers;
 }
 
+
+function buildLeadContext(body, request) {
+  const source = safeText((body && body.source) || request.headers.get("X-Gabo-Client") || "web", 80);
+  const campaign = safeText((body && body.campaign) || (body && body.utmCampaign) || "", 120);
+  const intent = safeText((body && body.intent) || "", 120);
+  const name = safeText((body && body.name) || "", 120);
+  const email = safeText((body && body.email) || "", 180).toLowerCase();
+  const company = safeText((body && body.company) || "", 160);
+  const role = safeText((body && body.role) || "", 120);
+  const interest = safeText((body && body.interest) || "", 200);
+  return { source, campaign, intent, contact: { name, email, company, role, interest } };
+}
+
 function responseJson(request, env, status, body) {
   const headers = new Headers(SECURITY_HEADERS);
   cors(request, env).forEach((v, k) => headers.set(k, v));
@@ -95,7 +108,17 @@ export default {
           "X-Gabo-Client": safeText(request.headers.get("X-Gabo-Client"), 64) || safeText(env.CHATBOT_CLIENT_NAME, 64),
           "X-Gabo-Session-Id": safeText(request.headers.get("X-Gabo-Session-Id"), 160)
         },
-        body: raw
+        body: JSON.stringify({
+          ...body,
+          message,
+          wikiContext,
+          leadContext: buildLeadContext(body, request),
+          cx: {
+            quality: "high",
+            askClarifyingQuestion: true,
+            tone: safeText((body && body.tone) || "professional-friendly", 50)
+          }
+        })
       });
     } catch {
       return responseJson(request, env, 502, { ok: false, error: "gateway_unavailable" });
