@@ -1,11 +1,11 @@
 /**
- * careers/repo-worker.js
+ * careers/secure-submit.js
  *
- * Browser-side Careers relay.
+ * Browser-side secure Careers submit handler.
  *
- * Browser-only public relay.
+ * Browser-only public submit handler.
  * No secrets.
- * No private bindings.
+ * No internal service details.
  * Sends sanitized Careers payload to the public Careers gateway.
  */
 
