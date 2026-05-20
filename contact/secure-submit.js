@@ -1,10 +1,11 @@
 /**
- * contact/repo-worker.js
+ * contact/secure-submit.js
  *
- * Browser-side repo contact relay.
+ * Browser-side secure contact submit handler.
  *
- * This is a browser-only public relay.
- * This file does not contain private platform binding details.
+ * This is a browser-only public submit handler.
+ * No private platform details.
+ * No internal service details.
  * This file only prepares a sanitized public intake payload and sends it
  * to the configured public contact endpoint.
  */
