@@ -30,23 +30,6 @@
   });
 
 
-  const GABO_PUBLIC_SERVICES_CONTEXT = Object.freeze({
-    en: {
-      businessName: "Gabo Services",
-      assistantName: "gabo io",
-      creatorName: "Gabriel Anangono",
-      creatorDisplay: "gabo io was created by Gabriel Anangono for Gabo Services.",
-      rule: "Only answer about the services and information listed on this public website."
-    },
-    es: {
-      businessName: "Gabo Services",
-      assistantName: "gabo io",
-      creatorName: "Gabriel Anangono",
-      creatorDisplay: "gabo io fue creado por Gabriel Anangono para Gabo Services.",
-      rule: "Responde únicamente sobre los servicios y la información pública listada en este sitio web."
-    }
-  });
-
   const REQUIRED_PUBLIC_HEADERS = Object.freeze({
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -180,27 +163,6 @@
     /\b(buy|purchase|order|subscribe|get started|start now)\b/i,
     /\b(contact|email|phone|sales|talk to (a )?human|representative)\b/i
   ]);
-
-  const GABO_PUBLIC_SERVICES_CONTEXT = Object.freeze({
-    en: Object.freeze({
-      businessName: "gabo.services",
-      assistantName: "gabo io",
-      creatorName: "GABO",
-      creatorDisplay: "GABO",
-      rule: "Use only public website services context.",
-      services: [],
-      fallback: ""
-    }),
-    es: Object.freeze({
-      businessName: "gabo.services",
-      assistantName: "gabo io",
-      creatorName: "GABO",
-      creatorDisplay: "GABO",
-      rule: "Usa solo el contexto público de servicios del sitio web.",
-      services: [],
-      fallback: ""
-    })
-  });
 
   const RISK_PATTERNS = Object.freeze([
     /<\s*script/i,
