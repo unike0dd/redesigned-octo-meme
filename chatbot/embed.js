@@ -29,6 +29,24 @@
     maxWikiCharsPerLang: 8000
   });
 
+
+  const GABO_PUBLIC_SERVICES_CONTEXT = Object.freeze({
+    en: {
+      businessName: "Gabo Services",
+      assistantName: "gabo io",
+      creatorName: "Gabriel Anangonó",
+      creatorDisplay: "gabo io was created by Gabriel Anangonó for Gabo Services.",
+      rule: "Only answer about the services and information listed on this public website."
+    },
+    es: {
+      businessName: "Gabo Services",
+      assistantName: "gabo io",
+      creatorName: "Gabriel Anangonó",
+      creatorDisplay: "gabo io fue creado por Gabriel Anangonó para Gabo Services.",
+      rule: "Responde únicamente sobre los servicios y la información pública listada en este sitio web."
+    }
+  });
+
   const REQUIRED_PUBLIC_HEADERS = Object.freeze({
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -323,7 +341,8 @@
         intent: "general",
         score: leadSignals.score,
         pageTitle: sanitize(document.title, 200),
-        referrer: sanitize(document.referrer || "", 300)
+        referrer: sanitize(document.referrer || "", 300),
+        publicServicesContext: GABO_PUBLIC_SERVICES_CONTEXT[lang] || GABO_PUBLIC_SERVICES_CONTEXT.en
       }
     };
   }
@@ -383,7 +402,8 @@
         intent: "voice",
         score: 0,
         pageTitle: sanitize(document.title, 200),
-        referrer: sanitize(document.referrer || "", 300)
+        referrer: sanitize(document.referrer || "", 300),
+        publicServicesContext: GABO_PUBLIC_SERVICES_CONTEXT[lang] || GABO_PUBLIC_SERVICES_CONTEXT.en
       },
       integrity,
       voice: {
