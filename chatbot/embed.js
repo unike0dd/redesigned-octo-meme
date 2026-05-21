@@ -464,6 +464,7 @@
       ? `${publicWebsiteContext}\n\npageContext:${pageSnippet}`
       : publicWebsiteContext;
     const leadSignals = detectLeadSignals(message);
+    const publicServicesContext = getPublicServicesContext(lang);
 
     return {
       chatbot: CONFIG.chatbotName,
