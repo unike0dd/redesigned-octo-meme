@@ -40,9 +40,11 @@
 
   const GABO_PUBLIC_SERVICES_CONTEXT = Object.freeze({
     en: Object.freeze({
-      businessName: "Gabriel Services",
+      businessName: "Gabo Services",
       assistantName: "gabo io",
-      rule: "Only use the public website context. Do not invent services or capabilities. If a visitor asks about something not shown on the website, politely say that gabo io can only advise about services listed on this website and recommend contacting Gabriel Services for confirmation.",
+      creatorName: "Gabriel Anangonó",
+      creatorDisplay: "gabo io was created by Gabriel Anangonó for Gabo Services.",
+      rule: "Only answer about the services and information listed on this public website. Do not invent services, prices, timelines, guarantees, certifications, integrations, or capabilities.",
       responseGuidance: [
         "Answer in English.",
         "Use only services listed on this public website.",
@@ -88,12 +90,14 @@
           nextStep: "Use the contact page to explain the IT support coverage you need."
         }
       ],
-      fallback: "I can help with the services listed on this website. For requests outside this website content, please contact Gabriel Services for confirmation."
+      fallback: "I can help with the services listed on this website. For anything not shown here, please contact Gabo Services directly."
     }),
     es: Object.freeze({
-      businessName: "Gabriel Services",
+      businessName: "Gabo Services",
       assistantName: "gabo io",
-      rule: "Usa únicamente el contexto público del sitio web. No inventes servicios ni capacidades. Si el visitante pregunta por algo que no aparece en el sitio, indica amablemente que gabo io solo puede orientar sobre los servicios listados en este sitio web y recomienda contactar a Gabriel Services para confirmar.",
+      creatorName: "Gabriel Anangonó",
+      creatorDisplay: "gabo io fue creado por Gabriel Anangonó para Gabo Services.",
+      rule: "Responde únicamente sobre los servicios y la información pública listada en este sitio web. No inventes servicios, precios, tiempos, garantías, certificaciones, integraciones ni capacidades.",
       responseGuidance: [
         "Responde en español.",
         "Usa solo los servicios listados en este sitio web público.",
@@ -139,23 +143,9 @@
           nextStep: "Usa la página de contacto para explicar la cobertura de soporte TI que necesitas."
         }
       ],
-      fallback: "Puedo ayudarte con los servicios listados en este sitio web. Para solicitudes fuera de este contenido público, por favor contacta a Gabriel Services para confirmar."
+      fallback: "Puedo ayudarte con los servicios listados en este sitio web. Para cualquier tema que no aparezca aquí, por favor contacta directamente a Gabo Services."
     })
   });
-
-  function buildPublicWebsiteContext(lang) {
-    const safeLang = lang === "es" ? "es" : "en";
-    const ctx = GABO_PUBLIC_SERVICES_CONTEXT[safeLang];
-
-    return JSON.stringify({
-      businessName: ctx.businessName,
-      assistantName: ctx.assistantName,
-      rule: ctx.rule,
-      responseGuidance: ctx.responseGuidance,
-      services: ctx.services,
-      fallback: ctx.fallback
-    });
-  }
 
   const LEAD_INTENT_PATTERNS = Object.freeze([
     /\b(price|pricing|cost|quote|plan|plans|budget)\b/i,
@@ -439,17 +429,21 @@
     };
   }
 
-  function getPublicServicesContext(lang) {
-    const safeLang = lang === "es" ? "es" : "en";
-    const ctx = window.GABO_SERVICES_CONTEXT?.[safeLang];
-
-    if (!ctx) return "";
+  function buildPublicServicesContext(lang) {
+    const safeLang = String(lang || document.documentElement.lang || "en")
+      .toLowerCase()
+      .startsWith("es")
+      ? "es"
+      : "en";
+    const ctx = GABO_PUBLIC_SERVICES_CONTEXT[safeLang] || GABO_PUBLIC_SERVICES_CONTEXT.en;
 
     return JSON.stringify({
       businessName: ctx.businessName,
       assistantName: ctx.assistantName,
-      serviceRule: ctx.serviceRule,
-      services: ctx.services,
+      creatorName: ctx.creatorName,
+      creatorDisplay: ctx.creatorDisplay,
+      rule: ctx.rule,
+      services: Array.isArray(ctx.services) ? ctx.services : [],
       fallback: ctx.fallback
     });
   }
@@ -464,13 +458,12 @@
       ? `${publicWebsiteContext}\n\npageContext:${pageSnippet}`
       : publicWebsiteContext;
     const leadSignals = detectLeadSignals(message);
-    const publicServicesContext = getPublicServicesContext(lang);
-
+    
     return {
       chatbot: CONFIG.chatbotName,
       message,
       lang,
-      wikiContext: [wikiContext, publicServicesContext].filter(Boolean).join(" "),
+      wikiContext: [wikiContext, buildPublicServicesContext(lang)].filter(Boolean).join(" "),
       page: sanitize(location.href || location.pathname, 500),
       sessionId,
       honeypot: "",
