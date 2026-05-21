@@ -65,9 +65,9 @@
       homeH1:
         "Reliable day-to-day execution,<br/>Outstanding operational support<br/>for modern businesses.",
       homeDescription:
-        "Gabriel Services brings deep experience in coordination, operations management, customer satisfaction, and PC/desk support so your team can focus on growth while we execute the day-to-day.<br/><br/>We provide Logistics, Customer Relations, Administrative Back Office, and IT Support.",
-      bookConsultation: "Book a consultation",
-      seeServiceCoverage: "See service coverage",
+        "Gabriel Services helps businesses run smoother with reliable day-to-day support across logistics, customer relations, administrative back office, and IT support.<br/><br/>We integrate with your workflows, keep communication clear, and help your team focus on priorities that drive growth.",
+      bookConsultation: "Start a conversation",
+      seeServiceCoverage: "Learn more",
       processeDriven: "Process-Driven Operations",
       practicalTransparent:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
@@ -92,10 +92,10 @@
         "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity.",
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
       whyBusinessesText:
-        "Consistency, practical execution, and experienced, professional-friendly teams that feel like a fresh start for your operations.",
+        "Businesses choose Gabriel Services for practical execution, clear communication, and consistent daily support that helps teams stay focused on growth.",
       startSupportTitle: "Start with the support you need",
-      requestConsultation: "Request consultation",
-      viewEngagementOptions: "View engagement options",
+      requestConsultation: "Contact Gabo Services",
+      viewEngagementOptions: "Ask gabo io",
 
       aboutTitle: "About",
       aboutIntro1:
@@ -760,8 +760,8 @@
         "Ejecución confiable día a día,<br/>Soporte operativo excepcional<br/>para negocios modernos.",
       homeDescription:
         "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
-      bookConsultation: "Reservar una consulta",
-      seeServiceCoverage: "Ver cobertura de servicios",
+      bookConsultation: "Iniciar una conversación",
+      seeServiceCoverage: "Conocer más",
       processeDriven: "Operaciones Impulsadas por Procesos",
       practicalTransparent:
         "Práctico, transparente, responsivo y alineado con su ritmo operativo.",
@@ -788,8 +788,8 @@
       whyBusinessesText:
         "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
       startSupportTitle: "Comience con el apoyo que necesita",
-      requestConsultation: "Solicitar consulta",
-      viewEngagementOptions: "Ver opciones de compromiso",
+      requestConsultation: "Contactar a Gabo Services",
+      viewEngagementOptions: "Preguntar a gabo io",
 
       aboutTitle: "Acerca de",
       aboutIntro1:
