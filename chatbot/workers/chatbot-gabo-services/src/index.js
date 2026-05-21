@@ -134,7 +134,7 @@ function timingSafeEq(a, b) { const x = toStr(a); const y = toStr(b); if (x.leng
 function requireBinding(env) { if (!env.graymatter || typeof env.graymatter.fetch !== "function") throw new Error("relay_unavailable"); return env.graymatter; }
 function requireSharedSecret(env) { const secret = safeText(env.GRAYMATTER_SHARED_SECRET || "", 500); if (!secret) throw new Error("relay_unavailable"); return secret; }
 async function forwardToBinding(env, clean) { const binding = requireBinding(env); const sharedSecret = requireSharedSecret(env); return binding.fetch("https://graymatter.local/api/chat", { method: "POST", headers: { "content-type": "application/json", "accept": "application/json", "x-gabo-hop": PUBLIC_NAME, "x-gabo-shared-secret": sharedSecret }, body: JSON.stringify({ chatbot: CHATBOT_NAME, lang: clean.lang, messages: [{ role: "user", content: clean.message }], context: { page: clean.page, wiki: clean.wikiContext, leadContext: clean.leadContext } }) }); }
-function gracefulReply() { return "gabo io: The assistant gateway is temporarily unavailable. Please try again in a moment or use the contact page for human support."; }
+function gracefulReply() { return "gabo io: Temporary gateway issue. Please retry in a moment. If it persists, use the contact page for a human follow-up."; }
 
 export default { async fetch(request, env) {
   const config = loadContract(env);
@@ -218,6 +218,6 @@ export default { async fetch(request, env) {
     return json(config, request, 200, { ok: true, degraded: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1", "x-gabo-degraded": "1" });
   }
   let data = {}; try { data = await upstream.json(); } catch { data = {}; }
-  const reply = sanitize(data.reply || data.message || "", 1600) || "gabo io: I received your message securely. Please use the contact page for a human follow-up.";
+  const reply = sanitize(data.reply || data.message || "", 1600) || "gabo io: I received your message. I can help repair, fix, or update—please share what you want to change.";
   return json(config, request, 200, { ok: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
 } };
