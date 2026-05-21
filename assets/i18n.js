@@ -1436,6 +1436,28 @@
     return translations[normalized] ? normalized : "";
   }
 
+
+  function toLanguageScopedPath(rawHref, lang) {
+    if (!rawHref) return rawHref;
+    if (/^(mailto:|tel:|javascript:|#)/i.test(rawHref)) return rawHref;
+
+    const isAbsolute = /^[a-z][a-z0-9+.-]*:/i.test(rawHref);
+    const base = window.location.origin;
+    const url = new URL(rawHref, base);
+    if (isAbsolute && url.origin !== base) return rawHref;
+
+    let nextPath = url.pathname;
+    if (lang === "es") {
+      if (!nextPath.startsWith("/es/")) {
+        nextPath = nextPath === "/" ? "/es/" : `/es${nextPath}`;
+      }
+    } else if (nextPath === "/es" || nextPath.startsWith("/es/")) {
+      nextPath = nextPath === "/es" || nextPath === "/es/" ? "/" : nextPath.replace(/^\/es/, "");
+    }
+
+    return `${nextPath}${url.search}${url.hash}`;
+  }
+
   function getInitialLanguage() {
     return (
       normalizeLanguage(readClientCache(LANGUAGE_STORAGE_KEY)) ||
@@ -1518,6 +1540,23 @@
       document.querySelectorAll("[data-i18n-html]").forEach((el) => {
         const key = el.getAttribute("data-i18n-html");
         el.innerHTML = this.t(key);
+      });
+
+      this.syncLanguageScopedLinks();
+    },
+
+    syncLanguageScopedLinks() {
+      document.querySelectorAll("a[href]").forEach((link) => {
+        const originalHref = link.dataset.i18nOriginalHref || link.getAttribute("href");
+        if (!originalHref) return;
+        if (!link.dataset.i18nOriginalHref) {
+          link.dataset.i18nOriginalHref = originalHref;
+        }
+
+        const nextHref = toLanguageScopedPath(originalHref, this.currentLanguage);
+        if (nextHref && nextHref !== link.getAttribute("href")) {
+          link.setAttribute("href", nextHref);
+        }
       });
     },
 
