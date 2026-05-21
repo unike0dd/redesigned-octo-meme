@@ -134,6 +134,7 @@ function timingSafeEq(a, b) { const x = toStr(a); const y = toStr(b); if (x.leng
 function requireBinding(env) { if (!env.graymatter || typeof env.graymatter.fetch !== "function") throw new Error("relay_unavailable"); return env.graymatter; }
 function requireSharedSecret(env) { const secret = safeText(env.GRAYMATTER_SHARED_SECRET || "", 500); if (!secret) throw new Error("relay_unavailable"); return secret; }
 async function forwardToBinding(env, clean) { const binding = requireBinding(env); const sharedSecret = requireSharedSecret(env); return binding.fetch("https://graymatter.local/api/chat", { method: "POST", headers: { "content-type": "application/json", "accept": "application/json", "x-gabo-hop": PUBLIC_NAME, "x-gabo-shared-secret": sharedSecret }, body: JSON.stringify({ chatbot: CHATBOT_NAME, lang: clean.lang, messages: [{ role: "user", content: clean.message }], context: { page: clean.page, wiki: clean.wikiContext, leadContext: clean.leadContext } }) }); }
+function gracefulReply() { return "gabo io: The assistant gateway is temporarily unavailable. Please try again in a moment or use the contact page for human support."; }
 
 export default { async fetch(request, env) {
   const config = loadContract(env);
@@ -205,8 +206,17 @@ export default { async fetch(request, env) {
   if (!clientIntegrity || !timingSafeEq(clientIntegrity, serverIntegrity)) return reject(config, request, 403, "request_blocked");
 
   const clean = { message: cleanMessage, wikiContext: cleanWiki, lang: cleanLang, sessionId, page: safeText(body.page || "", 300), leadContext: body.leadContext || {} };
-  let upstream; try { upstream = await forwardToBinding(env, clean); } catch { return reject(config, request, 502, "request_blocked"); }
-  if (!upstream.ok) return reject(config, request, 502, "request_blocked");
+  let upstream;
+  try {
+    upstream = await forwardToBinding(env, clean);
+  } catch {
+    const reply = gracefulReply();
+    return json(config, request, 200, { ok: true, degraded: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1", "x-gabo-degraded": "1" });
+  }
+  if (!upstream.ok) {
+    const reply = gracefulReply();
+    return json(config, request, 200, { ok: true, degraded: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1", "x-gabo-degraded": "1" });
+  }
   let data = {}; try { data = await upstream.json(); } catch { data = {}; }
   const reply = sanitize(data.reply || data.message || "", 1600) || "gabo io: I received your message securely. Please use the contact page for a human follow-up.";
   return json(config, request, 200, { ok: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
