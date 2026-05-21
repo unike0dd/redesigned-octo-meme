@@ -1436,6 +1436,7 @@
     return translations[normalized] ? normalized : "";
   }
 
+
   function getInitialLanguage() {
     return (
       normalizeLanguage(readClientCache(LANGUAGE_STORAGE_KEY)) ||
@@ -1519,6 +1520,7 @@
         const key = el.getAttribute("data-i18n-html");
         el.innerHTML = this.t(key);
       });
+
     },
 
     setupLanguageToggle() {
