@@ -417,6 +417,35 @@
     });
   }
 
+
+
+  function buildConversationContext() {
+    const history = loadHistory()
+      .slice(-8)
+      .map((item) => {
+        const role = item.type === "user" ? "Visitor" : "gabo io";
+        const text = sanitize(item.text || "", 300);
+        return text ? `${role}: ${text}` : "";
+      })
+      .filter(Boolean);
+
+    if (!history.length) return "";
+
+    return `Recent conversation:\n${history.join("\n")}`;
+  }
+
+  function hasGreetedBefore() {
+    return loadHistory().some((item) => {
+      const text = sanitize(item.text || "", 300).toLowerCase();
+      return item.type === "bot" && (
+        text.includes("soy gabo") ||
+        text.includes("i’m gabo") ||
+        text.includes("i am gabo") ||
+        text.includes("asistente de sitio web") ||
+        text.includes("website assistant")
+      );
+    });
+  }
   async function computeIntegrity(payload) {
     return hashText(canonicalPayload(payload));
   }
@@ -429,53 +458,53 @@
     };
   }
 
-  function buildPublicServicesContext(lang) {
-    const safeLang = String(lang || document.documentElement.lang || "en")
-      .toLowerCase()
-      .startsWith("es")
-      ? "es"
-      : "en";
-    const ctx = GABO_PUBLIC_SERVICES_CONTEXT[safeLang] || GABO_PUBLIC_SERVICES_CONTEXT.en;
-
-    return JSON.stringify({
-      businessName: ctx.businessName,
-      assistantName: ctx.assistantName,
-      creatorName: ctx.creatorName,
-      creatorDisplay: ctx.creatorDisplay,
-      rule: ctx.rule,
-      services: Array.isArray(ctx.services) ? ctx.services : [],
-      fallback: ctx.fallback
-    });
-  }
-
   function buildPayload(userText, honey) {
     const lang = window.I18N && window.I18N.currentLanguage === "es" ? "es" : "en";
     const sessionId = getSessionId();
     const message = sanitize(userText, CONFIG.maxMessageChars);
+
     const publicWebsiteContext = buildPublicWebsiteContext(lang);
     const pageSnippet = wikiSnippet(message);
-    const wikiContext = pageSnippet
-      ? `${publicWebsiteContext}\n\npageContext:${pageSnippet}`
-      : publicWebsiteContext;
+    const conversationContext = buildConversationContext();
+    const alreadyGreeted = hasGreetedBefore();
+
+    const behaviorContext = JSON.stringify({
+      behaviorRule:
+        lang === "es"
+          ? "No repitas la presentación inicial si ya saludaste. Continúa la conversación de forma natural, breve y útil. Usa solo los servicios públicos del sitio web."
+          : "Do not repeat the opening introduction if you already greeted the visitor. Continue the conversation naturally, briefly, and helpfully. Use only public website services.",
+      alreadyGreeted
+    });
+
+    const wikiContext = [
+      publicWebsiteContext,
+      behaviorContext,
+      conversationContext,
+      pageSnippet ? `Page context: ${pageSnippet}` : ""
+    ]
+      .filter(Boolean)
+      .join("\n\n")
+      .slice(0, CONFIG.maxWikiCharsPerLang);
+
     const leadSignals = detectLeadSignals(message);
-    
+
     return {
       chatbot: CONFIG.chatbotName,
       message,
       lang,
-      wikiContext: [wikiContext, buildPublicServicesContext(lang)].filter(Boolean).join(" "),
+      wikiContext,
       page: sanitize(location.href || location.pathname, 500),
       sessionId,
       honeypot: "",
       leadContext: {
-        intent: "general",
+        intent: leadSignals.intent || "general",
         score: leadSignals.score,
         pageTitle: sanitize(document.title, 200),
-        referrer: sanitize(document.referrer || "", 300),
-        publicServicesContext: GABO_PUBLIC_SERVICES_CONTEXT[lang] || GABO_PUBLIC_SERVICES_CONTEXT.en
+        referrer: sanitize(document.referrer || "", 300)
       }
     };
   }
+
 
   async function sendToGateway(payload) {
     const integrity = await computeIntegrity(payload);
@@ -532,8 +561,7 @@
         intent: "voice",
         score: 0,
         pageTitle: sanitize(document.title, 200),
-        referrer: sanitize(document.referrer || "", 300),
-        publicServicesContext: GABO_PUBLIC_SERVICES_CONTEXT[lang] || GABO_PUBLIC_SERVICES_CONTEXT.en
+        referrer: sanitize(document.referrer || "", 300)
       },
       integrity,
       voice: {
@@ -555,6 +583,7 @@
     return response.blob();
   }
 
+  // Reserved for future deterministic FAQ fallback; currently kept unused to avoid bypassing gateway behavior.
   function lookupWikiAnswer(wiki, query) {
     const q = sanitize(query, 120).toLowerCase();
     if (!q || !wiki || !wiki.pages) return "";
@@ -715,13 +744,28 @@
       saveHistory(updated);
     });
 
-    const observer = new MutationObserver(async () => {
+    const observer = new MutationObserver(async (mutations) => {
+      const onlyChatbotChanges = mutations.every((mutation) => {
+        const target = mutation.target;
+        return target && target.closest && target.closest("#gabo-io-widget");
+      });
+
+      if (onlyChatbotChanges) return;
+
       observer.disconnect();
       await syncPageToWiki();
-      observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
     });
 
-    observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
   }
 
   window.GaboChatbot = Object.freeze({ requestVoice });
