@@ -423,6 +423,21 @@
     };
   }
 
+  function getPublicServicesContext(lang) {
+    const safeLang = lang === "es" ? "es" : "en";
+    const ctx = window.GABO_SERVICES_CONTEXT?.[safeLang];
+
+    if (!ctx) return "";
+
+    return JSON.stringify({
+      businessName: ctx.businessName,
+      assistantName: ctx.assistantName,
+      serviceRule: ctx.serviceRule,
+      services: ctx.services,
+      fallback: ctx.fallback
+    });
+  }
+
   function buildPayload(userText, honey) {
     const lang = window.I18N && window.I18N.currentLanguage === "es" ? "es" : "en";
     const sessionId = getSessionId();
@@ -438,7 +453,7 @@
       chatbot: CONFIG.chatbotName,
       message,
       lang,
-      wikiContext,
+      wikiContext: [wikiContext, publicServicesContext].filter(Boolean).join(" "),
       page: sanitize(location.href || location.pathname, 500),
       sessionId,
       honeypot: "",
