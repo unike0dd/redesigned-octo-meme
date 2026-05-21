@@ -12,8 +12,8 @@
 
   const CONFIG = Object.freeze({
     chatbotName: "gabo io",
-    endpoint: "/api/gabo-io-chat",
-    fallbackEndpoint: "https://chatbot.gabo.services/api/chat",
+    chatEndpoint: "https://chatbot.gabo.services/api/chat",
+    ttsEndpoint: "https://chatbot.gabo.services/api/tts",
     clientName: "gabo-io",
     repoSync: "io-pro-chatbot-v1",
     assetId: "redesigned-octo-meme-chatbot",
@@ -316,11 +316,11 @@
       message,
       lang,
       wikiContext,
-      page: sanitize(location.pathname, 300),
+      page: sanitize(location.href || location.pathname, 500),
       sessionId,
-      honeypot: sanitize(honey && honey.value ? honey.value : "", 300),
+      honeypot: "",
       leadContext: {
-        intent: sanitize(leadSignals.intent, 60),
+        intent: "general",
         score: leadSignals.score,
         pageTitle: sanitize(document.title, 200),
         referrer: sanitize(document.referrer || "", 300)
@@ -335,33 +335,74 @@
       integrity
     };
 
-    const endpoints = [CONFIG.endpoint, CONFIG.fallbackEndpoint].filter(Boolean);
-    let lastError = null;
+    const response = await fetch(CONFIG.chatEndpoint, {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      referrerPolicy: "no-referrer",
+      cache: "no-store",
+      headers: buildRequestHeaders(integrity, payload.sessionId),
+      body: JSON.stringify(body)
+    });
 
-    for (const endpoint of endpoints) {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        mode: "cors",
-        credentials: "omit",
-        referrerPolicy: "no-referrer",
-        cache: "no-store",
-        headers: buildRequestHeaders(integrity, payload.sessionId),
-        body: JSON.stringify(body)
-      });
+    let data = {};
+    try {
+      data = await response.json();
+    } catch {}
 
-      let data = {};
-      try {
-        data = await response.json();
-      } catch {}
-
-      if (response.ok && data && data.ok === true) {
-        return sanitize(data.reply || "No reply.", 1600);
-      }
-
-      lastError = new Error(`chatbot_gateway_rejected:${endpoint}:${response.status}`);
+    if (response.ok && data && data.ok === true) {
+      return sanitize(data.reply || "No reply.", 1600);
     }
 
-    throw lastError || new Error("chatbot_gateway_rejected");
+    throw new Error(`chatbot_gateway_rejected:${response.status}`);
+  }
+
+  async function requestVoice(message) {
+    const safeMessage = sanitize(message, CONFIG.maxMessageChars);
+    if (!safeMessage) throw new Error("voice_message_required");
+
+    const sessionId = getSessionId();
+    const lang = window.I18N && window.I18N.currentLanguage === "es" ? "es" : "en";
+    const canonical = {
+      chatbot: CONFIG.chatbotName,
+      message: safeMessage,
+      lang,
+      wikiContext: "",
+      sessionId
+    };
+    const integrity = await computeIntegrity(canonical);
+    const body = {
+      chatbot: CONFIG.chatbotName,
+      message: safeMessage,
+      lang,
+      wikiContext: "",
+      page: sanitize(location.href || location.pathname, 500),
+      sessionId,
+      honeypot: "",
+      leadContext: {
+        intent: "voice",
+        score: 0,
+        pageTitle: sanitize(document.title, 200),
+        referrer: sanitize(document.referrer || "", 300)
+      },
+      integrity,
+      voice: {
+        speaker: ""
+      }
+    };
+
+    const response = await fetch(CONFIG.ttsEndpoint, {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      referrerPolicy: "no-referrer",
+      cache: "no-store",
+      headers: buildRequestHeaders(integrity, sessionId),
+      body: JSON.stringify(body)
+    });
+
+    if (!response.ok) throw new Error("voice_unavailable");
+    return response.blob();
   }
 
   function lookupWikiAnswer(wiki, query) {
@@ -475,7 +516,7 @@
 
       if (toText(honey.value).trim()) {
         setBlocked("honeypot_triggered");
-        add("Bot activity detected. Session blocked.", "bot");
+        add("I received your message, but the assistant is temporarily unavailable. Please try again or use the contact page.", "bot");
         return;
       }
 
@@ -483,7 +524,7 @@
       const rawUserRisk = scanRisk(rawUserText);
 
       if (rawUserRisk.blocked) {
-        add("Message blocked by security policy.", "bot");
+        add("I received your message, but the assistant is temporarily unavailable. Please try again or use the contact page.", "bot");
         return;
       }
 
@@ -505,7 +546,7 @@
         botText = await sendToGateway(payload);
       } catch (error) {
         console.warn("[gabo io] chatbot gateway request failed", error && error.message ? error.message : error);
-        botText = lookupWikiAnswer(wiki, userText) || `${CONFIG.chatbotName}: I received your message securely.`;
+        botText = "I received your message, but the assistant is temporarily unavailable. Please try again or use the contact page.";
       }
 
       const botRisk = scanRisk(botText);
@@ -532,6 +573,8 @@
 
     observer.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
+
+  window.GaboChatbot = Object.freeze({ requestVoice });
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
