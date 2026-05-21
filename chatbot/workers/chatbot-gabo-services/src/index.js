@@ -51,6 +51,14 @@ const RISK_SIGNATURES = Object.freeze([
   { label: "active-uri", weight: 22, pattern: /\b(javascript|vbscript|data)\s*:/gi },
   { label: "eval", weight: 20, pattern: /\b(eval|Function|setTimeout|setInterval)\s*\(/gi }
 ]);
+const SESSION_MEMORY = new Map();
+const SESSION_TTL_MS = 30 * 60 * 1000;
+const DEFAULT_CONVERSATION_RULES = Object.freeze({
+  greetingReplyEs: "Qué tal, un gusto verte aquí. ¿Me podrías decir tu nombre?",
+  nameReplyTemplateEs: "Mucho gusto y gracias por visitarnos, {{name}}. Dime, ¿en qué puedo asistirte?",
+  serviceAnswerEs: "Ofrecemos soporte operativo en: Operaciones Logísticas, Back Office Administrativo, Operaciones de Relación con Clientes y Soporte de TI (Nivel I y Nivel II). Si quieres, te explico cuál encaja mejor con tu necesidad.",
+  serviceAnswerEn: "We provide operational support in: Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support (Level I and Level II). If you want, I can help you identify which one fits your needs best."
+});
 
 function asArray(value, fallback = []) { return Array.isArray(value) ? value : fallback; }
 function normalizeHeaderName(name) { return safeText(name || "", 200).trim().toLowerCase(); }
@@ -128,6 +136,12 @@ function json(config, request, status, body, extra = {}) { const h = securityHea
 function reject(config, request, status, error) { return json(config, request, status, { ok: false, error }); }
 function scanRisk(value) { const text = toStr(value); let score = 0; for (const sig of RISK_SIGNATURES) { sig.pattern.lastIndex = 0; const matches = text.match(sig.pattern); if (!matches) continue; score += matches.length * sig.weight; } return { score }; }
 function sanitize(value, max = 1200) { return toStr(value).normalize("NFKC").replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, " ").replace(/`[^`\n]{1,500}`/g, " ").replace(/<\s*(script|style|iframe|object|embed|applet|svg|math|template)[\s\S]*?<\s*\/\s*\1\s*>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\bon[a-z]{3,}\s*=\s*("[^"]*"|'[^']*'|[^\s>]*)/gi, " ").replace(/\b(javascript|vbscript|data)\s*:[^\s,;)]*/gi, " ").replace(/[<>`{}()[\];|\\]/g, " ").replace(/[\u0000-\u001F\u007F]/g, " ").replace(/\s+/g, " ").trim().slice(0, max); }
+function loadConversationRules(env) { try { const raw = safeText(env.GABO_IO_CONVERSATION_RULES_JSON || "", 10000); return raw ? { ...DEFAULT_CONVERSATION_RULES, ...(JSON.parse(raw) || {}) } : DEFAULT_CONVERSATION_RULES; } catch { return DEFAULT_CONVERSATION_RULES; } }
+function isSpanishGreeting(text) { return /\b(hola|buenas|buenos d[ií]as|buenas tardes|buenas noches|qué tal|que tal)\b/i.test(text); }
+function isServiceQuestion(text) { return /\b(me gustar[ií]a saber|qué ofreces|que ofreces|cu[aá]les son tus servicios|que servicios ofrecen|qué servicios ofrecen|qué tienes|que tienes)\b/i.test(text); }
+function extractName(text) { const m = text.match(/\b(mi nombre es|me llamo|soy)\s+([a-záéíóúüñ][a-záéíóúüñ\s'-]{1,60})/i); return m && m[2] ? sanitize(m[2], 80).replace(/\b(y|and|pero|but)\b.*$/i, "").trim() : ""; }
+function sessionGet(sessionId) { const entry = SESSION_MEMORY.get(sessionId); if (!entry) return null; if (Date.now() - entry.updatedAt > SESSION_TTL_MS) { SESSION_MEMORY.delete(sessionId); return null; } return entry; }
+function sessionPut(sessionId, patch) { const prev = sessionGet(sessionId) || {}; SESSION_MEMORY.set(sessionId, { ...prev, ...patch, updatedAt: Date.now() }); }
 async function sha256Hex(value) { const data = new TextEncoder().encode(toStr(value)); const hash = await crypto.subtle.digest("SHA-256", data); return Array.from(new Uint8Array(hash)).map((b) => b.toString(16).padStart(2, "0")).join(""); }
 function canonicalPayload({ chatbot, message, lang, wikiContext, sessionId }) { return JSON.stringify({ chatbot: safeText(chatbot, 64), message: safeText(message, 1200), lang: safeText(lang || "en", 8), wikiContext: safeText(wikiContext || "", 8000), sessionId: safeText(sessionId || "", 160) }); }
 function timingSafeEq(a, b) { const x = toStr(a); const y = toStr(b); if (x.length !== y.length) return false; let out = 0; for (let i = 0; i < x.length; i++) out |= x.charCodeAt(i) ^ y.charCodeAt(i); return out === 0; }
@@ -209,6 +223,17 @@ export default { async fetch(request, env) {
   if (!clientIntegrity || !timingSafeEq(clientIntegrity, serverIntegrity)) return reject(config, request, 403, "request_blocked");
 
   const clean = { message: cleanMessage, wikiContext: cleanWiki, lang: cleanLang, sessionId, page: safeText(body.page || "", 300), leadContext: body.leadContext || {} };
+  const rules = loadConversationRules(env);
+  const priorSession = sessionGet(sessionId);
+  if (isSpanishGreeting(cleanMessage)) return json(config, request, 200, { ok: true, reply: rules.greetingReplyEs, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
+  const capturedName = extractName(cleanMessage);
+  if (capturedName) { sessionPut(sessionId, { name: capturedName }); return json(config, request, 200, { ok: true, reply: rules.nameReplyTemplateEs.replace("{{name}}", capturedName), integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" }); }
+  if (isServiceQuestion(cleanMessage)) {
+    const prefix = priorSession && priorSession.name ? `${priorSession.name}, ` : "";
+    const serviceReply = cleanLang === "es" ? rules.serviceAnswerEs : rules.serviceAnswerEn;
+    return json(config, request, 200, { ok: true, reply: `${prefix}${serviceReply}`.trim(), integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
+  }
+  if (priorSession && priorSession.name) clean.leadContext = { ...(clean.leadContext || {}), sessionName: priorSession.name };
   let upstream;
   try {
     upstream = await forwardToBinding(env, clean);

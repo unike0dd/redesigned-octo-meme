@@ -22,6 +22,7 @@
     blockReasonKey: "gabo_io_security_reason_v1",
     wikiKey: "gabo_io_chat_wiki_v1",
     sessionKey: "gabo_io_session_id",
+    sessionNameKey: "gabo_io_session_name_v1",
     maxHistory: 60,
     maxMessageChars: 1200,
     maxInputChars: 256,
@@ -153,6 +154,13 @@
     /\b(buy|purchase|order|subscribe|get started|start now)\b/i,
     /\b(contact|email|phone|sales|talk to (a )?human|representative)\b/i
   ]);
+  const SERVICE_INTENT_PATTERNS = Object.freeze([
+    /\bme gustar[ií]a saber\b/i,
+    /\bqu[eé] ofreces\b/i,
+    /\bcu[aá]les son tus servicios\b/i,
+    /\bqu[eé] tienes\b/i,
+    /\bqu[eé] servicios ofrecen\b/i
+  ]);
 
   const RISK_PATTERNS = Object.freeze([
     /<\s*script/i,
@@ -270,6 +278,22 @@
     } catch {
       return [];
     }
+  }
+  function loadSessionName() {
+    return sanitize(sessionStorage.getItem(CONFIG.sessionNameKey) || "", 80);
+  }
+  function saveSessionName(name) {
+    const safe = sanitize(name, 80);
+    if (!safe) return;
+    sessionStorage.setItem(CONFIG.sessionNameKey, safe);
+  }
+  function extractNameFromUserText(text) {
+    const m = sanitize(text, 160).match(/\b(mi nombre es|me llamo|soy)\s+([a-záéíóúüñ][a-záéíóúüñ\s'-]{1,60})/i);
+    return m && m[2] ? sanitize(m[2], 80) : "";
+  }
+  function detectServiceIntent(text) {
+    const value = sanitize(text, 240);
+    return SERVICE_INTENT_PATTERNS.some((pattern) => pattern.test(value));
   }
 
   function loadWiki() {
@@ -463,6 +487,7 @@
     const sessionId = getSessionId();
     const message = sanitize(userText, CONFIG.maxMessageChars);
 
+    const sessionName = loadSessionName();
     const publicWebsiteContext = buildPublicWebsiteContext(lang);
     const pageSnippet = wikiSnippet(message);
     const conversationContext = buildConversationContext();
@@ -473,7 +498,10 @@
         lang === "es"
           ? "No repitas la presentación inicial si ya saludaste. Continúa la conversación de forma natural, breve y útil. Usa solo los servicios públicos del sitio web."
           : "Do not repeat the opening introduction if you already greeted the visitor. Continue the conversation naturally, briefly, and helpfully. Use only public website services.",
-      alreadyGreeted
+      alreadyGreeted,
+      conversationRulesVar: "GABO_IO_CONVERSATION_RULES_JSON",
+      sessionName,
+      serviceIntentDetected: detectServiceIntent(message)
     });
 
     const wikiContext = [
@@ -709,6 +737,8 @@
 
       const userText = sanitize(rawUserText, CONFIG.maxMessageChars);
       if (!userText) return;
+      const extractedName = extractNameFromUserText(userText);
+      if (extractedName) saveSessionName(extractedName);
 
       add(userText, "user");
 
