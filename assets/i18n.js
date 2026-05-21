@@ -1436,6 +1436,19 @@
     return translations[normalized] ? normalized : "";
   }
 
+  const LOCALIZED_ROUTE_MAP = {
+    "/contact.html": "/es/contact.html",
+    "/careers.html": "/es/careers.html",
+    "/es/contact.html": "/contact.html",
+    "/es/careers.html": "/careers.html",
+  };
+
+  function normalizePathForRouteMap(pathname) {
+    let path = String(pathname || "/");
+    path = path.replace(/^\/redesigned-octo-meme/, "");
+    if (path === "") path = "/";
+    return path;
+  }
 
   function toLanguageScopedPath(rawHref, lang) {
     if (!rawHref) return rawHref;
@@ -1446,16 +1459,22 @@
     const url = new URL(rawHref, base);
     if (isAbsolute && url.origin !== base) return rawHref;
 
-    let nextPath = url.pathname;
+    const normalizedPath = normalizePathForRouteMap(url.pathname);
+    let nextPath = normalizedPath;
+
     if (lang === "es") {
-      if (!nextPath.startsWith("/es/")) {
-        nextPath = nextPath === "/" ? "/es/" : `/es${nextPath}`;
+      if (LOCALIZED_ROUTE_MAP[normalizedPath]?.startsWith("/es/")) {
+        nextPath = LOCALIZED_ROUTE_MAP[normalizedPath];
       }
-    } else if (nextPath === "/es" || nextPath.startsWith("/es/")) {
-      nextPath = nextPath === "/es" || nextPath === "/es/" ? "/" : nextPath.replace(/^\/es/, "");
+    } else if (LOCALIZED_ROUTE_MAP[normalizedPath] && !LOCALIZED_ROUTE_MAP[normalizedPath].startsWith("/es/")) {
+      nextPath = LOCALIZED_ROUTE_MAP[normalizedPath];
     }
 
-    return `${nextPath}${url.search}${url.hash}`;
+    const projectBase = window.location.pathname.startsWith("/redesigned-octo-meme/")
+      ? "/redesigned-octo-meme"
+      : "";
+
+    return `${projectBase}${nextPath}${url.search}${url.hash}`;
   }
 
   function getInitialLanguage() {
