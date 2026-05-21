@@ -167,7 +167,10 @@ export default { async fetch(request, env) {
   const allowed = loadAllowedOrigins(config);
   if (!origin || !allowed.has(origin)) return reject(config, request, 403, "request_blocked");
   if (hasSecretLikeHeaders(request)) return reject(config, request, 403, "request_blocked");
-  if (!safeText(env.IO_PRO || "", 2048)) return reject(config, request, 503, "sync_not_configured");
+  if (!safeText(env.IO_PRO || "", 2048)) {
+    const reply = gracefulReply();
+    return json(config, request, 200, { ok: true, degraded: true, reply, error: "sync_not_configured" }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "0", "x-gabo-repo-sync-verified": "0", "x-gabo-degraded": "1" });
+  }
 
   const clientName = safeText(request.headers.get("X-Gabo-Client"), 64);
   const repoSync = safeText(request.headers.get("X-Gabo-Repo-Sync"), 64);
