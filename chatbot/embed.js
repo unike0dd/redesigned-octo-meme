@@ -44,6 +44,27 @@
     /\b(contact|email|phone|sales|talk to (a )?human|representative)\b/i
   ]);
 
+  const GABO_PUBLIC_SERVICES_CONTEXT = Object.freeze({
+    en: Object.freeze({
+      businessName: "gabo.services",
+      assistantName: "gabo io",
+      creatorName: "GABO",
+      creatorDisplay: "GABO",
+      rule: "Use only public website services context.",
+      services: [],
+      fallback: ""
+    }),
+    es: Object.freeze({
+      businessName: "gabo.services",
+      assistantName: "gabo io",
+      creatorName: "GABO",
+      creatorDisplay: "GABO",
+      rule: "Usa solo el contexto público de servicios del sitio web.",
+      services: [],
+      fallback: ""
+    })
+  });
+
   const RISK_PATTERNS = Object.freeze([
     /<\s*script/i,
     /<\s*\/\s*script/i,
@@ -292,6 +313,21 @@
     });
   }
 
+  function buildPublicWebsiteContext(lang) {
+    const safeLang = lang === "es" ? "es" : "en";
+    const ctx = GABO_PUBLIC_SERVICES_CONTEXT[safeLang];
+
+    return JSON.stringify({
+      businessName: ctx.businessName,
+      assistantName: ctx.assistantName,
+      creatorName: ctx.creatorName,
+      creatorDisplay: ctx.creatorDisplay,
+      rule: ctx.rule,
+      services: ctx.services || [],
+      fallback: ctx.fallback || ""
+    });
+  }
+
   async function computeIntegrity(payload) {
     return hashText(canonicalPayload(payload));
   }
@@ -309,6 +345,7 @@
     const sessionId = getSessionId();
     const message = sanitize(userText, CONFIG.maxMessageChars);
     const wikiContext = wikiSnippet(message);
+    const publicWebsiteContext = buildPublicWebsiteContext(lang);
     const leadSignals = detectLeadSignals(message);
 
     return {
@@ -316,6 +353,7 @@
       message,
       lang,
       wikiContext,
+      publicWebsiteContext,
       page: sanitize(location.href || location.pathname, 500),
       sessionId,
       honeypot: "",
