@@ -301,6 +301,34 @@
     }
   }
 
+  async function sendToCareersGateway(payload, headers) {
+    const primary = CONTRACT.endpoint;
+    const fallback = new URL(CONTRACT.route, window.location.origin).toString();
+    const endpoints = primary === fallback ? [primary] : [primary, fallback];
+
+    let lastError = null;
+
+    for (const endpoint of endpoints) {
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          cache: "no-store",
+          referrerPolicy: "no-referrer",
+          headers,
+          body: JSON.stringify(payload)
+        });
+
+        return { response, endpoint };
+      } catch (error) {
+        lastError = error;
+      }
+    }
+
+    throw lastError || new Error("Failed to reach Careers gateway.");
+  }
+
   async function submitCareers(form, statusNode) {
     const now = Date.now();
 
@@ -371,27 +399,20 @@
     setStatus(statusNode, "pending", "Sending your application securely...");
 
     try {
-      const response = await fetch(CONTRACT.endpoint, {
-        method: "POST",
-        mode: "cors",
-        credentials: "omit",
-        cache: "no-store",
-        referrerPolicy: "no-referrer",
-        headers: {
-          [HEADER.contentType]: "application/json",
-          [HEADER.origin]: window.location.origin,
-          [HEADER.source]: CONTRACT.source,
-          [HEADER.assetId]: CONTRACT.assetId,
-          [HEADER.repoId]: CONTRACT.repoId,
-          [HEADER.sessionId]: session.sessionId,
-          [HEADER.nonce]: session.nonce,
-          [HEADER.integrity]: sha256,
-          [HEADER.headerPolicy]: CONTRACT.headerPolicy,
-          [HEADER.client]: CONTRACT.clientName
-        },
-        body: JSON.stringify(payload)
-      });
+      const headers = {
+        [HEADER.contentType]: "application/json",
+        [HEADER.origin]: window.location.origin,
+        [HEADER.source]: CONTRACT.source,
+        [HEADER.assetId]: CONTRACT.assetId,
+        [HEADER.repoId]: CONTRACT.repoId,
+        [HEADER.sessionId]: session.sessionId,
+        [HEADER.nonce]: session.nonce,
+        [HEADER.integrity]: sha256,
+        [HEADER.headerPolicy]: CONTRACT.headerPolicy,
+        [HEADER.client]: CONTRACT.clientName
+      };
 
+      const { response } = await sendToCareersGateway(payload, headers);
       const result = await safeReadJson(response);
 
       if (!response.ok || !result || result.ok !== true) {
