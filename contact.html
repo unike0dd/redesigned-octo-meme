@@ -173,192 +173,37 @@
             Cuéntanos tus expectativas sobre la experiencia, el conocimiento y
             las habilidades del Asistente Remoto
           </h3>
-          <p class="inquiry-helper" data-i18n="inquiryAboutHelper">
-            Aptitud, habilidades, experiencia, conocimiento
-          </p>
-          <div class="form-grid inquiry-grid">
-            <div
-              class="entry-group"
-              data-repeatable-group
-              data-field-name="Habilidades"
-              data-i18n-data-field-name="skillsLabel"
-            >
-              <div class="entry-group-header">
-                <label data-i18n="skillsLabel">Habilidades</label>
-                <div class="entry-group-actions">
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-add
-                  >
-                    <span data-i18n="addSkill">Agregar +</span>
-                  </button>
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-remove
-                  >
-                    <span data-i18n="removeSkill">Eliminar -</span>
-                  </button>
+          <div class="inquiry-grid">
+            <section class="inquiry-card">
+              <h4 class="inquiry-card-title" data-i18n="inquiryCardAptitudeTitle">Aptitud, habilidades, experiencia, conocimiento</h4>
+              <div class="entry-group-list">
+                <div class="entry-group" data-repeatable-group data-field-name="Habilidades" data-i18n-data-field-name="skillsLabel">
+                  <div class="entry-group-header"><label data-i18n="skillsLabel">Habilidades</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
+                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddSkillEntry">Agregar habilidad</label><input data-i18n-placeholder="placeholderAddSkillEntry" name="skills[]" placeholder="Agregar habilidad" /></div></div>
+                </div>
+                <div class="entry-group" data-repeatable-group data-field-name="Nivel de experiencia" data-i18n-data-field-name="experienceLevelLabel">
+                  <div class="entry-group-header"><label data-i18n="experienceLevelLabel">Nivel de experiencia</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
+                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddExperienceEntry">Agregar nivel de experiencia</label><input data-i18n-placeholder="placeholderAddExperienceEntry" name="experienceLevels[]" placeholder="Agregar nivel de experiencia" /></div></div>
+                </div>
+                <div class="entry-group" data-repeatable-group data-field-name="Idiomas" data-i18n-data-field-name="languagesLabel">
+                  <div class="entry-group-header"><label data-i18n="languagesLabel">Idiomas</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
+                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddLanguageEntry">Agregar idioma</label><input data-i18n-placeholder="placeholderAddLanguageEntry" name="languages[]" placeholder="Agregar idioma" /></div></div>
                 </div>
               </div>
-              <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddSkillEntry">Agregar habilidad</label>
-                  <input
-                    data-i18n-placeholder="placeholderAddSkillEntry"
-                    name="skills[]"
-                    placeholder="Agregar habilidad"
-                  />
+            </section>
+            <section class="inquiry-card">
+              <h4 class="inquiry-card-title" data-i18n="inquiryCardInterestTitle">Interés y educación</h4>
+              <div class="entry-group-list">
+                <div class="entry-group" data-repeatable-group data-field-name="Área de interés" data-i18n-data-field-name="areaInterestLabel">
+                  <div class="entry-group-header"><label data-i18n="areaInterestLabel">Área de interés</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
+                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddAreaInterestEntry">Agregar área de interés</label><input data-i18n-placeholder="placeholderAddAreaInterestEntry" name="areasOfInterest[]" placeholder="Agregar área de interés" /></div></div>
+                </div>
+                <div class="entry-group" data-repeatable-group data-field-name="Educación" data-i18n-data-field-name="educationLabel">
+                  <div class="entry-group-header"><label data-i18n="educationLabel">Educación</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
+                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddEducationEntry">Agregar educación</label><input data-i18n-placeholder="placeholderAddEducationEntry" name="education[]" placeholder="Agregar educación" /></div></div>
                 </div>
               </div>
-            </div>
-            <div
-              class="entry-group"
-              data-repeatable-group
-              data-field-name="Área de interés"
-              data-i18n-data-field-name="areaInterestLabel"
-            >
-              <div class="entry-group-header">
-                <label data-i18n="areaInterestLabel">Área de interés</label>
-                <div class="entry-group-actions">
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-add
-                  >
-                    <span data-i18n="addSkill">Agregar +</span>
-                  </button>
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-remove
-                  >
-                    <span data-i18n="removeSkill">Eliminar -</span>
-                  </button>
-                </div>
-              </div>
-              <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddAreaInterestEntry">Agregar área de interés</label>
-                  <input
-                    data-i18n-placeholder="placeholderAddAreaInterestEntry"
-                    name="areasOfInterest[]"
-                    placeholder="Agregar área de interés"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="entry-group"
-              data-repeatable-group
-              data-field-name="Nivel de experiencia"
-              data-i18n-data-field-name="experienceLevelLabel"
-            >
-              <div class="entry-group-header">
-                <label data-i18n="experienceLevelLabel"
-                  >Nivel de experiencia</label
-                >
-                <div class="entry-group-actions">
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-add
-                  >
-                    <span data-i18n="addSkill">Agregar +</span>
-                  </button>
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-remove
-                  >
-                    <span data-i18n="removeSkill">Eliminar -</span>
-                  </button>
-                </div>
-              </div>
-              <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddExperienceEntry">Agregar nivel de experiencia</label>
-                  <input
-                    data-i18n-placeholder="placeholderAddExperienceEntry"
-                    name="experienceLevels[]"
-                    placeholder="Agregar nivel de experiencia"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="entry-group"
-              data-repeatable-group
-              data-field-name="Educación"
-              data-i18n-data-field-name="educationLabel"
-            >
-              <div class="entry-group-header">
-                <label data-i18n="educationLabel">Educación</label>
-                <div class="entry-group-actions">
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-add
-                  >
-                    <span data-i18n="addSkill">Agregar +</span>
-                  </button>
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-remove
-                  >
-                    <span data-i18n="removeSkill">Eliminar -</span>
-                  </button>
-                </div>
-              </div>
-              <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddEducationEntry">Agregar educación</label>
-                  <input
-                    data-i18n-placeholder="placeholderAddEducationEntry"
-                    name="education[]"
-                    placeholder="Agregar educación"
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="entry-group"
-              data-repeatable-group
-              data-field-name="Idiomas"
-              data-i18n-data-field-name="languagesLabel"
-            >
-              <div class="entry-group-header">
-                <label data-i18n="languagesLabel">Idiomas</label>
-                <div class="entry-group-actions">
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-add
-                  >
-                    <span data-i18n="addSkill">Agregar +</span>
-                  </button>
-                  <button
-                    class="btn ghost entry-btn"
-                    type="button"
-                    data-repeat-remove
-                  >
-                    <span data-i18n="removeSkill">Eliminar -</span>
-                  </button>
-                </div>
-              </div>
-              <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddLanguageEntry">Agregar idioma</label>
-                  <input
-                    data-i18n-placeholder="placeholderAddLanguageEntry"
-                    name="languages[]"
-                    placeholder="Agregar idioma"
-                  />
-                </div>
-              </div>
-            </div>
+            </section>
           </div>
           <p id="contact-status" class="form-status" data-contact-status role="status" aria-live="polite"></p>
           <div class="form-actions">

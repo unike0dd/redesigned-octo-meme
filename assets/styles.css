@@ -1743,3 +1743,40 @@ textarea.is-security-warning {
 .security-form-note:empty {
   display: none;
 }
+
+.inquiry-grid {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.inquiry-card {
+  background: color-mix(in srgb, var(--surface) 86%, #ffffff 14%);
+  border: 1px solid color-mix(in srgb, var(--brand-navy) 16%, transparent);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.inquiry-card-title {
+  margin: 0 0 0.8rem;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--brand-navy);
+}
+
+.entry-group-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+:root.dark-theme .inquiry-card {
+  background: color-mix(in srgb, var(--surface-elev) 80%, #ffffff 8%);
+  border-color: color-mix(in srgb, #ffffff 20%, transparent);
+}
+
+:root.dark-theme .inquiry-card-title {
+  color: var(--royal-gold-bright);
+}
