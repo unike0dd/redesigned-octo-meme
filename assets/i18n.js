@@ -206,6 +206,8 @@
       inquiryAboutTitle:
         "Tell us your expectation about the Remote Assistant expertise, knowledge and abilities",
       inquiryAboutHelper: "Aptitude, skills, experience, knowledge",
+      inquiryCardAptitudeTitle: "Aptitude, skills, experience, knowledge",
+      inquiryCardInterestTitle: "Interest and education",
       skillsLabel: "Skills",
       languagesLabel: "Languages",
       projectsLabel: "Projects",
@@ -902,6 +904,8 @@
       inquiryAboutTitle:
         "Cuéntanos tus expectativas sobre la experiencia, el conocimiento y las habilidades del Asistente Remoto",
       inquiryAboutHelper: "Aptitud, habilidades, experiencia, conocimiento",
+      inquiryCardAptitudeTitle: "Aptitud, habilidades, experiencia, conocimiento",
+      inquiryCardInterestTitle: "Interés y educación",
       skillsLabel: "Habilidades",
       languagesLabel: "Idiomas",
       projectsLabel: "Proyectos",
