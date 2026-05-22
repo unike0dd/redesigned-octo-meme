@@ -59,6 +59,19 @@ const DEFAULT_CONVERSATION_RULES = Object.freeze({
   serviceAnswerEs: "Ofrecemos soporte operativo en: Operaciones Logísticas, Back Office Administrativo, Operaciones de Relación con Clientes y Soporte de TI (Nivel I y Nivel II). Si quieres, te explico cuál encaja mejor con tu necesidad.",
   serviceAnswerEn: "We provide operational support in: Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support (Level I and Level II). If you want, I can help you identify which one fits your needs best."
 });
+const DEFAULT_BEHAVIOR_POLICY = Object.freeze({
+  supportedLanguages: ["en", "es"],
+  safeIdentity: "Gabo io is the website assistant for Gabo Services."
+});
+const LANGUAGE_GUARD = Object.freeze({
+  fallbackIdentity: "Gabo io is the website assistant for Gabo Services.",
+  unclearMixed: "That looks like unclear or mixed-language wording. Please continue in English or Spanish.",
+  unclearMixedEs: "Ese texto parece poco claro o mezclado. Por favor continúa en inglés o español.",
+  tagalogLike: "That looks like unclear Filipino/Tagalog-style wording. It probably means: ‘Who created Gabo io?’ Gabo io is the website assistant for Gabo Services. You can ask me in English or Spanish, and I’ll help you with the services on this website.",
+  tagalogConfidence: "It looks similar to Filipino/Tagalog, but the sentence is not written in clean standard Tagalog. A clearer version would be: ‘Sino ang gumawa ng Gabo io?’ which means ‘Who created Gabo io?’ in English.",
+  tagalogLanguageAnswer: "That looks like Filipino/Tagalog-style wording, although it is not written clearly. It is not code.",
+  tagalogEnglishMeaning: "It roughly means: ‘Who created Gabo io?’"
+});
 
 function asArray(value, fallback = []) { return Array.isArray(value) ? value : fallback; }
 function normalizeHeaderName(name) { return safeText(name || "", 200).trim().toLowerCase(); }
@@ -137,6 +150,7 @@ function reject(config, request, status, error) { return json(config, request, s
 function scanRisk(value) { const text = toStr(value); let score = 0; for (const sig of RISK_SIGNATURES) { sig.pattern.lastIndex = 0; const matches = text.match(sig.pattern); if (!matches) continue; score += matches.length * sig.weight; } return { score }; }
 function sanitize(value, max = 1200) { return toStr(value).normalize("NFKC").replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, " ").replace(/`[^`\n]{1,500}`/g, " ").replace(/<\s*(script|style|iframe|object|embed|applet|svg|math|template)[\s\S]*?<\s*\/\s*\1\s*>/gi, " ").replace(/<[^>]+>/g, " ").replace(/\bon[a-z]{3,}\s*=\s*("[^"]*"|'[^']*'|[^\s>]*)/gi, " ").replace(/\b(javascript|vbscript|data)\s*:[^\s,;)]*/gi, " ").replace(/[<>`{}()[\];|\\]/g, " ").replace(/[\u0000-\u001F\u007F]/g, " ").replace(/\s+/g, " ").trim().slice(0, max); }
 function loadConversationRules(env) { try { const raw = safeText(env.GABO_IO_CONVERSATION_RULES_JSON || "", 10000); return raw ? { ...DEFAULT_CONVERSATION_RULES, ...(JSON.parse(raw) || {}) } : DEFAULT_CONVERSATION_RULES; } catch { return DEFAULT_CONVERSATION_RULES; } }
+function loadBehaviorPolicy(env) { try { const raw = safeText(env.GABO_IO_BEHAVIOR_POLICY_JSON || "", 10000); return raw ? { ...DEFAULT_BEHAVIOR_POLICY, ...(JSON.parse(raw) || {}) } : DEFAULT_BEHAVIOR_POLICY; } catch { return DEFAULT_BEHAVIOR_POLICY; } }
 function isSpanishGreeting(text) { return /\b(hola|buenas|buenos d[ií]as|buenas tardes|buenas noches|qué tal|que tal)\b/i.test(text); }
 function isServiceQuestion(text) { return /\b(me gustar[ií]a saber|qué ofreces|que ofreces|cu[aá]les son tus servicios|que servicios ofrecen|qué servicios ofrecen|qué tienes|que tienes)\b/i.test(text); }
 function extractName(text) { const m = text.match(/\b(mi nombre es|me llamo|soy)\s+([a-záéíóúüñ][a-záéíóúüñ\s'-]{1,60})/i); return m && m[2] ? sanitize(m[2], 80).replace(/\b(y|and|pero|but)\b.*$/i, "").trim() : ""; }
@@ -149,6 +163,43 @@ function requireBinding(env) { if (!env.graymatter || typeof env.graymatter.fetc
 function requireSharedSecret(env) { const secret = safeText(env.GRAYMATTER_SHARED_SECRET || "", 500); if (!secret) throw new Error("relay_unavailable"); return secret; }
 async function forwardToBinding(env, clean) { const binding = requireBinding(env); const sharedSecret = requireSharedSecret(env); return binding.fetch("https://graymatter.local/api/chat", { method: "POST", headers: { "content-type": "application/json", "accept": "application/json", "x-gabo-hop": PUBLIC_NAME, "x-gabo-shared-secret": sharedSecret }, body: JSON.stringify({ chatbot: CHATBOT_NAME, lang: clean.lang, messages: [{ role: "user", content: clean.message }], context: { page: clean.page, wiki: clean.wikiContext, leadContext: clean.leadContext } }) }); }
 function gracefulReply() { return "gabo io: Temporary gateway issue. Please retry in a moment. If it persists, use the contact page for a human follow-up."; }
+function looksSpanish(text) { return /\b(el|la|los|las|de|que|para|con|servicios|hola|gracias|por favor)\b|[¿¡ñáéíóú]/i.test(text); }
+function looksEnglish(text) { return /\b(the|what|who|is|are|in|and|please|services|hello|thanks)\b/i.test(text); }
+function tagalogLike(text) { return /\b(kiun|gawa|sino|gumawa|ang)\b/i.test(text); }
+function isWhoCreatedQuestion(text) { return /\b(who created gabo io|quien cre[oó] gabo io|quién cre[oó] gabo io|kiun ang gawa ng gabo io)\b/i.test(text); }
+function inferLanguage(text) {
+  const es = looksSpanish(text);
+  const en = looksEnglish(text);
+  if (es && !en) return "es";
+  if (en && !es) return "en";
+  if (es && en) return "mixed";
+  return "unknown";
+}
+function guardReplyForMessage(message, behaviorPolicy) {
+  const text = toStr(message).trim();
+  const lower = text.toLowerCase();
+  if (!text) return "";
+  if (/\bwhat does that mean in english\??\b/i.test(text)) return LANGUAGE_GUARD.tagalogEnglishMeaning;
+  if (/\bwhat language are those\??\b/i.test(text)) return LANGUAGE_GUARD.tagalogLanguageAnswer;
+  if (/\bis that tagalog\??\b/i.test(text)) return LANGUAGE_GUARD.tagalogConfidence;
+  if (tagalogLike(text)) return LANGUAGE_GUARD.tagalogLike;
+  if (isWhoCreatedQuestion(text)) return LANGUAGE_GUARD.fallbackIdentity;
+  const lang = inferLanguage(text);
+  if (lang === "mixed") return LANGUAGE_GUARD.unclearMixed;
+  const letters = (lower.match(/[a-záéíóúñ]/gi) || []).length;
+  const nonLatin = (lower.match(/[^\x00-\x7f]/g) || []).length;
+  if (letters > 0 && nonLatin > 0) return lang === "es" ? LANGUAGE_GUARD.unclearMixedEs : LANGUAGE_GUARD.unclearMixed;
+  if (!behaviorPolicy.supportedLanguages.includes(lang) && lang !== "unknown") return LANGUAGE_GUARD.unclearMixed;
+  return "";
+}
+function guardReplyForUpstream(cleanMessage, upstreamReply) {
+  const msg = toStr(cleanMessage);
+  const reply = toStr(upstreamReply).trim();
+  if (!reply) return "";
+  if (/\b(json|javascript|code|snippet)\b/i.test(reply) && !/[`{}();<>]|function\s*\(/i.test(msg)) return LANGUAGE_GUARD.tagalogLanguageAnswer;
+  if (isWhoCreatedQuestion(msg) && !/website assistant for gabo services/i.test(reply)) return LANGUAGE_GUARD.fallbackIdentity;
+  return reply;
+}
 
 export default { async fetch(request, env) {
   const config = loadContract(env);
@@ -224,6 +275,7 @@ export default { async fetch(request, env) {
 
   const clean = { message: cleanMessage, wikiContext: cleanWiki, lang: cleanLang, sessionId, page: safeText(body.page || "", 300), leadContext: body.leadContext || {} };
   const rules = loadConversationRules(env);
+  const behaviorPolicy = loadBehaviorPolicy(env);
   const priorSession = sessionGet(sessionId);
   if (isSpanishGreeting(cleanMessage)) return json(config, request, 200, { ok: true, reply: rules.greetingReplyEs, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
   const capturedName = extractName(cleanMessage);
@@ -232,6 +284,10 @@ export default { async fetch(request, env) {
     const prefix = priorSession && priorSession.name ? `${priorSession.name}, ` : "";
     const serviceReply = cleanLang === "es" ? rules.serviceAnswerEs : rules.serviceAnswerEn;
     return json(config, request, 200, { ok: true, reply: `${prefix}${serviceReply}`.trim(), integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
+  }
+  const guardedLocalReply = guardReplyForMessage(cleanMessage, behaviorPolicy);
+  if (guardedLocalReply) {
+    return json(config, request, 200, { ok: true, reply: guardedLocalReply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
   }
   if (priorSession && priorSession.name) clean.leadContext = { ...(clean.leadContext || {}), sessionName: priorSession.name };
   let upstream;
@@ -246,6 +302,7 @@ export default { async fetch(request, env) {
     return json(config, request, 200, { ok: true, degraded: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1", "x-gabo-degraded": "1" });
   }
   let data = {}; try { data = await upstream.json(); } catch { data = {}; }
-  const reply = sanitize(data.reply || data.message || "", 1600) || "gabo io: I received your message. I can help repair, fix, or update—please share what you want to change.";
+  const upstreamReply = sanitize(data.reply || data.message || "", 1600);
+  const reply = guardReplyForUpstream(cleanMessage, upstreamReply) || "gabo io: I received your message. I can help repair, fix, or update—please share what you want to change.";
   return json(config, request, 200, { ok: true, reply, integrity: serverIntegrity }, { "x-gabo-chatbot-gateway": "1", "x-gabo-integrity-verified": "1", "x-gabo-repo-sync-verified": "1" });
 } };
