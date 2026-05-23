@@ -1440,12 +1440,7 @@
     return translations[normalized] ? normalized : "";
   }
 
-  const LOCALIZED_ROUTE_MAP = {
-    "/contact.html": "/es/contact.html",
-    "/careers.html": "/es/careers.html",
-    "/es/contact.html": "/contact.html",
-    "/es/careers.html": "/careers.html",
-  };
+  const LOCALIZED_ROUTE_MAP = {};
 
   function normalizePathForRouteMap(pathname) {
     let path = String(pathname || "/");
@@ -1466,11 +1461,7 @@
     const normalizedPath = normalizePathForRouteMap(url.pathname);
     let nextPath = normalizedPath;
 
-    if (lang === "es") {
-      if (LOCALIZED_ROUTE_MAP[normalizedPath]?.startsWith("/es/")) {
-        nextPath = LOCALIZED_ROUTE_MAP[normalizedPath];
-      }
-    } else if (LOCALIZED_ROUTE_MAP[normalizedPath] && !LOCALIZED_ROUTE_MAP[normalizedPath].startsWith("/es/")) {
+    if (LOCALIZED_ROUTE_MAP[normalizedPath]) {
       nextPath = LOCALIZED_ROUTE_MAP[normalizedPath];
     }
 
