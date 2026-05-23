@@ -17,7 +17,7 @@
   const CONTACT_EXPECTED_SOURCE = "contact.html";
   const CONTACT_EXPECTED_HEADER_POLICY = "contacto-repo-contact-v1";
   const CONTACT_ALLOWED_ORIGINS_JSON =
-    '["https://gabo.services","https://www.gabo.services"]';
+    '["https://unike0dd.github.io","https://gabo.services","https://www.gabo.services"]';
   const CONTACT_PUBLIC_BASE_URL = "https://contacto.gabo.services";
   const CONTACT_API_PATH = "/api/contact";
   const CONTACT_MAX_BODY_BYTES = 24576;
