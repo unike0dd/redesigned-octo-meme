@@ -814,7 +814,7 @@
 
     const labels = {
       en: {
-        fab: "Chat with gabo io",
+        fab: "gabo io",
         title: "gabo io",
         subtitle: "CX + LeadGen",
         placeholder: "Type your message...",
@@ -825,7 +825,7 @@
         error: "Error: can't reach gabo io right now.",
       },
       es: {
-        fab: "Chatea con gabo io",
+        fab: "gabo io",
         title: "gabo io",
         subtitle: "CX + LeadGen",
         placeholder: "Escribe tu mensaje...",
