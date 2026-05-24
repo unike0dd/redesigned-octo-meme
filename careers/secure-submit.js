@@ -12,10 +12,14 @@
 (function () {
   "use strict";
 
+  const EXPECTED_SCHEMA = "gabo.careers.repo.v1";
+  const BRIDGE_SCHEMA = "gabo.careers.bridge.v1";
+
   const CONTRACT = Object.freeze({
     endpoint: "https://careers.gabo.services/api/careers",
     route: "/api/careers",
-    schema: "gabo.careers.repo.v1",
+    expectedSchema: EXPECTED_SCHEMA,
+    schema: BRIDGE_SCHEMA,
 
     repoId: "CAREERS",
     assetId: "redesigned-octo-meme-careers",
