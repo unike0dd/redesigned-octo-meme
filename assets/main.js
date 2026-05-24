@@ -816,7 +816,7 @@
       en: {
         fab: "gabo io",
         title: "gabo io",
-        subtitle: "CX + LeadGen",
+        subtitle: "",
         placeholder: "Type your message...",
         send: "Send",
         close: "Close",
@@ -827,7 +827,7 @@
       es: {
         fab: "gabo io",
         title: "gabo io",
-        subtitle: "CX + LeadGen",
+        subtitle: "",
         placeholder: "Escribe tu mensaje...",
         send: "Enviar",
         close: "Cerrar",
@@ -878,8 +878,8 @@
       try { localStorage.setItem(CHATBOT_CACHE_KEY, JSON.stringify(state)); } catch (_) {}
     }
 
-    function open() { overlay.classList.add("open"); input.focus(); persist({ isOpen: true, lang: getLang() }); }
-    function close() { overlay.classList.remove("open"); persist({ isOpen: false, lang: getLang() }); }
+    function open() { overlay.classList.add("open"); fab.hidden = true; input.focus(); persist({ isOpen: true, lang: getLang() }); }
+    function close() { overlay.classList.remove("open"); fab.hidden = false; persist({ isOpen: false, lang: getLang() }); }
 
     function applyLanguage() {
       const copy = getCopy();
