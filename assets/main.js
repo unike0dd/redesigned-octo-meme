@@ -801,6 +801,163 @@
     });
   }
 
+
+  const CHATBOT_CLIENT_NAME = "gabo-io";
+  const CHATBOT_NAME = "gabo io";
+  const CHATBOT_SYNC = "io-pro-chatbot-v1";
+  const CHATBOT_ASSET_ID = "redesigned-octo-meme-chatbot";
+  const CHATBOT_ENDPOINT = "https://chatbot.gabo.services/api/chat";
+  const CHATBOT_CACHE_KEY = "gabo-io-chatbot-state";
+
+  function initGaboIoChatbot() {
+    const labels = {
+      en: {
+        fab: "Chat with gabo io",
+        title: "gabo io",
+        subtitle: "CX + LeadGen",
+        placeholder: "Type your message...",
+        send: "Send",
+        close: "Close",
+        opening: "How can I help you today?",
+        pending: "…",
+        error: "Error: can't reach gabo io right now.",
+      },
+      es: {
+        fab: "Chatea con gabo io",
+        title: "gabo io",
+        subtitle: "CX + LeadGen",
+        placeholder: "Escribe tu mensaje...",
+        send: "Enviar",
+        close: "Cerrar",
+        opening: "¿Cómo puedo ayudarte hoy?",
+        pending: "…",
+        error: "Error: no se puede conectar con gabo io ahora.",
+      },
+    };
+
+    const getLang = () =>
+      window.I18N?.currentLanguage ||
+      String(document.documentElement.lang || "en").split("-")[0];
+
+    const getCopy = () => labels[getLang()] || labels.en;
+    const sanitizeForWire = (value) => runTinyMlSanitizer(value).cleaned;
+
+    const style = document.createElement("style");
+    style.textContent = `
+      .gabo-chatbot-backdrop{position:fixed;inset:0;background:#0008;z-index:1199;display:none}
+      .gabo-chatbot-backdrop.open{display:block}
+      .gabo-chatbot-shell{position:fixed;right:10px;bottom:20px;z-index:1200;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
+      .gabo-chatbot-fab{background:#ff3bdb;color:#fff;border:0;border-radius:999px;padding:.75rem 1rem;font-weight:700;box-shadow:0 8px 28px #0006;cursor:pointer}
+      .gabo-chatbot{width:min(360px,calc(100vw - 20px));height:min(640px,84vh);background:#251541;border:2px solid #ff3bdb;border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 14px 34px #0009}
+      .gabo-chatbot.open{display:flex}
+      .gabo-chatbot-header{padding:.75rem 1rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;display:flex;justify-content:space-between;align-items:center}
+      .gabo-chatbot-header h3{margin:0;font-size:1rem}.gabo-chatbot-header small{opacity:.9}
+      .gabo-chatbot-close{background:transparent;border:0;color:#fff;font-size:1.2rem;cursor:pointer}
+      .gabo-chatbot-log{flex:1;overflow:auto;background:#1b0e2d;color:#eee;padding:1rem}
+      .gabo-msg{max-width:90%;margin:.45rem 0;padding:.55rem .7rem;border-radius:13px;line-height:1.35}
+      .gabo-msg.user{margin-left:auto;background:#00c4ff;color:#000}
+      .gabo-msg.bot{background:#321b53;color:#fff}
+      .gabo-chatbot-form{display:flex;gap:.5rem;padding:.7rem;background:#220f3a;border-top:1px solid #ff3bdb}
+      .gabo-chatbot-input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff33;border-radius:8px;padding:.6rem}
+      .gabo-chatbot-send{background:#ff3bdb;border:0;border-radius:8px;padding:.6rem .8rem;color:#fff;font-weight:700;cursor:pointer}
+      @media (max-width: 1024px){.gabo-chatbot-shell{bottom:88px}}
+    `;
+    document.head.appendChild(style);
+
+    const backdrop = document.createElement("div");
+    backdrop.className = "gabo-chatbot-backdrop";
+    backdrop.setAttribute("aria-hidden", "true");
+
+    const shell = document.createElement("div");
+    shell.className = "gabo-chatbot-shell";
+    shell.innerHTML = `<section class="gabo-chatbot" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
+      <header class="gabo-chatbot-header"><div><h3></h3><small></small></div><button class="gabo-chatbot-close" type="button" aria-label="Close">✕</button></header>
+      <div class="gabo-chatbot-log" aria-live="polite"></div>
+      <form class="gabo-chatbot-form"><input class="gabo-chatbot-input" maxlength="256" required /><button class="gabo-chatbot-send" type="submit"></button></form>
+    </section><button class="gabo-chatbot-fab" type="button"></button>`;
+    document.body.append(backdrop, shell);
+
+    const chatbot = shell.querySelector(".gabo-chatbot");
+    const fab = shell.querySelector(".gabo-chatbot-fab");
+    const closeBtn = shell.querySelector(".gabo-chatbot-close");
+    const log = shell.querySelector(".gabo-chatbot-log");
+    const form = shell.querySelector(".gabo-chatbot-form");
+    const input = shell.querySelector(".gabo-chatbot-input");
+    const send = shell.querySelector(".gabo-chatbot-send");
+    const title = shell.querySelector("h3");
+    const subtitle = shell.querySelector("small");
+
+    function addMsg(text, type) {
+      const div = document.createElement("div");
+      div.className = `gabo-msg ${type}`;
+      div.textContent = text;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+      return div;
+    }
+
+    function persist(state) {
+      try { localStorage.setItem(CHATBOT_CACHE_KEY, JSON.stringify(state)); } catch (_) {}
+    }
+
+    function open() { chatbot.classList.add("open"); backdrop.classList.add("open"); input.focus(); persist({ isOpen: true, lang: getLang() }); }
+    function close() { chatbot.classList.remove("open"); backdrop.classList.remove("open"); persist({ isOpen: false, lang: getLang() }); }
+
+    function applyLanguage() {
+      const copy = getCopy();
+      fab.textContent = copy.fab;
+      title.textContent = copy.title;
+      subtitle.textContent = copy.subtitle;
+      input.placeholder = copy.placeholder;
+      send.textContent = copy.send;
+      closeBtn.setAttribute("aria-label", copy.close);
+      if (!log.childElementCount) addMsg(copy.opening, "bot");
+      persist({ isOpen: chatbot.classList.contains("open"), lang: getLang() });
+    }
+
+    async function sendMessage(message) {
+      const cleaned = sanitizeForWire(message).trim();
+      if (!cleaned) return;
+      addMsg(cleaned, "user");
+      input.value = "";
+      const pending = addMsg(getCopy().pending, "bot");
+      send.disabled = true; input.disabled = true;
+      try {
+        const sessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
+        const wikiContext = "chatbot-i18n-CX-LeadGen";
+        const payload = {
+          chatbot: CHATBOT_NAME,
+          message: cleaned,
+          lang: getLang().startsWith("es") ? "es" : "en",
+          wikiContext,
+          page: location.pathname,
+          sessionId,
+          honeypot: "",
+          leadContext: { source: "website", client: CHATBOT_CLIENT_NAME },
+          integrity: "pending-client-integrity"
+        };
+        const res = await fetch(CHATBOT_ENDPOINT, {method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json","X-Gabo-Client":CHATBOT_CLIENT_NAME,"X-Gabo-Repo-Sync":CHATBOT_SYNC,"X-Gabo-Session-Id":sessionId,"X-Ops-Asset-Id":CHATBOT_ASSET_ID},body:JSON.stringify(payload)});
+        if (!res.ok) throw new Error('request-failed');
+        const data = await res.json();
+        pending.textContent = data?.reply || "No reply.";
+      } catch (_) { pending.textContent = getCopy().error; }
+      finally { send.disabled = false; input.disabled = false; input.focus(); }
+    }
+
+    fab.addEventListener("click", open);
+    closeBtn.addEventListener("click", close);
+    backdrop.addEventListener("click", close);
+    window.addEventListener("keydown", (event) => { if (event.key === "Escape" && chatbot.classList.contains("open")) close(); });
+    form.addEventListener("submit", (event) => { event.preventDefault(); sendMessage(input.value); });
+    window.addEventListener("language:changed", applyLanguage);
+
+    applyLanguage();
+    try {
+      const cached = JSON.parse(localStorage.getItem(CHATBOT_CACHE_KEY) || "{}");
+      if (cached?.isOpen) open();
+    } catch (_) {}
+  }
+
   function initPage() {
     initSecurityRuntime();
     ensurePrimaryNav();
@@ -813,6 +970,7 @@
     initScrollLazyLoad();
     initRoyalDarkPointerEffects();
     initSecureForms();
+    initGaboIoChatbot();
   }
 
   if (document.readyState === "loading") {
