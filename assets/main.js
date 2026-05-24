@@ -810,6 +810,8 @@
   const CHATBOT_CACHE_KEY = "gabo-io-chatbot-state";
 
   function initGaboIoChatbot() {
+    if (document.querySelector(".gabo-chatbot-fab")) return;
+
     const labels = {
       en: {
         fab: "Chat with gabo io",
@@ -841,25 +843,6 @@
 
     const getCopy = () => labels[getLang()] || labels.en;
     const sanitizeForWire = (value) => runTinyMlSanitizer(value).cleaned;
-
-    const style = document.createElement("style");
-    style.textContent = `
-      .gabo-chatbot-fab{position:fixed;right:1rem;bottom:1rem;z-index:1200;background:#ff3bdb;color:#fff;border:0;border-radius:999px;padding:.75rem 1rem;font-weight:700;box-shadow:0 8px 28px #0006;cursor:pointer}
-      .gabo-chatbot-overlay{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:flex-end;z-index:1199;padding:1rem}
-      .gabo-chatbot-overlay.open{display:flex}
-      .gabo-chatbot{width:min(360px,100%);height:min(640px,84vh);background:#251541;border:2px solid #ff3bdb;border-radius:16px;display:flex;flex-direction:column;overflow:hidden}
-      .gabo-chatbot-header{padding:.75rem 1rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;display:flex;justify-content:space-between;align-items:center}
-      .gabo-chatbot-header h3{margin:0;font-size:1rem}.gabo-chatbot-header small{opacity:.9}
-      .gabo-chatbot-close{background:transparent;border:0;color:#fff;font-size:1.2rem;cursor:pointer}
-      .gabo-chatbot-log{flex:1;overflow:auto;background:#1b0e2d;color:#eee;padding:1rem}
-      .gabo-msg{max-width:90%;margin:.45rem 0;padding:.55rem .7rem;border-radius:13px;line-height:1.35}
-      .gabo-msg.user{margin-left:auto;background:#00c4ff;color:#000}
-      .gabo-msg.bot{background:#321b53;color:#fff}
-      .gabo-chatbot-form{display:flex;gap:.5rem;padding:.7rem;background:#220f3a;border-top:1px solid #ff3bdb}
-      .gabo-chatbot-input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff33;border-radius:8px;padding:.6rem}
-      .gabo-chatbot-send{background:#ff3bdb;border:0;border-radius:8px;padding:.6rem .8rem;color:#fff;font-weight:700;cursor:pointer}
-    `;
-    document.head.appendChild(style);
 
     const fab = document.createElement("button");
     fab.type = "button";
@@ -929,9 +912,31 @@
           sessionId,
           honeypot: "",
           leadContext: { source: "website", client: CHATBOT_CLIENT_NAME },
-          integrity: "pending-client-integrity"
+          integrity: "pending-client-integrity",
         };
-        const res = await fetch(CHATBOT_ENDPOINT, {method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json","X-Gabo-Client":CHATBOT_CLIENT_NAME,"X-Gabo-Repo-Sync":CHATBOT_SYNC,"X-Gabo-Session-Id":sessionId,"X-Ops-Asset-Id":CHATBOT_ASSET_ID},body:JSON.stringify(payload)});
+        const sanitizedPayload = JSON.parse(
+          JSON.stringify(payload, (_, value) =>
+            typeof value === "string" ? sanitizeForWire(value) : value,
+          ),
+        );
+        const sha256 = await sha256Hex(JSON.stringify(sanitizedPayload));
+        sanitizedPayload.integritySha256 = sha256;
+
+        const res = await fetch(CHATBOT_ENDPOINT, {
+          method: "POST",
+          mode: "cors",
+          credentials: "omit",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "X-Gabo-Client": CHATBOT_CLIENT_NAME,
+            "X-Gabo-Repo-Sync": CHATBOT_SYNC,
+            "X-Gabo-Session-Id": sessionId,
+            "X-Gabo-Integrity-SHA256": sha256,
+            "X-Ops-Asset-Id": CHATBOT_ASSET_ID,
+          },
+          body: JSON.stringify(sanitizedPayload),
+        });
         if (!res.ok) throw new Error('request-failed');
         const data = await res.json();
         pending.textContent = data?.reply || "No reply.";
