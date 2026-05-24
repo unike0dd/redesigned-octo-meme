@@ -844,12 +844,10 @@
 
     const style = document.createElement("style");
     style.textContent = `
-      .gabo-chatbot-backdrop{position:fixed;inset:0;background:#0008;z-index:1199;display:none}
-      .gabo-chatbot-backdrop.open{display:block}
-      .gabo-chatbot-shell{position:fixed;right:10px;bottom:20px;z-index:1200;display:flex;flex-direction:column;align-items:flex-end;gap:.6rem}
-      .gabo-chatbot-fab{background:#ff3bdb;color:#fff;border:0;border-radius:999px;padding:.75rem 1rem;font-weight:700;box-shadow:0 8px 28px #0006;cursor:pointer}
-      .gabo-chatbot{width:min(360px,calc(100vw - 20px));height:min(640px,84vh);background:#251541;border:2px solid #ff3bdb;border-radius:16px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 14px 34px #0009}
-      .gabo-chatbot.open{display:flex}
+      .gabo-chatbot-fab{position:fixed;right:1rem;bottom:1rem;z-index:1200;background:#ff3bdb;color:#fff;border:0;border-radius:999px;padding:.75rem 1rem;font-weight:700;box-shadow:0 8px 28px #0006;cursor:pointer}
+      .gabo-chatbot-overlay{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:flex-end;z-index:1199;padding:1rem}
+      .gabo-chatbot-overlay.open{display:flex}
+      .gabo-chatbot{width:min(360px,100%);height:min(640px,84vh);background:#251541;border:2px solid #ff3bdb;border-radius:16px;display:flex;flex-direction:column;overflow:hidden}
       .gabo-chatbot-header{padding:.75rem 1rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;display:flex;justify-content:space-between;align-items:center}
       .gabo-chatbot-header h3{margin:0;font-size:1rem}.gabo-chatbot-header small{opacity:.9}
       .gabo-chatbot-close{background:transparent;border:0;color:#fff;font-size:1.2rem;cursor:pointer}
@@ -860,32 +858,29 @@
       .gabo-chatbot-form{display:flex;gap:.5rem;padding:.7rem;background:#220f3a;border-top:1px solid #ff3bdb}
       .gabo-chatbot-input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff33;border-radius:8px;padding:.6rem}
       .gabo-chatbot-send{background:#ff3bdb;border:0;border-radius:8px;padding:.6rem .8rem;color:#fff;font-weight:700;cursor:pointer}
-      @media (max-width: 1024px){.gabo-chatbot-shell{bottom:88px}}
     `;
     document.head.appendChild(style);
 
-    const backdrop = document.createElement("div");
-    backdrop.className = "gabo-chatbot-backdrop";
-    backdrop.setAttribute("aria-hidden", "true");
+    const fab = document.createElement("button");
+    fab.type = "button";
+    fab.className = "gabo-chatbot-fab";
 
-    const shell = document.createElement("div");
-    shell.className = "gabo-chatbot-shell";
-    shell.innerHTML = `<section class="gabo-chatbot" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
+    const overlay = document.createElement("div");
+    overlay.className = "gabo-chatbot-overlay";
+    overlay.innerHTML = `<section class="gabo-chatbot" role="dialog" aria-modal="true" aria-label="gabo io chatbot">
       <header class="gabo-chatbot-header"><div><h3></h3><small></small></div><button class="gabo-chatbot-close" type="button" aria-label="Close">✕</button></header>
       <div class="gabo-chatbot-log" aria-live="polite"></div>
       <form class="gabo-chatbot-form"><input class="gabo-chatbot-input" maxlength="256" required /><button class="gabo-chatbot-send" type="submit"></button></form>
-    </section><button class="gabo-chatbot-fab" type="button"></button>`;
-    document.body.append(backdrop, shell);
+    </section>`;
+    document.body.append(fab, overlay);
 
-    const chatbot = shell.querySelector(".gabo-chatbot");
-    const fab = shell.querySelector(".gabo-chatbot-fab");
-    const closeBtn = shell.querySelector(".gabo-chatbot-close");
-    const log = shell.querySelector(".gabo-chatbot-log");
-    const form = shell.querySelector(".gabo-chatbot-form");
-    const input = shell.querySelector(".gabo-chatbot-input");
-    const send = shell.querySelector(".gabo-chatbot-send");
-    const title = shell.querySelector("h3");
-    const subtitle = shell.querySelector("small");
+    const closeBtn = overlay.querySelector(".gabo-chatbot-close");
+    const log = overlay.querySelector(".gabo-chatbot-log");
+    const form = overlay.querySelector(".gabo-chatbot-form");
+    const input = overlay.querySelector(".gabo-chatbot-input");
+    const send = overlay.querySelector(".gabo-chatbot-send");
+    const title = overlay.querySelector("h3");
+    const subtitle = overlay.querySelector("small");
 
     function addMsg(text, type) {
       const div = document.createElement("div");
@@ -900,8 +895,8 @@
       try { localStorage.setItem(CHATBOT_CACHE_KEY, JSON.stringify(state)); } catch (_) {}
     }
 
-    function open() { chatbot.classList.add("open"); backdrop.classList.add("open"); input.focus(); persist({ isOpen: true, lang: getLang() }); }
-    function close() { chatbot.classList.remove("open"); backdrop.classList.remove("open"); persist({ isOpen: false, lang: getLang() }); }
+    function open() { overlay.classList.add("open"); input.focus(); persist({ isOpen: true, lang: getLang() }); }
+    function close() { overlay.classList.remove("open"); persist({ isOpen: false, lang: getLang() }); }
 
     function applyLanguage() {
       const copy = getCopy();
@@ -912,7 +907,7 @@
       send.textContent = copy.send;
       closeBtn.setAttribute("aria-label", copy.close);
       if (!log.childElementCount) addMsg(copy.opening, "bot");
-      persist({ isOpen: chatbot.classList.contains("open"), lang: getLang() });
+      persist({ isOpen: overlay.classList.contains("open"), lang: getLang() });
     }
 
     async function sendMessage(message) {
@@ -946,8 +941,8 @@
 
     fab.addEventListener("click", open);
     closeBtn.addEventListener("click", close);
-    backdrop.addEventListener("click", close);
-    window.addEventListener("keydown", (event) => { if (event.key === "Escape" && chatbot.classList.contains("open")) close(); });
+    overlay.addEventListener("click", (event) => { if (event.target === overlay) close(); });
+    window.addEventListener("keydown", (event) => { if (event.key === "Escape" && overlay.classList.contains("open")) close(); });
     form.addEventListener("submit", (event) => { event.preventDefault(); sendMessage(input.value); });
     window.addEventListener("language:changed", applyLanguage);
 
