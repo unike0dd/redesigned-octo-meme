@@ -1782,7 +1782,7 @@ textarea.is-security-warning {
 }
 
 
-.gabo-chatbot-fab{position:fixed;right:1rem;bottom:1rem;z-index:1200;background:#ff3bdb;color:#fff;border:0;border-radius:999px;padding:.75rem 1rem;font-weight:700;box-shadow:0 8px 28px #0006;cursor:pointer}
+.gabo-chatbot-fab{position:fixed;right:1rem;bottom:1rem;z-index:1200;inline-size:clamp(4.5rem,10vw,5.5rem);block-size:clamp(4.5rem,10vw,5.5rem);aspect-ratio:1/1;display:grid;place-items:center;text-align:center;line-height:1.1;padding:.35rem;background:#ff3bdb;color:#fff;border:0;border-radius:50%;font-weight:700;font-size:clamp(.72rem,1.5vw,.82rem);box-shadow:0 8px 28px #0006;cursor:pointer;overflow-wrap:anywhere;word-break:break-word}
 .gabo-chatbot-overlay{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:flex-end;z-index:1199;padding:1rem}
 .gabo-chatbot-overlay.open{display:flex}
 .gabo-chatbot{width:min(360px,100%);height:min(640px,84vh);background:#251541;border:2px solid #ff3bdb;border-radius:16px;display:flex;flex-direction:column;overflow:hidden}
