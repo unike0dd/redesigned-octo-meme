@@ -869,17 +869,26 @@
       const div = document.createElement("div");
       div.className = `gabo-msg ${type}`;
       div.textContent = text;
+      div.dataset.msgType = type;
       log.appendChild(div);
       log.scrollTop = log.scrollHeight;
       return div;
     }
 
-    function persist(state) {
-      try { localStorage.setItem(CHATBOT_CACHE_KEY, JSON.stringify(state)); } catch (_) {}
+    let chatState = { isOpen: false, lang: getLang(), messages: [], draft: "" };
+
+    function persist(nextState = {}) {
+      chatState = { ...chatState, ...nextState, lang: getLang() };
+      try { localStorage.setItem(CHATBOT_CACHE_KEY, JSON.stringify(chatState)); } catch (_) {}
     }
 
-    function open() { overlay.classList.add("open"); fab.hidden = true; input.focus(); persist({ isOpen: true, lang: getLang() }); }
-    function close() { overlay.classList.remove("open"); fab.hidden = false; persist({ isOpen: false, lang: getLang() }); }
+    function applyFabVisibility(isOpen) {
+      fab.hidden = isOpen;
+      fab.setAttribute("aria-hidden", String(isOpen));
+    }
+
+    function open() { overlay.classList.add("open"); applyFabVisibility(true); input.focus(); persist({ isOpen: true }); }
+    function close() { overlay.classList.remove("open"); applyFabVisibility(false); persist({ isOpen: false, draft: input.value }); }
 
     function applyLanguage() {
       const copy = getCopy();
@@ -890,7 +899,7 @@
       send.textContent = copy.send;
       closeBtn.setAttribute("aria-label", copy.close);
       if (!log.childElementCount) addMsg(copy.opening, "bot");
-      persist({ isOpen: overlay.classList.contains("open"), lang: getLang() });
+      persist({ isOpen: overlay.classList.contains("open") });
     }
 
     async function sendMessage(message) {
@@ -942,7 +951,14 @@
         const data = await res.json();
         pending.textContent = data?.reply || "No reply.";
       } catch (_) { pending.textContent = getCopy().error; }
-      finally { send.disabled = false; input.disabled = false; input.focus(); }
+      finally {
+        const messages = Array.from(log.querySelectorAll(".gabo-msg")).map((node) => ({
+          type: node.dataset.msgType || "bot",
+          text: node.textContent || "",
+        }));
+        persist({ messages, draft: input.value });
+        send.disabled = false; input.disabled = false; input.focus();
+      }
     }
 
     fab.addEventListener("click", open);
@@ -950,12 +966,31 @@
     overlay.addEventListener("click", (event) => { if (event.target === overlay) close(); });
     window.addEventListener("keydown", (event) => { if (event.key === "Escape" && overlay.classList.contains("open")) close(); });
     form.addEventListener("submit", (event) => { event.preventDefault(); sendMessage(input.value); });
+    input.addEventListener("input", () => persist({ draft: input.value }));
     window.addEventListener("language:changed", applyLanguage);
 
     applyLanguage();
     try {
       const cached = JSON.parse(localStorage.getItem(CHATBOT_CACHE_KEY) || "{}");
-      if (cached?.isOpen) open();
+      if (cached && typeof cached === "object") {
+        chatState = {
+          ...chatState,
+          ...cached,
+          messages: Array.isArray(cached.messages) ? cached.messages : [],
+          draft: typeof cached.draft === "string" ? cached.draft : "",
+        };
+      }
+      if (chatState.messages.length) {
+        log.innerHTML = "";
+        chatState.messages.forEach((message) => {
+          if (message && typeof message.text === "string") {
+            addMsg(message.text, message.type === "user" ? "user" : "bot");
+          }
+        });
+      }
+      input.value = chatState.draft || "";
+      if (chatState.isOpen) open();
+      else applyFabVisibility(false);
     } catch (_) {}
   }
 
