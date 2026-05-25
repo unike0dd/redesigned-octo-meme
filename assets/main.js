@@ -918,7 +918,6 @@
           message: cleanedMessage,
           lang,
           wikiContext,
-          page: location.pathname,
           sessionId,
         };
         const sanitizedPayload = JSON.parse(
