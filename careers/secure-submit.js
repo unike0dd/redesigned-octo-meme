@@ -185,21 +185,53 @@
       .replace(/[^a-z0-9]/g, "");
   }
 
+  function normalizeWorkerFields(inputFields) {
+    const next = Object.assign({}, inputFields);
+
+    const requiredMap = {
+      fullName: ["fullName", "name", "full_name"],
+      emailAddress: ["emailAddress", "email", "email_address"],
+      countryCode: ["countryCode", "country_code"],
+      contactNumber: ["contactNumber", "phone", "phoneNumber", "contact_number"],
+      city: ["city"],
+      stateProvince: ["stateProvince", "state", "province", "state_province"],
+      countryZipCode: ["countryZipCode", "zip", "zipCode", "postalCode", "country_zip_code"],
+      availability: ["availability", "availableWhen"],
+      areaOfInterest: ["areaOfInterest", "position", "role", "area_of_interest"],
+      educationLevel: ["educationLevel", "education", "education_level"],
+      message: ["message", "careerMessage", "comments"]
+    };
+
+    for (const target of Object.keys(requiredMap)) {
+      const value = readAlias(next, requiredMap[target]);
+      next[target] = typeof value === "string" ? value : value || "";
+    }
+
+    return next;
+  }
+
   function validateRequiredFields(fields) {
-    const fullName = readAlias(fields, ["fullName", "name", "full_name"]);
-    const email = readAlias(fields, ["emailAddress", "email", "email_address"]);
-    const message = readAlias(fields, ["message", "careerMessage", "comments"]);
+    const required = [
+      ["fullName", 2, "Full name is required."],
+      ["emailAddress", 5, "A valid email is required."],
+      ["countryCode", 1, "Country code is required."],
+      ["contactNumber", 2, "Contact number is required."],
+      ["city", 1, "City is required."],
+      ["stateProvince", 1, "State or province is required."],
+      ["countryZipCode", 1, "Zip or postal code is required."],
+      ["availability", 1, "Availability is required."],
+      ["areaOfInterest", 1, "Area of interest is required."],
+      ["educationLevel", 1, "Education level is required."],
+      ["message", 8, "Please tell us about you."]
+    ];
 
-    if (!fullName || String(fullName).trim().length < 2) {
-      return "Full name is required.";
+    for (const [key, minLength, error] of required) {
+      const value = String(fields[key] || "").trim();
+      if (value.length < minLength) return error;
     }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || ""))) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(fields.emailAddress || ""))) {
       return "A valid email is required.";
-    }
-
-    if (!message || String(message).trim().length < 8) {
-      return "Please tell us about you.";
     }
 
     return "";
@@ -246,6 +278,29 @@
       website: rawFields.website || rawFields.website_url || "",
       companyWebsite: rawFields.companyWebsite || rawFields.company_website || ""
     };
+  }
+
+  function withWorkerListShape(inputLists) {
+    return {
+      experience: Array.isArray(inputLists.experience) ? inputLists.experience : [],
+      experienceLevels: Array.isArray(inputLists.experienceLevels) ? inputLists.experienceLevels : [],
+      languages: Array.isArray(inputLists.languages) ? inputLists.languages : [],
+      skills: Array.isArray(inputLists.skills) ? inputLists.skills : [],
+      projects: Array.isArray(inputLists.projects) ? inputLists.projects : [],
+      education: Array.isArray(inputLists.education) ? inputLists.education : []
+    };
+  }
+
+  function sortKeysDeep(value) {
+    if (Array.isArray(value)) return value.map(sortKeysDeep);
+    if (!value || typeof value !== "object") return value;
+
+    const out = {};
+    Object.keys(value).sort().forEach((key) => {
+      out[key] = sortKeysDeep(value[key]);
+    });
+
+    return out;
   }
 
   function createPayload(fields, lists, rawFields, scan, session, sha256) {
@@ -364,8 +419,8 @@
     const scan = tiny.scanForm(form);
     const collected = collectPublicFields(form);
 
-    const fields = tiny.sanitizeObject(scan.fields || collected.fields);
-    const lists = tiny.sanitizeObject(collected.lists);
+    const fields = normalizeWorkerFields(tiny.sanitizeObject(scan.fields || collected.fields));
+    const lists = withWorkerListShape(tiny.sanitizeObject(collected.lists));
 
     const rawRisk = tiny.scoreRisk(JSON.stringify(collected));
     const sanitizedRisk = tiny.scoreRisk(tiny.stableSerialize({ fields, lists }));
@@ -384,7 +439,7 @@
 
     const session = tiny.createSession();
 
-    const integrityPayload = {
+    const integrityPayload = sortKeysDeep({
       route: CONTRACT.route,
       origin: window.location.origin,
       source: CONTRACT.source,
@@ -392,7 +447,7 @@
       nonce: session.nonce,
       fields,
       lists
-    };
+    });
 
     const sha256 = await tiny.calculateIntegrity(integrityPayload);
     const payload = createPayload(fields, lists, rawAllFields, scan, session, sha256);
