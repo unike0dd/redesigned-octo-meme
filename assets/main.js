@@ -894,19 +894,28 @@
     }
 
     async function sendMessage(message) {
-      const cleaned = sanitizeForWire(message).trim();
-      if (!cleaned) return;
-      addMsg(cleaned, "user");
+      const cleanedMessage = sanitizeForWire(message).trim();
+      if (!cleanedMessage) return;
+      addMsg(cleanedMessage, "user");
       input.value = "";
       const pending = addMsg(getCopy().pending, "bot");
       send.disabled = true; input.disabled = true;
       try {
         const sessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
         const wikiContext = "chatbot-i18n-CX-LeadGen";
+        const lang = getLang().startsWith("es") ? "es" : "en";
+        const shaPayload = {
+          chatbot: CHATBOT_NAME,
+          message: cleanedMessage,
+          lang,
+          wikiContext,
+          sessionId,
+        };
+        const sha256 = await sha256Hex(JSON.stringify(shaPayload));
         const payload = {
           chatbot: CHATBOT_NAME,
-          message: cleaned,
-          lang: getLang().startsWith("es") ? "es" : "en",
+          message: cleanedMessage,
+          lang,
           wikiContext,
           page: location.pathname,
           sessionId,
@@ -919,7 +928,6 @@
             typeof value === "string" ? sanitizeForWire(value) : value,
           ),
         );
-        const sha256 = await sha256Hex(JSON.stringify(sanitizedPayload));
         sanitizedPayload.integritySha256 = sha256;
 
         const res = await fetch(CHATBOT_ENDPOINT, {
