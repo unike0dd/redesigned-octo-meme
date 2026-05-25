@@ -918,7 +918,16 @@
           message: cleanedMessage,
           lang,
           wikiContext,
+          page: location.pathname,
           sessionId,
+          honeypot: "",
+          leadContext: {
+            source: "website",
+            client: CHATBOT_CLIENT_NAME,
+            intent: "general",
+            pageTitle: document.title,
+            referrer: document.referrer
+          }
         };
         const sanitizedPayload = JSON.parse(
           JSON.stringify(payload, (_, value) =>
