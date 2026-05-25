@@ -807,11 +807,6 @@
   const CHATBOT_SYNC = "io-pro-chatbot-v1";
   const CHATBOT_ASSET_ID = "redesigned-octo-meme-chatbot";
   const CHATBOT_ENDPOINT = "https://chatbot.gabo.services/api/chat";
-  const CHATBOT_IO_PRO = String(
-    window.GABO_IO_PRO ||
-      document.documentElement.getAttribute("data-gabo-io-pro") ||
-      "",
-  ).trim();
   const CHATBOT_CACHE_KEY = "gabo-io-chatbot-state";
 
   function initGaboIoChatbot() {
@@ -925,8 +920,6 @@
           wikiContext,
           page: location.pathname,
           sessionId,
-          honeypot: "",
-          leadContext: { source: "website", client: CHATBOT_CLIENT_NAME },
         };
         const sanitizedPayload = JSON.parse(
           JSON.stringify(payload, (_, value) =>
@@ -942,7 +935,6 @@
         };
         const sha256 = await sha256Hex(JSON.stringify(canonicalIntegrityPayload));
 
-        if (!CHATBOT_IO_PRO) throw new Error("missing-io-pro");
 
         const res = await fetch(CHATBOT_ENDPOINT, {
           method: "POST",
@@ -956,7 +948,6 @@
             "X-Gabo-Session-Id": sanitizedPayload.sessionId,
             "X-Gabo-Integrity-SHA256": sha256,
             "X-Ops-Asset-Id": CHATBOT_ASSET_ID,
-            "X-IO-Pro": CHATBOT_IO_PRO,
           },
           body: JSON.stringify(sanitizedPayload),
         });
