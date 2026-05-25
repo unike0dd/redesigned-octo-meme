@@ -904,14 +904,6 @@
         const sessionId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now());
         const wikiContext = "chatbot-i18n-CX-LeadGen";
         const lang = getLang().startsWith("es") ? "es" : "en";
-        const shaPayload = {
-          chatbot: CHATBOT_NAME,
-          message: cleanedMessage,
-          lang,
-          wikiContext,
-          sessionId,
-        };
-        const sha256 = await sha256Hex(JSON.stringify(shaPayload));
         const payload = {
           chatbot: CHATBOT_NAME,
           message: cleanedMessage,
@@ -921,13 +913,14 @@
           sessionId,
           honeypot: "",
           leadContext: { source: "website", client: CHATBOT_CLIENT_NAME },
-          integrity: "pending-client-integrity",
         };
         const sanitizedPayload = JSON.parse(
           JSON.stringify(payload, (_, value) =>
             typeof value === "string" ? sanitizeForWire(value) : value,
           ),
         );
+        const sha256 = await sha256Hex(JSON.stringify(sanitizedPayload));
+        sanitizedPayload.integrity = "pending-client-integrity";
         sanitizedPayload.integritySha256 = sha256;
 
         const res = await fetch(CHATBOT_ENDPOINT, {
