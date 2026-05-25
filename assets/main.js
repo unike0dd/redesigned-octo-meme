@@ -807,6 +807,7 @@
   const CHATBOT_SYNC = "io-pro-chatbot-v1";
   const CHATBOT_ASSET_ID = "redesigned-octo-meme-chatbot";
   const CHATBOT_ENDPOINT = "https://chatbot.gabo.services/api/chat";
+  const CHATBOT_IO_PRO = "required-by-worker";
   const CHATBOT_CACHE_KEY = "gabo-io-chatbot-state";
 
   function initGaboIoChatbot() {
@@ -944,6 +945,7 @@
             "X-Gabo-Session-Id": sessionId,
             "X-Gabo-Integrity-SHA256": sha256,
             "X-Ops-Asset-Id": CHATBOT_ASSET_ID,
+            "X-IO-Pro": CHATBOT_IO_PRO,
           },
           body: JSON.stringify(sanitizedPayload),
         });
