@@ -1782,23 +1782,5 @@ textarea.is-security-warning {
 }
 
 
-.gabo-chatbot-fab{position:fixed;right:1rem;bottom:1rem;z-index:1200;inline-size:clamp(4.5rem,10vw,5.5rem);block-size:clamp(4.5rem,10vw,5.5rem);aspect-ratio:1/1;display:grid;place-items:center;text-align:center;line-height:1.1;padding:.35rem;background:#ff3bdb;color:#fff;border:0;border-radius:50%;font-weight:700;font-size:clamp(.72rem,1.5vw,.82rem);box-shadow:0 8px 28px #0006;cursor:pointer;overflow-wrap:anywhere;word-break:break-word}
-.gabo-chatbot-fab[hidden]{display:none!important}
-.gabo-chatbot-overlay{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:flex-end;z-index:1300;padding:1rem}
-.gabo-chatbot-overlay.open{display:flex}
-.gabo-chatbot{width:min(360px,100%);height:min(640px,84vh);background:#251541;border:2px solid #ff3bdb;border-radius:16px;display:flex;flex-direction:column;overflow:hidden}
-.gabo-chatbot-header{padding:.75rem 1rem;background:linear-gradient(135deg,#00c4ff,#ff3bdb);color:#fff;display:flex;justify-content:space-between;align-items:center}
-.gabo-chatbot-header h3{margin:0;font-size:1rem}.gabo-chatbot-header small{opacity:.9}.gabo-chatbot-header small:empty{display:none}
-.gabo-chatbot-close{background:transparent;border:0;color:#fff;font-size:1.2rem;cursor:pointer}
-.gabo-chatbot-log{flex:1;overflow:auto;background:#1b0e2d;color:#eee;padding:1rem}
-.gabo-msg{max-width:90%;margin:.45rem 0;padding:.55rem .7rem;border-radius:13px;line-height:1.35}
-.gabo-msg.user{margin-left:auto;background:#00c4ff;color:#000}
-.gabo-msg.bot{background:#321b53;color:#fff}
-.gabo-chatbot-form{display:flex;gap:.5rem;padding:.7rem;background:#220f3a;border-top:1px solid #ff3bdb}
-.gabo-chatbot-input{flex:1;background:#2b1347;color:#fff;border:1px solid #ffffff33;border-radius:8px;padding:.6rem}
-.gabo-chatbot-send{background:#ff3bdb;border:0;border-radius:8px;padding:.6rem .8rem;color:#fff;font-weight:700;cursor:pointer}
-
-@media (max-width: 1024px) {
-  .gabo-chatbot-fab { bottom: calc(105px + 1rem); }
   .gabo-chatbot{width:90vw;height:85vh;max-width:90vw;max-height:85vh}
 }
