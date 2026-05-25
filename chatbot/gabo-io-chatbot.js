@@ -99,6 +99,7 @@
         };
         const sha256 = await sha256Hex(JSON.stringify(canonicalIntegrityPayload));
 
+        console.log("[gabo io] sending POST", sanitizedPayload);
         const res = await fetch(CHATBOT_ENDPOINT, {
           method: "POST",
           mode: "cors",
