@@ -116,7 +116,8 @@ body {
 }
 
 :root.dark-theme body::before,
-:root.dark-theme body::after {
+:root.dark-theme body::after,
+body::after {
   content: "";
   position: fixed;
   inset: 0;
@@ -134,14 +135,15 @@ body {
   opacity: 0.32;
 }
 
-:root.dark-theme body::after {
+:root.dark-theme body::after,
+body::after {
   background-image:
     radial-gradient(
       circle,
-      rgba(240, 230, 255, 0.62) 1.05px,
+      rgba(255, 226, 158, 0.55) 1.05px,
       transparent 1.85px
     ),
-    radial-gradient(circle, rgba(142, 77, 255, 0.32) 1.8px, transparent 3px);
+    radial-gradient(circle, rgba(255, 204, 92, 0.24) 1.8px, transparent 3px);
   background-position:
     0 0,
     9px 9px;
@@ -161,12 +163,12 @@ body {
     black 30%,
     transparent 74%
   );
-  filter: drop-shadow(0 0 1px rgba(240, 230, 255, 0.42))
-    drop-shadow(0 0 5px rgba(142, 77, 255, 0.28));
+  filter: drop-shadow(0 0 1px rgba(255, 233, 186, 0.46))
+    drop-shadow(0 0 6px rgba(225, 179, 72, 0.32));
   transition: opacity 160ms ease;
 }
 
-:root.dark-theme body.mouse-active::after {
+body.mouse-active::after {
   opacity: 0.72;
 }
 
