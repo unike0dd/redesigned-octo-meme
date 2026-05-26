@@ -7,9 +7,34 @@
   const CHATBOT_CACHE_KEY = "gabo-io-chatbot-state";
 
   const chatbotUtils = window.GABO_IO_CHATBOT_UTILS || {};
-  const sanitizeForWire = (value) =>
-    chatbotUtils.runTinyMlSanitizer?.(value)?.cleaned || String(value || "");
-  const sha256Hex = async (value) => (await chatbotUtils.sha256Hex?.(value)) || "";
+
+  const sanitizeForWire = (value) => {
+    const external = chatbotUtils.runTinyMlSanitizer?.(value)?.cleaned;
+    if (typeof external === "string") return external;
+    return String(value || "")
+      .normalize("NFKC")
+      .replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, " ")
+      .replace(/`[^`\n]{1,500}`/g, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/[<>`{}()[\];|\\]/g, " ")
+      .replace(/[\u0000-\u001F\u007F]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  };
+
+  const sha256Hex = async (value) => {
+    const external = await chatbotUtils.sha256Hex?.(value);
+    if (external) return external;
+
+    const digest = await crypto.subtle.digest(
+      "SHA-256",
+      new TextEncoder().encode(String(value || ""))
+    );
+
+    return Array.from(new Uint8Array(digest))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
+  };
 
   function initGaboIoChatbot() {
     if (document.querySelector(".gabo-chatbot-fab")) return;
