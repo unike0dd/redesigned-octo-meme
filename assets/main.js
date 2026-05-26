@@ -526,7 +526,6 @@
       <a href="./about/">About</a>
       <a href="careers.html">Careers</a>
       <a href="contact.html">Contact</a>
-      <a href="./learning/">Learning</a>
     `;
     topbar.appendChild(nav);
   }
