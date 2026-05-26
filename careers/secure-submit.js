@@ -291,18 +291,6 @@
     };
   }
 
-  function sortKeysDeep(value) {
-    if (Array.isArray(value)) return value.map(sortKeysDeep);
-    if (!value || typeof value !== "object") return value;
-
-    const out = {};
-    Object.keys(value).sort().forEach((key) => {
-      out[key] = sortKeysDeep(value[key]);
-    });
-
-    return out;
-  }
-
   function createPayload(fields, lists, rawFields, scan, session, sha256) {
     return {
       schema: CONTRACT.schema,
@@ -439,7 +427,7 @@
 
     const session = tiny.createSession();
 
-    const integrityPayload = sortKeysDeep({
+    const integrityPayload = tiny.stableSerialize({
       route: CONTRACT.route,
       origin: window.location.origin,
       source: CONTRACT.source,
