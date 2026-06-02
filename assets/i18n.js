@@ -192,7 +192,7 @@
       contactSubmitSuccess: "Your message was received securely.",
       contactSubmitUnavailable: "Your message could not be submitted right now.",
       contactIntro:
-        "Get in touch for support, onboarding, projects, and partnership opportunities.",
+        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
       contactRequestTitle: "Contact Request",
       contactRequestButtonLabel: "Send Request",
       addContactEntry: "+ Add",
@@ -243,7 +243,7 @@
 
       careersTitle: "Careers",
       careersIntro:
-        "Apply to help deliver Gabriel Services' core support services: logistics operations, administrative back office, customer relations operations, and day-to-day IT support.",
+        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
       availabilityLabel: "Availability",
       availabilityImmediately: "Immediately",
       availability15Days: "15 days",
@@ -931,7 +931,7 @@
       contactSubmitSuccess: "Tu mensaje se recibió de forma segura.",
       contactSubmitUnavailable: "No se pudo enviar tu mensaje en este momento.",
       contactIntro:
-        "Ponte en contacto para soporte, incorporación, proyectos y oportunidades de colaboración.",
+        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
       contactRequestTitle: "Solicitud de contacto",
       contactRequestButtonLabel: "Enviar solicitud",
       addContactEntry: "+ Agregar",
@@ -983,7 +983,7 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
+        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
       availabilityLabel: "Disponibilidad",
       availabilityImmediately: "Inmediatamente",
       availability15Days: "15 días",
