@@ -31,7 +31,7 @@
         <div>
           <h4 data-i18n="supportLearning">Support & Learning</h4>
           <a href="${basePath}/contact.html" data-footer-link="contact" data-i18n="contact">Contact</a>
-          <a href="${basePath}/learning.html" data-footer-link="learning" data-i18n="learning">Learning</a>
+          <a href="${basePath}/services.html" data-footer-link="services-support" data-i18n="servicesOverview">Services Overview</a>
           <a href="${basePath}/sitemap.xml" data-footer-link="sitemap" data-i18n="sitemap">Sitemap</a>
         </div>
         <div>
