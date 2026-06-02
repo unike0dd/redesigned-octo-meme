@@ -1786,3 +1786,185 @@ textarea.is-security-warning {
 
   .gabo-chatbot{width:90vw;height:85vh;max-width:90vw;max-height:85vh}
 }
+
+/* Careers form UI refresh: preserves the existing Careers Worker contract. */
+.careers-page .careers-form-wrapper {
+  max-width: 980px;
+}
+
+.careers-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: clamp(1.1rem, 2.5vw, 2rem);
+  border: 1px solid rgba(25, 67, 122, 0.14);
+  border-radius: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.9)),
+    radial-gradient(circle at top right, rgba(0, 87, 255, 0.12), transparent 18rem);
+  box-shadow: 0 22px 60px rgba(12, 28, 55, 0.12);
+}
+
+.careers-form::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(25, 67, 122, 0.18), rgba(255, 196, 87, 0.2));
+  transform: translate(0.6rem, 0.7rem);
+  filter: blur(1px);
+}
+
+.careers-form .form-grid {
+  gap: 1rem;
+}
+
+.careers-form .floating-field input,
+.careers-form .floating-field textarea,
+.careers-form .floating-field select {
+  min-height: 3.15rem;
+  border-color: rgba(25, 67, 122, 0.22);
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.96);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.careers-form .floating-field select {
+  width: 100%;
+  padding: 1rem 0.62rem 0.48rem;
+  color: var(--text);
+  appearance: auto;
+}
+
+.careers-form .floating-field.is-focused select {
+  border-color: var(--brand-navy);
+  box-shadow: 0 0 0 3px rgba(25, 67, 122, 0.12);
+  outline: none;
+}
+
+.careers-form .entry-group {
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(25, 67, 122, 0.14);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.careers-form .entry-group-header label,
+.careers-form .best-contact-time > label {
+  color: var(--brand-navy);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.careers-form .entry-list {
+  gap: 0.65rem;
+}
+
+.careers-form .entry-row.floating-field,
+.careers-form .entry-floating-field {
+  min-width: 0;
+}
+
+.careers-form .entry-select-field select {
+  width: 100%;
+  min-height: 3.15rem;
+  border-color: rgba(25, 67, 122, 0.22);
+  border-radius: 12px;
+}
+
+.careers-form .entry-group-actions {
+  justify-content: flex-end;
+}
+
+.careers-form .entry-btn {
+  border-radius: 999px;
+}
+
+.careers-form .form-actions {
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0.25rem;
+}
+
+.careers-form .form-actions .btn {
+  min-height: 2.85rem;
+  border-radius: 999px;
+}
+
+:root.dark-theme .careers-form {
+  border-color: rgba(255, 211, 106, 0.24);
+  background:
+    linear-gradient(135deg, rgba(28, 7, 65, 0.94), rgba(44, 18, 91, 0.9)),
+    radial-gradient(circle at top right, rgba(255, 211, 106, 0.16), transparent 18rem);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.35);
+}
+
+:root.dark-theme .careers-form::before {
+  background: linear-gradient(135deg, rgba(255, 211, 106, 0.24), rgba(142, 77, 255, 0.2));
+}
+
+:root.dark-theme .careers-form .floating-field input,
+:root.dark-theme .careers-form .floating-field textarea,
+:root.dark-theme .careers-form .floating-field select,
+:root.dark-theme .careers-form .entry-select-field select,
+:root.dark-theme .careers-form .entry-group {
+  border-color: rgba(255, 211, 106, 0.24);
+  background-color: rgba(28, 7, 65, 0.9);
+  color: #f7f0ff;
+}
+
+:root.dark-theme .careers-form .entry-group-header label,
+:root.dark-theme .careers-form .best-contact-time > label {
+  color: var(--royal-gold-bright);
+}
+
+@media (max-width: 720px) {
+  .careers-form {
+    padding: 1rem;
+    border-radius: 18px;
+  }
+
+  .careers-form .best-contact-row,
+  .careers-form .experience-entry-row {
+    grid-template-columns: 1fr;
+  }
+
+  .careers-form .form-actions {
+    justify-content: stretch;
+  }
+
+  .careers-form .form-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+.careers-form .floating-select-field label {
+  top: 0;
+  color: var(--brand-navy);
+  transform: translateY(-50%) scale(0.84);
+}
+
+:root.dark-theme .careers-form .floating-select-field label {
+  color: var(--royal-gold-bright);
+}
+
+.careers-form .careers-composite-entry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.55fr);
+  gap: 0.5rem;
+  align-items: end;
+}
+
+@media (max-width: 720px) {
+  .careers-form .careers-composite-entry-row {
+    grid-template-columns: 1fr;
+  }
+}

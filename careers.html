@@ -39,8 +39,8 @@
       </div>
     </header>
 
-    <main class="section">
-      <div class="container">
+    <main class="section careers-page">
+      <div class="container careers-form-wrapper">
         <h1 data-i18n="careersTitle">Careers</h1>
         <p data-i18n="careersIntro">
           Apply to support operations, communication, and service delivery
@@ -48,7 +48,10 @@
         </p>
         <form
           id="careers-application-form"
+          class="careers-form"
           method="post"
+          autocomplete="on"
+          novalidate
           action="https://careers.gabo.services/api/careers"
           data-secure-gateway="careers"
           data-page-tinyml="careers"
@@ -70,8 +73,27 @@
           </div>
           <div class="form-grid">
             <div class="floating-field">
-              <label for="career-full-name" data-i18n="fullName">Full Name</label>
-              <input id="career-full-name" name="fullName" autocomplete="name" required minlength="2" />
+              <label for="career-first-name" data-i18n="firstNameLabel">First Name</label>
+              <input
+                id="career-first-name"
+                name="firstName"
+                autocomplete="given-name"
+                required
+                minlength="1"
+                data-careers-first-name
+              />
+            </div>
+            <div class="floating-field">
+              <label for="career-last-name" data-i18n="lastNameLabel">Last Name</label>
+              <input
+                id="career-last-name"
+                name="lastName"
+                autocomplete="family-name"
+                required
+                minlength="1"
+                data-careers-last-name
+              />
+              <input id="career-full-name" name="fullName" type="hidden" data-careers-full-name />
             </div>
             <div class="floating-field">
               <label for="career-email-address" data-i18n="emailAddress">Email Address</label>
@@ -93,6 +115,7 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="tel-country-code"
+                required
               />
             </div>
             <div class="floating-field">
@@ -105,15 +128,16 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="tel-national"
+                required
               />
             </div>
             <div class="floating-field">
               <label for="career-city" data-i18n="city">City</label>
-              <input id="career-city" name="city" />
+              <input id="career-city" name="city" required />
             </div>
             <div class="floating-field">
               <label for="career-state-province" data-i18n="stateProvince">State/Province</label>
-              <input id="career-state-province" name="stateProvince" />
+              <input id="career-state-province" name="stateProvince" required />
             </div>
             <div class="floating-field">
               <label for="career-country-zip-code" data-i18n="countryZipCode">Country Zip Code</label>
@@ -125,18 +149,28 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="postal-code"
+                required
               />
             </div>
-            <div class="floating-field">
+            <div class="floating-field floating-select-field">
               <label for="career-availability" data-i18n="availabilityLabel">Availability</label>
-              <input id="career-availability" name="availability" />
+              <select id="career-availability" name="availability" required>
+                <option value="" disabled selected hidden data-i18n="availabilityLabel">Availability</option>
+                <option data-i18n="availabilityImmediately">Immediately</option>
+                <option data-i18n="availability15Days">15 days</option>
+                <option data-i18n="availability30Days">30 days</option>
+                <option data-i18n="availability45Days">45 days</option>
+                <option data-i18n="availability60Days">60 days</option>
+                <option data-i18n="availability90Days">90 days</option>
+              </select>
             </div>
-            <div>
+            <div class="floating-field floating-select-field">
               <label for="career-area-interest" data-i18n="areaInterestLabel">Area of Interest</label>
-              <select id="career-area-interest" name="areaInterest">
+              <select id="career-area-interest" name="areaInterest" required>
+                <option value="" disabled selected hidden data-i18n="areaInterestLabel">Area of Interest</option>
                 <option data-i18n="careersOptionLogistics">Logistics</option>
-                <option data-i18n="careersOptionAdministration">
-                  Administration
+                <option data-i18n="careersOptionAdministrationBackOffice">
+                  Administration Back Office
                 </option>
                 <option data-i18n="careersOptionCustomerRelations">
                   Customer Relations
@@ -148,15 +182,18 @@
               <label for="career-resume-link" data-i18n="resumeLinkLabel">Resume/Profile link</label>
               <input id="career-resume-link" name="resumeLink" type="url" />
             </div>
-            <div>
+            <div class="floating-field floating-select-field">
               <label for="career-education-level" data-i18n="educationLevelLabel">Education Level</label>
-              <select id="career-education-level" name="educationLevel">
+              <select id="career-education-level" name="educationLevel" required>
+                <option value="" disabled selected hidden data-i18n="educationLevelLabel">Education Level</option>
+                <option data-i18n="educationOptionGed">GED</option>
                 <option data-i18n="educationOptionHighSchool">
                   High School
                 </option>
-                <option data-i18n="educationOptionAssociate">Associate</option>
-                <option data-i18n="educationOptionBachelor">Bachelor</option>
-                <option data-i18n="educationOptionMaster">Master</option>
+                <option data-i18n="educationOptionSomeCollege">Some College</option>
+                <option data-i18n="educationOptionAssociateDegree">Associate Degree</option>
+                <option data-i18n="educationOptionGraduate">Graduate</option>
+                <option data-i18n="educationOptionMasters">Masters</option>
                 <option data-i18n="educationOptionDoctorate">Doctorate</option>
                 <option data-i18n="educationOptionCertified">Certified</option>
               </select>
@@ -183,14 +220,17 @@
                     <label>
                       <span data-i18n="experienceLevelLabel">Experience Level</span>
                       <select name="experienceLevels[]" data-experience-level-select>
-                        <option data-i18n="experienceLevelEntryLevel">Entry Level</option>
+                        <option data-i18n="experienceLevelEntry">Entry</option>
                         <option data-i18n="experienceLevelJunior">Junior</option>
                         <option data-i18n="experienceLevelIntermediate">Intermediate</option>
-                        <option data-i18n="experienceLevelAdvanced">Advanced</option>
+                        <option data-i18n="experienceLevelAdvance">Advance</option>
                         <option data-i18n="experienceLevelSenior">Senior</option>
                         <option data-i18n="experienceLevelExpert">Expert</option>
                         <option data-i18n="experienceLevelEngineer">Engineer</option>
-                        <option data-i18n="experienceLevelCLevel">C Level</option>
+                        <option data-i18n="experienceLevelLowerManagement">Lower Management</option>
+                        <option data-i18n="experienceLevelTopManagement">Top Management</option>
+                        <option data-i18n="experienceLevelSeniorManagement">Senior Management</option>
+                        <option data-i18n="experienceLevelCSuite">C Suite</option>
                       </select>
                     </label>
                   </div>
@@ -222,13 +262,29 @@
                 <label data-i18n="languagesLabel">Languages</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddLanguageEntry">Add language entry</label>
-                  <input
-                    name="languages[]"
-                    data-i18n-placeholder="placeholderAddLanguageEntry"
-                    placeholder="Add language entry"
-                  />
+                <div class="entry-row careers-composite-entry-row" data-careers-composite-row>
+                  <div class="floating-field entry-floating-field">
+                    <label data-i18n="placeholderAddLanguageEntry">Add language entry</label>
+                    <input
+                      data-careers-composite-text
+                      data-i18n-placeholder="placeholderAddLanguageEntry"
+                      placeholder="Add language entry"
+                    />
+                    <input name="languages[]" type="hidden" data-careers-composite-output />
+                  </div>
+                  <div class="entry-select-field">
+                    <label>
+                      <span data-i18n="languageLevelLabel">Language Level</span>
+                      <select data-careers-composite-select>
+                        <option data-i18n="languageLevelBeginner">Beginner</option>
+                        <option data-i18n="languageLevelElementary">Elementary</option>
+                        <option data-i18n="languageLevelIntermediate">Intermediate</option>
+                        <option data-i18n="languageLevelUpperIntermediate">Upper Intermediate</option>
+                        <option data-i18n="languageLevelAdvanced">Advanced</option>
+                        <option data-i18n="languageLevelProficient">Proficient</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="entry-group-actions">
@@ -257,13 +313,27 @@
                 <label data-i18n="skillsLabel">Skills</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddSkillEntry">Add skill entry</label>
-                  <input
-                    name="skills[]"
-                    data-i18n-placeholder="placeholderAddSkillEntry"
-                    placeholder="Add skill entry"
-                  />
+                <div class="entry-row careers-composite-entry-row" data-careers-composite-row>
+                  <div class="floating-field entry-floating-field">
+                    <label data-i18n="placeholderAddSkillEntry">Add skill entry</label>
+                    <input
+                      data-careers-composite-text
+                      data-i18n-placeholder="placeholderAddSkillEntry"
+                      placeholder="Add skill entry"
+                    />
+                    <input name="skills[]" type="hidden" data-careers-composite-output />
+                  </div>
+                  <div class="entry-select-field">
+                    <label>
+                      <span data-i18n="skillLevelLabel">Skill Level</span>
+                      <select data-careers-composite-select>
+                        <option data-i18n="skillLevelNovice">Novice</option>
+                        <option data-i18n="skillLevelAdvancedBeginner">Advanced Beginner</option>
+                        <option data-i18n="skillLevelProficient">Proficient</option>
+                        <option data-i18n="skillLevelExpert">Expert</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="entry-group-actions">
@@ -292,13 +362,27 @@
                 <label data-i18n="projectsLabel">Projects</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddProjectEntry">Add project entry</label>
-                  <input
-                    name="projects[]"
-                    data-i18n-placeholder="placeholderAddProjectEntry"
-                    placeholder="Add project entry"
-                  />
+                <div class="entry-row careers-composite-entry-row" data-careers-composite-row>
+                  <div class="floating-field entry-floating-field">
+                    <label data-i18n="placeholderAddProjectEntry">Add project entry</label>
+                    <input
+                      data-careers-composite-text
+                      data-i18n-placeholder="placeholderAddProjectEntry"
+                      placeholder="Add project entry"
+                    />
+                    <input name="projects[]" type="hidden" data-careers-composite-output />
+                  </div>
+                  <div class="entry-select-field">
+                    <label>
+                      <span data-i18n="projectStatusLabel">Project Status</span>
+                      <select data-careers-composite-select>
+                        <option data-i18n="projectStatusFinished">Finished</option>
+                        <option data-i18n="projectStatusInProgress">In-Progress</option>
+                        <option data-i18n="projectStatusAbandoned">Abandoned</option>
+                        <option data-i18n="projectStatusCancelled">Cancelled</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="entry-group-actions">
@@ -327,13 +411,31 @@
                 <label data-i18n="educationLabel">Education</label>
               </div>
               <div class="entry-list" data-repeat-list>
-                <div class="entry-row floating-field entry-floating-field">
-                  <label data-i18n="placeholderAddEducationEntry">Add education entry</label>
-                  <input
-                    name="education[]"
-                    data-i18n-placeholder="placeholderAddEducationEntry"
-                    placeholder="Add education entry"
-                  />
+                <div class="entry-row careers-composite-entry-row" data-careers-composite-row>
+                  <div class="floating-field entry-floating-field">
+                    <label data-i18n="placeholderAddEducationEntry">Add education entry</label>
+                    <input
+                      data-careers-composite-text
+                      data-i18n-placeholder="placeholderAddEducationEntry"
+                      placeholder="Add education entry"
+                    />
+                    <input name="education[]" type="hidden" data-careers-composite-output />
+                  </div>
+                  <div class="entry-select-field">
+                    <label>
+                      <span data-i18n="educationLevelLabel">Education Level</span>
+                      <select data-careers-composite-select>
+                        <option data-i18n="educationOptionGed">GED</option>
+                        <option data-i18n="educationOptionHighSchool">High School</option>
+                        <option data-i18n="educationOptionSomeCollege">Some College</option>
+                        <option data-i18n="educationOptionAssociateDegree">Associate Degree</option>
+                        <option data-i18n="educationOptionGraduate">Graduate</option>
+                        <option data-i18n="educationOptionMasters">Masters</option>
+                        <option data-i18n="educationOptionDoctorate">Doctorate</option>
+                        <option data-i18n="educationOptionCertified">Certified</option>
+                      </select>
+                    </label>
+                  </div>
                 </div>
               </div>
               <div class="entry-group-actions">
