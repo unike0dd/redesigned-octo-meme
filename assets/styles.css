@@ -1955,3 +1955,16 @@ textarea.is-security-warning {
 :root.dark-theme .careers-form .floating-select-field label {
   color: var(--royal-gold-bright);
 }
+
+.careers-form .careers-composite-entry-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 0.55fr);
+  gap: 0.5rem;
+  align-items: end;
+}
+
+@media (max-width: 720px) {
+  .careers-form .careers-composite-entry-row {
+    grid-template-columns: 1fr;
+  }
+}

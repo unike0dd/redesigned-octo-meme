@@ -810,6 +810,89 @@
     sha256Hex,
   });
 
+
+  function initCareersFormEnhancements() {
+    const form = document.querySelector("#careers-application-form");
+    if (!form || form.dataset.careersUiReady === "true") return;
+
+    const firstName = form.querySelector("[data-careers-first-name]");
+    const lastName = form.querySelector("[data-careers-last-name]");
+    const fullName = form.querySelector("[data-careers-full-name]");
+
+    const syncFullName = () => {
+      if (!firstName || !lastName || !fullName) return;
+
+      const combined = [firstName.value, lastName.value]
+        .map((value) => String(value || "").trim())
+        .filter(Boolean)
+        .join(" ");
+
+      if (fullName.value !== combined) {
+        fullName.value = combined;
+        fullName.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+    };
+
+    const readSelectedText = (select) => {
+      if (!select) return "";
+      const selected = select.options[select.selectedIndex];
+      return String(selected?.textContent || select.value || "").trim();
+    };
+
+    const syncCompositeRow = (row) => {
+      const textInput = row.querySelector("[data-careers-composite-text]");
+      const select = row.querySelector("[data-careers-composite-select]");
+      const output = row.querySelector("[data-careers-composite-output]");
+      if (!textInput || !output) return;
+
+      const value = String(textInput.value || "").trim();
+      const qualifier = readSelectedText(select);
+      const composed = value && qualifier ? `${value} — ${qualifier}` : value;
+
+      if (output.value !== composed) {
+        output.value = composed;
+        output.dispatchEvent(new Event("input", { bubbles: true }));
+      }
+    };
+
+    const syncCompositeRows = () => {
+      form.querySelectorAll("[data-careers-composite-row]").forEach(syncCompositeRow);
+    };
+
+    const syncCareersUi = () => {
+      syncFullName();
+      syncCompositeRows();
+    };
+
+    form.addEventListener("input", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      if (
+        target.matches("[data-careers-first-name], [data-careers-last-name]") ||
+        target.matches("[data-careers-composite-text]")
+      ) {
+        syncCareersUi();
+      }
+    });
+
+    form.addEventListener("change", (event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      if (target.matches("[data-careers-composite-select]")) {
+        syncCareersUi();
+      }
+    });
+
+    form.addEventListener("submit", syncCareersUi, true);
+    form.addEventListener("reset", () => window.setTimeout(syncCareersUi, 0));
+
+    form.dataset.careersUiReady = "true";
+    syncCareersUi();
+    window.setTimeout(syncCareersUi, 150);
+  }
+
   function initPage() {
     initSecurityRuntime();
     ensurePrimaryNav();
@@ -818,6 +901,7 @@
     initFloatingFields();
     initRepeatableEntryGroups();
     initNumericOnlyInputs();
+    initCareersFormEnhancements();
     initMobileServiceMenu();
     initScrollLazyLoad();
     initRoyalDarkPointerEffects();
