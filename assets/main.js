@@ -540,10 +540,10 @@
     mobileNav.setAttribute("data-i18n-aria-label", "mobileNavigation");
     mobileNav.innerHTML = `
       <div id="services-dropup" class="services-dropup">
-        <a href="${basePath}/learning.html" data-i18n="logisticsOps">Logistics</a>
-        <a href="${basePath}/learning.html" data-i18n="adminBackOffice">Admin Back Office</a>
-        <a href="${basePath}/learning.html" data-i18n="customerRelations">Customer Relations</a>
-        <a href="${basePath}/learning.html" data-i18n="itSupport">IT Support</a>
+        <a href="${basePath}/services.html" data-i18n="logisticsOps">Logistics</a>
+        <a href="${basePath}/services.html" data-i18n="adminBackOffice">Admin Back Office</a>
+        <a href="${basePath}/services.html" data-i18n="customerRelations">Customer Relations</a>
+        <a href="${basePath}/services.html" data-i18n="itSupport">IT Support</a>
       </div>
       <div class="menu">
         <a href="${basePath}/" data-i18n="home">Home</a>
