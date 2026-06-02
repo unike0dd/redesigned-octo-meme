@@ -946,7 +946,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para apoyar operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
+        "Postúlate para operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
       availabilityLabel: "Disponibilidad",
       areaInterestLabel: "Área de interés",
       careersOptionLogistics: "Logística",

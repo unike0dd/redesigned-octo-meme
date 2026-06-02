@@ -239,7 +239,7 @@
 
       careersTitle: "Careers",
       careersIntro:
-        "Apply to support logistics operations, administrative back-office execution, customer relations, and practical IT support workflows.",
+        "Apply to help deliver Gabriel Services' core support services: logistics operations, administrative back office, customer relations operations, and day-to-day IT support.",
       availabilityLabel: "Availability",
       availabilityImmediately: "Immediately",
       availability15Days: "15 days",
@@ -975,7 +975,7 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para apoyar operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
+        "Postúlate para operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
       availabilityLabel: "Disponibilidad",
       availabilityImmediately: "Inmediatamente",
       availability15Days: "15 días",
