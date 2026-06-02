@@ -247,7 +247,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Careers",
       careersIntro:
-        "Apply to help deliver Gabriel Services' core support services: logistics operations, administrative back office, customer relations operations, and day-to-day IT support.",
+        "Apply to support logistics operations, administrative back-office execution, customer relations, and practical IT support workflows.",
       availabilityLabel: "Availability",
       areaInterestLabel: "Area of Interest",
       careersOptionLogistics: "Logistics",
@@ -946,7 +946,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para ayudar a brindar los servicios principales de apoyo de Gabriel Services: operaciones logísticas, back office administrativo, operaciones de relaciones con clientes y soporte de TI diario.",
+        "Postúlate para operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
       availabilityLabel: "Disponibilidad",
       areaInterestLabel: "Área de interés",
       careersOptionLogistics: "Logística",

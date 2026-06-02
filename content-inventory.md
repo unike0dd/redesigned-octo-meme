@@ -71,7 +71,7 @@
 ## Page: careers.html
 - Section: Unsectioned [0]
 - Section: Careers [1]
-  - Paragraph: Apply to help deliver Gabriel Services' core support services: logistics operations, administrative back office, customer relations operations, and day-to-day IT support. [1]
+  - Paragraph: Apply to support logistics operations, administrative back-office execution, customer relations, and practical IT support workflows. [1]
 
 ## Page: chatbot/gabo-io-chatbot.html
 - Section: Unsectioned [0]

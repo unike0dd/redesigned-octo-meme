@@ -975,7 +975,7 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para ayudar a brindar los servicios principales de apoyo de Gabriel Services: operaciones logísticas, back office administrativo, operaciones de relaciones con clientes y soporte de TI diario.",
+        "Postúlate para operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
       availabilityLabel: "Disponibilidad",
       availabilityImmediately: "Inmediatamente",
       availability15Days: "15 días",
