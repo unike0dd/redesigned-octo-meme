@@ -247,7 +247,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Careers",
       careersIntro:
-        "Apply to support logistics operations, administrative back-office execution, customer relations, and practical IT support workflows.",
+        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
       availabilityLabel: "Availability",
       areaInterestLabel: "Area of Interest",
       careersOptionLogistics: "Logistics",
@@ -946,7 +946,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
+        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
       availabilityLabel: "Disponibilidad",
       areaInterestLabel: "Área de interés",
       careersOptionLogistics: "Logística",
