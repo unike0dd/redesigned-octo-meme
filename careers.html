@@ -39,8 +39,8 @@
       </div>
     </header>
 
-    <main class="section">
-      <div class="container">
+    <main class="section careers-page">
+      <div class="container careers-form-wrapper">
         <h1 data-i18n="careersTitle">Careers</h1>
         <p data-i18n="careersIntro">
           Apply to support operations, communication, and service delivery
@@ -48,7 +48,9 @@
         </p>
         <form
           id="careers-application-form"
+          class="careers-form"
           method="post"
+          autocomplete="on"
           action="https://careers.gabo.services/api/careers"
           data-secure-gateway="careers"
           data-page-tinyml="careers"
@@ -71,7 +73,13 @@
           <div class="form-grid">
             <div class="floating-field">
               <label for="career-full-name" data-i18n="fullName">Full Name</label>
-              <input id="career-full-name" name="fullName" autocomplete="name" required minlength="2" />
+              <input
+                id="career-full-name"
+                name="fullName"
+                autocomplete="name"
+                required
+                minlength="2"
+              />
             </div>
             <div class="floating-field">
               <label for="career-email-address" data-i18n="emailAddress">Email Address</label>
@@ -93,6 +101,7 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="tel-country-code"
+                required
               />
             </div>
             <div class="floating-field">
@@ -105,15 +114,16 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="tel-national"
+                required
               />
             </div>
             <div class="floating-field">
               <label for="career-city" data-i18n="city">City</label>
-              <input id="career-city" name="city" />
+              <input id="career-city" name="city" required />
             </div>
             <div class="floating-field">
               <label for="career-state-province" data-i18n="stateProvince">State/Province</label>
-              <input id="career-state-province" name="stateProvince" />
+              <input id="career-state-province" name="stateProvince" required />
             </div>
             <div class="floating-field">
               <label for="career-country-zip-code" data-i18n="countryZipCode">Country Zip Code</label>
@@ -125,15 +135,25 @@
                 pattern="[0-9]+"
                 data-numeric-only
                 autocomplete="postal-code"
+                required
               />
             </div>
-            <div class="floating-field">
+            <div class="floating-field floating-select-field">
               <label for="career-availability" data-i18n="availabilityLabel">Availability</label>
-              <input id="career-availability" name="availability" />
+              <select id="career-availability" name="availability" required>
+                <option value="" disabled selected hidden data-i18n="availabilityLabel">Availability</option>
+                <option data-i18n="availabilityImmediately">Immediately</option>
+                <option data-i18n="availability15Days">15 days</option>
+                <option data-i18n="availability30Days">30 days</option>
+                <option data-i18n="availability45Days">45 days</option>
+                <option data-i18n="availability60Days">60 days</option>
+                <option data-i18n="availability90Days">90 days</option>
+              </select>
             </div>
-            <div>
+            <div class="floating-field floating-select-field">
               <label for="career-area-interest" data-i18n="areaInterestLabel">Area of Interest</label>
-              <select id="career-area-interest" name="areaInterest">
+              <select id="career-area-interest" name="areaInterest" required>
+                <option value="" disabled selected hidden data-i18n="areaInterestLabel">Area of Interest</option>
                 <option data-i18n="careersOptionLogistics">Logistics</option>
                 <option data-i18n="careersOptionAdministration">
                   Administration
@@ -148,9 +168,10 @@
               <label for="career-resume-link" data-i18n="resumeLinkLabel">Resume/Profile link</label>
               <input id="career-resume-link" name="resumeLink" type="url" />
             </div>
-            <div>
+            <div class="floating-field floating-select-field">
               <label for="career-education-level" data-i18n="educationLevelLabel">Education Level</label>
-              <select id="career-education-level" name="educationLevel">
+              <select id="career-education-level" name="educationLevel" required>
+                <option value="" disabled selected hidden data-i18n="educationLevelLabel">Education Level</option>
                 <option data-i18n="educationOptionHighSchool">
                   High School
                 </option>

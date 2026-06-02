@@ -608,7 +608,7 @@
   function setupFloatingField(field) {
     if (!field || field.dataset.floatingFieldReady === "true") return;
 
-    const controls = Array.from(field.querySelectorAll("input, textarea"));
+    const controls = Array.from(field.querySelectorAll("input, textarea, select"));
     if (!controls.length) return;
 
     const updateValueState = () => {
