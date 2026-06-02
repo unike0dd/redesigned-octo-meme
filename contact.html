@@ -44,175 +44,124 @@
       </div>
     </header>
 
-    <main class="section">
+    <main class="section contact-page">
       <div class="container">
         <h1 data-i18n="contact">Contacto</h1>
         <p data-i18n="contactIntro">
           Ponte en contacto para soporte, incorporación, proyectos y
           oportunidades de colaboración.
         </p>
-        <form
-          id="contact-form"
-          action="https://contacto.gabo.services/api/contact"
-          data-contact-endpoint-url="https://contacto.gabo.services/api/contact"
-          data-asset-id="redesigned-octo-meme-contact"
-          data-repo-id="CONTACTO"
-          method="post"
-          data-contact-endpoint="true"
-          data-contact-form="true"
-          data-page-tinyml="contact"
-          data-source-path="contact.html"
-          data-asset-source="gabo-services-static-contact-form"
-        >
-          <div class="form-trap" aria-hidden="true">
-            <label for="website" data-i18n="honeypotWebsiteLabel">Sitio web</label>
-            <input
-              id="website"
-              name="website"
-              type="text"
-              tabindex="-1"
-              autocomplete="off"
-              data-tinyml-honeypot="true"
-            />
-          </div>
-          <div class="form-grid">
-            <div class="floating-field">
-              <label for="contact-full-name" data-i18n="fullName">Nombre completo</label>
-              <input id="contact-full-name" name="fullName" autocomplete="name" required minlength="2" />
-            </div>
-            <div class="floating-field">
-              <label for="contact-email-address" data-i18n="emailAddress"
-                >Dirección de correo electrónico</label
-              >
+        <!-- CONTACT FORM – final layout -->
+        <section class="contact-form-wrapper" aria-labelledby="contact-request-title">
+          <form
+            id="contactForm"
+            class="contact-form"
+            action="https://contacto.gabo.services/api/contact"
+            data-contact-endpoint-url="https://contacto.gabo.services/api/contact"
+            data-asset-id="redesigned-octo-meme-contact"
+            data-repo-id="CONTACTO"
+            method="post"
+            autocomplete="on"
+            data-contact-endpoint="true"
+            data-contact-form="true"
+            data-page-tinyml="contact"
+            data-source-path="contact.html"
+            data-asset-source="gabo-services-static-contact-form"
+          >
+            <h2 id="contact-request-title" data-i18n="contactRequestTitle">Contact Request</h2>
+
+            <div class="form-trap" aria-hidden="true">
+              <label for="website" data-i18n="honeypotWebsiteLabel">Sitio web</label>
               <input
-                id="contact-email-address"
-                name="emailAddress"
-                type="email"
-                autocomplete="email"
-                required
-              />
-            </div>
-            <div class="floating-field">
-              <label for="contact-country-code" data-i18n="countryCode">Código de país</label>
-              <input
-                id="contact-country-code"
-                type="tel"
-                inputmode="numeric"
-                pattern="[0-9]+"
-                data-numeric-only
-                autocomplete="tel-country-code"
-                name="countryCode"
-              />
-            </div>
-            <div class="floating-field">
-              <label for="contact-number" data-i18n="contactNumber">Número de contacto</label>
-              <input
-                id="contact-number"
-                type="tel"
-                inputmode="numeric"
-                pattern="[0-9]+"
-                data-numeric-only
-                autocomplete="tel-national"
-                name="contactNumber"
-              />
-            </div>
-            <div class="floating-field">
-              <label for="contact-city" data-i18n="city">Ciudad</label>
-              <input id="contact-city" name="city" />
-            </div>
-            <div class="floating-field">
-              <label for="contact-state-province" data-i18n="stateProvince">Estado/Provincia</label>
-              <input id="contact-state-province" name="stateProvince" />
-            </div>
-            <div class="floating-field">
-              <label for="contact-space-suite-apt" data-i18n="spaceSuiteApt"
-                >Espacio/Suite/Apartamento</label
-              >
-              <input id="contact-space-suite-apt" name="spaceSuiteApt" />
-            </div>
-            <div class="floating-field">
-              <label for="contact-country-zip-code" data-i18n="countryZipCode"
-                >Código postal del país</label
-              >
-              <input
-                id="contact-country-zip-code"
+                id="website"
+                name="website"
                 type="text"
-                inputmode="numeric"
-                pattern="[0-9]+"
-                data-numeric-only
-                autocomplete="postal-code"
-                name="countryZipCode"
+                tabindex="-1"
+                autocomplete="off"
+                data-tinyml-honeypot="true"
               />
             </div>
-            <div class="entry-group best-contact-time">
-              <label data-i18n="bestContactTime"
-                >Mejor hora para contactarte</label
-              >
-              <div class="best-contact-row">
-                <input
-                  name="bestContactDate"
-                  type="date"
-                  aria-label="Mejor fecha de contacto"
-                  data-i18n-aria-label="bestContactDateLabel"
-                />
-                <input
-                  name="bestContactTime"
-                  type="time"
-                  aria-label="Mejor hora de contacto"
-                  data-i18n-aria-label="bestContactTimeLabel"
-                />
+
+            <input type="hidden" name="fullName" data-contact-full-name />
+            <input type="hidden" name="message" data-contact-message />
+
+            <div class="form-row two-col">
+              <div class="form-control">
+                <input id="contact-first-name" name="firstName" autocomplete="given-name" placeholder=" " required />
+                <label for="contact-first-name" data-i18n="firstNameLabel">First Name</label>
+              </div>
+              <div class="form-control">
+                <input id="contact-last-name" name="lastName" autocomplete="family-name" placeholder=" " required />
+                <label for="contact-last-name" data-i18n="lastNameLabel">Last Name</label>
               </div>
             </div>
-          </div>
-          <div class="floating-field floating-field-textarea">
-            <label for="contact-message" data-i18n="messageLabel">Mensaje</label>
-            <textarea id="contact-message" name="message" required minlength="8"></textarea>
-          </div>
-          <h3 data-i18n="inquiryAboutTitle">
-            Cuéntanos tus expectativas sobre la experiencia, el conocimiento y
-            las habilidades del Asistente Remoto
-          </h3>
-          <div class="inquiry-grid">
-            <section class="inquiry-card">
-              <h4 class="inquiry-card-title" data-i18n="inquiryCardAptitudeTitle">Aptitud, habilidades, experiencia, conocimiento</h4>
-              <div class="entry-group-list">
-                <div class="entry-group" data-repeatable-group data-field-name="Habilidades" data-i18n-data-field-name="skillsLabel">
-                  <div class="entry-group-header"><label data-i18n="skillsLabel">Habilidades</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
-                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddSkillEntry">Agregar habilidad</label><input data-i18n-placeholder="placeholderAddSkillEntry" name="skills[]" placeholder="Agregar habilidad" /></div></div>
-                </div>
-                <div class="entry-group" data-repeatable-group data-field-name="Nivel de experiencia" data-i18n-data-field-name="experienceLevelLabel">
-                  <div class="entry-group-header"><label data-i18n="experienceLevelLabel">Nivel de experiencia</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
-                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddExperienceEntry">Agregar nivel de experiencia</label><input data-i18n-placeholder="placeholderAddExperienceEntry" name="experienceLevels[]" placeholder="Agregar nivel de experiencia" /></div></div>
-                </div>
-                <div class="entry-group" data-repeatable-group data-field-name="Idiomas" data-i18n-data-field-name="languagesLabel">
-                  <div class="entry-group-header"><label data-i18n="languagesLabel">Idiomas</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
-                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddLanguageEntry">Agregar idioma</label><input data-i18n-placeholder="placeholderAddLanguageEntry" name="languages[]" placeholder="Agregar idioma" /></div></div>
-                </div>
+
+            <div class="form-control">
+              <input id="contact-email-address" name="emailAddress" type="email" autocomplete="email" placeholder=" " required />
+              <label for="contact-email-address" data-i18n="emailAddress">Email Address</label>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-control">
+                <input id="contact-country-code" name="countryCode" type="tel" inputmode="numeric" pattern="[0-9]+" data-numeric-only autocomplete="tel-country-code" placeholder=" " />
+                <label for="contact-country-code" data-i18n="countryCode">Country Code</label>
               </div>
-            </section>
-            <section class="inquiry-card">
-              <h4 class="inquiry-card-title" data-i18n="inquiryCardInterestTitle">Interés y educación</h4>
-              <div class="entry-group-list">
-                <div class="entry-group" data-repeatable-group data-field-name="Área de interés" data-i18n-data-field-name="areaInterestLabel">
-                  <div class="entry-group-header"><label data-i18n="areaInterestLabel">Área de interés</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
-                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddAreaInterestEntry">Agregar área de interés</label><input data-i18n-placeholder="placeholderAddAreaInterestEntry" name="areasOfInterest[]" placeholder="Agregar área de interés" /></div></div>
-                </div>
-                <div class="entry-group" data-repeatable-group data-field-name="Educación" data-i18n-data-field-name="educationLabel">
-                  <div class="entry-group-header"><label data-i18n="educationLabel">Educación</label><div class="entry-group-actions"><button class="btn ghost entry-btn" type="button" data-repeat-add><span data-i18n="addSkill">Agregar +</span></button><button class="btn ghost entry-btn" type="button" data-repeat-remove><span data-i18n="removeSkill">Eliminar -</span></button></div></div>
-                  <div class="entry-list" data-repeat-list><div class="entry-row floating-field entry-floating-field"><label data-i18n="placeholderAddEducationEntry">Agregar educación</label><input data-i18n-placeholder="placeholderAddEducationEntry" name="education[]" placeholder="Agregar educación" /></div></div>
-                </div>
+              <div class="form-control">
+                <input id="contact-number" name="contactNumber" type="tel" inputmode="numeric" pattern="[0-9]+" data-numeric-only autocomplete="tel-national" placeholder=" " />
+                <label for="contact-number" data-i18n="contactNumber">Contact Number</label>
               </div>
-            </section>
-          </div>
-          <p id="contact-status" class="form-status" data-contact-status role="status" aria-live="polite"></p>
-          <div class="form-actions">
-            <button class="btn primary" type="submit" data-i18n="contactButtonLabel">
-              Enviar</button
-            ><button class="btn ghost" type="reset" data-i18n="clearForm">
-              Limpiar formulario
-            </button>
-          </div>
-        </form>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-control">
+                <input id="contact-city" name="city" autocomplete="address-level2" placeholder=" " />
+                <label for="contact-city" data-i18n="city">City</label>
+              </div>
+              <div class="form-control">
+                <input id="contact-state-province" name="stateProvince" autocomplete="address-level1" placeholder=" " />
+                <label for="contact-state-province" data-i18n="stateProvince">State / Province</label>
+              </div>
+            </div>
+
+            <div class="form-control">
+              <input id="contact-country-zip-code" name="countryZipCode" inputmode="numeric" pattern="[0-9]+" data-numeric-only autocomplete="postal-code" placeholder=" " />
+              <label for="contact-country-zip-code" data-i18n="countryZipCode">Country Zip Code</label>
+            </div>
+
+            <div class="form-row two-col">
+              <div class="form-control">
+                <input id="contact-best-date" name="bestContactDate" type="date" placeholder=" " />
+                <label for="contact-best-date" data-i18n="bestContactDateLabel">Best Contact Date</label>
+              </div>
+              <div class="form-control">
+                <input id="contact-best-time" name="bestContactTime" type="time" placeholder=" " />
+                <label for="contact-best-time" data-i18n="bestContactTimeLabel">Best Contact Time</label>
+              </div>
+            </div>
+
+            <h3 data-i18n="inquiryAboutTitle">
+              Tell us your expectation about the Remote Assistant’s expertise, knowledge and abilities
+            </h3>
+
+            <div id="dynamicGroups" class="dynamic-groups" data-contact-dynamic-groups></div>
+
+            <div class="form-control">
+              <textarea id="contact-expectations" name="expectations" placeholder=" " required minlength="8"></textarea>
+              <label for="contact-expectations" data-i18n="expectationsLabel">
+                Describe what do you expect from your candidates / applicants
+              </label>
+            </div>
+
+            <p id="contact-status" class="form-status security-form-note" data-contact-status role="status" aria-live="polite"></p>
+
+            <div class="form-actions">
+              <button type="submit" class="btn primary submit-btn" data-contact-submit data-i18n="contactRequestButtonLabel">
+                Send Request
+              </button>
+              <button type="reset" class="btn ghost" data-i18n="clearForm">Clear Form</button>
+            </div>
+          </form>
+        </section>
       </div>
     </main>
     <script src="./assets/footer.js"></script>
