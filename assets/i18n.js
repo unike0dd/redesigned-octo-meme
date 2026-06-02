@@ -239,7 +239,7 @@
 
       careersTitle: "Careers",
       careersIntro:
-        "Apply to support operations, communication, and service delivery workflows across all service domains.",
+        "Apply to support logistics operations, administrative back-office execution, customer relations, and practical IT support workflows.",
       availabilityLabel: "Availability",
       availabilityImmediately: "Immediately",
       availability15Days: "15 days",
@@ -975,7 +975,7 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Postúlate para apoyar operaciones, comunicación y flujos de prestación de servicios en todas las áreas de servicio.",
+        "Postúlate para apoyar operaciones logísticas, ejecución administrativa de back office, relaciones con clientes y flujos prácticos de soporte de TI.",
       availabilityLabel: "Disponibilidad",
       availabilityImmediately: "Inmediatamente",
       availability15Days: "15 días",
