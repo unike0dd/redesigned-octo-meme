@@ -193,6 +193,10 @@
       contactSubmitUnavailable: "Your message could not be submitted right now.",
       contactIntro:
         "Get in touch for support, onboarding, projects, and partnership opportunities.",
+      contactRequestTitle: "Contact Request",
+      contactRequestButtonLabel: "Send Request",
+      addContactEntry: "+ Add",
+      expectationsLabel: "Describe what do you expect from your candidates / applicants",
       fullName: "Full Name",
       firstNameLabel: "First Name",
       lastNameLabel: "Last Name",
@@ -206,7 +210,7 @@
       bestContactTime: "Best Time to Contact You",
       messageLabel: "Message",
       inquiryAboutTitle:
-        "Tell us your expectation about the Remote Assistant expertise, knowledge and abilities",
+        "Tell us your expectation about the Remote Assistant’s expertise, knowledge and abilities",
       inquiryAboutHelper: "Aptitude, skills, experience, knowledge",
       inquiryCardAptitudeTitle: "Aptitude, skills, experience, knowledge",
       inquiryCardInterestTitle: "Interest and education",
@@ -928,6 +932,10 @@
       contactSubmitUnavailable: "No se pudo enviar tu mensaje en este momento.",
       contactIntro:
         "Ponte en contacto para soporte, incorporación, proyectos y oportunidades de colaboración.",
+      contactRequestTitle: "Solicitud de contacto",
+      contactRequestButtonLabel: "Enviar solicitud",
+      addContactEntry: "+ Agregar",
+      expectationsLabel: "Describe qué esperas de tus candidatos / postulantes",
       fullName: "Nombre completo",
       firstNameLabel: "Nombre",
       lastNameLabel: "Apellido",

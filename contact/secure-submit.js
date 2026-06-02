@@ -226,6 +226,14 @@
       "nombre"
     ]);
 
+    const firstName = readAlias(fields, ["firstName", "first_name", "givenName", "nombre"]);
+    const lastName = readAlias(fields, ["lastName", "last_name", "familyName", "apellido"]);
+    const combinedName = [fullName, [firstName, lastName].filter(Boolean).join(" ")]
+      .map(function (value) {
+        return String(value || "").trim();
+      })
+      .find(Boolean);
+
     const email = readAlias(fields, [
       "emailAddress",
       "email",
@@ -236,6 +244,7 @@
 
     const message = readAlias(fields, [
       "message",
+      "expectations",
       "comments",
       "comment",
       "notes",
@@ -243,7 +252,7 @@
       "mensaje"
     ]);
 
-    if (!fullName || String(fullName).trim().length < 2) {
+    if (!combinedName || String(combinedName).trim().length < 2) {
       return t("contactFullNameRequired", "Full name is required.");
     }
 

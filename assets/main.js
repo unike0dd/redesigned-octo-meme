@@ -811,6 +811,357 @@
   });
 
 
+
+  function initContactFormEnhancements() {
+    const form = document.querySelector("#contactForm[data-contact-form]");
+    const mount = form?.querySelector("[data-contact-dynamic-groups]");
+    if (!form || !mount || form.dataset.contactUiReady === "true") return;
+
+    const CACHE_KEY = "gabo_contact_v3";
+    const ARRAY_KEYS = [
+      "areaOfInterest",
+      "experience",
+      "experienceLevel",
+      "languages",
+      "languageLevel",
+      "skills",
+      "skillLevel",
+      "education",
+      "educationLevel",
+    ];
+
+    const defaultState = {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      countryCode: "",
+      contactNumber: "",
+      city: "",
+      stateProvince: "",
+      countryZipCode: "",
+      bestContactDate: "",
+      bestContactTime: "",
+      expectations: "",
+      areaOfInterest: [],
+      experience: [],
+      experienceLevel: [],
+      languages: [],
+      languageLevel: [],
+      skills: [],
+      skillLevel: [],
+      education: [],
+      educationLevel: [],
+    };
+
+    const translate = (key, fallback) => window.I18N?.t?.(key) || fallback || key;
+
+    const option = (valueKey, fallback) => ({ value: fallback, labelKey: valueKey, fallback });
+
+    const selectData = {
+      areaOfInterest: [
+        option("careersOptionItSupport", "IT Support"),
+        option("careersOptionCustomerRelations", "Customer Relations"),
+        option("careersOptionLogistics", "Logistics"),
+        option("careersOptionAdministrationBackOffice", "Administration Back Office"),
+      ],
+      experienceLevel: [
+        option("experienceLevelEntry", "Entry"),
+        option("experienceLevelJunior", "Junior"),
+        option("experienceLevelIntermediate", "Intermediate"),
+        option("experienceLevelAdvance", "Advance"),
+        option("experienceLevelSenior", "Senior"),
+        option("experienceLevelExpert", "Expert"),
+        option("experienceLevelEngineer", "Engineer"),
+        option("experienceLevelLowerManagement", "Lower Management"),
+        option("experienceLevelTopManagement", "Top Management"),
+        option("experienceLevelSeniorManagement", "Senior Management"),
+        option("experienceLevelCSuite", "C Suite"),
+      ],
+      languageLevel: [
+        option("languageLevelBeginner", "Beginner"),
+        option("languageLevelElementary", "Elementary"),
+        option("languageLevelIntermediate", "Intermediate"),
+        option("languageLevelUpperIntermediate", "Upper Intermediate"),
+        option("languageLevelAdvanced", "Advanced"),
+        option("languageLevelProficient", "Proficient"),
+      ],
+      skillLevel: [
+        option("skillLevelNovice", "Novice"),
+        option("skillLevelAdvancedBeginner", "Advanced Beginner"),
+        option("skillLevelProficient", "Proficient"),
+        option("skillLevelExpert", "Expert"),
+      ],
+      educationLevel: [
+        option("educationOptionGed", "GED"),
+        option("educationOptionHighSchool", "High School"),
+        option("educationOptionSomeCollege", "Some College"),
+        option("educationOptionAssociateDegree", "Associate Degree"),
+        option("educationOptionGraduate", "Graduate"),
+        option("educationOptionMasters", "Masters"),
+        option("educationOptionDoctorate", "Doctorate"),
+        option("educationOptionCertified", "Certified"),
+      ],
+    };
+
+    const pairs = [
+      {
+        key: "areaOfInterest",
+        titleKey: "areaInterestLabel",
+        fallbackTitle: "Area Of Interest",
+        type: "select",
+        options: selectData.areaOfInterest,
+      },
+      {
+        key: "experience",
+        titleKey: "experienceLabel",
+        fallbackTitle: "Experience",
+        pairKey: "experienceLevel",
+        pairTitleKey: "experienceLevelLabel",
+        pairFallbackTitle: "Experience Level",
+        pairOptions: selectData.experienceLevel,
+      },
+      {
+        key: "languages",
+        titleKey: "languagesLabel",
+        fallbackTitle: "Language",
+        pairKey: "languageLevel",
+        pairTitleKey: "languageLevelLabel",
+        pairFallbackTitle: "Language Level",
+        pairOptions: selectData.languageLevel,
+      },
+      {
+        key: "skills",
+        titleKey: "skillsLabel",
+        fallbackTitle: "Skill",
+        pairKey: "skillLevel",
+        pairTitleKey: "skillLevelLabel",
+        pairFallbackTitle: "Skill Level",
+        pairOptions: selectData.skillLevel,
+      },
+      {
+        key: "education",
+        titleKey: "educationLabel",
+        fallbackTitle: "Education",
+        pairKey: "educationLevel",
+        pairTitleKey: "educationLevelLabel",
+        pairFallbackTitle: "Education Level",
+        pairOptions: selectData.educationLevel,
+      },
+    ];
+
+    const state = { ...defaultState };
+
+    try {
+      const cached = JSON.parse(window.localStorage?.getItem(CACHE_KEY) || "{}");
+      Object.entries(cached).forEach(([key, value]) => {
+        if (!(key in state)) return;
+        state[key] = ARRAY_KEYS.includes(key) ? (Array.isArray(value) ? value : []) : String(value || "");
+      });
+    } catch (error) {
+      window.localStorage?.removeItem(CACHE_KEY);
+    }
+
+    const save = () => {
+      try {
+        window.localStorage?.setItem(CACHE_KEY, JSON.stringify(state));
+      } catch (error) {
+        form.dataset.contactDraftStorage = "unavailable";
+      }
+    };
+
+    const make = (tag, className) => {
+      const node = document.createElement(tag);
+      if (className) node.className = className;
+      return node;
+    };
+
+    const createLabel = (forId, text) => {
+      const label = make("label");
+      label.setAttribute("for", forId);
+      label.textContent = text;
+      return label;
+    };
+
+    const optionLabel = (item) => translate(item.labelKey, item.fallback);
+
+    const fillSelect = (select, options, placeholder) => {
+      select.innerHTML = "";
+      if (placeholder) {
+        const placeholderOption = document.createElement("option");
+        placeholderOption.disabled = true;
+        placeholderOption.hidden = true;
+        placeholderOption.value = "";
+        placeholderOption.textContent = placeholder;
+        select.appendChild(placeholderOption);
+      }
+      options.forEach((item) => {
+        const entry = document.createElement("option");
+        entry.value = item.value;
+        entry.textContent = optionLabel(item);
+        select.appendChild(entry);
+      });
+    };
+
+    const readFormValue = (name) => String(form.elements[name]?.value || "");
+
+    const syncCompatibilityFields = () => {
+      const fullName = form.querySelector("[data-contact-full-name]");
+      const message = form.querySelector("[data-contact-message]");
+      const combinedName = [readFormValue("firstName"), readFormValue("lastName")]
+        .map((value) => String(value || "").trim())
+        .filter(Boolean)
+        .join(" ");
+      const expectations = readFormValue("expectations");
+
+      if (fullName && fullName.value !== combinedName) fullName.value = combinedName;
+      if (message && message.value !== expectations) message.value = expectations;
+    };
+
+    const syncStaticField = (key) => {
+      const field = form.elements[key];
+      if (!field || ARRAY_KEYS.includes(key)) return;
+      field.value = state[key] || "";
+      field.addEventListener(field.tagName === "SELECT" ? "change" : "input", () => {
+        state[key] = field.value;
+        syncCompatibilityFields();
+        save();
+      });
+    };
+
+    const push = (spec) => {
+      const options = spec.options || [];
+      state[spec.key].push(spec.type === "select" && options[0] ? options[0].value : "");
+      if (spec.pairKey) {
+        state[spec.pairKey].push(spec.pairOptions?.[0]?.value || "");
+      }
+    };
+
+    const remove = (spec, index) => {
+      state[spec.key].splice(index, 1);
+      if (spec.pairKey) state[spec.pairKey].splice(index, 1);
+    };
+
+    const createControl = ({ id, label, control, className = "form-control" }) => {
+      const wrapper = make("div", className);
+      control.id = id;
+      control.setAttribute("aria-label", label);
+      wrapper.append(control, createLabel(id, label));
+      return wrapper;
+    };
+
+    const createRow = (spec, index) => {
+      const row = make("div", "dynamic-row");
+      const title = translate(spec.titleKey, spec.fallbackTitle);
+      const first = document.createElement(spec.type === "select" ? "select" : "input");
+      const firstId = `contact-${spec.key}-${index}`;
+
+      first.name = `${spec.key}[]`;
+      first.required = false;
+
+      if (spec.type === "select") {
+        fillSelect(first, spec.options, "");
+        first.value = state[spec.key][index] || spec.options[0]?.value || "";
+        first.addEventListener("change", () => {
+          state[spec.key][index] = first.value;
+          save();
+        });
+      } else {
+        first.placeholder = " ";
+        first.value = state[spec.key][index] || "";
+        first.addEventListener("input", () => {
+          state[spec.key][index] = first.value;
+          save();
+        });
+      }
+
+      row.append(createControl({ id: firstId, label: title, control: first }));
+
+      if (spec.pairKey) {
+        const pairLabel = translate(spec.pairTitleKey, spec.pairFallbackTitle);
+        const select = document.createElement("select");
+        const selectId = `contact-${spec.pairKey}-${index}`;
+        select.name = `${spec.pairKey}[]`;
+        select.required = false;
+        fillSelect(select, spec.pairOptions, pairLabel);
+        select.value = state[spec.pairKey][index] || spec.pairOptions?.[0]?.value || "";
+        select.addEventListener("change", () => {
+          state[spec.pairKey][index] = select.value;
+          save();
+        });
+        row.append(
+          createControl({
+            id: selectId,
+            label: pairLabel,
+            control: select,
+            className: "form-control dynamic-select-control",
+          }),
+        );
+      }
+
+      const removeButton = make("button", "remove-btn");
+      removeButton.type = "button";
+      removeButton.textContent = "−";
+      removeButton.setAttribute("aria-label", `${translate("removeSkill", "Remove")} ${title}`);
+      removeButton.addEventListener("click", () => {
+        remove(spec, index);
+        renderGroups();
+        save();
+      });
+      row.append(removeButton);
+
+      return row;
+    };
+
+    function renderGroups() {
+      mount.innerHTML = "";
+
+      pairs.forEach((spec) => {
+        const title = translate(spec.titleKey, spec.fallbackTitle);
+        const pairTitle = spec.pairKey ? translate(spec.pairTitleKey, spec.pairFallbackTitle) : "";
+        const group = make("section", "dynamic-group");
+        const heading = make("h3");
+        const rows = make("div", "dynamic-rows");
+        const addButton = make("button", "add-btn");
+
+        heading.textContent = pairTitle ? `${title} / ${pairTitle}` : title;
+        addButton.type = "button";
+        addButton.textContent = translate("addContactEntry", "+ Add");
+        addButton.addEventListener("click", () => {
+          push(spec);
+          renderGroups();
+          save();
+          mount
+            .querySelectorAll(".dynamic-row")
+            .item(mount.querySelectorAll(".dynamic-row").length - 1)
+            ?.querySelector("input, select")
+            ?.focus();
+        });
+
+        (state[spec.key] || []).forEach((_, index) => rows.append(createRow(spec, index)));
+        group.append(heading, rows, addButton);
+        mount.append(group);
+      });
+    }
+
+    Object.keys(state).forEach(syncStaticField);
+    form.addEventListener("submit", syncCompatibilityFields, true);
+    window.addEventListener("language:changed", renderGroups);
+    form.addEventListener("reset", () => {
+      window.setTimeout(() => {
+        Object.entries(defaultState).forEach(([key, value]) => {
+          state[key] = Array.isArray(value) ? [] : "";
+        });
+        window.localStorage?.removeItem(CACHE_KEY);
+        renderGroups();
+        syncCompatibilityFields();
+      }, 0);
+    });
+
+    form.dataset.contactUiReady = "true";
+    renderGroups();
+    syncCompatibilityFields();
+  }
+
   function initCareersFormEnhancements() {
     const form = document.querySelector("#careers-application-form");
     if (!form || form.dataset.careersUiReady === "true") return;
@@ -901,6 +1252,7 @@
     initFloatingFields();
     initRepeatableEntryGroups();
     initNumericOnlyInputs();
+    initContactFormEnhancements();
     initCareersFormEnhancements();
     initMobileServiceMenu();
     initScrollLazyLoad();
