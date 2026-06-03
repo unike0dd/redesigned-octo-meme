@@ -75,7 +75,7 @@
       logisticsDesc: "Dispatch and tracking continuity for shipment movement, operational updates, carrier follow-up, and timeline protection.",
       adminDesc: "Records, scheduling, documentation, reporting, communication support, and process upkeep for daily business execution.",
       customerRelDesc: "Communication, follow-up, service rhythm, resolution tracking, customer satisfaction support, and case closure.",
-      itSupportDesc: "Ticket triage, help desk intake, basic troubleshooting, account assistance, and day-to-day request handling.",
+      itSupportDesc: "Level I and Level II support for ticket triage, troubleshooting, account assistance, incident review, and escalation coordination.",
       exploreService: "Explore service",
       sitemap: "Sitemap",
       servicesOverview: "Services Overview",
@@ -89,7 +89,7 @@
       serviceOverviewCustomerDesc:
         "Customer communications, issue resolution, and follow-up workflows designed to improve satisfaction and retention.",
       serviceOverviewItDesc:
-        "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity.",
+        "Structured Level I and Level II technical support for intake, troubleshooting, access assistance, escalation, and resolution ownership.",
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
       whyBusinessesText:
         "Businesses choose Gabriel Services for practical execution, clear communication, and consistent daily support that helps teams stay focused on growth.",
@@ -537,20 +537,100 @@
       trackITTitle: "IT Support",
       trackITText:
         "Learn triage basics, ticket communication, and request handling.",
+      itSupportMetaDescription:
+        "Professional Level I and Level II IT support for help desk intake, ticket creation, troubleshooting, end-user support, account access assistance, escalation coordination, incident investigation, workflow support, root-cause analysis, and resolution ownership.",
       itSupportServiceIntro:
-        "Gabriel Services provides dependable IT support for everyday technical needs, including ticket triage, end-user assistance, and operational system support.",
+        "We provide structured technical support coverage for help desk intake, ticket creation, troubleshooting, end-user support, account access assistance, escalation coordination, incident investigation, workflow support, root-cause analysis, and resolution ownership after escalation.",
+      itSupportHeroEyebrow: "Service Lane 04",
+      itSupportHeroLead:
+        "Structured technical support coverage for Level I and Level II assistance.",
+      itSupportHeroIntro:
+        "We provide structured technical support coverage for help desk intake, ticket creation, troubleshooting, end-user support, account access assistance, escalation coordination, incident investigation, workflow support, root-cause analysis, and resolution ownership after escalation.",
+      itSupportProofLevel1: "Level I Coverage",
+      itSupportProofLevel2: "Level II Ownership",
+      itSupportProofEscalation: "Escalation Coordination",
+      itSupportProofRootCause: "Root-Cause Discipline",
+      itSupportRequestCta: "Request IT support",
+      itSupportViewCoverageCta: "View coverage",
+      itSupportSnapshotEyebrow: "Support Snapshot",
+      itSupportSnapshotTitle:
+        "Clear intake. Strong triage. Accountable resolution.",
+      itSupportSnapshotIntake: "Structured intake",
+      itSupportSnapshotPriority: "Priority tracking",
+      itSupportSnapshotEscalation: "Escalation ownership",
+      itSupportSnapshotResolution: "Resolution clarity",
+      itSupportSnapshotText:
+        "Built for businesses that need calm, documented, professional support from first contact through final closure.",
+      itSupportCoverageEyebrow: "Coverage",
+      itSupportCoverageTitle: "Two levels of technical support.",
+      itSupportCoverageIntro:
+        "We provide structured technical support coverage across front-line assistance, deeper troubleshooting, incident review, workflow support, and post-escalation ownership.",
       serviceHighlightsTitle: "Service Highlights",
+      itSupportLevel1Eyebrow: "Front-Line Response",
+      itSupportLevel1Body:
+        "Level I support keeps user issues moving with clean intake, first-touch assistance, basic troubleshooting, access help, and clear escalation coordination.",
       itSupportHighlight1: "Help desk intake and ticket creation",
       itSupportHighlight2: "Basic troubleshooting and issue diagnosis",
       itSupportHighlight3: "Account access and system support coordination",
       itSupportHighlight4:
         "Escalation management to specialized teams when needed",
+      itSupportLevel2Eyebrow: "Technical Ownership",
+      itSupportLevel2Body:
+        "Level II support handles deeper investigation, advanced troubleshooting, system and workflow support, root-cause analysis, and resolution ownership after escalation.",
+      itSupportLevel2SystemSupport: "System support",
+      itSupportLevel2WorkflowSupport: "Workflow support",
+      itSupportLevel2RootCause: "Root-cause analysis",
       itSupportDeliveryTitle: "How We Deliver Support",
       itSupportDeliveryText:
         "We maintain a structured support rhythm that follows incoming requests from first contact through resolution, with visibility and accountability at every step.",
       itSupportDeliveryPoint1: "Fast ticket intake and triage",
       itSupportDeliveryPoint2: "Clear status updates and escalation pathways",
       itSupportDeliveryPoint3: "Practical, user-focused communication",
+      itSupportWorkflowEyebrow: "Workflow",
+      itSupportWorkflowTitle: "How IT support moves.",
+      itSupportWorkflowIntro:
+        "The support process is designed to reduce confusion, protect productivity, and make every ticket easier to track from request to resolution.",
+      itSupportWorkflowReceiveTitle: "Receive",
+      itSupportWorkflowReceiveText:
+        "Capture the user request, issue details, affected system, and business impact.",
+      itSupportWorkflowClassifyTitle: "Classify",
+      itSupportWorkflowClassifyText:
+        "Confirm the issue type, urgency, affected user, priority, and support path.",
+      itSupportWorkflowResolveTitle: "Resolve at L1",
+      itSupportWorkflowResolveText:
+        "Handle basic troubleshooting, user support, and access assistance where possible.",
+      itSupportWorkflowEscalateTitle: "Escalate to L2",
+      itSupportWorkflowEscalateText:
+        "Move deeper incidents into advanced investigation with clear notes and ownership.",
+      itSupportWorkflowCloseTitle: "Close with clarity",
+      itSupportWorkflowCloseText:
+        "Document the action taken, final status, root cause, and resolution outcome.",
+      itSupportFocusEyebrow: "Dynamic Focus",
+      itSupportFocusTitle: "Choose the IT support priority.",
+      itSupportFocusIntro:
+        "Select a priority area to show the exact coverage points that matter most to your operation.",
+      itSupportFocusLevel1Eyebrow: "Front-line support",
+      itSupportFocusLevel1Text:
+        "Structured first-contact assistance for user requests, ticket creation, basic troubleshooting, access help, and escalation coordination.",
+      itSupportFocusLevel2Eyebrow: "Advanced ownership",
+      itSupportFocusLevel2Text:
+        "Deeper technical coverage for advanced troubleshooting, incident review, system and workflow support, root-cause analysis, and post-escalation resolution.",
+      itSupportFocusEscalationTab: "Escalation Flow",
+      itSupportFocusEscalationEyebrow: "Clear handoff",
+      itSupportFocusEscalationText:
+        "A disciplined escalation path that keeps issues visible, documented, prioritized, and owned until final closure.",
+      itSupportFocusEscalationItem1: "Issue notes",
+      itSupportFocusEscalationItem2: "Priority tracking",
+      itSupportFocusEscalationItem3: "Escalation coordination",
+      itSupportFocusEscalationItem4: "Internal handoff",
+      itSupportFocusEscalationItem5: "Status communication",
+      itSupportFocusEscalationItem6: "Resolution closure",
+      itSupportLeadEyebrow: "Reliable Support Coverage",
+      itSupportLeadTitle:
+        "Need IT support that feels organized, responsive, and accountable?",
+      itSupportLeadText:
+        "Use the inquiry flow to describe your support volume, user issues, ticket flow, access needs, recurring incidents, or escalation requirements.",
+      itSupportLeadPrimaryCta: "Start IT support inquiry",
       whyItWorksTitle: "Why It Works",
       itSupportWhyText:
         "The right IT support keeps your team productive, prevents small issues from becoming larger problems, and helps maintain reliable daily operations.",
@@ -875,7 +955,7 @@
       logisticsDesc: "Continuidad de despacho y seguimiento para movimiento de envíos, actualizaciones operativas, seguimiento de transportistas y protección de tiempos.",
       adminDesc: "Registros, programación, documentación, reportes, apoyo de comunicación y mantenimiento de procesos para la ejecución diaria del negocio.",
       customerRelDesc: "Comunicación, seguimiento, ritmo de servicio, control de resoluciones, apoyo a la satisfacción del cliente y cierre de casos.",
-      itSupportDesc: "Triaje de tickets, recepción de mesa de ayuda, solución básica de problemas, asistencia de cuentas y manejo diario de solicitudes.",
+      itSupportDesc: "Soporte de Nivel I y Nivel II para triaje de tickets, solución de problemas, asistencia de cuentas, revisión de incidentes y coordinación de escalamiento.",
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
       servicesOverview: "Descripción General de Servicios",
@@ -889,7 +969,7 @@
       serviceOverviewCustomerDesc:
         "Comunicaciones con clientes, resolución de problemas y flujos de seguimiento diseñados para mejorar la satisfacción y la retención.",
       serviceOverviewItDesc:
-        "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI.",
+        "Soporte técnico estructurado de Nivel I y Nivel II para recepción, solución de problemas, asistencia de acceso, escalamiento y responsabilidad de resolución.",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
       whyBusinessesText:
         "Las empresas eligen Gabriel Services por su ejecución práctica, comunicación clara y soporte diario constante que ayuda a los equipos a mantenerse enfocados en el crecimiento.",
@@ -1346,9 +1426,38 @@
       trackITTitle: "Soporte de TI",
       trackITText:
         "Aprende fundamentos de clasificación, comunicación de tickets y manejo de solicitudes.",
+      itSupportMetaDescription:
+        "Soporte profesional de TI de Nivel I y Nivel II para recepción de mesa de ayuda, creación de tickets, solución de problemas, soporte al usuario final, asistencia de acceso a cuentas, coordinación de escalamiento, investigación de incidentes, soporte de flujos de trabajo, análisis de causa raíz y responsabilidad de resolución.",
       itSupportServiceIntro:
-        "Gabriel Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos.",
+        "Ofrecemos cobertura técnica estructurada para recepción de mesa de ayuda, creación de tickets, solución de problemas, soporte al usuario final, asistencia de acceso a cuentas, coordinación de escalamiento, investigación de incidentes, soporte de flujos de trabajo, análisis de causa raíz y responsabilidad de resolución después de la escalada.",
+      itSupportHeroEyebrow: "Carril de Servicio 04",
+      itSupportHeroLead:
+        "Cobertura técnica estructurada para asistencia de Nivel I y Nivel II.",
+      itSupportHeroIntro:
+        "Ofrecemos cobertura técnica estructurada para recepción de mesa de ayuda, creación de tickets, solución de problemas, soporte al usuario final, asistencia de acceso a cuentas, coordinación de escalamiento, investigación de incidentes, soporte de flujos de trabajo, análisis de causa raíz y responsabilidad de resolución después de la escalada.",
+      itSupportProofLevel1: "Cobertura de Nivel I",
+      itSupportProofLevel2: "Responsabilidad de Nivel II",
+      itSupportProofEscalation: "Coordinación de Escalamiento",
+      itSupportProofRootCause: "Disciplina de Causa Raíz",
+      itSupportRequestCta: "Solicitar soporte de TI",
+      itSupportViewCoverageCta: "Ver cobertura",
+      itSupportSnapshotEyebrow: "Resumen de Soporte",
+      itSupportSnapshotTitle:
+        "Recepción clara. Triaje sólido. Resolución responsable.",
+      itSupportSnapshotIntake: "Recepción estructurada",
+      itSupportSnapshotPriority: "Seguimiento de prioridad",
+      itSupportSnapshotEscalation: "Responsabilidad de escalamiento",
+      itSupportSnapshotResolution: "Claridad de resolución",
+      itSupportSnapshotText:
+        "Diseñado para empresas que necesitan soporte calmado, documentado y profesional desde el primer contacto hasta el cierre final.",
+      itSupportCoverageEyebrow: "Cobertura",
+      itSupportCoverageTitle: "Dos niveles de soporte técnico.",
+      itSupportCoverageIntro:
+        "Ofrecemos cobertura técnica estructurada en asistencia de primera línea, solución avanzada de problemas, revisión de incidentes, soporte de flujos de trabajo y responsabilidad posterior a la escalada.",
       serviceHighlightsTitle: "Aspectos destacados del servicio",
+      itSupportLevel1Eyebrow: "Respuesta de Primera Línea",
+      itSupportLevel1Body:
+        "El soporte de Nivel I mantiene en movimiento los problemas de usuarios con recepción clara, asistencia inicial, solución básica de problemas, ayuda de acceso y coordinación de escalamiento.",
       itSupportHighlight1:
         "Recepción de solicitudes de mesa de ayuda y creación de tickets.",
       itSupportHighlight2:
@@ -1357,6 +1466,12 @@
         "Coordinación de acceso a cuentas y soporte de sistemas.",
       itSupportHighlight4:
         "Gestión de escalaciones a equipos especializados cuando sea necesario.",
+      itSupportLevel2Eyebrow: "Responsabilidad Técnica",
+      itSupportLevel2Body:
+        "El soporte de Nivel II maneja investigación más profunda, solución avanzada de problemas, soporte de sistemas y flujos de trabajo, análisis de causa raíz y responsabilidad de resolución después de la escalada.",
+      itSupportLevel2SystemSupport: "Soporte de sistemas",
+      itSupportLevel2WorkflowSupport: "Soporte de flujos de trabajo",
+      itSupportLevel2RootCause: "Análisis de causa raíz",
       itSupportDeliveryTitle: "Cómo brindamos soporte",
       itSupportDeliveryText:
         "Mantenemos un ritmo de soporte estructurado que da seguimiento a las solicitudes entrantes desde el primer contacto hasta la resolución, con visibilidad y responsabilidad en cada paso.",
@@ -1365,6 +1480,51 @@
         "Actualizaciones claras de estado y rutas de escalación.",
       itSupportDeliveryPoint3:
         "Comunicación práctica y enfocada en el usuario.",
+      itSupportWorkflowEyebrow: "Flujo de Trabajo",
+      itSupportWorkflowTitle: "Cómo avanza el soporte de TI.",
+      itSupportWorkflowIntro:
+        "El proceso de soporte está diseñado para reducir la confusión, proteger la productividad y hacer que cada ticket sea más fácil de seguir desde la solicitud hasta la resolución.",
+      itSupportWorkflowReceiveTitle: "Recibir",
+      itSupportWorkflowReceiveText:
+        "Capturar la solicitud del usuario, los detalles del problema, el sistema afectado y el impacto comercial.",
+      itSupportWorkflowClassifyTitle: "Clasificar",
+      itSupportWorkflowClassifyText:
+        "Confirmar el tipo de problema, urgencia, usuario afectado, prioridad y ruta de soporte.",
+      itSupportWorkflowResolveTitle: "Resolver en L1",
+      itSupportWorkflowResolveText:
+        "Atender solución básica de problemas, soporte al usuario y asistencia de acceso cuando sea posible.",
+      itSupportWorkflowEscalateTitle: "Escalar a L2",
+      itSupportWorkflowEscalateText:
+        "Mover incidentes más profundos a investigación avanzada con notas claras y responsabilidad definida.",
+      itSupportWorkflowCloseTitle: "Cerrar con claridad",
+      itSupportWorkflowCloseText:
+        "Documentar la acción tomada, estado final, causa raíz y resultado de resolución.",
+      itSupportFocusEyebrow: "Enfoque Dinámico",
+      itSupportFocusTitle: "Elija la prioridad de soporte de TI.",
+      itSupportFocusIntro:
+        "Seleccione un área prioritaria para mostrar los puntos de cobertura exactos que más importan a su operación.",
+      itSupportFocusLevel1Eyebrow: "Soporte de primera línea",
+      itSupportFocusLevel1Text:
+        "Asistencia estructurada de primer contacto para solicitudes de usuarios, creación de tickets, solución básica de problemas, ayuda de acceso y coordinación de escalamiento.",
+      itSupportFocusLevel2Eyebrow: "Responsabilidad avanzada",
+      itSupportFocusLevel2Text:
+        "Cobertura técnica más profunda para solución avanzada de problemas, revisión de incidentes, soporte de sistemas y flujos de trabajo, análisis de causa raíz y resolución posterior a la escalada.",
+      itSupportFocusEscalationTab: "Flujo de Escalamiento",
+      itSupportFocusEscalationEyebrow: "Traspaso claro",
+      itSupportFocusEscalationText:
+        "Una ruta disciplinada de escalamiento que mantiene los problemas visibles, documentados, priorizados y con responsable hasta el cierre final.",
+      itSupportFocusEscalationItem1: "Notas del problema",
+      itSupportFocusEscalationItem2: "Seguimiento de prioridad",
+      itSupportFocusEscalationItem3: "Coordinación de escalamiento",
+      itSupportFocusEscalationItem4: "Traspaso interno",
+      itSupportFocusEscalationItem5: "Comunicación de estado",
+      itSupportFocusEscalationItem6: "Cierre de resolución",
+      itSupportLeadEyebrow: "Cobertura de Soporte Confiable",
+      itSupportLeadTitle:
+        "¿Necesita soporte de TI organizado, ágil y responsable?",
+      itSupportLeadText:
+        "Use el flujo de consulta para describir su volumen de soporte, problemas de usuarios, flujo de tickets, necesidades de acceso, incidentes recurrentes o requisitos de escalamiento.",
+      itSupportLeadPrimaryCta: "Iniciar consulta de soporte de TI",
       whyItWorksTitle: "Por qué funciona",
       itSupportWhyText:
         "El soporte de TI adecuado mantiene a tu equipo productivo, evita que los problemas pequeños se conviertan en situaciones mayores y ayuda a mantener operaciones diarias confiables.",
