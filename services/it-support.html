@@ -212,7 +212,7 @@
             </p>
           </div>
 
-          <div class="it-focus-board lazy-on-scroll">
+          <div class="it-focus-board lazy-on-scroll" data-service-focus-board>
             <div class="it-focus-tabs" role="tablist" aria-label="IT support priority options">
               <button
                 class="it-focus-tab is-active"
@@ -220,7 +220,12 @@
                 role="tab"
                 aria-selected="true"
                 aria-controls="it-focus-display"
-                data-it-focus="level1"
+                data-service-focus-tab
+                data-focus-key="level1"
+                data-focus-eyebrow-key="itSupportFocusLevel1Eyebrow"
+                data-focus-title-key="aboutLevel1Title"
+                data-focus-text-key="itSupportFocusLevel1Text"
+                data-focus-item-keys="aboutLevel1List1,aboutLevel1List2,aboutLevel1List3,aboutLevel1List4,aboutLevel1List5"
               >
                 <span data-i18n="aboutLevel1Title">Level I Support</span>
               </button>
@@ -230,7 +235,12 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="it-focus-display"
-                data-it-focus="level2"
+                data-service-focus-tab
+                data-focus-key="level2"
+                data-focus-eyebrow-key="itSupportFocusLevel2Eyebrow"
+                data-focus-title-key="aboutLevel2Title"
+                data-focus-text-key="itSupportFocusLevel2Text"
+                data-focus-item-keys="aboutLevel2List1,aboutLevel2List2,itSupportLevel2SystemSupport,itSupportLevel2WorkflowSupport,itSupportLevel2RootCause,aboutLevel2List5"
               >
                 <span data-i18n="aboutLevel2Title">Level II Support</span>
               </button>
@@ -240,7 +250,12 @@
                 role="tab"
                 aria-selected="false"
                 aria-controls="it-focus-display"
-                data-it-focus="escalation"
+                data-service-focus-tab
+                data-focus-key="escalation"
+                data-focus-eyebrow-key="itSupportFocusEscalationEyebrow"
+                data-focus-title-key="itSupportFocusEscalationTab"
+                data-focus-text-key="itSupportFocusEscalationText"
+                data-focus-item-keys="itSupportFocusEscalationItem1,itSupportFocusEscalationItem2,itSupportFocusEscalationItem3,itSupportFocusEscalationItem4,itSupportFocusEscalationItem5,itSupportFocusEscalationItem6"
               >
                 <span data-i18n="itSupportFocusEscalationTab">Escalation Flow</span>
               </button>
@@ -251,6 +266,7 @@
               id="it-focus-display"
               role="tabpanel"
               aria-live="polite"
+              data-service-focus-display
             ></article>
           </div>
         </div>
@@ -272,7 +288,7 @@
       </section>
     </main>
 
-    <script src="../assets/it-support.js"></script>
+    <script src="../assets/service-page.js"></script>
     <script src="../assets/footer.js"></script>
     <script src="../assets/main.js"></script>
     <script src="../assets/gabo-io-chatbot.js"></script>
