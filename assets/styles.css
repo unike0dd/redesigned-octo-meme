@@ -3126,9 +3126,10 @@ textarea.is-security-warning {
   }
 }
 
-/* Reusable service page dynamics */
+/* Service detail enhancements */
 .service-detail-page {
-  padding-bottom: clamp(4rem, 8vw, 7rem);
+  padding-top: clamp(3rem, 7vw, 5.75rem);
+  padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
 }
 
 .service-detail-page > .container {
