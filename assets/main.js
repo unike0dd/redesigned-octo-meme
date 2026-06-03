@@ -810,17 +810,26 @@
           "serviceFocusAdminRecordsItem6",
         ],
       },
-      coordination: {
+      scheduling: {
         eyebrowKey: "selectedPriorityEyebrow",
-        titleKey: "serviceFocusAdminCoordinationTitle",
-        textKey: "serviceFocusAdminCoordinationText",
+        titleKey: "serviceFocusAdminSchedulingTitle",
+        textKey: "serviceFocusAdminSchedulingText",
         itemKeys: [
-          "serviceFocusAdminCoordinationItem1",
-          "serviceFocusAdminCoordinationItem2",
-          "serviceFocusAdminCoordinationItem3",
-          "serviceFocusAdminCoordinationItem4",
-          "serviceFocusAdminCoordinationItem5",
-          "serviceFocusAdminCoordinationItem6",
+          "serviceFocusAdminSchedulingItem1",
+          "serviceFocusAdminSchedulingItem2",
+          "serviceFocusAdminSchedulingItem3",
+          "serviceFocusAdminSchedulingItem4",
+        ],
+      },
+      vendorTravel: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusAdminVendorTravelTitle",
+        textKey: "serviceFocusAdminVendorTravelText",
+        itemKeys: [
+          "serviceFocusAdminVendorTravelItem1",
+          "serviceFocusAdminVendorTravelItem2",
+          "serviceFocusAdminVendorTravelItem3",
+          "serviceFocusAdminVendorTravelItem4",
         ],
       },
     },
@@ -860,8 +869,28 @@
           "serviceFocusCustomerSatisfactionItem2",
           "serviceFocusCustomerSatisfactionItem3",
           "serviceFocusCustomerSatisfactionItem4",
-          "serviceFocusCustomerSatisfactionItem5",
-          "serviceFocusCustomerSatisfactionItem6",
+        ],
+      },
+      billingUpsell: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusCustomerBillingUpsellTitle",
+        textKey: "serviceFocusCustomerBillingUpsellText",
+        itemKeys: [
+          "serviceFocusCustomerBillingUpsellItem1",
+          "serviceFocusCustomerBillingUpsellItem2",
+          "serviceFocusCustomerBillingUpsellItem3",
+          "serviceFocusCustomerBillingUpsellItem4",
+        ],
+      },
+      escalationClosure: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusCustomerEscalationClosureTitle",
+        textKey: "serviceFocusCustomerEscalationClosureText",
+        itemKeys: [
+          "serviceFocusCustomerEscalationClosureItem1",
+          "serviceFocusCustomerEscalationClosureItem2",
+          "serviceFocusCustomerEscalationClosureItem3",
+          "serviceFocusCustomerEscalationClosureItem4",
         ],
       },
     },
@@ -891,16 +920,16 @@
           "serviceFocusItLevelTwoItem6",
         ],
       },
-      ownership: {
+      escalationFlow: {
         eyebrowKey: "selectedPriorityEyebrow",
-        titleKey: "serviceFocusItOwnershipTitle",
-        textKey: "serviceFocusItOwnershipText",
+        titleKey: "serviceFocusItEscalationFlowTitle",
+        textKey: "serviceFocusItEscalationFlowText",
         itemKeys: [
-          "serviceFocusItOwnershipItem1",
-          "serviceFocusItOwnershipItem2",
-          "serviceFocusItOwnershipItem3",
-          "serviceFocusItOwnershipItem4",
-          "serviceFocusItOwnershipItem5",
+          "serviceFocusItEscalationFlowItem1",
+          "serviceFocusItEscalationFlowItem2",
+          "serviceFocusItEscalationFlowItem3",
+          "serviceFocusItEscalationFlowItem4",
+          "serviceFocusItEscalationFlowItem5",
         ],
       },
     },
@@ -946,7 +975,7 @@
       if (!boardContent) return;
 
       const tabs = Array.from(board.querySelectorAll("[data-service-focus]"));
-      const display = board.querySelector(".service-focus-display");
+      const display = board.querySelector(".service-focus-display, .focus-display");
       if (!tabs.length || !display) return;
 
       const activeTab =
@@ -962,7 +991,7 @@
       if (!boardContent) return;
 
       const tabs = Array.from(board.querySelectorAll("[data-service-focus]"));
-      const display = board.querySelector(".service-focus-display");
+      const display = board.querySelector(".service-focus-display, .focus-display");
       if (!tabs.length || !display) return;
 
       tabs.forEach((tab) => {
@@ -972,7 +1001,7 @@
           if (!focusContent) return;
 
           tabs.forEach((item) => {
-            item.classList.remove("active");
+            item.classList.remove("active", "is-active");
             item.setAttribute("aria-selected", "false");
           });
           tab.classList.add("active");
