@@ -781,6 +781,214 @@
       .forEach((target) => observer.observe(target));
   }
 
+
+  const SERVICE_FOCUS_CONTENT = {
+    admin: {
+      executive: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusAdminExecutiveTitle",
+        textKey: "serviceFocusAdminExecutiveText",
+        itemKeys: [
+          "serviceFocusAdminExecutiveItem1",
+          "serviceFocusAdminExecutiveItem2",
+          "serviceFocusAdminExecutiveItem3",
+          "serviceFocusAdminExecutiveItem4",
+          "serviceFocusAdminExecutiveItem5",
+          "serviceFocusAdminExecutiveItem6",
+        ],
+      },
+      records: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusAdminRecordsTitle",
+        textKey: "serviceFocusAdminRecordsText",
+        itemKeys: [
+          "serviceFocusAdminRecordsItem1",
+          "serviceFocusAdminRecordsItem2",
+          "serviceFocusAdminRecordsItem3",
+          "serviceFocusAdminRecordsItem4",
+          "serviceFocusAdminRecordsItem5",
+          "serviceFocusAdminRecordsItem6",
+        ],
+      },
+      coordination: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusAdminCoordinationTitle",
+        textKey: "serviceFocusAdminCoordinationText",
+        itemKeys: [
+          "serviceFocusAdminCoordinationItem1",
+          "serviceFocusAdminCoordinationItem2",
+          "serviceFocusAdminCoordinationItem3",
+          "serviceFocusAdminCoordinationItem4",
+          "serviceFocusAdminCoordinationItem5",
+          "serviceFocusAdminCoordinationItem6",
+        ],
+      },
+    },
+    customer: {
+      communication: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusCustomerCommunicationTitle",
+        textKey: "serviceFocusCustomerCommunicationText",
+        itemKeys: [
+          "serviceFocusCustomerCommunicationItem1",
+          "serviceFocusCustomerCommunicationItem2",
+          "serviceFocusCustomerCommunicationItem3",
+          "serviceFocusCustomerCommunicationItem4",
+          "serviceFocusCustomerCommunicationItem5",
+          "serviceFocusCustomerCommunicationItem6",
+        ],
+      },
+      resolution: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusCustomerResolutionTitle",
+        textKey: "serviceFocusCustomerResolutionText",
+        itemKeys: [
+          "serviceFocusCustomerResolutionItem1",
+          "serviceFocusCustomerResolutionItem2",
+          "serviceFocusCustomerResolutionItem3",
+          "serviceFocusCustomerResolutionItem4",
+          "serviceFocusCustomerResolutionItem5",
+          "serviceFocusCustomerResolutionItem6",
+        ],
+      },
+      satisfaction: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusCustomerSatisfactionTitle",
+        textKey: "serviceFocusCustomerSatisfactionText",
+        itemKeys: [
+          "serviceFocusCustomerSatisfactionItem1",
+          "serviceFocusCustomerSatisfactionItem2",
+          "serviceFocusCustomerSatisfactionItem3",
+          "serviceFocusCustomerSatisfactionItem4",
+          "serviceFocusCustomerSatisfactionItem5",
+          "serviceFocusCustomerSatisfactionItem6",
+        ],
+      },
+    },
+    it: {
+      levelOne: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusItLevelOneTitle",
+        textKey: "serviceFocusItLevelOneText",
+        itemKeys: [
+          "serviceFocusItLevelOneItem1",
+          "serviceFocusItLevelOneItem2",
+          "serviceFocusItLevelOneItem3",
+          "serviceFocusItLevelOneItem4",
+          "serviceFocusItLevelOneItem5",
+        ],
+      },
+      levelTwo: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusItLevelTwoTitle",
+        textKey: "serviceFocusItLevelTwoText",
+        itemKeys: [
+          "serviceFocusItLevelTwoItem1",
+          "serviceFocusItLevelTwoItem2",
+          "serviceFocusItLevelTwoItem3",
+          "serviceFocusItLevelTwoItem4",
+          "serviceFocusItLevelTwoItem5",
+          "serviceFocusItLevelTwoItem6",
+        ],
+      },
+      ownership: {
+        eyebrowKey: "selectedPriorityEyebrow",
+        titleKey: "serviceFocusItOwnershipTitle",
+        textKey: "serviceFocusItOwnershipText",
+        itemKeys: [
+          "serviceFocusItOwnershipItem1",
+          "serviceFocusItOwnershipItem2",
+          "serviceFocusItOwnershipItem3",
+          "serviceFocusItOwnershipItem4",
+          "serviceFocusItOwnershipItem5",
+        ],
+      },
+    },
+  };
+
+  function getServiceFocusText(key) {
+    if (window.I18N?.t) return window.I18N.t(key);
+    return window.I18N_DB?.en?.[key] || key;
+  }
+
+  function renderServiceFocus(display, data) {
+    if (!display || !data) return;
+
+    const eyebrow = document.createElement("p");
+    eyebrow.className = "eyebrow";
+    eyebrow.textContent = getServiceFocusText(data.eyebrowKey);
+
+    const title = document.createElement("h3");
+    title.textContent = getServiceFocusText(data.titleKey);
+
+    const description = document.createElement("p");
+    description.textContent = getServiceFocusText(data.textKey);
+
+    const list = document.createElement("ul");
+    data.itemKeys.forEach((itemKey) => {
+      const item = document.createElement("li");
+      item.textContent = getServiceFocusText(itemKey);
+      list.appendChild(item);
+    });
+
+    display.replaceChildren(eyebrow, title, description, list);
+  }
+
+  function initServiceFocusPanels() {
+    const boards = Array.from(
+      document.querySelectorAll("[data-service-focus-board]"),
+    );
+    if (!boards.length) return;
+
+    const syncBoard = (board) => {
+      const boardKey = board.getAttribute("data-service-focus-board");
+      const boardContent = SERVICE_FOCUS_CONTENT[boardKey];
+      if (!boardContent) return;
+
+      const tabs = Array.from(board.querySelectorAll("[data-service-focus]"));
+      const display = board.querySelector(".service-focus-display");
+      if (!tabs.length || !display) return;
+
+      const activeTab =
+        tabs.find((tab) => tab.getAttribute("aria-selected") === "true") ||
+        tabs[0];
+      const activeKey = activeTab.getAttribute("data-service-focus");
+      renderServiceFocus(display, boardContent[activeKey]);
+    };
+
+    boards.forEach((board) => {
+      const boardKey = board.getAttribute("data-service-focus-board");
+      const boardContent = SERVICE_FOCUS_CONTENT[boardKey];
+      if (!boardContent) return;
+
+      const tabs = Array.from(board.querySelectorAll("[data-service-focus]"));
+      const display = board.querySelector(".service-focus-display");
+      if (!tabs.length || !display) return;
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const focusKey = tab.getAttribute("data-service-focus");
+          const focusContent = boardContent[focusKey];
+          if (!focusContent) return;
+
+          tabs.forEach((item) => {
+            item.classList.remove("active");
+            item.setAttribute("aria-selected", "false");
+          });
+          tab.classList.add("active");
+          tab.setAttribute("aria-selected", "true");
+          renderServiceFocus(display, focusContent);
+        });
+      });
+
+      syncBoard(board);
+    });
+
+    window.addEventListener("language:changed", () => {
+      boards.forEach(syncBoard);
+    });
+  }
+
   function initRoyalDarkPointerEffects() {
     const reduceMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -1244,6 +1452,64 @@
     window.setTimeout(syncCareersUi, 150);
   }
 
+
+  function initRevealSections() {
+    const revealItems = Array.from(document.querySelectorAll(".reveal"));
+    if (!revealItems.length) return;
+
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  }
+
+  function initFocusBoards() {
+    document.querySelectorAll("[data-focus-board], .focus-board").forEach((board) => {
+      if (board.dataset.focusBoardReady === "true") return;
+      const tabs = Array.from(board.querySelectorAll(".focus-tab[data-focus-target]"));
+      const panels = Array.from(board.querySelectorAll("[data-focus-panel]"));
+      if (!tabs.length || !panels.length) return;
+
+      const activate = (targetId) => {
+        tabs.forEach((tab) => {
+          const isActive = tab.dataset.focusTarget === targetId;
+          tab.classList.toggle("active", isActive);
+          tab.setAttribute("aria-selected", String(isActive));
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== targetId;
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetId = tab.dataset.focusTarget;
+          if (!targetId || !panels.some((panel) => panel.id === targetId)) return;
+          activate(targetId);
+        });
+      });
+
+      const firstTarget = tabs.find((tab) => tab.classList.contains("active"))?.dataset.focusTarget || tabs[0].dataset.focusTarget;
+      if (firstTarget) activate(firstTarget);
+      board.dataset.focusBoardReady = "true";
+    });
+  }
+
   function initPage() {
     initSecurityRuntime();
     ensurePrimaryNav();
@@ -1255,7 +1521,10 @@
     initContactFormEnhancements();
     initCareersFormEnhancements();
     initMobileServiceMenu();
+    initRevealSections();
+    initFocusBoards();
     initScrollLazyLoad();
+    initServiceFocusPanels();
     initRoyalDarkPointerEffects();
     initSecureForms();
   }

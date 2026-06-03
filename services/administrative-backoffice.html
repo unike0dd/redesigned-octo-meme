@@ -3,10 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Administrative Back Office service page for Gabriel Services: documentation, calendar management, reporting, and operational coordination."
-    />
+    <meta name="description" content="Administrative back-office support for workflow coordination, documentation, scheduling, reporting, vendor communication, travel planning, and day-to-day execution." data-i18n-content="adminMetaDescription" />
     <link rel="canonical" href="https://www.gabo.services/services/administrative-backoffice.html" />
     <link rel="alternate" hreflang="en" href="https://www.gabo.services/services/administrative-backoffice.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.gabo.services/services/administrative-backoffice.html" />
@@ -20,94 +17,143 @@
     <header>
       <div class="container topbar">
         <a class="brand serif" href="../" data-i18n="brand">Gabriel Services</a>
-        <nav class="main-nav">
-          <a href="../about.html" data-i18n="about">About</a
-          ><a href="../careers.html" data-i18n="careers">Careers</a
-          ><a href="../contact.html" data-i18n="contact">Contact</a
-          ><a href="../services.html" data-i18n="services">Services</a>
+        <nav class="main-nav" aria-label="Main navigation" data-i18n-aria-label="mainNavigation">
+          <a href="../about.html" data-i18n="about">About</a>
+          <a href="../services.html" data-i18n="services" aria-current="page">Services</a>
+          <a href="../careers.html" data-i18n="careers">Careers</a>
+          <a href="../contact.html" data-i18n="contact">Contact</a>
           <div class="language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
-            <button
-              id="language-toggle"
-              type="button"
-              class="toggle-btn"
-              aria-label="Switch to Spanish"
-            >
-              ES
-            </button>
+            <button id="language-toggle" type="button" class="toggle-btn" aria-label="Switch to Spanish">ES</button>
           </div>
           <button id="theme-toggle" class="toggle-btn">Dark</button>
         </nav>
       </div>
     </header>
 
-    <main class="section">
+<main class="section service-detail-page service-admin-backoffice">
       <div class="container">
-        <h1 data-i18n="trackAdminTitle">Administrative Back Office</h1>
-        <p data-i18n="adminBackOfficeServiceIntro">
-          Our back office services bring structure and reliability to your
-          internal operations, helping reduce risk and maintain a consistent
-          business rhythm.
-        </p>
+        <section class="service-hero-panel card">
+          <div class="service-hero-copy">
+            <p class="eyebrow" data-i18n="serviceDetailEyebrowAdmin">Service Lane 02</p>
+            <h1 data-i18n="adminDetailTitle">Administrative Back Office</h1>
+            <p class="lead" data-i18n="adminDetailHeroCopy">We handle the operational details that keep leadership focused and daily business activity moving with structure, accuracy, and consistency.</p>
+            <p class="muted" data-i18n="adminDetailSecondaryCopy">Our administrative back-office support covers workflow coordination, documentation, scheduling, reporting, vendor communication, travel planning, and day-to-day execution for growing teams.</p>
+            <div class="service-proof-strip" aria-label="Administrative support proof points" data-i18n-aria-label="adminProofStripAria">
+              <span class="service-proof-pill" data-i18n="adminProofPill1">Records prepared</span>
+              <span class="service-proof-pill" data-i18n="adminProofPill2">Calendars aligned</span>
+              <span class="service-proof-pill" data-i18n="adminProofPill3">Follow-ups active</span>
+            </div>
+            <div class="cta-row">
+              <a class="btn primary" href="../contact.html" data-i18n="customOptimizationPlanCta">Get a Custom Optimization Plan</a>
+              <a class="btn ghost" href="#admin-coverage" data-i18n="viewCoverageCta">View coverage</a>
+            </div>
+          </div>
+          <aside class="service-command-panel" aria-label="Back office snapshot" data-i18n-aria-label="adminCommandPanelAria">
+            <p class="eyebrow" data-i18n="adminSnapshotEyebrow">Back Office Snapshot</p>
+            <h2 data-i18n="adminSnapshotTitle">Structure behind the visible operation.</h2>
+            <div class="service-status-row">
+              <span data-i18n="adminStatusRecords">Records</span>
+              <span class="service-status-bar"><span class="service-status-fill service-status-86"></span></span>
+              <strong data-i18n="adminStatusClean">Clean</strong>
+            </div>
+            <div class="service-status-row">
+              <span data-i18n="adminStatusScheduling">Scheduling</span>
+              <span class="service-status-bar"><span class="service-status-fill service-status-82"></span></span>
+              <strong data-i18n="adminStatusAligned">Aligned</strong>
+            </div>
+            <div class="service-status-row">
+              <span data-i18n="adminStatusFollowUp">Follow-up</span>
+              <span class="service-status-bar"><span class="service-status-fill service-status-78"></span></span>
+              <strong data-i18n="adminStatusActive">Active</strong>
+            </div>
+          </aside>
+        </section>
 
-        <section class="card">
-          <h2 data-i18n="adminBackOfficeHandleTitle">What We Handle</h2>
-          <ul>
-            <li data-i18n="adminBackOfficeHandle1">
-              Executive administrative support and calendar management
-            </li>
-            <li data-i18n="adminBackOfficeHandle2">
-              Document preparation, filing, and version control
-            </li>
-            <li data-i18n="adminBackOfficeHandle3">
-              Email and communication coordination for internal teams
-            </li>
-            <li data-i18n="adminBackOfficeHandle4">
-              Vendor follow-up, invoice tracking, and reporting support
-            </li>
+        <section id="admin-coverage" class="service-coverage-card card">
+          <p class="eyebrow" data-i18n="coverageEyebrow">Coverage</p>
+          <h2 data-i18n="adminCoverageTitle">What this service handles</h2>
+          <p data-i18n="adminSupportStatement">We support leadership and daily business operations by keeping tasks organized, records prepared, calendars aligned, and internal follow-ups moving without disruption.</p>
+          <ul class="service-check-list">
+            <li data-i18n="adminCoverage1">Executive administrative support</li>
+            <li data-i18n="adminCoverage2">Calendar and scheduling coordination</li>
+            <li data-i18n="adminCoverage3">Email and communication management</li>
+            <li data-i18n="adminCoverage4">Document organization and preparation</li>
+            <li data-i18n="adminCoverage5">Vendor coordination</li>
+            <li data-i18n="adminCoverage6">Internal operational support</li>
+            <li data-i18n="adminCoverage7">Travel planning and coordination</li>
+            <li data-i18n="adminCoverage8">Reporting and status updates</li>
+            <li data-i18n="adminCoverage9">Administrative workflow tracking</li>
+            <li data-i18n="adminCoverage10">Day-to-day back-office execution</li>
           </ul>
         </section>
 
-        <section class="card">
-          <h2 data-i18n="adminBackOfficeWorksTitle">How This Service Works</h2>
-          <p data-i18n="adminBackOfficeWorksText">
-            We partner closely with your team to understand processes, capture
-            priority actions, and keep every task aligned with your business
-            schedule.
-          </p>
-          <ul>
-            <li data-i18n="adminBackOfficeWorksPoint1">
-              Clear ownership for recurring tasks and follow-up items
-            </li>
-            <li data-i18n="adminBackOfficeWorksPoint2">
-              Documented task flows and progress tracking
-            </li>
-            <li data-i18n="adminBackOfficeWorksPoint3">
-              Regular status updates to stakeholders and team leads
-            </li>
-          </ul>
+        <section class="service-lanes" aria-labelledby="admin-lanes-title">
+          <div class="service-section-heading">
+            <p class="eyebrow" data-i18n="serviceLanesEyebrow">Operating lanes</p>
+            <h2 id="admin-lanes-title" data-i18n="adminLanesTitle">Three ways we create administrative rhythm</h2>
+          </div>
+          <article class="service-lane">
+            <span class="service-lane-index">01</span>
+            <div>
+              <h3 data-i18n="adminLane1Title">Executive support</h3>
+              <p data-i18n="adminLane1Text">Calendar coordination, travel planning, meeting preparation, and daily leadership assistance.</p>
+            </div>
+            <strong data-i18n="adminLane1Tag">Leadership</strong>
+          </article>
+          <article class="service-lane">
+            <span class="service-lane-index">02</span>
+            <div>
+              <h3 data-i18n="adminLane2Title">Documentation and records</h3>
+              <p data-i18n="adminLane2Text">Prepared files, organized records, reporting support, process notes, and easier retrieval.</p>
+            </div>
+            <strong data-i18n="adminLane2Tag">Structure</strong>
+          </article>
+          <article class="service-lane">
+            <span class="service-lane-index">03</span>
+            <div>
+              <h3 data-i18n="adminLane3Title">Vendor and internal coordination</h3>
+              <p data-i18n="adminLane3Text">Communication handling, status checks, task routing, and follow-through across stakeholders.</p>
+            </div>
+            <strong data-i18n="adminLane3Tag">Coordination</strong>
+          </article>
         </section>
 
-        <section class="card">
-          <h2 data-i18n="adminBackOfficeMattersTitle">Why It Matters</h2>
-          <p data-i18n="adminBackOfficeMattersText">
-            Strong back office support helps businesses scale by removing
-            administrative friction, improving consistency, and freeing your
-            team to focus on higher-value work.
-          </p>
+        <section class="service-process-rail" aria-labelledby="admin-process-title">
+          <div class="service-section-heading">
+            <p class="eyebrow" data-i18n="workflowEyebrow">Workflow</p>
+            <h2 id="admin-process-title" data-i18n="adminProcessTitle">How admin support moves</h2>
+          </div>
+          <div class="service-process-step"><span>01</span><p data-i18n="adminProcess1">Receive the task or support request.</p></div>
+          <div class="service-process-step"><span>02</span><p data-i18n="adminProcess2">Clarify owner, deadline, and required details.</p></div>
+          <div class="service-process-step"><span>03</span><p data-i18n="adminProcess3">Prepare records, calendar items, or documentation.</p></div>
+          <div class="service-process-step"><span>04</span><p data-i18n="adminProcess4">Coordinate follow-up with stakeholders.</p></div>
+          <div class="service-process-step"><span>05</span><p data-i18n="adminProcess5">Close the loop with clean status updates.</p></div>
         </section>
 
-        <a
-          class="btn primary"
-          href="../services.html"
-          data-i18n="backToServices"
-          >Back to Services</a
-        >
+        <section class="service-focus-board card" data-service-focus-board="admin" aria-labelledby="admin-focus-title">
+          <div class="service-focus-intro">
+            <p class="eyebrow" data-i18n="dynamicFocusEyebrow">Dynamic Focus</p>
+            <h2 id="admin-focus-title" data-i18n="adminFocusTitle">Choose the back-office priority</h2>
+            <p class="muted" data-i18n="adminFocusIntro">Select the operating area you want to tighten first.</p>
+          </div>
+          <div class="service-focus-tabs" role="tablist" aria-label="Administrative focus options" data-i18n-aria-label="adminFocusTabsAria">
+            <button class="service-focus-tab active" type="button" data-service-focus="executive" aria-selected="true" data-i18n="adminFocusTabExecutive">Executive Support</button>
+            <button class="service-focus-tab" type="button" data-service-focus="records" aria-selected="false" data-i18n="adminFocusTabRecords">Records and Documents</button>
+            <button class="service-focus-tab" type="button" data-service-focus="coordination" aria-selected="false" data-i18n="adminFocusTabCoordination">Coordination Flow</button>
+          </div>
+          <article class="service-focus-display" aria-live="polite"></article>
+        </section>
+
+        <section class="service-outcome-band card">
+          <p class="eyebrow" data-i18n="outcomeEyebrow">Outcome</p>
+          <h2 data-i18n="adminOutcomeTitle">A cleaner operational rhythm</h2>
+          <p data-i18n="adminOutcomeText">A cleaner operational rhythm with stronger organization, better follow-through, clearer documentation, and dependable administrative support for leadership and daily business needs.</p>
+          <a class="btn primary" href="../contact.html" data-i18n="customOptimizationPlanCta">Get a Custom Optimization Plan</a>
+        </section>
       </div>
     </main>
-
-    <script src="../assets/service-page.js"></script>
     <script src="../assets/footer.js"></script>
     <script src="../assets/main.js"></script>
     <script src="../assets/gabo-io-chatbot.js"></script>
-</body>
+  </body>
 </html>
