@@ -1452,6 +1452,64 @@
     window.setTimeout(syncCareersUi, 150);
   }
 
+
+  function initRevealSections() {
+    const revealItems = Array.from(document.querySelectorAll(".reveal"));
+    if (!revealItems.length) return;
+
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.16 },
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  }
+
+  function initFocusBoards() {
+    document.querySelectorAll("[data-focus-board], .focus-board").forEach((board) => {
+      if (board.dataset.focusBoardReady === "true") return;
+      const tabs = Array.from(board.querySelectorAll(".focus-tab[data-focus-target]"));
+      const panels = Array.from(board.querySelectorAll("[data-focus-panel]"));
+      if (!tabs.length || !panels.length) return;
+
+      const activate = (targetId) => {
+        tabs.forEach((tab) => {
+          const isActive = tab.dataset.focusTarget === targetId;
+          tab.classList.toggle("active", isActive);
+          tab.setAttribute("aria-selected", String(isActive));
+        });
+
+        panels.forEach((panel) => {
+          panel.hidden = panel.id !== targetId;
+        });
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const targetId = tab.dataset.focusTarget;
+          if (!targetId || !panels.some((panel) => panel.id === targetId)) return;
+          activate(targetId);
+        });
+      });
+
+      const firstTarget = tabs.find((tab) => tab.classList.contains("active"))?.dataset.focusTarget || tabs[0].dataset.focusTarget;
+      if (firstTarget) activate(firstTarget);
+      board.dataset.focusBoardReady = "true";
+    });
+  }
+
   function initPage() {
     initSecurityRuntime();
     ensurePrimaryNav();
@@ -1463,6 +1521,8 @@
     initContactFormEnhancements();
     initCareersFormEnhancements();
     initMobileServiceMenu();
+    initRevealSections();
+    initFocusBoards();
     initScrollLazyLoad();
     initServiceFocusPanels();
     initRoyalDarkPointerEffects();
