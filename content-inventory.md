@@ -71,7 +71,7 @@
 ## Page: careers.html
 - Section: Unsectioned [0]
 - Section: Careers [1]
-  - Paragraph: Describe the aptitudes, objectives, goals, and expectations you are seeking. [1]
+  - Paragraph: Whether you’re entry-level, advanced, senior, an engineer, or bringing extensive experience — join us and grow with a team that values your potential. [1]
 
 ## Page: chatbot/gabo-io-chatbot.html
 - Section: Unsectioned [0]

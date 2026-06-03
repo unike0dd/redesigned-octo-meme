@@ -247,7 +247,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Careers",
       careersIntro:
-        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
+        "Whether you’re entry-level, advanced, senior, an engineer, or bringing extensive experience — join us and grow with a team that values your potential.",
       availabilityLabel: "Availability",
       areaInterestLabel: "Area of Interest",
       careersOptionLogistics: "Logistics",
@@ -946,7 +946,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       careersTitle: "Carreras",
       careersIntro:
-        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
+        "Ya sea que estés comenzando, tengas nivel avanzado o senior, seas ingeniero/a o cuentes con amplia experiencia — únete a nosotros y crece con un equipo que valora tu potencial.",
       availabilityLabel: "Disponibilidad",
       areaInterestLabel: "Área de interés",
       careersOptionLogistics: "Logística",

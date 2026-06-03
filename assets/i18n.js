@@ -763,7 +763,7 @@
       clearForm: "Clear Form",
       careersTitle: "Careers",
       careersIntro:
-        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
+        "Whether you’re entry-level, advanced, senior, an engineer, or bringing extensive experience — join us and grow with a team that values your potential.",
       availabilityLabel: "Availability",
       availabilityImmediately: "Immediately",
       availability15Days: "15 days",
@@ -2106,7 +2106,7 @@
 
       careersTitle: "Carreras",
       careersIntro:
-        "Describe the aptitudes, objectives, goals, and expectations you are seeking.",
+        "Ya sea que estés comenzando, tengas nivel avanzado o senior, seas ingeniero/a o cuentes con amplia experiencia — únete a nosotros y crece con un equipo que valora tu potencial.",
       availabilityLabel: "Disponibilidad",
       availabilityImmediately: "Inmediatamente",
       availability15Days: "15 días",
