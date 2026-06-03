@@ -197,7 +197,7 @@
       stateProvince: ["stateProvince", "state", "province", "state_province"],
       countryZipCode: ["countryZipCode", "zip", "zipCode", "postalCode", "country_zip_code"],
       availability: ["availability", "availableWhen"],
-      areaOfInterest: ["areaOfInterest", "position", "role", "area_of_interest"],
+      areaOfInterest: ["areaOfInterest", "areaInterest", "position", "role", "area_of_interest"],
       educationLevel: ["educationLevel", "education", "education_level"],
       message: ["message", "careerMessage", "comments"]
     };
