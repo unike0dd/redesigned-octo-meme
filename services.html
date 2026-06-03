@@ -3,15 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Explore Gabriel Services support lanes for logistics operations, administrative back office, customer relations operations, and IT support." data-i18n-content="servicesMetaDescription" />
+    <meta name="description" content="Explore Gabriel Services support lanes for logistics operations, administrative back office, customer relations, and IT support." />
     <link rel="canonical" href="https://www.gabo.services/services.html" />
     <link rel="alternate" hreflang="en" href="https://www.gabo.services/services.html" />
     <link rel="alternate" hreflang="x-default" href="https://www.gabo.services/services.html" />
-    <title data-i18n="servicesPageTitle">Gabriel Services | Service Overview</title>
+    <title>Gabriel Services | Service Overview</title>
     <link rel="stylesheet" href="./assets/styles.css" />
     <link rel="stylesheet" href="./assets/gabo-io-chatbot.css" />
-    <script src="./assets/theme.js"></script>
-    <script src="./assets/i18n.js"></script>
+    <script src="./assets/theme.js">
+</script>
+    <script src="./assets/i18n.js">
+</script>
   </head>
   <body>
     <header>
@@ -19,13 +21,13 @@
         <a class="brand serif" href="./" data-i18n="brand">Gabriel Services</a>
         <nav class="main-nav" aria-label="Main navigation" data-i18n-aria-label="mainNavigation">
           <a href="./about.html" data-i18n="about">About</a>
-          <a href="./services.html" data-i18n="services" aria-current="page">Services</a>
+          <a href="./services.html" data-i18n="services">Services</a>
           <a href="./careers.html" data-i18n="careers">Careers</a>
           <a href="./contact.html" data-i18n="contact">Contact</a>
           <div class="language-switcher" aria-label="Language selector" data-i18n-aria-label="languageSelector">
             <button id="language-toggle" type="button" class="toggle-btn" aria-label="Switch to Spanish">ES</button>
           </div>
-          <button id="theme-toggle" class="toggle-btn">Dark</button>
+          <button id="theme-toggle" class="toggle-btn" type="button">Dark</button>
         </nav>
       </div>
     </header>
@@ -38,45 +40,49 @@
           consistency, and let your team focus on what matters most.
         </p>
 
-        <div class="grid four">
-          <article class="card">
+        <div class="service-lanes">
+          <article class="service-lane reveal">
+            <span class="lane-index" aria-hidden="true">01</span>
             <h3 data-i18n="logisticsOps">Logistics Operations</h3>
             <p data-i18n="serviceOverviewLogisticsDesc">
               Structured coordination, shipment tracking, and operational
               continuity for supply chain activity.
             </p>
-            <a href="services/logistics-operations.html" data-i18n="exploreService"
+            <a class="lane-action" href="services/logistics-operations.html" data-i18n="exploreService"
               >Explore service</a
             >
           </article>
-          <article class="card">
+          <article class="service-lane reveal">
+            <span class="lane-index" aria-hidden="true">02</span>
             <h3 data-i18n="adminBackOffice">Administrative Back Office</h3>
             <p data-i18n="serviceOverviewAdminDesc">
-              Documentation, scheduling, reporting, vendor coordination, travel
-              planning, and daily back-office execution.
+              Workflow coordination, documentation, scheduling, reporting, vendor
+              communication, travel planning, and day-to-day back-office execution.
             </p>
-            <a href="services/administrative-backoffice.html" data-i18n="exploreService"
+            <a class="lane-action" href="services/administrative-backoffice.html" data-i18n="exploreService"
               >Explore service</a
             >
           </article>
-          <article class="card">
+          <article class="service-lane reveal">
+            <span class="lane-index" aria-hidden="true">03</span>
             <h3 data-i18n="customerRelations">Customer Relations</h3>
             <p data-i18n="serviceOverviewCustomerDesc">
-              Customer communication, ticket follow-up, CSAT support, billing
-              clarification, upsell support, and resolution flow.
+              Customer communication, ticket follow-up, resolution tracking, CSAT support,
+              billing clarification, upsell support, and first-contact resolution.
             </p>
-            <a href="services/customer-relations.html" data-i18n="exploreService"
+            <a class="lane-action" href="services/customer-relations.html" data-i18n="exploreService"
               >Explore service</a
             >
           </article>
-          <article class="card">
+          <article class="service-lane reveal">
+            <span class="lane-index" aria-hidden="true">04</span>
             <h3 data-i18n="itSupport">IT Support</h3>
             <p data-i18n="serviceOverviewItDesc">
-              Level I and Level II support for help desk intake, troubleshooting,
-              access assistance, incident investigation, workflow support, and
-              resolution ownership.
+              Structured Level I and Level II support for intake, troubleshooting,
+              user support, access assistance, incident investigation, workflow support,
+              and resolution ownership.
             </p>
-            <a href="services/it-support.html" data-i18n="exploreService"
+            <a class="lane-action" href="services/it-support.html" data-i18n="exploreService"
               >Explore service</a
             >
           </article>
