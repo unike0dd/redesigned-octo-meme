@@ -61,21 +61,21 @@
       copyright: "© 2026 Gabriel Services",
 
       // Home page
-      homeTagline: "Outsource, Delivered",
+      homeTagline: "OUTSOURCE, DELIVERED",
       homeH1:
-        "Reliable day-to-day execution,<br/>Outstanding operational support<br/>for modern businesses.",
+        "Reliable day-to-day execution,<br/>Outstanding operational support for modern businesses.",
       homeDescription:
-        "Gabriel Services helps businesses run smoother with reliable day-to-day support across logistics, customer relations, administrative back office, and IT support.<br/><br/>We integrate with your workflows, keep communication clear, and help your team focus on priorities that drive growth.",
+        "Gabriel Services provides Logistics, Customer Relations, Administrative Back Office, and IT Support — integrating experience, coordination, operations management, customer satisfaction, and PC / desk support.<br/><br/>We execute the day-to-day so your team can focus on driving growth.",
       bookConsultation: "Start a conversation",
-      seeServiceCoverage: "Learn more",
+      seeServiceCoverage: "Service Overview",
       processeDriven: "Process-Driven Operations",
       practicalTransparent:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
       serviceAreasBuilt: "Service areas built for daily execution",
-      logisticsDesc: "Dispatch and tracking continuity.",
-      adminDesc: "Records, scheduling, and process upkeep.",
-      customerRelDesc: "Communication, follow-up, and service rhythm.",
-      itSupportDesc: "Ticket triage and day-to-day request handling.",
+      logisticsDesc: "Dispatch and tracking continuity for shipment movement, operational updates, carrier follow-up, and timeline protection.",
+      adminDesc: "Records, scheduling, documentation, reporting, communication support, and process upkeep for daily business execution.",
+      customerRelDesc: "Communication, follow-up, service rhythm, resolution tracking, customer satisfaction support, and case closure.",
+      itSupportDesc: "Ticket triage, help desk intake, basic troubleshooting, account assistance, and day-to-day request handling.",
       exploreService: "Explore service",
       sitemap: "Sitemap",
       servicesOverview: "Services Overview",
@@ -93,9 +93,72 @@
       whyBusinessesTitle: "Why businesses work with Gabriel Services",
       whyBusinessesText:
         "Businesses choose Gabriel Services for practical execution, clear communication, and consistent daily support that helps teams stay focused on growth.",
-      startSupportTitle: "Start with the support you need",
-      requestConsultation: "Contact Gabo Services",
-      viewEngagementOptions: "Ask gabo io",
+      startSupportTitle: "Start with the support you expect",
+      requestConsultation: "Start with the support you expect",
+      viewEngagementOptions: "Contact Us",
+
+      howWeWorkTitle: "How We Work",
+      howWeWorkHeadline:
+        "Assessment → Integration → Execution → Monitoring → Optimization",
+      howWeWorkIntro:
+        "We plug into your operating rhythm with a clear process that keeps support practical, visible, and steadily improving.",
+      assessmentStep: "Assessment",
+      integrationStep: "Integration",
+      executionStep: "Execution",
+      monitoringStep: "Monitoring",
+      optimizationStep: "Optimization",
+      assessmentStepText:
+        "Understand daily work, support gaps, friction points, and operational priorities.",
+      integrationStepText:
+        "Align with your workflow, communication style, systems, and execution standards.",
+      executionStepText:
+        "Handle day-to-day support with consistency, accuracy, communication, and follow-through.",
+      monitoringStepText:
+        "Track support activity, status updates, service rhythm, and operational visibility.",
+      optimizationStepText:
+        "Improve workflows, reduce friction, strengthen support quality, and refine execution.",
+      costConsciousSupportTitle: "Cost-Conscious Support",
+      costConsciousSupportHeadline:
+        "Support that makes sense for growing businesses.",
+      costConsciousSupportText:
+        "All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
+      operationalSnapshotTitle: "Operational Snapshot",
+      operationalSnapshotText:
+        "Practical, transparent, responsive, and aligned to your operating rhythm.",
+      noEnterpriseOverheadText: "No enterprise overhead",
+      finalCtaTitle: "Ready To Start?",
+      finalCtaText:
+        "Did we mention it? All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
+      startExpectedSupport: "Start with the support you expect",
+      contactUs: "Contact Us",
+      gabrielHighlights: "Gabriel Services highlights",
+      proofPracticalExecution: "Practical Execution",
+      proofClearCommunication: "Clear Communication",
+      proofResponsiveSupport: "Responsive Support",
+      statusClear: "Clear",
+      statusAligned: "Aligned",
+      statusConsistent: "Consistent",
+      statusOngoing: "Ongoing",
+      serviceAreasIntro:
+        "Gabriel Services supports the operational areas that keep modern businesses organized, responsive, and consistent.",
+      whyBusinessesHeadline:
+        "Practical execution, clear communication, and consistent support.",
+      practicalExecutionText:
+        "We focus on the work that needs to get done, without overcomplicating the process.",
+      transparentCommunicationTitle: "Transparent Communication",
+      transparentCommunicationText:
+        "We keep updates clear, tasks visible, and support activity easier to follow.",
+      responsiveSupportText:
+        "We help daily operations move with stronger follow-through and better rhythm.",
+      alignedOperationsTitle: "Aligned Operations",
+      alignedOperationsText:
+        "We integrate into your workflow and adapt to the way your business operates.",
+      growthFocusTitle: "Growth Focus",
+      growthFocusText:
+        "We handle the day-to-day so your internal team can focus on higher-value work.",
+      costConsciousDeliveryTitle: "Cost-Conscious Delivery",
+      costConsciousDeliveryText:
+        "Support that makes sense for growing businesses, without enterprise overhead.",
 
       aboutTitle: "About",
       aboutIntro1:
@@ -798,21 +861,21 @@
       copyright: "© 2026 Gabriel Services",
 
       // Home page
-      homeTagline: "Tercerización, Entregada",
+      homeTagline: "TERCERIZACIÓN, ENTREGADA",
       homeH1:
-        "Ejecución confiable día a día,<br/>Soporte operativo excepcional<br/>para negocios modernos.",
+        "Ejecución confiable día a día,<br/>Soporte operativo excepcional para negocios modernos.",
       homeDescription:
-        "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
+        "Gabriel Services proporciona Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI — integrando experiencia, coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC / escritorio.<br/><br/>Ejecutamos el día a día para que su equipo pueda enfocarse en impulsar el crecimiento.",
       bookConsultation: "Iniciar una conversación",
-      seeServiceCoverage: "Conocer más",
-      processeDriven: "Operaciones Impulsadas por Procesos",
+      seeServiceCoverage: "Resumen de servicios",
+      processeDriven: "Operaciones impulsadas por procesos",
       practicalTransparent:
-        "Práctico, transparente, responsivo y alineado con su ritmo operativo.",
-      serviceAreasBuilt: "Áreas de servicio construidas para ejecución diaria",
-      logisticsDesc: "Continuidad de despacho y seguimiento.",
-      adminDesc: "Registros, programación y mantenimiento de procesos.",
-      customerRelDesc: "Comunicación, seguimiento y ritmo de servicio.",
-      itSupportDesc: "Triaje de tickets y manejo de solicitudes diarias.",
+        "Práctico, transparente, ágil y alineado con su ritmo operativo.",
+      serviceAreasBuilt: "Áreas de servicio diseñadas para la ejecución diaria",
+      logisticsDesc: "Continuidad de despacho y seguimiento para movimiento de envíos, actualizaciones operativas, seguimiento de transportistas y protección de tiempos.",
+      adminDesc: "Registros, programación, documentación, reportes, apoyo de comunicación y mantenimiento de procesos para la ejecución diaria del negocio.",
+      customerRelDesc: "Comunicación, seguimiento, ritmo de servicio, control de resoluciones, apoyo a la satisfacción del cliente y cierre de casos.",
+      itSupportDesc: "Triaje de tickets, recepción de mesa de ayuda, solución básica de problemas, asistencia de cuentas y manejo diario de solicitudes.",
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
       servicesOverview: "Descripción General de Servicios",
@@ -829,10 +892,73 @@
         "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI.",
       whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
       whyBusinessesText:
-        "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
-      startSupportTitle: "Comience con el apoyo que necesita",
-      requestConsultation: "Contactar a Gabo Services",
-      viewEngagementOptions: "Preguntar a gabo io",
+        "Las empresas eligen Gabriel Services por su ejecución práctica, comunicación clara y soporte diario constante que ayuda a los equipos a mantenerse enfocados en el crecimiento.",
+      startSupportTitle: "Comience con el soporte que espera",
+      requestConsultation: "Comience con el soporte que espera",
+      viewEngagementOptions: "Contáctenos",
+
+      howWeWorkTitle: "Cómo trabajamos",
+      howWeWorkHeadline:
+        "Evaluación → Integración → Ejecución → Monitoreo → Optimización",
+      howWeWorkIntro:
+        "Nos integramos a su ritmo operativo con un proceso claro que mantiene el soporte práctico, visible y en mejora continua.",
+      assessmentStep: "Evaluación",
+      integrationStep: "Integración",
+      executionStep: "Ejecución",
+      monitoringStep: "Monitoreo",
+      optimizationStep: "Optimización",
+      assessmentStepText:
+        "Comprender el trabajo diario, brechas de soporte, puntos de fricción y prioridades operativas.",
+      integrationStepText:
+        "Alinear con su flujo de trabajo, estilo de comunicación, sistemas y estándares de ejecución.",
+      executionStepText:
+        "Gestionar el soporte diario con consistencia, precisión, comunicación y seguimiento.",
+      monitoringStepText:
+        "Dar seguimiento a la actividad de soporte, actualizaciones de estado, ritmo de servicio y visibilidad operativa.",
+      optimizationStepText:
+        "Mejorar flujos de trabajo, reducir fricción, fortalecer la calidad del soporte y refinar la ejecución.",
+      costConsciousSupportTitle: "Soporte consciente del costo",
+      costConsciousSupportHeadline:
+        "Soporte que tiene sentido para empresas en crecimiento.",
+      costConsciousSupportText:
+        "Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
+      operationalSnapshotTitle: "Resumen operativo",
+      operationalSnapshotText:
+        "Práctico, transparente, ágil y alineado con su ritmo operativo.",
+      noEnterpriseOverheadText: "Sin sobrecarga empresarial",
+      finalCtaTitle: "¿Listo para comenzar?",
+      finalCtaText:
+        "¿Ya lo mencionamos? Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
+      startExpectedSupport: "Comience con el soporte que espera",
+      contactUs: "Contáctenos",
+      gabrielHighlights: "Aspectos destacados de Gabriel Services",
+      proofPracticalExecution: "Ejecución práctica",
+      proofClearCommunication: "Comunicación clara",
+      proofResponsiveSupport: "Soporte ágil",
+      statusClear: "Claro",
+      statusAligned: "Alineado",
+      statusConsistent: "Constante",
+      statusOngoing: "Continuo",
+      serviceAreasIntro:
+        "Gabriel Services apoya las áreas operativas que mantienen a las empresas modernas organizadas, ágiles y consistentes.",
+      whyBusinessesHeadline:
+        "Ejecución práctica, comunicación clara y soporte constante.",
+      practicalExecutionText:
+        "Nos enfocamos en el trabajo que debe realizarse, sin complicar el proceso innecesariamente.",
+      transparentCommunicationTitle: "Comunicación transparente",
+      transparentCommunicationText:
+        "Mantenemos actualizaciones claras, tareas visibles y actividad de soporte más fácil de seguir.",
+      responsiveSupportText:
+        "Ayudamos a que las operaciones diarias avancen con mejor seguimiento y ritmo.",
+      alignedOperationsTitle: "Operaciones alineadas",
+      alignedOperationsText:
+        "Nos integramos a su flujo de trabajo y nos adaptamos a la forma en que opera su negocio.",
+      growthFocusTitle: "Enfoque en crecimiento",
+      growthFocusText:
+        "Manejamos el día a día para que su equipo interno pueda enfocarse en trabajo de mayor valor.",
+      costConsciousDeliveryTitle: "Entrega consciente del costo",
+      costConsciousDeliveryText:
+        "Soporte que tiene sentido para empresas en crecimiento, sin sobrecarga empresarial.",
 
       aboutTitle: "Acerca de",
       aboutIntro1:
