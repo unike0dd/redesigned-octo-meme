@@ -286,10 +286,10 @@
       practicalTransparent:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
       serviceAreasBuilt: "Service areas built for daily execution",
-      logisticsDesc: "Dispatch and tracking continuity for shipment movement, operational updates, carrier follow-up, and timeline protection.",
-      adminDesc: "Documentation, scheduling, reporting, vendor coordination, travel planning, and daily back-office execution.",
-      customerRelDesc: "Customer communication, ticket follow-up, CSAT support, billing clarification, upsell support, and resolution flow.",
-      itSupportDesc: "Level I and Level II support for help desk intake, troubleshooting, access assistance, incident investigation, workflow support, and resolution ownership.",
+      logisticsDesc: "Dispatch and tracking continuity.",
+      adminDesc: "Records, scheduling, and process upkeep.",
+      customerRelDesc: "Communication, follow-up, and service rhythm.",
+      itSupportDesc: "Ticket triage and day-to-day request handling.",
       exploreService: "Explore service",
       sitemap: "Sitemap",
       servicesOverview: "Services Overview",
@@ -578,7 +578,7 @@
       operationalSnapshotText:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
       noEnterpriseOverheadText: "No enterprise overhead",
-      finalCtaTitle: "Ready To Start?",
+      finalCtaTitle: "Did we mention it?",
       finalCtaText:
         "Did we mention it? All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
       startExpectedSupport: "Start with the support you expect",
@@ -1614,10 +1614,10 @@
       practicalTransparent:
         "Práctico, transparente, ágil y alineado con su ritmo operativo.",
       serviceAreasBuilt: "Áreas de servicio diseñadas para la ejecución diaria",
-      logisticsDesc: "Continuidad de despacho y seguimiento para movimiento de envíos, actualizaciones operativas, seguimiento de transportistas y protección de tiempos.",
-      adminDesc: "Documentación, programación, reportes, coordinación con proveedores, planificación de viajes y ejecución diaria de back office.",
-      customerRelDesc: "Comunicación con clientes, seguimiento de tickets, soporte CSAT, aclaración de facturación, soporte de oportunidades de venta adicional y flujo de resolución.",
-      itSupportDesc: "Soporte de Nivel I y Nivel II para recepción de mesa de ayuda, solución de problemas, asistencia de acceso, investigación de incidentes, soporte de flujos de trabajo y propiedad de resolución.",
+      logisticsDesc: "Continuidad de despacho y seguimiento.",
+      adminDesc: "Registros, programación y mantenimiento de procesos.",
+      customerRelDesc: "Comunicación, seguimiento y ritmo de servicio.",
+      itSupportDesc: "Triaje de tickets y manejo de solicitudes diarias.",
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
       servicesOverview: "Descripción General de Servicios",
@@ -1909,7 +1909,7 @@
       operationalSnapshotText:
         "Práctico, transparente, ágil y alineado con su ritmo operativo.",
       noEnterpriseOverheadText: "Sin sobrecarga empresarial",
-      finalCtaTitle: "¿Listo para comenzar?",
+      finalCtaTitle: "¿Ya lo mencionamos?",
       finalCtaText:
         "¿Ya lo mencionamos? Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
       startExpectedSupport: "Comience con el soporte que espera",
