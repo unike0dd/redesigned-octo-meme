@@ -33,239 +33,149 @@
       </div>
     </header>
 
-    <main class="it-support-page">
-      <section class="section it-hero" aria-labelledby="it-support-title">
-        <div class="container it-hero-grid">
-          <div class="it-hero-copy lazy-on-scroll">
-            <p class="eyebrow">Service Lane 04</p>
-            <h1 id="it-support-title" data-i18n="trackITTitle">IT Support</h1>
-            <p class="lead">
-              Structured technical support coverage for Level I and Level II assistance.
-            </p>
-            <p>
-              We provide structured technical support coverage for help desk intake,
-              ticket creation, troubleshooting, end-user support, account access
-              assistance, escalation coordination, incident investigation, workflow
-              support, root-cause analysis, and resolution ownership after escalation.
-            </p>
-
-            <div class="it-proof-pills" aria-label="IT support highlights">
-              <span>Level I Coverage</span>
-              <span>Level II Ownership</span>
-              <span>Escalation Coordination</span>
-              <span>Root-Cause Discipline</span>
+    <main class="section service-detail-page service-it-support">
+      <div class="container">
+        <section class="service-hero-panel card">
+          <div class="service-hero-copy">
+            <p class="eyebrow" data-i18n="serviceDetailEyebrowIt">Service Lane 04</p>
+            <h1 data-i18n="itDetailTitle">IT Support (Level I &amp; Level II)</h1>
+            <p class="lead" data-i18n="itDetailHeroCopy">We provide structured technical support coverage across front-line assistance, deeper troubleshooting, incident review, workflow support, and post-escalation ownership.</p>
+            <p class="muted" data-i18n="itCoverageIntro">Structured technical support keeps every request visible, routed, and owned from the first intake through final resolution.</p>
+            <div class="service-proof-strip" aria-label="IT support proof points" data-i18n-aria-label="itProofStripAria">
+              <span class="service-proof-pill" data-i18n="itProofPill1">Intake owned</span>
+              <span class="service-proof-pill" data-i18n="itProofPill2">Issues routed</span>
+              <span class="service-proof-pill" data-i18n="itProofPill3">Resolution tracked</span>
             </div>
-
-            <div class="cta-row" aria-label="IT support calls to action">
-              <a class="btn primary" href="../contact.html">Request IT support</a>
-              <a class="btn ghost" href="#coverage">View coverage</a>
+            <div class="cta-row">
+              <a class="btn primary" href="../contact.html" data-i18n="customOptimizationPlanCta">Get a Custom Optimization Plan</a>
+              <a class="btn ghost" href="#it-coverage" data-i18n="viewCoverageCta">View coverage</a>
             </div>
           </div>
-
-          <aside class="it-support-card it-hero-panel lazy-on-scroll" aria-label="IT support snapshot">
-            <p class="eyebrow">Support Snapshot</p>
-            <h2>Clear intake. Strong triage. Accountable resolution.</h2>
-            <div class="it-snapshot-list" aria-label="IT support operating strengths">
-              <div>
-                <span>01</span>
-                <strong>Structured intake</strong>
-              </div>
-              <div>
-                <span>02</span>
-                <strong>Priority tracking</strong>
-              </div>
-              <div>
-                <span>03</span>
-                <strong>Escalation ownership</strong>
-              </div>
-              <div>
-                <span>04</span>
-                <strong>Resolution clarity</strong>
-              </div>
+          <aside class="service-command-panel" aria-label="IT support snapshot" data-i18n-aria-label="itCommandPanelAria">
+            <p class="eyebrow" data-i18n="itSnapshotEyebrow">Support Snapshot</p>
+            <h2 data-i18n="itSnapshotTitle">A visible path from intake to resolution.</h2>
+            <div class="service-status-row">
+              <span data-i18n="itStatusIntake">Intake</span>
+              <span class="service-status-bar"><span class="service-status-fill service-status-84"></span></span>
+              <strong data-i18n="itStatusOwned">Owned</strong>
             </div>
-            <p>
-              Built for businesses that need calm, documented, professional support from
-              first contact through final closure.
-            </p>
+            <div class="service-status-row">
+              <span data-i18n="itStatusRouting">Routing</span>
+              <span class="service-status-bar"><span class="service-status-fill service-status-80"></span></span>
+              <strong data-i18n="itStatusClear">Clear</strong>
+            </div>
+            <div class="service-status-row">
+              <span data-i18n="itStatusResolution">Resolution</span>
+              <span class="service-status-bar"><span class="service-status-fill service-status-88"></span></span>
+              <strong data-i18n="itStatusTracked">Tracked</strong>
+            </div>
           </aside>
-        </div>
-      </section>
+        </section>
 
-      <section class="section" id="coverage" aria-labelledby="coverage-title">
-        <div class="container">
-          <div class="section-heading lazy-on-scroll">
-            <p class="eyebrow">Coverage</p>
-            <h2 id="coverage-title">Two levels of technical support.</h2>
-            <p>
-              We provide structured technical support coverage across front-line
-              assistance, deeper troubleshooting, incident review, workflow support,
-              and post-escalation ownership.
-            </p>
-          </div>
-
-          <div class="it-support-grid">
-            <article class="it-support-card lazy-on-scroll">
-              <div class="it-support-card-top">
-                <div>
-                  <p class="eyebrow">Front-Line Response</p>
-                  <h3>Level I Support</h3>
-                </div>
-                <span class="it-support-code" aria-label="Level one">L1</span>
+        <section id="it-coverage" class="service-coverage-card card">
+          <p class="eyebrow" data-i18n="coverageEyebrow">Coverage</p>
+          <h2 data-i18n="itCoverageTitle">Level I and Level II support coverage</h2>
+          <p data-i18n="itDetailHeroCopy">We provide structured technical support coverage across front-line assistance, deeper troubleshooting, incident review, workflow support, and post-escalation ownership.</p>
+          <div class="service-lanes service-support-levels" aria-label="IT support levels" data-i18n-aria-label="itSupportLevelsAria">
+            <article class="service-lane">
+              <span class="service-lane-index">L1</span>
+              <div>
+                <h3 data-i18n="itLevelOneTitle">Level I Support</h3>
+                <ul class="service-check-list">
+                  <li data-i18n="itLevelOne1">Help desk intake and ticket creation</li>
+                  <li data-i18n="itLevelOne2">Basic troubleshooting</li>
+                  <li data-i18n="itLevelOne3">End-user support</li>
+                  <li data-i18n="itLevelOne4">Account access assistance</li>
+                  <li data-i18n="itLevelOne5">Escalation coordination</li>
+                </ul>
               </div>
-              <p>
-                Level I support keeps user issues moving with clean intake,
-                first-touch assistance, basic troubleshooting, access help, and clear
-                escalation coordination.
-              </p>
-              <ul class="it-check-list">
-                <li>Help desk intake and ticket creation</li>
-                <li>Basic troubleshooting</li>
-                <li>End-user support</li>
-                <li>Account access assistance</li>
-                <li>Escalation coordination</li>
-              </ul>
+              <strong data-i18n="itLevelOneTag">Front line</strong>
             </article>
-
-            <article class="it-support-card lazy-on-scroll">
-              <div class="it-support-card-top">
-                <div>
-                  <p class="eyebrow">Technical Ownership</p>
-                  <h3>Level II Support</h3>
-                </div>
-                <span class="it-support-code" aria-label="Level two">L2</span>
+            <article class="service-lane">
+              <span class="service-lane-index">L2</span>
+              <div>
+                <h3 data-i18n="itLevelTwoTitle">Level II Support</h3>
+                <ul class="service-check-list">
+                  <li data-i18n="itLevelTwo1">Advanced troubleshooting</li>
+                  <li data-i18n="itLevelTwo2">Incident investigation</li>
+                  <li data-i18n="itLevelTwo3">System support</li>
+                  <li data-i18n="itLevelTwo4">Workflow support</li>
+                  <li data-i18n="itLevelTwo5">Root-cause analysis</li>
+                  <li data-i18n="itLevelTwo6">Resolution ownership after escalation</li>
+                </ul>
               </div>
-              <p>
-                Level II support handles deeper investigation, advanced troubleshooting,
-                system and workflow support, root-cause analysis, and resolution
-                ownership after escalation.
-              </p>
-              <ul class="it-check-list">
-                <li>Advanced troubleshooting</li>
-                <li>Incident investigation</li>
-                <li>System support</li>
-                <li>Workflow support</li>
-                <li>Root-cause analysis</li>
-                <li>Resolution ownership after escalation</li>
-              </ul>
+              <strong data-i18n="itLevelTwoTag">Deeper review</strong>
             </article>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="section" aria-labelledby="workflow-title">
-        <div class="container">
-          <div class="section-heading lazy-on-scroll">
-            <p class="eyebrow">Workflow</p>
-            <h2 id="workflow-title">How IT support moves.</h2>
-            <p>
-              The support process is designed to reduce confusion, protect productivity,
-              and make every ticket easier to track from request to resolution.
-            </p>
+        <section class="service-lanes" aria-labelledby="it-lanes-title">
+          <div class="service-section-heading">
+            <p class="eyebrow" data-i18n="serviceLanesEyebrow">Operating lanes</p>
+            <h2 id="it-lanes-title" data-i18n="itLanesTitle">Three ways IT support stays accountable</h2>
           </div>
-
-          <div class="it-process-rail lazy-on-scroll" aria-label="IT support workflow steps">
-            <article class="it-process-step">
-              <span>01</span>
-              <h3>Receive</h3>
-              <p>Capture the user request, issue details, affected system, and business impact.</p>
-            </article>
-            <article class="it-process-step">
-              <span>02</span>
-              <h3>Classify</h3>
-              <p>Confirm the issue type, urgency, affected user, priority, and support path.</p>
-            </article>
-            <article class="it-process-step">
-              <span>03</span>
-              <h3>Resolve at L1</h3>
-              <p>Handle basic troubleshooting, user support, and access assistance where possible.</p>
-            </article>
-            <article class="it-process-step">
-              <span>04</span>
-              <h3>Escalate to L2</h3>
-              <p>Move deeper incidents into advanced investigation with clear notes and ownership.</p>
-            </article>
-            <article class="it-process-step">
-              <span>05</span>
-              <h3>Close with clarity</h3>
-              <p>Document the action taken, final status, root cause, and resolution outcome.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="focus-title">
-        <div class="container">
-          <div class="section-heading lazy-on-scroll">
-            <p class="eyebrow">Dynamic Focus</p>
-            <h2 id="focus-title">Choose the IT support priority.</h2>
-            <p>
-              Select a priority area to show the exact coverage points that matter most
-              to your operation.
-            </p>
-          </div>
-
-          <div class="it-focus-board lazy-on-scroll">
-            <div class="it-focus-tabs" role="tablist" aria-label="IT support priority options">
-              <button
-                class="it-focus-tab is-active"
-                type="button"
-                role="tab"
-                aria-selected="true"
-                aria-controls="it-focus-display"
-                data-it-focus="level1"
-              >
-                Level I Support
-              </button>
-              <button
-                class="it-focus-tab"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                aria-controls="it-focus-display"
-                data-it-focus="level2"
-              >
-                Level II Support
-              </button>
-              <button
-                class="it-focus-tab"
-                type="button"
-                role="tab"
-                aria-selected="false"
-                aria-controls="it-focus-display"
-                data-it-focus="escalation"
-              >
-                Escalation Flow
-              </button>
+          <article class="service-lane">
+            <span class="service-lane-index">01</span>
+            <div>
+              <h3 data-i18n="itLane1Title">Front-line intake</h3>
+              <p data-i18n="itLane1Text">Help desk requests, user details, access needs, and basic troubleshooting start with a clean ticket path.</p>
             </div>
+            <strong data-i18n="itLane1Tag">L1</strong>
+          </article>
+          <article class="service-lane">
+            <span class="service-lane-index">02</span>
+            <div>
+              <h3 data-i18n="itLane2Title">Technical investigation</h3>
+              <p data-i18n="itLane2Text">Deeper incidents move through advanced troubleshooting, system support, workflow support, and root-cause analysis.</p>
+            </div>
+            <strong data-i18n="itLane2Tag">L2</strong>
+          </article>
+          <article class="service-lane">
+            <span class="service-lane-index">03</span>
+            <div>
+              <h3 data-i18n="itLane3Title">Post-escalation ownership</h3>
+              <p data-i18n="itLane3Text">Resolution ownership after escalation keeps status, communication, and closure visible.</p>
+            </div>
+            <strong data-i18n="itLane3Tag">Ownership</strong>
+          </article>
+        </section>
 
-            <article
-              class="it-focus-display"
-              id="it-focus-display"
-              role="tabpanel"
-              aria-live="polite"
-            ></article>
+        <section class="service-process-rail" aria-labelledby="it-process-title">
+          <div class="service-section-heading">
+            <p class="eyebrow" data-i18n="workflowEyebrow">Workflow</p>
+            <h2 id="it-process-title" data-i18n="itProcessTitle">How IT issues move</h2>
           </div>
-        </div>
-      </section>
+          <div class="service-process-step"><span>01</span><p data-i18n="itProcess1">Open the ticket and capture issue context.</p></div>
+          <div class="service-process-step"><span>02</span><p data-i18n="itProcess2">Triage the request and identify support level.</p></div>
+          <div class="service-process-step"><span>03</span><p data-i18n="itProcess3">Troubleshoot, investigate, or coordinate escalation.</p></div>
+          <div class="service-process-step"><span>04</span><p data-i18n="itProcess4">Own post-escalation status and user updates.</p></div>
+          <div class="service-process-step"><span>05</span><p data-i18n="itProcess5">Confirm resolution and close the loop.</p></div>
+        </section>
 
-      <section class="container it-lead-band lazy-on-scroll" aria-labelledby="it-support-inquiry-title">
-        <p class="eyebrow">Reliable Support Coverage</p>
-        <h2 id="it-support-inquiry-title">
-          Need IT support that feels organized, responsive, and accountable?
-        </h2>
-        <p>
-          Use the inquiry flow to describe your support volume, user issues, ticket
-          flow, access needs, recurring incidents, or escalation requirements.
-        </p>
-        <div class="cta-row" aria-label="IT support inquiry actions">
-          <a class="btn primary" href="../contact.html">Start IT support inquiry</a>
-          <a class="btn ghost" href="../services.html">Back to Services</a>
-        </div>
-      </section>
+        <section class="service-focus-board card" data-service-focus-board="it" aria-labelledby="it-focus-title">
+          <div class="service-focus-intro">
+            <p class="eyebrow" data-i18n="dynamicFocusEyebrow">Dynamic Focus</p>
+            <h2 id="it-focus-title" data-i18n="itFocusTitle">Choose the support priority</h2>
+            <p class="muted" data-i18n="itFocusIntro">Select the technical support flow your team needs to stabilize.</p>
+          </div>
+          <div class="service-focus-tabs" role="tablist" aria-label="IT support focus options" data-i18n-aria-label="itFocusTabsAria">
+            <button class="service-focus-tab active" type="button" data-service-focus="levelOne" aria-selected="true" data-i18n="itFocusTabLevelOne">Level I Intake</button>
+            <button class="service-focus-tab" type="button" data-service-focus="levelTwo" aria-selected="false" data-i18n="itFocusTabLevelTwo">Level II Troubleshooting</button>
+            <button class="service-focus-tab" type="button" data-service-focus="ownership" aria-selected="false" data-i18n="itFocusTabOwnership">Resolution Ownership</button>
+          </div>
+          <article class="service-focus-display" aria-live="polite"></article>
+        </section>
+
+        <section class="service-outcome-band card">
+          <p class="eyebrow" data-i18n="outcomeEyebrow">Outcome</p>
+          <h2 data-i18n="itOutcomeTitle">Every issue has a path</h2>
+          <p data-i18n="itOutcomeText">Every issue has a path, a status, and an owner — from first intake through final resolution.</p>
+          <a class="btn primary" href="../contact.html" data-i18n="customOptimizationPlanCta">Get a Custom Optimization Plan</a>
+        </section>
+      </div>
     </main>
     <script src="../assets/footer.js"></script>
     <script src="../assets/main.js"></script>
     <script src="../assets/gabo-io-chatbot.js"></script>
-    <script src="../assets/it-support.js"></script>
 </body>
 </html>
