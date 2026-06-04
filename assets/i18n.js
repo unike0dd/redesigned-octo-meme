@@ -578,14 +578,14 @@
       costConsciousSupportHeadline:
         "Support that makes sense for growing businesses.",
       costConsciousSupportText:
-        "All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
+        "All at a cost that makes sense for growing businesses",
       operationalSnapshotTitle: "Operational Snapshot",
       operationalSnapshotText:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
       noEnterpriseOverheadText: "No enterprise overhead",
       finalCtaTitle: "Did we mention it?",
       finalCtaText:
-        "Did we mention it? All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
+        "All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
       startExpectedSupport: "Start with the support you expect",
       contactUs: "Contact Us",
       gabrielHighlights: "Gabriel Services highlights",
@@ -1833,14 +1833,14 @@
       costConsciousSupportHeadline:
         "Soporte que tiene sentido para empresas en crecimiento.",
       costConsciousSupportText:
-        "Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
+        "Todo a un costo que tiene sentido para empresas en crecimiento",
       operationalSnapshotTitle: "Resumen operativo",
       operationalSnapshotText:
         "Práctico, transparente, ágil y alineado con su ritmo operativo.",
       noEnterpriseOverheadText: "Sin sobrecarga empresarial",
       finalCtaTitle: "¿Ya lo mencionamos?",
       finalCtaText:
-        "¿Ya lo mencionamos? Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
+        "Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
       startExpectedSupport: "Comience con el soporte que espera",
       contactUs: "Contáctenos",
       gabrielHighlights: "Aspectos destacados de Gabriel Services",
