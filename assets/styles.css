@@ -3613,3 +3613,168 @@ textarea.is-security-warning {
     min-height: 20rem;
   }
 }
+
+/* Page-scoped Services overview card repairs */
+.services-overview-page {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.services-overview-page > .container {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.6rem);
+}
+
+.services-overview-page h1 {
+  margin: 0;
+  color: var(--brand-navy);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+}
+
+.services-overview-page > .container > p {
+  max-width: 860px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.4vw, 1.08rem);
+}
+
+.services-overview-page .service-lanes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.35rem);
+  margin-top: clamp(0.5rem, 1vw, 1rem);
+  align-items: stretch;
+}
+
+.services-overview-page .service-lane {
+  position: relative;
+  min-width: 0;
+  min-height: 18rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: clamp(1.15rem, 2vw, 1.45rem);
+  border: 1px solid rgba(16, 35, 63, 0.08);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 44px rgba(16, 35, 63, 0.08);
+  overflow: hidden;
+}
+
+.services-overview-page .service-lane::after {
+  content: "";
+  position: absolute;
+  top: -3rem;
+  right: -3rem;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 999px;
+  background: rgba(177, 138, 65, 0.12);
+  pointer-events: none;
+}
+
+.services-overview-page .lane-index {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  flex: 0 0 auto;
+  border-radius: 0.75rem;
+  background: var(--brand-navy);
+  box-shadow: 0 10px 24px rgba(16, 35, 63, 0.16);
+}
+
+.services-overview-page .service-lane h3 {
+  width: 100%;
+  max-width: 100%;
+  margin: 0.25rem 0 0;
+  color: var(--brand-navy);
+  font-size: clamp(1.05rem, 1.6vw, 1.28rem);
+  line-height: 1.22;
+  text-align: left;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+}
+
+.services-overview-page .service-lane p {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  color: var(--text);
+  font-size: 0.96rem;
+  line-height: 1.65;
+  overflow-wrap: normal;
+  word-break: normal;
+  flex: 1;
+}
+
+.services-overview-page .lane-action {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.35rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(16, 35, 63, 0.08);
+  color: var(--brand-blue);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.services-overview-page .lane-action:hover,
+.services-overview-page .lane-action:focus-visible {
+  background: var(--brand-navy);
+  color: #fff;
+  text-decoration: none;
+}
+
+:root.dark-theme .services-overview-page .service-lane {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 48%),
+    var(--royal-card-bg);
+  border-color: var(--royal-card-border);
+  box-shadow: 0 22px 54px rgba(13, 3, 32, 0.42);
+}
+
+:root.dark-theme .services-overview-page h1,
+:root.dark-theme .services-overview-page .service-lane h3 {
+  color: var(--royal-text);
+}
+
+:root.dark-theme .services-overview-page .service-lane p {
+  color: var(--royal-muted);
+}
+
+:root.dark-theme .services-overview-page .lane-action {
+  background: rgba(217, 195, 255, 0.11);
+  color: var(--royal-gold-bright);
+}
+
+:root.dark-theme .services-overview-page .lane-action:hover,
+:root.dark-theme .services-overview-page .lane-action:focus-visible {
+  background: var(--royal-gold-bright);
+  color: var(--royal-bg-4);
+}
+
+@media (max-width: 1100px) {
+  .services-overview-page .service-lanes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .services-overview-page {
+    padding-top: 2.25rem;
+  }
+
+  .services-overview-page .service-lanes {
+    grid-template-columns: 1fr;
+  }
+
+  .services-overview-page .service-lane {
+    min-height: auto;
+  }
+}
