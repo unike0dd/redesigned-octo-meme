@@ -578,14 +578,14 @@
       costConsciousSupportHeadline:
         "Support that makes sense for growing businesses.",
       costConsciousSupportText:
-        "All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
+        "All at a cost that makes sense for growing businesses",
       operationalSnapshotTitle: "Operational Snapshot",
       operationalSnapshotText:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
       noEnterpriseOverheadText: "No enterprise overhead",
       finalCtaTitle: "Did we mention it?",
       finalCtaText:
-        "Did we mention it? All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
+        "All at a cost that makes sense for growing businesses — no enterprise overhead and no unnecessary contracts.",
       startExpectedSupport: "Start with the support you expect",
       contactUs: "Contact Us",
       gabrielHighlights: "Gabriel Services highlights",
@@ -1833,14 +1833,14 @@
       costConsciousSupportHeadline:
         "Soporte que tiene sentido para empresas en crecimiento.",
       costConsciousSupportText:
-        "Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
+        "Todo a un costo que tiene sentido para empresas en crecimiento",
       operationalSnapshotTitle: "Resumen operativo",
       operationalSnapshotText:
         "Práctico, transparente, ágil y alineado con su ritmo operativo.",
       noEnterpriseOverheadText: "Sin sobrecarga empresarial",
       finalCtaTitle: "¿Ya lo mencionamos?",
       finalCtaText:
-        "¿Ya lo mencionamos? Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
+        "Todo a un costo que tiene sentido para empresas en crecimiento — sin sobrecarga empresarial y sin contratos innecesarios.",
       startExpectedSupport: "Comience con el soporte que espera",
       contactUs: "Contáctenos",
       gabrielHighlights: "Aspectos destacados de Gabriel Services",
@@ -2896,8 +2896,12 @@
     homeHeroProofLabel: "Gabriel Services highlights",
     startConversation: "Start a conversation",
     homeDynamicFocusedServices: "Dynamic Focused Services",
-    homeServiceOverviewTitle: "Operational lanes for modern business support.",
-    homeServiceOverviewText: "Choose the day-to-day execution lane that needs the strongest support now, then expand when your workflow is ready.",
+    homeServicesOverviewTitle: "Operational support areas, organized in one place.",
+    homeServicesOverviewText: "Explore the service overview before choosing the area that needs the strongest support.",
+    homeServicesOverviewEyebrow: "Services Overview",
+    homeServicesOverviewCardTitle: "Check out our Services Overview.",
+    homeServicesOverviewCardText: "Review the operational support areas Gabriel Services can help move forward across logistics, administrative back office, customer relations, and IT support.",
+    homeServicesOverviewCardCta: "View Services",
     homeServiceLogisticsText: "Dispatch coordination, tracking continuity, exception visibility, and operational updates.",
     homeServiceCustomerText: "Customer communication, ticket follow-up, resolution tracking, and service rhythm.",
     homeServiceAdminText: "Records, scheduling, reporting, vendor coordination, and daily administrative execution.",
@@ -3041,8 +3045,12 @@
     homeHeroProofLabel: "Puntos destacados de Gabriel Services",
     startConversation: "Iniciar una conversación",
     homeDynamicFocusedServices: "Servicios de Enfoque Dinámico",
-    homeServiceOverviewTitle: "Líneas operativas para el soporte empresarial moderno.",
-    homeServiceOverviewText: "Elige la línea de ejecución diaria que necesita mayor soporte ahora y expándela cuando tu flujo esté listo.",
+    homeServicesOverviewTitle: "Áreas de soporte operativo, organizadas en un solo lugar.",
+    homeServicesOverviewText: "Explora la descripción general de servicios antes de elegir el área que necesita mayor apoyo.",
+    homeServicesOverviewEyebrow: "Servicios",
+    homeServicesOverviewCardTitle: "Consulta nuestros Servicios.",
+    homeServicesOverviewCardText: "Revisa las áreas de soporte operativo que Gabriel Services puede ayudar a mover adelante en logística, back office administrativo, relaciones con clientes y soporte de TI.",
+    homeServicesOverviewCardCta: "Ver Servicios",
     homeServiceLogisticsText: "Coordinación de despacho, continuidad de seguimiento, visibilidad de excepciones y actualizaciones operativas.",
     homeServiceCustomerText: "Comunicación con clientes, seguimiento de tickets, control de resolución y ritmo de servicio.",
     homeServiceAdminText: "Registros, programación, reportes, coordinación con proveedores y ejecución administrativa diaria.",
