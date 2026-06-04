@@ -18,7 +18,7 @@
           <h4 data-i18n="company">Company</h4>
           <a href="${basePath}/" data-footer-link="home" data-i18n="home">Home</a>
           <a href="${basePath}/about.html" data-footer-link="about" data-i18n="about">About</a>
-          <a href="${basePath}/services.html" data-footer-link="services" data-i18n="servicesOverview">Services Overview</a>
+          <a href="${basePath}/services.html" data-footer-link="services" data-i18n="services">Services</a>
           <a href="${basePath}/careers.html" data-footer-link="careers" data-i18n="careers">Careers</a>
         </div>
         <div>
@@ -29,7 +29,7 @@
           <a href="${basePath}/services/it-support.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
         </div>
         <div>
-          <h4 data-i18n="supportLearning">Support</h4>
+          <h4 data-i18n="supportFooter">Support</h4>
           <a href="${basePath}/contact.html" data-footer-link="contact" data-i18n="contact">Contact</a>
           <a href="${basePath}/sitemap.xml" data-footer-link="sitemap" data-i18n="sitemap">Sitemap</a>
         </div>
