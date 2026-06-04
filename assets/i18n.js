@@ -2902,6 +2902,11 @@
     homeServicesOverviewCardTitle: "Check out our Services Overview.",
     homeServicesOverviewCardText: "Review the operational support areas Gabriel Services can help move forward across logistics, administrative back office, customer relations, and IT support.",
     homeServicesOverviewCardCta: "View Services",
+    homeServiceLogisticsText: "Dispatch coordination, tracking continuity, exception visibility, and operational updates.",
+    homeServiceCustomerText: "Customer communication, ticket follow-up, resolution tracking, and service rhythm.",
+    homeServiceAdminText: "Records, scheduling, reporting, vendor coordination, and daily administrative execution.",
+    homeServiceItText: "Help desk intake, ticket triage, troubleshooting, access support, and escalation coordination.",
+    exploreService: "Explore service",
     homeReadyEyebrow: "Ready to improve daily execution?",
     homeReadyTitle: "Start with a practical service overview and a clear conversation about the work your team needs moved forward.",
 
@@ -3046,6 +3051,11 @@
     homeServicesOverviewCardTitle: "Consulta nuestros Servicios.",
     homeServicesOverviewCardText: "Revisa las áreas de soporte operativo que Gabriel Services puede ayudar a mover adelante en logística, back office administrativo, relaciones con clientes y soporte de TI.",
     homeServicesOverviewCardCta: "Ver Servicios",
+    homeServiceLogisticsText: "Coordinación de despacho, continuidad de seguimiento, visibilidad de excepciones y actualizaciones operativas.",
+    homeServiceCustomerText: "Comunicación con clientes, seguimiento de tickets, control de resolución y ritmo de servicio.",
+    homeServiceAdminText: "Registros, programación, reportes, coordinación con proveedores y ejecución administrativa diaria.",
+    homeServiceItText: "Recepción de mesa de ayuda, triaje de tickets, solución de problemas, soporte de acceso y coordinación de escalaciones.",
+    exploreService: "Explorar servicio",
     homeReadyEyebrow: "¿Listo para mejorar la ejecución diaria?",
     homeReadyTitle: "Comienza con un resumen práctico de servicios y una conversación clara sobre el trabajo que tu equipo necesita mover adelante.",
 
