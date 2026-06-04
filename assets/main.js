@@ -7,7 +7,7 @@
     "X-Content-Type-Options": "nosniff",
     "X-XSS-Protection": "0",
     "Referrer-Policy": "strict-origin-when-cross-origin",
-    "Cross-Origin-Resource-Policy": "same-site",
+    "Cross-Origin-Resource-Policy": "same-origin",
     "Cross-Origin-Opener-Policy": "same-origin",
     "Permissions-Policy":
       "accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), bluetooth=(), browsing-topics=(), camera=(), clipboard-read=(), clipboard-write=(self), display-capture=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), interest-cohort=(), local-fonts=(), magnetometer=(), microphone=(), midi=(), otp-credentials=(), payment=(), picture-in-picture=(), publickey-credentials-create=(), publickey-credentials-get=(self), screen-wake-lock=(), serial=(), speaker-selection=(), storage-access=(), usb=(), web-share=(), xr-spatial-tracking=()",
@@ -495,6 +495,142 @@
     const parts = window.location.pathname.split("/").filter(Boolean);
     const repoName = "redesigned-octo-meme";
     return parts[0] === repoName ? `/${repoName}` : "";
+  }
+
+  function getSiteUrl(pathname) {
+    const basePath = getSiteBasePath();
+    const normalizedPath = String(pathname || "").replace(/^\/+/, "");
+    return `${basePath}/${normalizedPath}`.replace(/\/{2,}/g, "/");
+  }
+
+  function ensureHeadLink({ rel, href, type }) {
+    if (!document.head) return null;
+    const selector = `link[rel="${rel}"]${type ? `[type="${type}"]` : ""}`;
+    let link = document.head.querySelector(selector);
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", rel);
+      if (type) link.setAttribute("type", type);
+      document.head.appendChild(link);
+    }
+    link.setAttribute("href", href);
+    return link;
+  }
+
+  function ensureThemeColor() {
+    if (!document.head) return;
+    let meta = document.head.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement("meta");
+      meta.setAttribute("name", "theme-color");
+      document.head.appendChild(meta);
+    }
+    const isDark = document.documentElement.classList.contains("dark-theme");
+    meta.setAttribute("content", isDark ? "#190833" : "#35106d");
+  }
+
+  function initProgressiveWebApp() {
+    ensureHeadLink({
+      rel: "manifest",
+      href: getSiteUrl("manifest.webmanifest"),
+      type: "application/manifest+json",
+    });
+    ensureHeadLink({ rel: "icon", href: getSiteUrl("assets/icon.svg"), type: "image/svg+xml" });
+    ensureThemeColor();
+
+    window.addEventListener("theme:changed", ensureThemeColor);
+
+    const pwaState = {
+      manifest: getSiteUrl("manifest.webmanifest"),
+      serviceWorker: getSiteUrl("service-worker.js"),
+      offlineFallback: getSiteUrl("offline.html"),
+      status: "unsupported",
+    };
+    window.GaboPWA = pwaState;
+
+    if (!("serviceWorker" in navigator)) return;
+
+    navigator.serviceWorker
+      .register(pwaState.serviceWorker, { scope: `${getSiteBasePath() || ""}/` })
+      .then((registration) => {
+        pwaState.status = "registered";
+        pwaState.scope = registration.scope;
+        window.dispatchEvent(new CustomEvent("pwa:ready", { detail: { ...pwaState } }));
+      })
+      .catch((error) => {
+        pwaState.status = "registration-failed";
+        pwaState.error = String(error?.message || error);
+        window.dispatchEvent(new CustomEvent("pwa:error", { detail: { ...pwaState } }));
+      });
+  }
+
+  function initWebVitalsTelemetry() {
+    if (!("PerformanceObserver" in window)) return;
+
+    const vitals = {
+      lcp: null,
+      cls: 0,
+      inp: 0,
+      thresholds: { lcp: 2500, cls: 0.1, inp: 200 },
+    };
+
+    const publish = (metric, value, rating) => {
+      const detail = { metric, value, rating, source: "gabo-web-vitals" };
+      window.GaboWebVitals = { ...vitals };
+      window.dispatchEvent(new CustomEvent("web-vital:measure", { detail }));
+    };
+
+    const ratingFor = (metric, value) => {
+      const good = vitals.thresholds[metric];
+      if (value <= good) return "good";
+      if (metric === "cls") return value <= 0.25 ? "needs-improvement" : "poor";
+      if (metric === "lcp") return value <= 4000 ? "needs-improvement" : "poor";
+      return value <= 500 ? "needs-improvement" : "poor";
+    };
+
+    try {
+      const lcpObserver = new PerformanceObserver((list) => {
+        const lastEntry = list.getEntries().at(-1);
+        if (!lastEntry) return;
+        vitals.lcp = Math.round(lastEntry.startTime);
+        publish("lcp", vitals.lcp, ratingFor("lcp", vitals.lcp));
+      });
+      lcpObserver.observe({ type: "largest-contentful-paint", buffered: true });
+    } catch (error) {
+      // Some browsers do not expose every web-vitals observer type.
+    }
+
+    try {
+      const clsObserver = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (entry.hadRecentInput) return;
+          vitals.cls += entry.value;
+        });
+        publish("cls", Number(vitals.cls.toFixed(4)), ratingFor("cls", vitals.cls));
+      });
+      clsObserver.observe({ type: "layout-shift", buffered: true });
+    } catch (error) {
+      // Some browsers do not expose every web-vitals observer type.
+    }
+
+    try {
+      const interactions = new Map();
+      const inpObserver = new PerformanceObserver((list) => {
+        list.getEntries().forEach((entry) => {
+          if (!entry.interactionId) return;
+          const previous = interactions.get(entry.interactionId) || 0;
+          interactions.set(entry.interactionId, Math.max(previous, entry.duration));
+        });
+        const worstInteraction = Math.max(0, ...interactions.values());
+        vitals.inp = Math.round(worstInteraction);
+        publish("inp", vitals.inp, ratingFor("inp", vitals.inp));
+      });
+      inpObserver.observe({ type: "event", buffered: true, durationThreshold: 40 });
+    } catch (error) {
+      // Some browsers do not expose every web-vitals observer type.
+    }
+
+    window.GaboWebVitals = { ...vitals };
   }
 
   function initSecurityRuntime() {
@@ -1594,6 +1730,8 @@
 
   function initPage() {
     initSecurityRuntime();
+    initProgressiveWebApp();
+    initWebVitalsTelemetry();
     ensurePrimaryNav();
     ensureMobileNav();
     ensureSkipLink();

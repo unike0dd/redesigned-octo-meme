@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Gabriel Services app icon</title>
+  <desc id="desc">A royal purple and gold operational support mark.</desc>
+  <rect width="512" height="512" rx="112" fill="#35106d"/>
+  <circle cx="382" cy="126" r="84" fill="#d5a84d" opacity="0.95"/>
+  <path fill="#f4e5b1" d="M136 132h200c22 0 40 18 40 40v32h-48v-20c0-4-4-8-8-8H152c-4 0-8 4-8 8v144c0 4 4 8 8 8h168c4 0 8-4 8-8v-20h48v32c0 22-18 40-40 40H136c-22 0-40-18-40-40V172c0-22 18-40 40-40Z"/>
+  <path fill="#d5a84d" d="M192 220h224v72H192z"/>
+  <path fill="#ffffff" d="m394 180 76 76-76 76-34-34 42-42-42-42 34-34Z"/>
+</svg>
