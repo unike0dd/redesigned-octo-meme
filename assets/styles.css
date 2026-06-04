@@ -3561,3 +3561,55 @@ textarea.is-security-warning {
   color: var(--brand-gold);
   font-weight: 900;
 }
+
+.logistics-dynamic-focus-section .focus-board {
+  width: 100%;
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
+  align-items: stretch;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.logistics-dynamic-focus-section .focus-tabs {
+  width: 100%;
+  max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.logistics-dynamic-focus-section .focus-tab {
+  width: 100%;
+}
+
+.logistics-dynamic-focus-section .focus-display {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  height: clamp(20rem, 34vw, 24rem);
+  overflow-y: auto;
+  align-self: stretch;
+}
+
+.logistics-dynamic-focus-section .focus-display h3,
+.logistics-dynamic-focus-section .focus-display p,
+.logistics-dynamic-focus-section .focus-display li {
+  max-width: none;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 760px) {
+  .logistics-dynamic-focus-section .focus-board {
+    grid-template-columns: 1fr;
+  }
+
+  .logistics-dynamic-focus-section .focus-tabs {
+    max-width: none;
+  }
+
+  .logistics-dynamic-focus-section .focus-display {
+    height: auto;
+    min-height: 20rem;
+  }
+}
