@@ -3613,3 +3613,101 @@ textarea.is-security-warning {
     min-height: 20rem;
   }
 }
+
+.home-services-overview-section .section-heading {
+  max-width: 860px;
+}
+
+.home-services-overview-card {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 3vw, 2rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1.35rem, 3vw, 2rem);
+  border: 1px solid rgba(177, 138, 65, 0.28);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(177, 138, 65, 0.2), transparent 16rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 248, 231, 0.78));
+  box-shadow: 0 22px 56px rgba(16, 35, 63, 0.1);
+  overflow: hidden;
+}
+
+.home-services-overview-card::before {
+  content: "";
+  position: absolute;
+  top: -3.5rem;
+  right: -3.5rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 999px;
+  background: rgba(177, 138, 65, 0.14);
+  pointer-events: none;
+}
+
+.home-services-overview-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.35rem;
+  bottom: 1.35rem;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, var(--brand-gold), transparent);
+  opacity: 0.8;
+}
+
+.home-services-overview-copy {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.home-services-overview-card h2 {
+  margin: 0.25rem 0 0.65rem;
+  color: var(--brand-navy);
+  font-size: clamp(1.45rem, 3vw, 2.25rem);
+  line-height: 1.12;
+}
+
+.home-services-overview-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.home-services-overview-card .btn {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+:root.dark-theme .home-services-overview-card {
+  border-color: rgba(217, 195, 255, 0.24);
+  background:
+    radial-gradient(circle at top right, rgba(217, 195, 255, 0.18), transparent 16rem),
+    linear-gradient(135deg, rgba(50, 12, 111, 0.9), rgba(28, 7, 65, 0.92));
+  box-shadow: 0 24px 62px rgba(13, 3, 32, 0.5);
+}
+
+:root.dark-theme .home-services-overview-card h2 {
+  color: var(--royal-text);
+}
+
+:root.dark-theme .home-services-overview-card p {
+  color: var(--royal-muted);
+}
+
+@media (max-width: 760px) {
+  .home-services-overview-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .home-services-overview-card .btn {
+    width: 100%;
+  }
+}
