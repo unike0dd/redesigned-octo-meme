@@ -29,9 +29,8 @@
           <a href="${basePath}/services/it-support.html" data-footer-link="it-support" data-i18n="itSupport">IT Support</a>
         </div>
         <div>
-          <h4 data-i18n="supportLearning">Support & Learning</h4>
+          <h4 data-i18n="supportLearning">Support</h4>
           <a href="${basePath}/contact.html" data-footer-link="contact" data-i18n="contact">Contact</a>
-          <a href="${basePath}/services.html" data-footer-link="services-support" data-i18n="servicesOverview">Services Overview</a>
           <a href="${basePath}/sitemap.xml" data-footer-link="sitemap" data-i18n="sitemap">Sitemap</a>
         </div>
         <div>
