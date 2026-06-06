@@ -28,7 +28,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       homePageTitle: "Gabriel Services | Outsource, Delivered",
       aboutPageTitle: "About Gabriel Services",
       careersPageTitle: "Careers | Gabriel Services",
-      servicesPageTitle: "Gabriel Services | Service Overview",
+      servicesPageTitle: "Gabriel Services | Services",
       logisticsServicePageTitle: "Logistics Operations | Gabriel Services",
       adminServicePageTitle: "Administrative Back Office | Gabriel Services",
       customerServicePageTitle:
@@ -88,8 +88,8 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       itSupportDesc: "Ticket triage and day-to-day request handling.",
       exploreService: "Explore service",
       sitemap: "Sitemap",
-      servicesOverview: "Services Overview",
-      serviceOverviewTitle: "Service Overview",
+      servicesOverview: "Services",
+      serviceOverviewTitle: "Services",
       serviceOverviewIntro:
         "Gabriel Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most.",
       serviceOverviewLogisticsDesc:
@@ -724,7 +724,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       homePageTitle: "Gabriel Services | Tercerización, Entregada",
       aboutPageTitle: "Acerca de Gabriel Services",
       careersPageTitle: "Carreras | Gabriel Services",
-      servicesPageTitle: "Gabriel Services | Descripción General de Servicios",
+      servicesPageTitle: "Gabriel Services | Servicios",
       logisticsServicePageTitle: "Operaciones Logísticas | Gabriel Services",
       adminServicePageTitle: "Back Office Administrativo | Gabriel Services",
       customerServicePageTitle:
@@ -784,8 +784,8 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       itSupportDesc: "Triaje de tickets y manejo de solicitudes diarias.",
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
-      servicesOverview: "Descripción General de Servicios",
-      serviceOverviewTitle: "Descripción General de Servicios",
+      servicesOverview: "Servicios",
+      serviceOverviewTitle: "Servicios",
       serviceOverviewIntro:
         "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante.",
       serviceOverviewLogisticsDesc:

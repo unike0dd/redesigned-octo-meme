@@ -17,7 +17,7 @@
       homePageTitle: "Gabriel Services | Outsource, Delivered",
       aboutPageTitle: "About Gabriel Services",
       careersPageTitle: "Careers | Gabriel Services",
-      servicesPageTitle: "Gabriel Services | Service Overview",
+      servicesPageTitle: "Gabriel Services | Services",
       logisticsServicePageTitle: "Logistics Operations | Gabriel Services",
       adminServicePageTitle: "Administrative Back Office | Gabriel Services",
       customerServicePageTitle:
@@ -280,7 +280,7 @@
       homeDescription:
         "Gabriel Services provides Logistics, Customer Relations, Administrative Back Office, and IT Support — integrating experience, coordination, operations management, customer satisfaction, and PC / desk support.<br/><br/>We execute the day-to-day so your team can focus on driving growth.",
       bookConsultation: "Start a conversation",
-      seeServiceCoverage: "Service Overview",
+      seeServiceCoverage: "Services",
       processeDriven: "Process-Driven Operations",
       practicalTransparent:
         "Practical, transparent, responsive, and aligned to your operating rhythm.",
@@ -291,7 +291,7 @@
       itSupportDesc: "Ticket triage and day-to-day request handling.",
       exploreService: "Explore service",
       sitemap: "Sitemap",
-      serviceOverviewTitle: "Service Overview",
+      serviceOverviewTitle: "Services",
       serviceOverviewIntro:
         "Gabriel Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most.",
       serviceOverviewLogisticsDesc:
@@ -1269,7 +1269,7 @@
       homePageTitle: "Gabriel Services | Tercerización, Entregada",
       aboutPageTitle: "Acerca de Gabriel Services",
       careersPageTitle: "Carreras | Gabriel Services",
-      servicesPageTitle: "Gabriel Services | Descripción General de Servicios",
+      servicesPageTitle: "Gabriel Services | Servicios",
       logisticsServicePageTitle: "Operaciones Logísticas | Gabriel Services",
       adminServicePageTitle: "Back Office Administrativo | Gabriel Services",
       customerServicePageTitle:
@@ -1532,7 +1532,7 @@
       homeDescription:
         "Gabriel Services proporciona Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI — integrando experiencia, coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC / escritorio.<br/><br/>Ejecutamos el día a día para que su equipo pueda enfocarse en impulsar el crecimiento.",
       bookConsultation: "Iniciar una conversación",
-      seeServiceCoverage: "Resumen de servicios",
+      seeServiceCoverage: "Servicios",
       processeDriven: "Operaciones impulsadas por procesos",
       practicalTransparent:
         "Práctico, transparente, ágil y alineado con su ritmo operativo.",
@@ -1543,7 +1543,7 @@
       itSupportDesc: "Triaje de tickets y manejo de solicitudes diarias.",
       exploreService: "Explorar servicio",
       sitemap: "Mapa del sitio",
-      serviceOverviewTitle: "Descripción General de Servicios",
+      serviceOverviewTitle: "Servicios",
       serviceOverviewIntro:
         "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante.",
       serviceOverviewLogisticsDesc:
@@ -2908,7 +2908,7 @@
     homeServiceItText: "Help desk intake, ticket triage, troubleshooting, access support, and escalation coordination.",
     exploreService: "Explore service",
     homeReadyEyebrow: "Ready to improve daily execution?",
-    homeReadyTitle: "Start with a practical service overview and a clear conversation about the work your team needs moved forward.",
+    homeReadyTitle: "Start with practical services and a clear conversation about the work your team needs moved forward.",
 
     aboutHeroTitle: "Operational support partner for modern businesses.",
     aboutHeroLead: "Gabriel Services supports daily execution for modern businesses across logistics operations, administrative back office, customer relations, customer operations, and IT support.",
