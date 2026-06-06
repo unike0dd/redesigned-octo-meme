@@ -59,9 +59,6 @@
   const TINY_ML_RISK_THRESHOLD = 3;
   const TINY_ML_BLOCKING_RESIDUAL_THRESHOLD = 1;
   const TINY_ML_MAX_FIELD_LENGTH = 2000;
-  const TINY_ML_HONEYPOT_SESSION_BLOCK_KEY =
-    "gabo-careers-honeypot-session-blocked";
-
   const TINY_ML_RISK_SIGNATURES = [
     { label: "script-tag", weight: 4, pattern: /<\s*\/?\s*script\b/gi },
     {
@@ -223,79 +220,6 @@
       .join("");
   }
 
-  function isHoneypotField(field) {
-    return !!field?.matches?.('[data-tinyml-honeypot="true"]');
-  }
-
-  function getHoneypotFields(form) {
-    return Array.from(form.querySelectorAll('[data-tinyml-honeypot="true"]'));
-  }
-
-  function isHoneypotSessionBlocked() {
-    try {
-      return (
-        window.sessionStorage?.getItem(TINY_ML_HONEYPOT_SESSION_BLOCK_KEY) ===
-        "true"
-      );
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function flagHoneypotSessionBlocked() {
-    try {
-      window.sessionStorage?.setItem(TINY_ML_HONEYPOT_SESSION_BLOCK_KEY, "true");
-    } catch (error) {
-      document.documentElement.dataset.tinyMlSessionBlocked = "true";
-    }
-  }
-
-  function closeHoneypotSession(form, statusNode, honeypotField) {
-    const honeypotValue = String(honeypotField?.value || "");
-    flagHoneypotSessionBlocked();
-    form.reset();
-    form.removeAttribute("data-integrity-sha256");
-    form.dataset.tinyMlSession = "blocked";
-
-    Array.from(form.querySelectorAll("input, textarea, select, button")).forEach(
-      (field) => {
-        field.disabled = true;
-        markFieldState(field, false);
-      },
-    );
-
-    if (statusNode) {
-      statusNode.textContent =
-        "TinyML closed this application session after bot-trap activity was detected.";
-    }
-
-    return {
-      cleaned: {},
-      report: [
-        {
-          key:
-            honeypotField?.getAttribute("name") ||
-            honeypotField?.id ||
-            "honeypot",
-          threatScore: TINY_ML_RISK_THRESHOLD,
-          residualThreatScore: TINY_ML_BLOCKING_RESIDUAL_THRESHOLD,
-          removedCharacters: honeypotValue.length,
-          reasons: ["honeypot-filled", "session-closed"],
-          blocked: true,
-        },
-      ],
-      blocked: true,
-      honeypotTriggered: true,
-      sessionClosed: true,
-    };
-  }
-
-  function detectFilledHoneypot(form) {
-    return getHoneypotFields(form).find((field) =>
-      String(field.value || "").trim(),
-    );
-  }
-
   function scanAndSanitizePayload(payload) {
     const report = [];
     const cleaned = {};
@@ -315,180 +239,6 @@
 
     const blocked = report.some((entry) => entry.blocked);
     return { cleaned, report, blocked };
-  }
-
-  function getFieldKey(field, index) {
-    const label =
-      field.getAttribute("name") ||
-      field.getAttribute("aria-label") ||
-      field.closest(".entry-group")?.getAttribute("data-field-name") ||
-      field.previousElementSibling?.textContent ||
-      field.id ||
-      `field-${index + 1}`;
-    return `${String(label).trim() || "field"} #${index + 1}`;
-  }
-
-  function buildGatewayEnvelope(form, result, fingerprint) {
-    return {
-      repoId:
-        form.getAttribute("data-repo-id") || "unike0dd/redesigned-octo-meme",
-      assetId: form.getAttribute("data-asset-id") || "careers.html",
-      src: form.getAttribute("data-src") || window.location.pathname,
-      origin: window.location.origin,
-      formId: form.id || "careers-application-form",
-      integritySha256: fingerprint,
-      sanitizedAt: new Date().toISOString(),
-      tinyMl: {
-        policy: "aggressive-client-sanitize-v1",
-        threshold: TINY_ML_RISK_THRESHOLD,
-        residualThreshold: TINY_ML_BLOCKING_RESIDUAL_THRESHOLD,
-        report: result.report,
-      },
-      payload: result.cleaned,
-    };
-  }
-
-  async function forwardSanitizedPayload(form, result, statusNode) {
-    if (!form.matches('[data-secure-gateway="careers"]')) return;
-
-    const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
-    form.setAttribute("data-integrity-sha256", fingerprint);
-
-    const endpoint =
-      form.getAttribute("data-cf-worker-url") ||
-      form.getAttribute("data-upstream-path") ||
-      "/api/careers";
-    const gatewayUrl = new URL(endpoint, window.location.origin);
-    const envelope = buildGatewayEnvelope(form, result, fingerprint);
-
-    await fetch(gatewayUrl.toString(), {
-      method: "POST",
-      mode: "cors",
-      credentials: "omit",
-      headers: {
-        "Content-Type": "application/json",
-        "X-Gabo-Origin": envelope.origin,
-        "X-Gabo-Source": envelope.src,
-        "X-Gabo-Asset-ID": envelope.assetId,
-        "X-Gabo-Repo-ID": envelope.repoId,
-        "X-Gabo-Integrity-SHA256": fingerprint,
-      },
-      body: JSON.stringify(envelope),
-    });
-
-    if (statusNode) {
-      statusNode.textContent =
-        "Application payload was sanitized, integrity-signed, and sent to the secure gateway.";
-    }
-  }
-
-  function markFieldState(field, isInvalid) {
-    if (!(field instanceof HTMLElement)) return;
-    field.setAttribute("aria-invalid", String(isInvalid));
-    field.classList.toggle("is-security-warning", isInvalid);
-  }
-
-  function secureFormSubmission(form, statusNode) {
-    if (isHoneypotSessionBlocked()) {
-      return closeHoneypotSession(form, statusNode);
-    }
-
-    const filledHoneypot = detectFilledHoneypot(form);
-    if (filledHoneypot) {
-      return closeHoneypotSession(form, statusNode, filledHoneypot);
-    }
-
-    const elements = Array.from(
-      form.querySelectorAll("input, textarea, select"),
-    ).filter((field) => !field.disabled && !isHoneypotField(field));
-
-    const payload = {};
-    const fieldKeys = new Map();
-    elements.forEach((field, index) => {
-      const key = getFieldKey(field, index);
-      fieldKeys.set(field, key);
-      payload[key] = field.value;
-    });
-
-    const result = scanAndSanitizePayload(payload);
-    elements.forEach((field) => {
-      const key = fieldKeys.get(field);
-      const line = result.report.find((entry) => entry.key === key);
-      const isInvalid = !!line?.blocked;
-      markFieldState(field, isInvalid);
-      if (typeof result.cleaned[key] === "string") {
-        field.value = result.cleaned[key];
-      }
-    });
-
-    if (statusNode) {
-      const threatCount = result.report.filter((entry) => entry.blocked).length;
-      statusNode.textContent = result.blocked
-        ? `TinyML blocked ${threatCount} field(s). Remove malicious or programming payloads before submitting.`
-        : "TinyML cleaned the form and passed residual integrity checks.";
-    }
-
-    return result;
-  }
-
-  function initSecureForms() {
-    const forms = document.querySelectorAll('form[data-secure-gateway="careers"]');
-    if (!forms.length) return;
-
-    forms.forEach((form) => {
-      if (form.dataset.pageTinyml) return;
-      if (form.dataset.secureSubmitInitialized === "true") return;
-      form.dataset.secureSubmitInitialized = "true";
-
-      const message = document.createElement("small");
-      message.className = "security-form-note";
-      message.setAttribute("aria-live", "polite");
-      form.appendChild(message);
-
-      getHoneypotFields(form).forEach((field) => {
-        field.addEventListener("input", () => {
-          if (String(field.value || "").trim()) {
-            closeHoneypotSession(form, message, field);
-          }
-        });
-      });
-
-      if (isHoneypotSessionBlocked()) {
-        closeHoneypotSession(form, message);
-        return;
-      }
-
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const submitter = event.submitter;
-        if (submitter instanceof HTMLButtonElement) submitter.disabled = true;
-
-        const result = await secureFormSubmission(form, message);
-        if (result.blocked) {
-          if (submitter instanceof HTMLButtonElement)
-            submitter.disabled = false;
-          return;
-        }
-
-        const usesSecureGateway = form.matches('[data-secure-gateway="careers"]');
-        if (!usesSecureGateway) {
-          const fingerprint = await sha256Hex(JSON.stringify(result.cleaned));
-          form.setAttribute("data-integrity-sha256", fingerprint);
-          return;
-        }
-
-        event.preventDefault();
-        try {
-          await forwardSanitizedPayload(form, result, message);
-        } catch (error) {
-          form.setAttribute("data-gateway-error", String(error?.message || error));
-          if (message) {
-            message.textContent =
-              "TinyML passed, but the secure gateway is unavailable. Please try again.";
-          }
-        }
-      });
-    });
   }
 
   function getSiteBasePath() {
@@ -640,7 +390,6 @@
       scanAndSanitizePayload,
       sanitizeTextValue,
       simpleThreatScore,
-      isHoneypotSessionBlocked,
       sha256Hex,
       corsAllowlist: CORS_ALLOWLIST.slice(),
       knownRuntimeNoise: {
@@ -1747,7 +1496,6 @@
     initScrollLazyLoad();
     initServiceFocusPanels();
     initRoyalDarkPointerEffects();
-    initSecureForms();
   }
 
   if (document.readyState === "loading") {

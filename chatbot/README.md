@@ -1,13 +1,12 @@
-# gabo io chatbot module
+# gabo io chatbot demo loader
 
-This directory isolates the frontend chatbot module files while preserving the existing website behavior and compatibility.
+This directory is demo-only. It does not own production chatbot runtime code.
 
-- `gabo-io-chatbot.js`: chatbot FAB, DOM, language handling, state cache, and request flow.
-- `gabo-io-chatbot.css`: chatbot FAB/overlay/layout responsive styles.
-- `gabo-io-chatbot.html`: minimal loader example (`main.js` first, then chatbot script).
+Production pages load and maintain a single source of truth:
 
-Production pages load:
-1. `assets/main.js`
-2. `assets/gabo-io-chatbot.js`
+1. `assets/main.js` for shared sanitizer/hash utilities.
+2. `assets/gabo-io-chatbot.js` for chatbot behavior.
+3. `assets/gabo-io-chatbot.css` for chatbot styles.
 
-And include `assets/gabo-io-chatbot.css`.
+`gabo-io-chatbot.html` is a minimal loader example that imports those production assets.
+Do not add duplicate chatbot JavaScript or CSS copies in this folder.

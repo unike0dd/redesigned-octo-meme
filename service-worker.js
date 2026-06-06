@@ -1,4 +1,4 @@
-const CACHE_VERSION = "gabo-services-2026-06-04";
+const CACHE_VERSION = "gabo-services-2026-06-05";
 const OFFLINE_URL = "offline.html";
 const PRECACHE_URLS = [
   "./",
@@ -7,10 +7,12 @@ const PRECACHE_URLS = [
   "services.html",
   "contact.html",
   "assets/styles.css",
+  "assets/gabo-io-chatbot.css",
   "assets/main.js",
   "assets/footer.js",
   "assets/theme.js",
   "assets/i18n.js",
+  "assets/gabo-io-chatbot.js",
   "assets/icon.svg",
   "manifest.webmanifest",
 ];
