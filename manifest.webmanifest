@@ -2,9 +2,9 @@
   "name": "Gabriel Services",
   "short_name": "Gabo Services",
   "description": "Operational support across logistics, customer relations, administrative back office, and IT support.",
-  "id": "/",
-  "start_url": "/?source=pwa",
-  "scope": "/",
+  "id": "./",
+  "start_url": "./?source=pwa",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#35106d",
   "theme_color": "#35106d",
@@ -14,7 +14,7 @@
   "dir": "ltr",
   "icons": [
     {
-      "src": "/assets/icon.svg",
+      "src": "assets/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -25,13 +25,14 @@
       "name": "Contact Gabriel Services",
       "short_name": "Contact",
       "description": "Start a support conversation.",
-      "url": "/contact.html?source=pwa-shortcut"
+      "url": "contact.html?source=pwa-shortcut"
     },
     {
       "name": "Services",
       "short_name": "Services",
       "description": "Review operational support services.",
-      "url": "/services.html?source=pwa-shortcut"
+      "url": "services.html?source=pwa-shortcut"
     }
   ]
+}
 }
