@@ -427,7 +427,7 @@
 
     const session = tiny.createSession();
 
-    const integrityPayload = tiny.stableSerialize({
+    const integrityPayload = {
       route: CONTRACT.route,
       origin: window.location.origin,
       source: CONTRACT.source,
@@ -435,7 +435,7 @@
       nonce: session.nonce,
       fields,
       lists
-    });
+    };
 
     const sha256 = await tiny.calculateIntegrity(integrityPayload);
     const payload = createPayload(fields, lists, rawAllFields, scan, session, sha256);
