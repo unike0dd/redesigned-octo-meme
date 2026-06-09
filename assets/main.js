@@ -424,15 +424,27 @@
     mobileNav.setAttribute("aria-label", "Mobile Navigation");
     mobileNav.setAttribute("data-i18n-aria-label", "mobileNavigation");
     mobileNav.innerHTML = `
-      <div id="services-dropup" class="services-dropup">
+      <div
+        id="services-dropup"
+        class="services-dropup"
+        aria-label="Service pages"
+        data-i18n-aria-label="servicePagesLabel"
+        hidden
+      >
         <a href="${basePath}/services/logistics-operations.html" data-i18n="logisticsOps">Logistics Operations</a>
+        <a href="${basePath}/services/it-support.html" data-i18n="itSupport">IT Support</a>
         <a href="${basePath}/services/administrative-backoffice.html" data-i18n="adminBackOffice">Administrative Back Office</a>
         <a href="${basePath}/services/customer-relations.html" data-i18n="customerRelations">Customer Relations</a>
-        <a href="${basePath}/services/it-support.html" data-i18n="itSupport">IT Support</a>
       </div>
       <div class="menu">
         <a href="${basePath}/" data-i18n="home">Home</a>
-        <button id="mobile-services-toggle" type="button" data-i18n="services">Services</button>
+        <button
+          id="mobile-services-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="services-dropup"
+          data-i18n="services"
+        >Services</button>
         <div class="mobile-preference-controls" aria-label="Quick preferences">
           <button
             id="mobile-language-toggle"
@@ -615,14 +627,51 @@
   function initMobileServiceMenu() {
     const serviceBtn = document.getElementById("mobile-services-toggle");
     const dropup = document.getElementById("services-dropup");
-    if (!serviceBtn || !dropup) return;
+    const mobileNav = serviceBtn?.closest(".mobile-nav");
+    if (!serviceBtn || !dropup || !mobileNav) return;
+    if (mobileNav.dataset.servicesMenuReady === "true") return;
 
-    serviceBtn.setAttribute("aria-expanded", "false");
-    serviceBtn.setAttribute("aria-controls", "services-dropup");
-    serviceBtn.addEventListener("click", () => {
-      const isOpen = dropup.classList.toggle("open");
+    const serviceLinks = Array.from(dropup.querySelectorAll("a[href]"));
+    const setOpen = (isOpen, { restoreFocus = false } = {}) => {
+      dropup.hidden = !isOpen;
+      dropup.classList.toggle("open", isOpen);
       serviceBtn.setAttribute("aria-expanded", String(isOpen));
+      mobileNav.classList.toggle("services-menu-open", isOpen);
+      if (!isOpen && restoreFocus) serviceBtn.focus();
+    };
+
+    serviceBtn.addEventListener("click", () => {
+      setOpen(serviceBtn.getAttribute("aria-expanded") !== "true");
     });
+
+    serviceBtn.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
+      event.preventDefault();
+      setOpen(true);
+      const targetLink = event.key === "ArrowUp" ? serviceLinks.at(-1) : serviceLinks[0];
+      targetLink?.focus();
+    });
+
+    serviceLinks.forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("click", (event) => {
+      if (serviceBtn.getAttribute("aria-expanded") !== "true") return;
+      if (event.target instanceof Node && !mobileNav.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && serviceBtn.getAttribute("aria-expanded") === "true") {
+        event.preventDefault();
+        setOpen(false, { restoreFocus: true });
+      }
+    });
+
+    setOpen(false);
+    mobileNav.dataset.servicesMenuReady = "true";
   }
 
   function initScrollLazyLoad() {
