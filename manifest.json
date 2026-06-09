@@ -1,0 +1,18 @@
+{
+  "name": "Gabo Services",
+  "short_name": "Gabo",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "lang": "en",
+  "theme_color": "#35106d",
+  "background_color": "#35106d",
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
