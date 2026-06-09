@@ -1,0 +1,166 @@
+name: Public repository security checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate public manifest and HTML references
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json
+          from html.parser import HTMLParser
+          from pathlib import Path
+          from urllib.parse import urlsplit
+
+          root = Path.cwd()
+          manifest_path = root / "manifest.json"
+          manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+
+          expected = {
+              "name": "Gabo Services",
+              "short_name": "Gabo",
+              "start_url": "/",
+              "scope": "/",
+              "display": "standalone",
+              "lang": "en",
+          }
+          for key, value in expected.items():
+              if manifest.get(key) != value:
+                  raise SystemExit(f"manifest.json has an invalid {key!r} value")
+
+          for color_key in ("theme_color", "background_color"):
+              value = manifest.get(color_key, "")
+              if not isinstance(value, str) or len(value) != 7 or not value.startswith("#"):
+                  raise SystemExit(f"manifest.json has an invalid {color_key!r} value")
+              try:
+                  int(value[1:], 16)
+              except ValueError as error:
+                  raise SystemExit(f"manifest.json has an invalid {color_key!r} value") from error
+
+          icons = manifest.get("icons")
+          if not isinstance(icons, list) or not icons:
+              raise SystemExit("manifest.json must reference at least one public icon")
+          for icon in icons:
+              source = icon.get("src", "")
+              if not source.startswith("/") or urlsplit(source).scheme or urlsplit(source).netloc:
+                  raise SystemExit("manifest icon references must be root-relative public assets")
+              icon_path = root / source.lstrip("/")
+              if not icon_path.is_file():
+                  raise SystemExit(f"manifest icon does not exist: {source}")
+
+          class ReferenceParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.manifests = []
+                  self.references = []
+
+              def handle_starttag(self, tag, attrs):
+                  attributes = dict(attrs)
+                  if tag == "link" and attributes.get("rel") == "manifest":
+                      self.manifests.append(attributes.get("href"))
+                  if tag in {"link", "script", "img"}:
+                      reference = attributes.get("href") or attributes.get("src")
+                      if reference:
+                          self.references.append(reference)
+
+          html_files = sorted(root.rglob("*.html"))
+          if not html_files:
+              raise SystemExit("no public HTML pages were found")
+
+          for html_path in html_files:
+              parser = ReferenceParser()
+              parser.feed(html_path.read_text(encoding="utf-8"))
+              if parser.manifests != ["/manifest.json"]:
+                  relative = html_path.relative_to(root)
+                  raise SystemExit(f"{relative} must contain one /manifest.json reference")
+
+              for reference in parser.references:
+                  parsed = urlsplit(reference)
+                  if parsed.scheme or parsed.netloc or reference.startswith(("data:", "mailto:", "tel:", "#")):
+                      continue
+                  clean_path = parsed.path
+                  if not clean_path or clean_path == "/":
+                      continue
+                  target = root / clean_path.lstrip("/") if clean_path.startswith("/") else html_path.parent / clean_path
+                  if not target.exists():
+                      relative = html_path.relative_to(root)
+                      raise SystemExit(f"{relative} contains a missing local reference: {reference}")
+
+          print(f"Validated manifest.json and {len(html_files)} HTML pages.")
+          PY
+
+      - name: Scan public text for high-confidence exposure patterns
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import re
+          from pathlib import Path
+
+          extensions = {".html", ".js", ".json", ".md", ".yaml", ".yml"}
+          public_edge_suffix = ".".join(("workers", "dev"))
+          patterns = [
+              ("private key material", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
+              ("credential-bearing URL", re.compile(r"https?://[^\s/@:]+:[^\s/@]+@", re.IGNORECASE)),
+              (
+                  "secret-like assignment",
+                  re.compile(r'''(?ix)\b(?:password|secret|api[_-]?key|access[_-]?token)\b\s*[:=]\s*["'][^"'\n]{8,}["']'''),
+              ),
+              (
+                  "token-like value",
+                  re.compile(r"\beyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b"),
+              ),
+              (
+                  "non-public network URL",
+                  re.compile(
+                      r"https?://(?:localhost|127\.0\.0\.1|10(?:\.\d{1,3}){3}|"
+                      r"192\.168(?:\.\d{1,3}){2}|172\.(?:1[6-9]|2\d|3[01])(?:\.\d{1,3}){2}|"
+                      r"[^/\s]+\.(?:internal|local))(?::\d+)?(?:[/\s]|$)",
+                      re.IGNORECASE,
+                  ),
+              ),
+              (
+                  "restricted architecture term",
+                  re.compile(
+                      r"\b(?:internal[ _-]+bridge|private[ _-]+endpoint|"
+                      r"service[ _-]+binding|worker[ _-]+route)\b",
+                      re.IGNORECASE,
+                  ),
+              ),
+              (
+                  "non-canonical edge host",
+                  re.compile(
+                      r"https?://[^/\s]+\." + re.escape(public_edge_suffix) + r"(?:[/\s]|$)",
+                      re.IGNORECASE,
+                  ),
+              ),
+          ]
+
+          findings = []
+          for path in sorted(Path.cwd().rglob("*")):
+              if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in extensions:
+                  continue
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              for label, pattern in patterns:
+                  for match in pattern.finditer(text):
+                      line = text.count("\n", 0, match.start()) + 1
+                      findings.append(f"{path.relative_to(Path.cwd())}:{line}: {label}")
+
+          if findings:
+              raise SystemExit("Public repository safety scan failed:\n" + "\n".join(findings))
+
+          print("No high-confidence exposure patterns found in public text files.")
+          PY
