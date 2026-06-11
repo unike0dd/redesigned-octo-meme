@@ -1,4 +1,4 @@
-const CACHE_VERSION = "gabo-services-contrast-2026-06-09";
+const CACHE_VERSION = "gabo-services-brand-2026-06-11";
 const OFFLINE_URL = "offline.html";
 const PRECACHE_URLS = [
   "./",
