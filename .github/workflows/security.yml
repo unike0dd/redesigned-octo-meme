@@ -119,6 +119,9 @@ jobs:
           print(f"Validated manifest.webmanifest, {len(html_files)} HTML pages, and Gabo Services branding.")
           PY
 
+      - name: Validate Cloudflare edge security policy
+        run: python3 scripts/validate_edge_security.py
+
       - name: Scan public text for high-confidence exposure patterns
         shell: bash
         run: |
@@ -126,7 +129,7 @@ jobs:
           import re
           from pathlib import Path
 
-          extensions = {".html", ".js", ".json", ".md", ".webmanifest", ".yaml", ".yml"}
+          extensions = {".html", ".js", ".json", ".md", ".py", ".webmanifest", ".yaml", ".yml"}
           public_edge_suffix = ".".join(("workers", "dev"))
           patterns = [
               ("private key material", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
