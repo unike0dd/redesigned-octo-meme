@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="container footer-meta">
-        <small data-i18n="copyright">© 2026 Gabriel Services</small>
+        <small data-i18n="copyright">© 2026 Gabo Services</small>
       </div>
     `;
   }

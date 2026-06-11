@@ -21,19 +21,19 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       services: "Services",
 
       // Header/Nav
-      brand: "Gabriel Services",
+      brand: "Gabo Services",
       tagline: "Outsource, Delivered",
 
       // Browser page titles
-      homePageTitle: "Gabriel Services | Outsource, Delivered",
-      aboutPageTitle: "About Gabriel Services",
-      careersPageTitle: "Careers | Gabriel Services",
-      servicesPageTitle: "Gabriel Services | Services",
-      logisticsServicePageTitle: "Logistics Operations | Gabriel Services",
-      adminServicePageTitle: "Administrative Back Office | Gabriel Services",
+      homePageTitle: "Gabo Services | Outsource, Delivered",
+      aboutPageTitle: "About Gabo Services",
+      careersPageTitle: "Careers | Gabo Services",
+      servicesPageTitle: "Gabo Services | Services",
+      logisticsServicePageTitle: "Logistics Operations | Gabo Services",
+      adminServicePageTitle: "Administrative Back Office | Gabo Services",
       customerServicePageTitle:
-        "Customer Relations Operations | Gabriel Services",
-      itServicePageTitle: "IT Support | Gabriel Services",
+        "Customer Relations Operations | Gabo Services",
+      itServicePageTitle: "IT Support | Gabo Services",
 
       // Footer sections
       company: "Company",
@@ -68,14 +68,14 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       themeLabelText: "Theme",
 
       // Footer meta
-      copyright: "© 2026 Gabriel Services",
+      copyright: "© 2026 Gabo Services",
 
       // Home page
       homeTagline: "Outsource, Delivered",
       homeH1:
         "Reliable day-to-day execution,<br/>Outstanding operational support<br/>for modern businesses.",
       homeDescription:
-        "Gabriel Services helps businesses run smoother with reliable day-to-day support across logistics, customer relations, administrative back office, and IT support.<br/><br/>We integrate with your workflows, keep communication clear, and help your team focus on priorities that drive growth.",
+        "Gabo Services helps businesses run smoother with reliable day-to-day support across logistics, customer relations, administrative back office, and IT support.<br/><br/>We integrate with your workflows, keep communication clear, and help your team focus on priorities that drive growth.",
       bookConsultation: "Start a conversation",
       seeServiceCoverage: "Learn more",
       processeDriven: "Process-Driven Operations",
@@ -91,7 +91,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       servicesOverview: "Services",
       serviceOverviewTitle: "Services",
       serviceOverviewIntro:
-        "Gabriel Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most.",
+        "Gabo Services delivers professional operational support across four core areas. Each service is designed to reduce friction, improve consistency, and let your team focus on what matters most.",
       serviceOverviewLogisticsDesc:
         "Structured coordination, shipment tracking, and operational continuity for supply chain activity.",
       serviceOverviewAdminDesc:
@@ -100,16 +100,16 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Customer communications, issue resolution, and follow-up workflows designed to improve satisfaction and retention.",
       serviceOverviewItDesc:
         "Day-to-day technical support, ticket triage, and user-facing assistance for reliable IT continuity.",
-      whyBusinessesTitle: "Why businesses work with Gabriel Services",
+      whyBusinessesTitle: "Why businesses work with Gabo Services",
       whyBusinessesText:
-        "Businesses choose Gabriel Services for practical execution, clear communication, and consistent daily support that helps teams stay focused on growth.",
+        "Businesses choose Gabo Services for practical execution, clear communication, and consistent daily support that helps teams stay focused on growth.",
       startSupportTitle: "Start with the support you need",
       requestConsultation: "Contact Gabo Services",
       viewEngagementOptions: "Ask gabo io",
 
       aboutTitle: "About",
       aboutIntro1:
-        "Gabriel Services is an operational support partner focused on daily execution for modern businesses.",
+        "Gabo Services is an operational support partner focused on daily execution for modern businesses.",
       aboutIntro2:
         "We provide cross-functional support across logistics operations, administrative back office, customer operations, and IT support.",
       aboutIntro3:
@@ -189,7 +189,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       contactTitle: "Contact",
       contactMetaDescription:
-        "Contact Gabriel Services for support, onboarding, projects, and partnership opportunities.",
+        "Contact Gabo Services for support, onboarding, projects, and partnership opportunities.",
       honeypotWebsiteLabel: "Website",
       contactProtectionUnavailable: "Contact protection module unavailable.",
       contactFullNameRequired: "Please enter your full name.",
@@ -286,7 +286,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Learn coordination, tracking, and continuity essentials.",
       logisticsServiceTitle: "Logistics Operations",
       logisticsServiceIntro:
-        "Gabriel Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving.",
+        "Gabo Services supports logistics workflows with operational oversight, dispatch coordination, and shipment visibility designed to keep your supply chain moving.",
       logisticsServiceOfferTitle: "What We Offer",
       logisticsServiceOffer1: "Dispatch coordination and carrier communication.",
       logisticsServiceOffer2:
@@ -328,10 +328,10 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       practicalApplicationTitle: "Practical Application",
       adminLearningApplication:
         "These skills help back office teams reduce operational friction and support faster decision-making across the business.",
-      adminLearningPageTitle: "Administrative Back Office Learning | Gabriel Services",
+      adminLearningPageTitle: "Administrative Back Office Learning | Gabo Services",
       adminLearningMetaDescription:
         "Learning track for Administrative Back Office: process discipline, reporting, and internal operations skills.",
-      logisticsLearningPageTitle: "Logistics Operations Learning | Gabriel Services",
+      logisticsLearningPageTitle: "Logistics Operations Learning | Gabo Services",
       logisticsLearningMetaDescription:
         "Learning track for Logistics Operations: workflow coordination, tracking systems, and continuity skills.",
       logisticsLearningTitle: "Logistics Operations Learning",
@@ -350,7 +350,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Follow-up management and escalation control",
       logisticsLearningApplication:
         "This track is designed for people who need to turn logistics planning into predictable daily execution without adding operational burden.",
-      customerLearningPageTitle: "Customer Relations Learning | Gabriel Services",
+      customerLearningPageTitle: "Customer Relations Learning | Gabo Services",
       customerLearningMetaDescription:
         "Customer Relations learning track: communication best practices, escalation flows, and customer care skills.",
       customerLearningTitle: "Customer Relations Learning",
@@ -369,7 +369,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Clear and timely customer communication.",
       customerLearningApplication:
         "These practices help teams convert customer interactions into reliable outcomes and clearer handoffs across operations.",
-      itLearningPageTitle: "IT Support Learning | Gabriel Services",
+      itLearningPageTitle: "IT Support Learning | Gabo Services",
       itLearningMetaDescription:
         "Learning track for IT Support: support workflows, ticket management, and user-centered IT operations.",
       itLearningTitle: "IT Support Learning",
@@ -444,7 +444,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       trackITText:
         "Learn triage basics, ticket communication, and request handling.",
       itSupportServiceIntro:
-        "Gabriel Services provides dependable IT support for everyday technical needs, including ticket triage, end-user assistance, and operational system support.",
+        "Gabo Services provides dependable IT support for everyday technical needs, including ticket triage, end-user assistance, and operational system support.",
       serviceHighlightsTitle: "Service Highlights",
       itSupportHighlight1: "Help desk intake and ticket creation",
       itSupportHighlight2: "Basic troubleshooting and issue diagnosis",
@@ -465,10 +465,10 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       termsSection1Title: "1. Agreement to Terms",
       termsSection1Text:
-        "By accessing and using this website and the services provided by Gabriel Services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.",
+        "By accessing and using this website and the services provided by Gabo Services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.",
       termsSection2Title: "2. Use License",
       termsSection2Text:
-        "Gabriel Services grants you a limited license to access and use the website and services for lawful purposes only. You agree not to:",
+        "Gabo Services grants you a limited license to access and use the website and services for lawful purposes only. You agree not to:",
       termsSection2List1:
         "Reproduce, duplicate, copy, or sell any portion of the website or services",
       termsSection2List2:
@@ -483,34 +483,34 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Engage in any form of harassment or abusive behavior",
       termsSection3Title: "3. Disclaimer of Warranties",
       termsSection3Text:
-        "The materials on Gabriel Services' website are provided on an 'as is' basis. Gabriel Services makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
+        "The materials on Gabo Services' website are provided on an 'as is' basis. Gabo Services makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
       termsSection4Title: "4. Limitations of Liability",
       termsSection4Text:
-        "In no event shall Gabriel Services or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Gabriel Services' website, even if Gabriel Services or an authorized representative has been notified orally or in writing of the possibility of such damage.",
+        "In no event shall Gabo Services or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Gabo Services' website, even if Gabo Services or an authorized representative has been notified orally or in writing of the possibility of such damage.",
       termsSection5Title: "5. Accuracy of Materials",
       termsSection5Text:
-        "The materials appearing on Gabriel Services' website could include technical, typographical, or photographic errors. Gabriel Services does not warrant that any of the materials on its website are accurate, complete, or current. Gabriel Services may make changes to the materials contained on its website at any time without notice.",
+        "The materials appearing on Gabo Services' website could include technical, typographical, or photographic errors. Gabo Services does not warrant that any of the materials on its website are accurate, complete, or current. Gabo Services may make changes to the materials contained on its website at any time without notice.",
       termsSection6Title: "6. Links",
       termsSection6Text:
-        "Gabriel Services has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Gabriel Services of the site. Use of any such linked website is at the user's own risk.",
+        "Gabo Services has not reviewed all of the sites linked to its website and is not responsible for the contents of any such linked site. The inclusion of any link does not imply endorsement by Gabo Services of the site. Use of any such linked website is at the user's own risk.",
       termsSection7Title: "7. Modifications",
       termsSection7Text:
-        "Gabriel Services may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.",
+        "Gabo Services may revise these terms of service for its website at any time without notice. By using this website, you are agreeing to be bound by the then current version of these terms of service.",
       termsSection8Title: "8. Governing Law",
       termsSection8Text:
-        "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Gabriel Services operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.",
+        "These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which Gabo Services operates, and you irrevocably submit to the exclusive jurisdiction of the courts in that location.",
       termsSection9Title: "9. Service Description",
       termsSection9Text:
-        "Gabriel Services provides operational support services including Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support. The specific services requested and agreed upon between Gabriel Services and the client are detailed in the service agreement.",
+        "Gabo Services provides operational support services including Logistics Operations, Administrative Back Office, Customer Relations Operations, and IT Support. The specific services requested and agreed upon between Gabo Services and the client are detailed in the service agreement.",
       termsSection10Title: "10. Payment Terms",
       termsSection10Text:
         "Payment terms are as specified in the individual service agreement. Invoices are due upon receipt unless otherwise agreed in writing. Late payments may result in service suspension.",
       termsSection11Title: "11. Intellectual Property Rights",
       termsSection11Text:
-        "All content included on this website, such as text, graphics, logos, images, and software, is the property of Gabriel Services or its content suppliers and is protected by international copyright laws.",
+        "All content included on this website, such as text, graphics, logos, images, and software, is the property of Gabo Services or its content suppliers and is protected by international copyright laws.",
       termsSection12Title: "12. Limitation of Service",
       termsSection12Text:
-        "Gabriel Services reserves the right to refuse service to anyone at its sole discretion. Gabriel Services also reserves the right to limit or terminate services, close accounts, and remove or edit content in our sole discretion.",
+        "Gabo Services reserves the right to refuse service to anyone at its sole discretion. Gabo Services also reserves the right to limit or terminate services, close accounts, and remove or edit content in our sole discretion.",
       termsSection13Title: "13. Contact for Legal Inquiries",
       termsSection13Text:
         "If you have any questions about these Terms & Conditions, please contact us at the email or address provided on our Contact page.",
@@ -520,7 +520,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       cookiesTitle: "Cookies Consent Policy",
       cookiesSection1Title: "1. What Are Cookies?",
       cookiesSection1Text:
-        "Cookies are small data files containing a string of characters that are placed on your computer or mobile device when you visit our website. They allow us to recognize your browser or device, remember information about your preferences, and help personalize your experience on the Gabriel Services website.",
+        "Cookies are small data files containing a string of characters that are placed on your computer or mobile device when you visit our website. They allow us to recognize your browser or device, remember information about your preferences, and help personalize your experience on the Gabo Services website.",
       cookiesSection2Title: "2. Types of Cookies We Use",
       cookiesSection2EssentialTitle: "Essential Cookies",
       cookiesSection2EssentialText:
@@ -593,7 +593,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       privacySection1Title: "1. Introduction",
       privacySection1Text:
-        'Gabriel Services ("we," "us," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. Please read this policy carefully to understand our practices regarding your personal data.',
+        'Gabo Services ("we," "us," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services. Please read this policy carefully to understand our practices regarding your personal data.',
       privacySection2Title: "2. Information We Collect",
       privacySection2DirectTitle: "Information You Provide Directly",
       privacySection2DirectList1:
@@ -717,19 +717,19 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       services: "Servicios",
 
       // Header/Nav
-      brand: "Gabriel Services",
+      brand: "Gabo Services",
       tagline: "Tercerización, Entregada",
 
       // Browser page titles
-      homePageTitle: "Gabriel Services | Tercerización, Entregada",
-      aboutPageTitle: "Acerca de Gabriel Services",
-      careersPageTitle: "Carreras | Gabriel Services",
-      servicesPageTitle: "Gabriel Services | Servicios",
-      logisticsServicePageTitle: "Operaciones Logísticas | Gabriel Services",
-      adminServicePageTitle: "Back Office Administrativo | Gabriel Services",
+      homePageTitle: "Gabo Services | Tercerización, Entregada",
+      aboutPageTitle: "Acerca de Gabo Services",
+      careersPageTitle: "Carreras | Gabo Services",
+      servicesPageTitle: "Gabo Services | Servicios",
+      logisticsServicePageTitle: "Operaciones Logísticas | Gabo Services",
+      adminServicePageTitle: "Back Office Administrativo | Gabo Services",
       customerServicePageTitle:
-        "Operaciones de Relaciones con Clientes | Gabriel Services",
-      itServicePageTitle: "Soporte de TI | Gabriel Services",
+        "Operaciones de Relaciones con Clientes | Gabo Services",
+      itServicePageTitle: "Soporte de TI | Gabo Services",
 
       // Footer sections
       company: "Empresa",
@@ -764,14 +764,14 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       themeLabelText: "Tema",
 
       // Footer meta
-      copyright: "© 2026 Gabriel Services",
+      copyright: "© 2026 Gabo Services",
 
       // Home page
       homeTagline: "Tercerización, Entregada",
       homeH1:
         "Ejecución confiable día a día,<br/>Soporte operativo excepcional<br/>para negocios modernos.",
       homeDescription:
-        "Gabriel Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
+        "Gabo Services brinda experiencia profunda en coordinación, gestión de operaciones, satisfacción del cliente y soporte de PC/escritorio para que su equipo se enfoque en el crecimiento mientras ejecutamos el día a día.<br/><br/>Proporcionamos Logística, Relaciones con Clientes, Back Office Administrativo y Soporte de TI.",
       bookConsultation: "Iniciar una conversación",
       seeServiceCoverage: "Conocer más",
       processeDriven: "Operaciones Impulsadas por Procesos",
@@ -787,7 +787,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       servicesOverview: "Servicios",
       serviceOverviewTitle: "Servicios",
       serviceOverviewIntro:
-        "Gabriel Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante.",
+        "Gabo Services brinda soporte operativo profesional en cuatro áreas principales. Cada servicio está diseñado para reducir la fricción, mejorar la consistencia y permitir que tu equipo se enfoque en lo más importante.",
       serviceOverviewLogisticsDesc:
         "Coordinación estructurada, seguimiento de envíos y continuidad operativa para actividades de la cadena de suministro.",
       serviceOverviewAdminDesc:
@@ -796,7 +796,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Comunicaciones con clientes, resolución de problemas y flujos de seguimiento diseñados para mejorar la satisfacción y la retención.",
       serviceOverviewItDesc:
         "Soporte técnico diario, triaje de tickets y asistencia al usuario para una continuidad confiable de TI.",
-      whyBusinessesTitle: "Por qué las empresas trabajan con Gabriel Services",
+      whyBusinessesTitle: "Por qué las empresas trabajan con Gabo Services",
       whyBusinessesText:
         "Consistencia, ejecución práctica y equipos experimentados y orientados al cliente que se sienten como un nuevo comienzo para sus operaciones.",
       startSupportTitle: "Comience con el apoyo que necesita",
@@ -805,7 +805,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       aboutTitle: "Acerca de",
       aboutIntro1:
-        "Gabriel Services es un socio de soporte operativo enfocado en la ejecución diaria para negocios modernos.",
+        "Gabo Services es un socio de soporte operativo enfocado en la ejecución diaria para negocios modernos.",
       aboutIntro2:
         "Ofrecemos soporte multifuncional en operaciones logísticas, back office administrativo, operaciones de atención al cliente y soporte de TI.",
       aboutIntro3:
@@ -887,7 +887,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       contactTitle: "Contacto",
       contactMetaDescription:
-        "Contacta a Gabriel Services para soporte, incorporación, proyectos y oportunidades de colaboración.",
+        "Contacta a Gabo Services para soporte, incorporación, proyectos y oportunidades de colaboración.",
       honeypotWebsiteLabel: "Sitio web",
       contactProtectionUnavailable: "El módulo de protección de contacto no está disponible.",
       contactFullNameRequired: "Ingresa tu nombre completo.",
@@ -985,7 +985,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Aprende los fundamentos de coordinación, seguimiento y continuidad.",
       logisticsServiceTitle: "Operaciones Logísticas",
       logisticsServiceIntro:
-        "Gabriel Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento.",
+        "Gabo Services apoya los flujos de trabajo logísticos con supervisión operativa, coordinación de despachos y visibilidad de envíos, diseñados para mantener tu cadena de suministro en movimiento.",
       logisticsServiceOfferTitle: "Lo que ofrecemos",
       logisticsServiceOffer1:
         "Coordinación de despachos y comunicación con transportistas.",
@@ -1029,10 +1029,10 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       practicalApplicationTitle: "Aplicación práctica",
       adminLearningApplication:
         "Estas habilidades ayudan a los equipos de back office a reducir la fricción operativa y apoyar una toma de decisiones más rápida en todo el negocio.",
-      adminLearningPageTitle: "Aprendizaje de Administración Back Office | Gabriel Services",
+      adminLearningPageTitle: "Aprendizaje de Administración Back Office | Gabo Services",
       adminLearningMetaDescription:
         "Ruta de aprendizaje para Administración Back Office: disciplina de procesos, reportes y habilidades de operaciones internas.",
-      logisticsLearningPageTitle: "Aprendizaje de Operaciones Logísticas | Gabriel Services",
+      logisticsLearningPageTitle: "Aprendizaje de Operaciones Logísticas | Gabo Services",
       logisticsLearningMetaDescription:
         "Ruta de aprendizaje para Operaciones Logísticas: coordinación de flujos de trabajo, sistemas de seguimiento y habilidades de continuidad.",
       logisticsLearningTitle: "Aprendizaje de Operaciones Logísticas",
@@ -1051,7 +1051,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Gestión de seguimientos y control de escalaciones",
       logisticsLearningApplication:
         "Esta ruta está diseñada para personas que necesitan convertir la planificación logística en una ejecución diaria predecible, sin agregar carga operativa.",
-      customerLearningPageTitle: "Aprendizaje de Relaciones con Clientes | Gabriel Services",
+      customerLearningPageTitle: "Aprendizaje de Relaciones con Clientes | Gabo Services",
       customerLearningMetaDescription:
         "Aprendizaje de Relaciones con Clientes: mejores prácticas de comunicación, flujos de escalación y habilidades de atención al cliente.",
       customerLearningTitle: "Aprendizaje de Relaciones con Clientes",
@@ -1070,7 +1070,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Comunicación clara y oportuna con el cliente.",
       customerLearningApplication:
         "Estas prácticas ayudan a los equipos a convertir las interacciones con clientes en resultados confiables y traspasos más claros entre operaciones.",
-      itLearningPageTitle: "Aprendizaje de Soporte de TI | Gabriel Services",
+      itLearningPageTitle: "Aprendizaje de Soporte de TI | Gabo Services",
       itLearningMetaDescription:
         "Ruta de aprendizaje de Soporte de TI: flujos de soporte, gestión de tickets y operaciones de TI centradas en usuarios.",
       itLearningTitle: "Aprendizaje de Soporte de TI",
@@ -1149,7 +1149,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       trackITText:
         "Aprende fundamentos de clasificación, comunicación de tickets y manejo de solicitudes.",
       itSupportServiceIntro:
-        "Gabriel Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos.",
+        "Gabo Services proporciona soporte de TI confiable para las necesidades técnicas diarias, incluyendo clasificación de tickets, asistencia a usuarios finales y soporte de sistemas operativos.",
       serviceHighlightsTitle: "Aspectos destacados del servicio",
       itSupportHighlight1:
         "Recepción de solicitudes de mesa de ayuda y creación de tickets.",
@@ -1175,10 +1175,10 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       termsSection1Title: "1. Aceptación de los términos",
       termsSection1Text:
-        "Al acceder y usar este sitio web y los servicios proporcionados por Gabriel Services, aceptas y acuerdas quedar sujeto a los términos y disposiciones de este acuerdo. Si no aceptas cumplir con lo anterior, por favor no utilices este servicio.",
+        "Al acceder y usar este sitio web y los servicios proporcionados por Gabo Services, aceptas y acuerdas quedar sujeto a los términos y disposiciones de este acuerdo. Si no aceptas cumplir con lo anterior, por favor no utilices este servicio.",
       termsSection2Title: "2. Licencia de uso",
       termsSection2Text:
-        "Gabriel Services te otorga una licencia limitada para acceder y usar el sitio web y los servicios únicamente con fines legales. Aceptas no:",
+        "Gabo Services te otorga una licencia limitada para acceder y usar el sitio web y los servicios únicamente con fines legales. Aceptas no:",
       termsSection2List1:
         "Reproducir, duplicar, copiar o vender cualquier parte del sitio web o de los servicios",
       termsSection2List2:
@@ -1193,34 +1193,34 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
         "Participar en cualquier forma de acoso o comportamiento abusivo",
       termsSection3Title: "3. Descargo de garantías",
       termsSection3Text:
-        "Los materiales del sitio web de Gabriel Services se proporcionan ‘tal cual’. Gabriel Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, entre otras, las garantías o condiciones implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
+        "Los materiales del sitio web de Gabo Services se proporcionan ‘tal cual’. Gabo Services no otorga garantías, expresas o implícitas, y por la presente rechaza y niega todas las demás garantías, incluidas, entre otras, las garantías o condiciones implícitas de comerciabilidad, idoneidad para un propósito particular o no infracción de propiedad intelectual u otra violación de derechos.",
       termsSection4Title: "4. Limitaciones de responsabilidad",
       termsSection4Text:
-        "En ningún caso Gabriel Services o sus proveedores serán responsables por daños (incluidos, entre otros, daños por pérdida de datos o ganancias, o por interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales del sitio web de Gabriel Services, incluso si Gabriel Services o un representante autorizado ha sido notificado oralmente o por escrito sobre la posibilidad de dicho daño.",
+        "En ningún caso Gabo Services o sus proveedores serán responsables por daños (incluidos, entre otros, daños por pérdida de datos o ganancias, o por interrupción del negocio) derivados del uso o la imposibilidad de usar los materiales del sitio web de Gabo Services, incluso si Gabo Services o un representante autorizado ha sido notificado oralmente o por escrito sobre la posibilidad de dicho daño.",
       termsSection5Title: "5. Exactitud de los materiales",
       termsSection5Text:
-        "Los materiales que aparecen en el sitio web de Gabriel Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabriel Services no garantiza que ninguno de los materiales de su sitio web sea preciso, completo o actual. Gabriel Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento y sin previo aviso.",
+        "Los materiales que aparecen en el sitio web de Gabo Services podrían incluir errores técnicos, tipográficos o fotográficos. Gabo Services no garantiza que ninguno de los materiales de su sitio web sea preciso, completo o actual. Gabo Services puede realizar cambios en los materiales contenidos en su sitio web en cualquier momento y sin previo aviso.",
       termsSection6Title: "6. Enlaces",
       termsSection6Text:
-        "Gabriel Services no ha revisado todos los sitios enlazados a su sitio web y no es responsable del contenido de dichos sitios enlazados. La inclusión de cualquier enlace no implica respaldo por parte de Gabriel Services del sitio. El uso de cualquier sitio web enlazado es bajo el propio riesgo del usuario.",
+        "Gabo Services no ha revisado todos los sitios enlazados a su sitio web y no es responsable del contenido de dichos sitios enlazados. La inclusión de cualquier enlace no implica respaldo por parte de Gabo Services del sitio. El uso de cualquier sitio web enlazado es bajo el propio riesgo del usuario.",
       termsSection7Title: "7. Modificaciones",
       termsSection7Text:
-        "Gabriel Services puede revisar estos términos de servicio para su sitio web en cualquier momento y sin previo aviso. Al usar este sitio web, aceptas quedar sujeto a la versión vigente de estos términos de servicio.",
+        "Gabo Services puede revisar estos términos de servicio para su sitio web en cualquier momento y sin previo aviso. Al usar este sitio web, aceptas quedar sujeto a la versión vigente de estos términos de servicio.",
       termsSection8Title: "8. Ley aplicable",
       termsSection8Text:
-        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabriel Services, y te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
+        "Estos términos y condiciones se rigen e interpretan de conformidad con las leyes de la jurisdicción en la que opera Gabo Services, y te sometes irrevocablemente a la jurisdicción exclusiva de los tribunales de esa ubicación.",
       termsSection9Title: "9. Descripción del servicio",
       termsSection9Text:
-        "Gabriel Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabriel Services y el cliente se detallan en el acuerdo de servicio.",
+        "Gabo Services proporciona servicios de soporte operativo que incluyen Operaciones Logísticas, Back Office Administrativo, Operaciones de Relaciones con Clientes y Soporte de TI. Los servicios específicos solicitados y acordados entre Gabo Services y el cliente se detallan en el acuerdo de servicio.",
       termsSection10Title: "10. Términos de pago",
       termsSection10Text:
         "Los términos de pago son los especificados en el acuerdo de servicio individual. Las facturas vencen al recibo, salvo que se acuerde lo contrario por escrito. Los pagos atrasados pueden resultar en la suspensión del servicio.",
       termsSection11Title: "11. Derechos de propiedad intelectual",
       termsSection11Text:
-        "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabriel Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
+        "Todo el contenido incluido en este sitio web, como texto, gráficos, logotipos, imágenes y software, es propiedad de Gabo Services o de sus proveedores de contenido y está protegido por leyes internacionales de derechos de autor.",
       termsSection12Title: "12. Limitación del servicio",
       termsSection12Text:
-        "Gabriel Services se reserva el derecho de rechazar el servicio a cualquier persona a su exclusiva discreción. Gabriel Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a nuestra exclusiva discreción.",
+        "Gabo Services se reserva el derecho de rechazar el servicio a cualquier persona a su exclusiva discreción. Gabo Services también se reserva el derecho de limitar o terminar servicios, cerrar cuentas y eliminar o editar contenido a nuestra exclusiva discreción.",
       termsSection13Title: "13. Contacto para consultas legales",
       termsSection13Text:
         "Si tienes alguna pregunta sobre estos Términos y Condiciones, contáctanos en el correo electrónico o la dirección proporcionados en nuestra página de Contacto.",
@@ -1230,7 +1230,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
       cookiesTitle: "Política de consentimiento de cookies",
       cookiesSection1Title: "1. ¿Qué son las cookies?",
       cookiesSection1Text:
-        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres y se colocan en tu computadora o dispositivo móvil cuando visitas nuestro sitio web. Nos permiten reconocer tu navegador o dispositivo, recordar información sobre tus preferencias y ayudar a personalizar tu experiencia en el sitio web de Gabriel Services.",
+        "Las cookies son pequeños archivos de datos que contienen una cadena de caracteres y se colocan en tu computadora o dispositivo móvil cuando visitas nuestro sitio web. Nos permiten reconocer tu navegador o dispositivo, recordar información sobre tus preferencias y ayudar a personalizar tu experiencia en el sitio web de Gabo Services.",
       cookiesSection2Title: "2. Tipos de cookies que usamos",
       cookiesSection2EssentialTitle: "Cookies esenciales",
       cookiesSection2EssentialText:
@@ -1308,7 +1308,7 @@ Standalone, human-readable duplicate of end-user EN/ES content for CX and LeadGe
 
       privacySection1Title: "1. Introducción",
       privacySection1Text:
-        "Gabriel Services (“nosotros”, “nos” o la “Compañía”) está comprometida con la protección de tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando visitas nuestro sitio web y utilizas nuestros servicios. Por favor, lee esta política cuidadosamente para comprender nuestras prácticas respecto a tus datos personales.",
+        "Gabo Services (“nosotros”, “nos” o la “Compañía”) está comprometida con la protección de tu privacidad. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos tu información cuando visitas nuestro sitio web y utilizas nuestros servicios. Por favor, lee esta política cuidadosamente para comprender nuestras prácticas respecto a tus datos personales.",
       privacySection2Title: "2. Información que recopilamos",
       privacySection2DirectTitle: "Información que proporcionas directamente",
       privacySection2DirectList1:

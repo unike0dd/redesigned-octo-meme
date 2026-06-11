@@ -1,5 +1,5 @@
 {
-  "name": "Gabriel Services",
+  "name": "Gabo Services",
   "short_name": "Gabo Services",
   "description": "Operational support across logistics, customer relations, administrative back office, and IT support.",
   "id": "./",
@@ -22,7 +22,7 @@
   ],
   "shortcuts": [
     {
-      "name": "Contact Gabriel Services",
+      "name": "Contact Gabo Services",
       "short_name": "Contact",
       "description": "Start a support conversation.",
       "url": "contact.html?source=pwa-shortcut"

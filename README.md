@@ -1,8 +1,10 @@
-# Gabriel Services Static Site
+# Gabo Services Static Site
 
-This repository contains the production static website for **Gabriel Services**. The site presents operational support services, Careers intake, Contact intake, legal notices, PWA fallback behavior, and the `gabo io` chatbot frontend.
+This repository contains the production static website for **Gabo Services**. The site presents operational support services, Careers intake, Contact intake, legal notices, PWA fallback behavior, and the `gabo io` chatbot frontend.
 
 The repo is intentionally build-light: production pages load plain HTML, CSS, and browser JavaScript directly from this repository.
+
+For a plain-language description of the website and its visitor experience, see [`WEBSITE.md`](WEBSITE.md).
 
 ## Site map
 
@@ -74,7 +76,7 @@ for h in htmls:
         target=url.split('#')[0].split('?')[0]
         if not target:
             continue
-        resolved=(h.parent/target).resolve()
+        resolved=((Path.cwd() / target.lstrip('/')) if target.startswith('/') else (h.parent / target)).resolve()
         try:
             rel=resolved.relative_to(Path.cwd())
         except ValueError:
