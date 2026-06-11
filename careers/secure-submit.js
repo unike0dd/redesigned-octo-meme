@@ -347,31 +347,17 @@
   }
 
   async function sendToCareersGateway(payload, headers) {
-    const primary = CONTRACT.endpoint;
-    const fallback = new URL(CONTRACT.route, window.location.origin).toString();
-    const endpoints = primary === fallback ? [primary] : [primary, fallback];
+    const response = await fetch(CONTRACT.endpoint, {
+      method: "POST",
+      mode: "cors",
+      credentials: "omit",
+      cache: "no-store",
+      referrerPolicy: "no-referrer",
+      headers,
+      body: JSON.stringify(payload)
+    });
 
-    let lastError = null;
-
-    for (const endpoint of endpoints) {
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          mode: "cors",
-          credentials: "omit",
-          cache: "no-store",
-          referrerPolicy: "no-referrer",
-          headers,
-          body: JSON.stringify(payload)
-        });
-
-        return { response, endpoint };
-      } catch (error) {
-        lastError = error;
-      }
-    }
-
-    throw lastError || new Error("Failed to reach Careers gateway.");
+    return { response, endpoint: CONTRACT.endpoint };
   }
 
   async function submitCareers(form, statusNode) {
