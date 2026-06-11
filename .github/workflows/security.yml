@@ -22,43 +22,45 @@ jobs:
         run: |
           python3 - <<'PY'
           import json
+          import re
           from html.parser import HTMLParser
           from pathlib import Path
           from urllib.parse import urlsplit
 
           root = Path.cwd()
-          manifest_path = root / "manifest.json"
+          manifest_path = root / "manifest.webmanifest"
           manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
           expected = {
               "name": "Gabo Services",
-              "short_name": "Gabo",
-              "start_url": "/",
-              "scope": "/",
+              "short_name": "Gabo Services",
+              "start_url": "./?source=pwa",
+              "scope": "./",
               "display": "standalone",
-              "lang": "en",
+              "lang": "en-US",
           }
           for key, value in expected.items():
               if manifest.get(key) != value:
-                  raise SystemExit(f"manifest.json has an invalid {key!r} value")
+                  raise SystemExit(f"manifest.webmanifest has an invalid {key!r} value")
 
           for color_key in ("theme_color", "background_color"):
               value = manifest.get(color_key, "")
               if not isinstance(value, str) or len(value) != 7 or not value.startswith("#"):
-                  raise SystemExit(f"manifest.json has an invalid {color_key!r} value")
+                  raise SystemExit(f"manifest.webmanifest has an invalid {color_key!r} value")
               try:
                   int(value[1:], 16)
               except ValueError as error:
-                  raise SystemExit(f"manifest.json has an invalid {color_key!r} value") from error
+                  raise SystemExit(f"manifest.webmanifest has an invalid {color_key!r} value") from error
 
           icons = manifest.get("icons")
           if not isinstance(icons, list) or not icons:
-              raise SystemExit("manifest.json must reference at least one public icon")
+              raise SystemExit("manifest.webmanifest must reference at least one public icon")
           for icon in icons:
               source = icon.get("src", "")
-              if not source.startswith("/") or urlsplit(source).scheme or urlsplit(source).netloc:
-                  raise SystemExit("manifest icon references must be root-relative public assets")
-              icon_path = root / source.lstrip("/")
+              parsed_source = urlsplit(source)
+              if parsed_source.scheme or parsed_source.netloc:
+                  raise SystemExit("manifest icon references must be same-origin public assets")
+              icon_path = root / parsed_source.path.lstrip("/")
               if not icon_path.is_file():
                   raise SystemExit(f"manifest icon does not exist: {source}")
 
@@ -84,9 +86,9 @@ jobs:
           for html_path in html_files:
               parser = ReferenceParser()
               parser.feed(html_path.read_text(encoding="utf-8"))
-              if parser.manifests != ["/manifest.json"]:
+              if parser.manifests != ["/manifest.webmanifest"]:
                   relative = html_path.relative_to(root)
-                  raise SystemExit(f"{relative} must contain one /manifest.json reference")
+                  raise SystemExit(f"{relative} must contain one /manifest.webmanifest reference")
 
               for reference in parser.references:
                   parsed = urlsplit(reference)
@@ -100,7 +102,21 @@ jobs:
                       relative = html_path.relative_to(root)
                       raise SystemExit(f"{relative} contains a missing local reference: {reference}")
 
-          print(f"Validated manifest.json and {len(html_files)} HTML pages.")
+          brand_extensions = {".html", ".js", ".json", ".md", ".svg", ".webmanifest", ".yaml", ".yml"}
+          legacy_brand = re.compile(r"\bGabriel(?:\s+Services)?\b", re.IGNORECASE)
+          legacy_references = []
+          for path in sorted(root.rglob("*")):
+              if not path.is_file() or ".git" in path.parts or path.suffix.lower() not in brand_extensions:
+                  continue
+              text = path.read_text(encoding="utf-8", errors="ignore")
+              for match in legacy_brand.finditer(text):
+                  line = text.count("\n", 0, match.start()) + 1
+                  legacy_references.append(f"{path.relative_to(root)}:{line}")
+
+          if legacy_references:
+              raise SystemExit("Legacy brand references found:\n" + "\n".join(legacy_references))
+
+          print(f"Validated manifest.webmanifest, {len(html_files)} HTML pages, and Gabo Services branding.")
           PY
 
       - name: Scan public text for high-confidence exposure patterns
@@ -110,7 +126,7 @@ jobs:
           import re
           from pathlib import Path
 
-          extensions = {".html", ".js", ".json", ".md", ".yaml", ".yml"}
+          extensions = {".html", ".js", ".json", ".md", ".webmanifest", ".yaml", ".yml"}
           public_edge_suffix = ".".join(("workers", "dev"))
           patterns = [
               ("private key material", re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----")),
